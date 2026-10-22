@@ -27,7 +27,7 @@ export function CourtFacts({ program, session, sport }: { program: ProgramDetail
             }`}
             style={{ backgroundColor: SURFACES[sport].court }}
           >
-            <dt className="mt-1 text-[0.875rem] text-white/80">{f.label}</dt>
+            <dt className="mt-1 text-[0.875rem] text-white">{f.label}</dt>
             <dd className="text-[1.5rem] leading-tight font-extrabold tracking-[-0.02em]">{f.value}</dd>
           </div>
         ))}

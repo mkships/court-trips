@@ -30,3 +30,8 @@ body {
 .on-paper :focus-visible {
   outline-color: var(--color-ink);
 }
+
+/* on court-coloured panels and photos the dark ring disappears; use the ball colour */
+.on-paper .on-surface :focus-visible {
+  outline-color: var(--color-ball);
+}

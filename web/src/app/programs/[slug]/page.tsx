@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { BookingCard, MobileBookingBar } from "@/components/program/BookingCard";
 import { CourtFacts } from "@/components/program/CourtFacts";
@@ -22,7 +23,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const program = getProgram((await params).slug);
-  return program ? { title: `${program.title}, ${placeLabel(program)} | Court Trips`, description: program.description } : {};
+  if (!program) return {};
+  const title = `${program.title}, ${placeLabel(program)} | Court Trips`;
+  return {
+    title,
+    description: program.description,
+    // programs without photos fall back to the site-wide court image
+    openGraph: { title, description: program.description, ...(program.photos[0] && { images: [program.photos[0]] }) },
+  };
 }
 
 // The session a tile opened with, else the next bookable one.
@@ -46,7 +54,7 @@ export default async function ProgramPage({ params, searchParams }: Props) {
     <div className="on-paper pb-28 lg:pb-20">
       <Header />
       <main className="mx-auto max-w-[1280px] px-4 sm:px-8">
-        <Link href="/" className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink hover:underline">
+        <Link href={`/?sport=${sport}`} className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink hover:underline">
           All {SPORT_NAMES[sport].toLowerCase()} trips
         </Link>
         <h1 className="mt-3 max-w-[22ch] text-[2.25rem] leading-[1] font-black tracking-[-0.035em] text-balance sm:text-[3rem]">
@@ -110,6 +118,7 @@ export default async function ProgramPage({ params, searchParams }: Props) {
           </aside>
         </div>
       </main>
+      <Footer />
       <MobileBookingBar program={program} session={session} />
     </div>
   );

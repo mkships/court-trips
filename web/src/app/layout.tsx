@@ -9,6 +9,8 @@ const schibsted = Schibsted_Grotesk({
 });
 
 export const metadata: Metadata = {
+  // Absolute base for link-preview images; set NEXT_PUBLIC_SITE_URL once the site has a domain.
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: "Court Trips",
   description: "Tennis, pickleball and padel camps, clinics and getaways worldwide.",
 };

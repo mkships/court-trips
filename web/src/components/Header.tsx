@@ -15,15 +15,15 @@ export function Header({
   onModeChange?: (mode: Mode) => void;
 }) {
   return (
-    <header className="mx-auto flex max-w-[1280px] items-center gap-6 px-4 py-5 sm:px-8">
+    <header className="mx-auto grid max-w-[1280px] grid-cols-[1fr_auto] items-center gap-x-6 gap-y-2 px-4 pt-5 pb-3 sm:px-8 md:grid-cols-[1fr_auto_1fr] md:pb-5">
       <Link
         href="/"
-        className="flex items-center gap-2 text-[1.375rem] font-black tracking-[-0.03em]"
+        className="col-start-1 row-start-1 flex items-center gap-2 justify-self-start text-[1.375rem] font-black tracking-[-0.03em]"
       >
         <Logo />
         Court Trips
       </Link>
-      <nav aria-label="What to browse" className="mx-auto hidden gap-1 md:flex">
+      <nav aria-label="What to browse" className="col-span-2 row-start-2 -ml-4 flex gap-1 md:col-span-1 md:col-start-2 md:row-start-1 md:ml-0">
         {MODES.map(([value, label]) =>
           onModeChange ? (
             <button
@@ -46,20 +46,7 @@ export function Header({
           ),
         )}
       </nav>
-      <div className="ml-auto flex items-center gap-1 text-[0.9375rem] font-semibold md:ml-0">
-        <a
-          href="#"
-          className="hidden rounded-full px-4 py-2 hover:bg-rule/60 sm:block"
-        >
-          List your program
-        </a>
-        <a
-          href="#"
-          className="rounded-full border border-rule px-4 py-2 hover:border-ink"
-        >
-          Sign in
-        </a>
-      </div>
+      {/* "List your program" returns here once operator listings are built; travellers don't need accounts. */}
     </header>
   );
 }

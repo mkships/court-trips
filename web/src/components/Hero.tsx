@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Court } from "@/components/Court";
 import { DIMENSIONS, SURFACES } from "@/lib/surfaces";
 import { dateRange, placeLabel, priceFrom } from "@/lib/format";
@@ -21,20 +21,19 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
   const name = SPORT_NAMES[sport];
 
   return (
-    <div className="grid overflow-hidden rounded-[28px] md:h-[600px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[600px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
       <div
         className="flex flex-col px-6 pt-7 pb-6 text-white sm:px-9 sm:pt-9 md:pb-20"
         style={{ backgroundColor: SURFACES[sport].surround, transition: "background-color 700ms" }}
       >
-        <div role="radiogroup" aria-label="Sport" className="flex flex-wrap gap-2">
+        <div role="group" aria-label="Sport" className="flex flex-wrap gap-2">
           {SPORTS.map((value) => (
             <button
               key={value}
               type="button"
-              role="radio"
-              aria-checked={sport === value}
+              aria-pressed={sport === value}
               onClick={() => onSportChange(value)}
-              className="rounded-full border border-white/40 px-4 py-1.5 text-[0.9375rem] font-semibold hover:border-white aria-checked:border-white aria-checked:bg-white aria-checked:text-ink"
+              className="rounded-full border border-white/40 px-4 py-1.5 text-[0.9375rem] font-semibold hover:border-white aria-pressed:border-white aria-pressed:bg-white aria-pressed:text-ink"
             >
               {SPORT_NAMES[value]}
             </button>
@@ -49,12 +48,12 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
         <div className="mt-4 flex items-end justify-between gap-5 md:contents">
           <p className="max-w-[34ch] text-[1rem] leading-snug text-white/85 md:mt-4 md:text-[1.0625rem]">
             {mode === "programs"
-              ? `${stats.programs} camps, clinics and getaways in ${stats.countries.length} countries.`
+              ? `Camps, clinics and getaways in ${whereLabel(stats.countries)}.`
               : `Resorts and hotels with ${name.toLowerCase()} courts on site.`}
           </p>
           <figure className="w-[44%] shrink-0 md:mt-auto md:w-full">
             <Court sport={sport} className="block aspect-[28/15] w-full" />
-            <figcaption className="mt-1.5 text-[0.75rem] text-white/70 tabular-nums md:mt-2 md:text-[0.8125rem]">
+            <figcaption className="mt-1.5 text-[0.75rem] text-white/85 tabular-nums md:mt-2 md:text-[0.8125rem]">
               <span className="hidden md:inline">{name} court, </span>
               {DIMENSIONS[sport]}
               <span className="hidden md:inline">, drawn to scale</span>
@@ -68,13 +67,34 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
   );
 }
 
+// Few countries read better named than counted: "Greece, Italy, the UK and the US".
+const SHORT_NAMES: Record<string, string> = { "United Kingdom": "the UK", "United States": "the US" };
+function whereLabel(countries: string[]) {
+  if (countries.length > 4) return `${countries.length} countries`;
+  const names = countries.map((c) => SHORT_NAMES[c] ?? c);
+  return names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
+}
+
+const SWIPE_PX = 40;
+
 function FeaturedPhotos({ featured }: { featured: Listing[] }) {
   const [index, setIndex] = useState(0);
+  const touchX = useRef<number | null>(null);
   const current = featured[index];
   const step = (by: number) => setIndex((i) => (i + by + featured.length) % featured.length);
 
   return (
-    <section aria-label="Featured trips" className="relative aspect-[4/3] bg-ink md:aspect-auto">
+    <section
+      aria-label="Featured trips"
+      className="relative aspect-[4/3] touch-pan-y bg-ink md:aspect-auto"
+      onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+      onTouchEnd={(e) => {
+        if (touchX.current == null) return;
+        const dx = e.changedTouches[0].clientX - touchX.current;
+        if (Math.abs(dx) > SWIPE_PX) step(dx < 0 ? 1 : -1);
+        touchX.current = null;
+      }}
+    >
       {featured.map((listing, i) => (
         <Image
           key={listing.key}

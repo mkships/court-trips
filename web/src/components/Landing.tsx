@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ListingRow, VenueRow } from "@/components/ListingRow";
@@ -12,11 +13,17 @@ import { capPerProgram, featuredTiles } from "@/lib/tiles";
 const ROW_SIZE = 8;
 const ROW_CAP_PER_PROGRAM = 1;
 
-type Props = { stats: Record<Sport, SportStats>; listings: Listing[]; venues: Venue[]; initialMode?: Mode };
+type Props = {
+  stats: Record<Sport, SportStats>;
+  listings: Listing[];
+  venues: Venue[];
+  initialMode?: Mode;
+  initialSport?: Sport;
+};
 
-export function Landing({ stats, listings, venues, initialMode = "programs" }: Props) {
+export function Landing({ stats, listings, venues, initialMode = "programs", initialSport = "tennis" }: Props) {
   const [mode, setMode] = useState<Mode>(initialMode);
-  const [sport, setSport] = useState<Sport>("tennis");
+  const [sport, setSport] = useState<Sport>(initialSport);
   const forSport = listings.filter((l) => l.sports.includes(sport));
 
   return (
@@ -37,6 +44,7 @@ export function Landing({ stats, listings, venues, initialMode = "programs" }: P
           <VenueRow sport={sport} venues={venues.filter((v) => v.sports.includes(sport))} programs={forSport} />
         )}
       </main>
+      <Footer />
     </div>
   );
 }
