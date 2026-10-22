@@ -31,7 +31,7 @@ export function Header({
               type="button"
               aria-pressed={mode === value}
               onClick={() => onModeChange(value)}
-              className="rounded-full px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft hover:bg-rule/60 aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-2 aria-pressed:underline-offset-[10px]"
+              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] hover:text-ink hover:decoration-rule aria-pressed:text-ink aria-pressed:decoration-ink"
             >
               {label}
             </button>
@@ -39,7 +39,7 @@ export function Header({
             <Link
               key={value}
               href={value === "places" ? "/?type=places" : "/"}
-              className="rounded-full px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft hover:bg-rule/60 hover:text-ink"
+              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] hover:text-ink hover:decoration-rule"
             >
               {label}
             </Link>

@@ -21,7 +21,7 @@ export function SearchBar({ mode, sport, stats }: { mode: Mode; sport: Sport; st
     <form
       action="/search"
       method="get"
-      className="relative z-10 mt-3 grid grid-cols-1 rounded-[24px] bg-white p-2 shadow-[0_10px_30px_-12px_rgba(22,35,58,0.45)] ring-1 ring-ink/5 md:mx-6 md:-mt-11 md:grid-cols-[1.4fr_1fr_1fr_1fr_auto] md:items-center md:rounded-full"
+      className="relative z-10 mt-3 grid grid-cols-1 rounded-[24px] bg-white p-2 transition-colors has-[:focus]:bg-mist shadow-[0_10px_30px_-12px_rgba(22,35,58,0.45)] ring-1 ring-ink/5 md:mx-6 md:-mt-11 md:grid-cols-[1.4fr_1fr_1fr_1fr_auto] md:items-center md:rounded-full"
     >
       <input type="hidden" name="sport" value={sport} />
       <input type="hidden" name="type" value={mode} />
@@ -105,9 +105,23 @@ export function SearchBar({ mode, sport, stats }: { mode: Mode; sport: Sport; st
   );
 }
 
+// Hover: a light fill, with the dividers on either side faded so the shape stays clean.
+// Active: the bar greys (has-[:focus] on the form) and this field lifts out as a white pill.
+const FIELD = [
+  "relative block cursor-pointer rounded-2xl px-6 py-3 transition-[background-color,box-shadow] md:rounded-full",
+  "hover:bg-mist focus-within:bg-white focus-within:shadow-[0_6px_20px_-8px_rgba(22,35,58,0.4)]",
+  // while another field is active the bar is already mist, so hover one step deeper
+  "[form:has(:focus)_&:hover:not(:focus-within)]:bg-rule/70",
+  // keyboard users get a ring on the whole pill; the control inside has no outline of its own
+  "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ink",
+  // dividers: a hairline before every field but the first
+  "md:[&+&]:before:absolute md:[&+&]:before:inset-y-3 md:[&+&]:before:left-0 md:[&+&]:before:w-px md:[&+&]:before:bg-rule md:before:transition-opacity",
+  "hover:before:opacity-0 focus-within:before:opacity-0 [&:hover+&]:before:opacity-0 [&:focus-within+&]:before:opacity-0",
+].join(" ");
+
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="relative block cursor-pointer rounded-full px-6 py-3 hover:bg-rule/50 focus-within:bg-rule/50 md:[&+&]:before:absolute md:[&+&]:before:inset-y-3 md:[&+&]:before:left-0 md:[&+&]:before:w-px md:[&+&]:before:bg-rule">
+    <label className={FIELD}>
       <span className="block text-[0.8125rem] font-extrabold">{label}</span>
       <span className="block text-[0.9375rem]">{children}</span>
     </label>

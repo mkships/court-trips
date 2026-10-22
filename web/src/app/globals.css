@@ -10,28 +10,32 @@
   --color-ink: #16233a;
   --color-ink-soft: #55627a;
   --color-rule: #e3e6ec;
+  --color-mist: #f2f4f7;
   --color-ball: #dcf343;
   --color-line: #ffffff;
 
   --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
 }
 
-body {
-  background: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-}
+/* base layer, so utilities like focus:outline-none can still override these */
+@layer base {
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
 
-:focus-visible {
-  outline: 3px solid var(--color-ball);
-  outline-offset: 2px;
-}
+  :focus-visible {
+    outline: 3px solid var(--color-ball);
+    outline-offset: 2px;
+  }
 
-.on-paper :focus-visible {
-  outline-color: var(--color-ink);
-}
+  .on-paper :focus-visible {
+    outline-color: var(--color-ink);
+  }
 
-/* on court-coloured panels and photos the dark ring disappears; use the ball colour */
-.on-paper .on-surface :focus-visible {
-  outline-color: var(--color-ball);
+  /* on court-coloured panels and photos the dark ring disappears; use the ball colour */
+  .on-paper .on-surface :focus-visible {
+    outline-color: var(--color-ball);
+  }
 }
