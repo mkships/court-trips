@@ -7,11 +7,10 @@ import { Hero } from "@/components/Hero";
 import { ListingRow, VenueRow } from "@/components/ListingRow";
 import { SearchBar } from "@/components/SearchBar";
 import type { Listing, Mode, Sport, SportStats, Venue } from "@/lib/sports";
-import { capPerProgram, featuredTiles } from "@/lib/tiles";
+import { featuredTiles, varietyRow } from "@/lib/tiles";
 
-// Homepage rows are teasers: one tile per program keeps them varied. "Show all" lists every date.
-const ROW_SIZE = 8;
-const ROW_CAP_PER_PROGRAM = 1;
+// Homepage rows are teasers: one tile per program first keeps them varied. "Show all" lists every date.
+const ROW_SIZE = 10; // two full rows at five columns
 
 type Props = {
   stats: Record<Sport, SportStats>;
@@ -45,7 +44,7 @@ export function Landing({ stats, listings, venues, initialMode = "programs", ini
           venues={venues.filter((v) => v.sports.includes(sport))}
         />
         {mode === "programs" ? (
-          <ListingRow sport={sport} total={stats[sport].tiles} listings={capPerProgram(forSport, ROW_CAP_PER_PROGRAM).slice(0, ROW_SIZE)} />
+          <ListingRow sport={sport} total={stats[sport].tiles} listings={varietyRow(forSport, ROW_SIZE)} />
         ) : (
           <VenueRow sport={sport} venues={venues.filter((v) => v.sports.includes(sport))} programs={forSport} />
         )}

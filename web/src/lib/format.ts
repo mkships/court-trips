@@ -8,12 +8,12 @@ export const CATEGORY_NAMES: Record<Listing["category"], string> = {
 
 const LEVEL_ORDER = ["beginner", "intermediate", "advanced"] as const;
 
-// "All levels", "Advanced", "Intermediate–advanced"
+// Short enough for a card chip: "All levels", "Advanced", "Intermediate+", "Up to intermediate"
 export function levelLabel(level: Listing["level"]) {
   const steps = LEVEL_ORDER.filter((l) => level.includes(l));
   if (level.includes("all levels") || steps.length === LEVEL_ORDER.length || steps.length === 0) return "All levels";
-  const text = steps.length === 1 ? steps[0] : `${steps[0]}–${steps[steps.length - 1]}`;
-  return text[0].toUpperCase() + text.slice(1);
+  if (steps.length === 1) return steps[0][0].toUpperCase() + steps[0].slice(1);
+  return steps[0] === "beginner" ? `Up to ${steps[steps.length - 1]}` : `${steps[0][0].toUpperCase()}${steps[0].slice(1)}+`;
 }
 
 export function placeLabel({ place, country }: Pick<Listing, "place" | "country">) {

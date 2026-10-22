@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Court } from "@/components/Court";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { ListingCard, VenueCard } from "@/components/ListingRow";
+import { ListingCard, TILE_GRID, VenueCard } from "@/components/ListingRow";
 import { SearchBar } from "@/components/SearchBar";
 import { matchesTile, matchesVenue, parseSearch, searchHref, type SearchKey, type SearchValues } from "@/lib/filters";
 import { getHomeData } from "@/lib/seed";
@@ -154,7 +154,7 @@ export default async function SearchPage({ searchParams }: Props) {
         {count === 0 ? (
           <Empty sport={sport} mode={mode} values={values} active={active} />
         ) : (
-          <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className={`mt-8 ${TILE_GRID}`}>
             {mode === "programs"
               ? tiles.map((t) => (
                   <li key={t.key}>
