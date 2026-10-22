@@ -1,0 +1,2493 @@
+[
+  {
+    "meta": {
+      "id": "5d8b33d9-1e59-5242-b7dc-5922d320d64d",
+      "slug": "zanzanu-tennis-camp-lake-garda",
+      "source_url": "https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps/tennis-camp-lake-garda-zanzanu-2026",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Tennis camp at Park Hotel Zanzanù",
+      "organizer": "GO Tennisurlaub",
+      "description": "Group tennis camp on seven clay courts high above the north-west shore of Lake Garda, with lake-view rooms, half board and a spa at the four-star Park Hotel Zanzanù. Choose a 4-, 5- or 8-day package; coaching is in groups of three or four.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps/tennis-camp-lake-garda-zanzanu-2026",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "camp",
+      "theme": [
+        "group",
+        "family"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Italy",
+      "city_region": "Tignale, Lake Garda",
+      "venue_name": "Park Hotel Zanzanù",
+      "venue_slug": "park-hotel-zanzanu",
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [],
+    "schedule_notes": "Runs daily from late March to late October. The 2026 season ended on 20 October; 2027 dates are not published yet.",
+    "pricing": {
+      "price_min": 401,
+      "price_max": 797,
+      "currency": "EUR",
+      "price_unit": "per_person_sharing",
+      "price_notes": "4 days from €401, 5 days from €515, 8 days from €797, per person in a double room with half board.",
+      "inclusions": [
+        "accommodation",
+        "half board",
+        "daily coaching",
+        "match play",
+        "loaner rackets",
+        "doubles tournament",
+        "spa access"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [
+        "Clay"
+      ],
+      "coaching_hours_total": 6,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://www.tennistraveller.net/images/igallery/original/901-1000/tennishotel-zanzanu-gardasee-tennis-1200x800-951.jpg",
+      "images": [
+        "https://www.tennistraveller.net/images/igallery/original/901-1000/tennishotel-zanzanu-gardasee-tennis-1200x800-951.jpg",
+        "https://www.tennistraveller.net/images/igallery/original/1001-1100/tennishotel-zanzanu-gardasee-ansicht3-1200x800-1047.jpg",
+        "https://www.tennistraveller.net/images/igallery/original/901-1000/tennishotel-zanzanu-gardasee-ansicht2-1200x800-956.jpg",
+        "https://www.tennistraveller.net/images/igallery/original/901-1000/tennishotel-zanzanu-gardasee-ansicht-1200x800-957.jpg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "a09c1e39-b3aa-52d4-9ae8-952c25d1177d",
+      "slug": "nike-adult-tennis-camp-stanford",
+      "source_url": "https://www.ussportscamps.com/tennis/nike/stanford-university-nike-tennis-camp-adult-tennis-school",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "Nike Adult Tennis Camp at Stanford",
+      "organizer": "Nike Sports Camps",
+      "description": "A three-day adult camp at Stanford's Arrillaga Tennis Center, run by Stanford assistant coach and former ATP player Brandon Coupe. Players are grouped by level, from beginners to advanced.",
+      "coaches": [
+        "Brandon Coupe"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://www.ussportscamps.com/tennis/nike/stanford-university-nike-tennis-camp-adult-tennis-school",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "camp",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United States",
+      "city_region": "Stanford, California",
+      "venue_name": "Taube Pavilion, Arrillaga Tennis Center",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-12-12",
+        "end_date": "2026-12-14",
+        "status": "available",
+        "duration_days": 3
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 644,
+      "price_max": 644,
+      "currency": "USD",
+      "price_unit": "per_person",
+      "price_notes": "$644 for the 3-day camp; a deposit holds your place. Adults 18+.",
+      "inclusions": [
+        "daily coaching",
+        "match play"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": null,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867480/4.webp",
+      "images": [
+        "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867480/4.webp",
+        "https://cdn.ussportscamps.com/craftcms/media/images/_responsive2800/4916010/Screenshot-2026-06-11-131540.webp",
+        "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867479/3.webp",
+        "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867478/2.webp"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "65a26d86-cf0e-559f-bf54-0049ecbc4647",
+      "slug": "mouratoglou-weekend-camp-templeton",
+      "source_url": "https://www.ttrtennis.com/tennis/mouratoglou-high-performance-camps/",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "Mouratoglou High-Performance Weekend",
+      "organizer": "Templeton Tennis Ranch",
+      "description": "Friday-to-Sunday camp built on the Mouratoglou Methodology: technique, tactics, fitness and structured match play, three hours each morning. Open to all levels.",
+      "coaches": [
+        "Thien Nguyen"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://www.ttrtennis.com/tennis/mouratoglou-high-performance-camps/",
+      "contact_email": "thien@ttrtennis.com",
+      "contact_phone": "+1 805 434 9605"
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "camp",
+      "theme": [
+        "performance"
+      ],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United States",
+      "city_region": "Templeton, California",
+      "venue_name": "Templeton Tennis Ranch",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-11-06",
+        "end_date": "2026-11-08",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2026-11-13",
+        "end_date": "2026-11-15",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2026-12-04",
+        "end_date": "2026-12-06",
+        "status": "available",
+        "duration_days": 3
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 540,
+      "price_max": 540,
+      "currency": "USD",
+      "price_unit": "per_person",
+      "price_notes": "$540 per 3-day weekend (9 hours of instruction). Custom group camps on request.",
+      "inclusions": [
+        "daily coaching",
+        "match play"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 9,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": null,
+      "images": []
+    }
+  },
+  {
+    "meta": {
+      "id": "1f1429da-de4a-5516-9bae-229e2227859a",
+      "slug": "st-georges-hill-grass-court-clinic",
+      "source_url": "https://activeaway.com/tennis-clinic/adult-outdoor-grass-court-tennis-clinic-st-georges-hill",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Grass-court doubles clinic at St George's Hill",
+      "organizer": "Active Away",
+      "description": "A one-day doubles clinic on four side-by-side natural grass courts at St George's Hill Lawn Tennis Club, following Jamie Murray's doubles programme. Five hours on court, six players per coach.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-clinic/adult-outdoor-grass-court-tennis-clinic-st-georges-hill",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "clinic",
+      "theme": [
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United Kingdom",
+      "city_region": "Weybridge, Surrey",
+      "venue_name": "St George's Hill Lawn Tennis Club",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-08-28",
+        "end_date": "2027-08-28",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/tennis-clinic-st-georges-hill-saturday-28-august-2027"
+      },
+      {
+        "start_date": "2027-08-29",
+        "end_date": "2027-08-29",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/tennis-clinic-st-georges-hill-sunday-29-august-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 199,
+      "price_max": 398,
+      "currency": "GBP",
+      "price_unit": "per_person",
+      "price_notes": "£199 per day or £398 for both days. Open to players rating 2–6 on Active Away's self-rating guide.",
+      "inclusions": [
+        "5 hours coaching per day",
+        "video takeaways"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [
+        "Grass"
+      ],
+      "coaching_hours_total": 5,
+      "player_to_coach_ratio": "6:1",
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/ST-GEORGES-HILL-LTC-GRASS-COURT-CLINIC-HEADER.jpg/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/ST-GEORGES-HILL-LTC-GRASS-COURT-CLINIC-HEADER.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/c6e58a61-423f-408a-99d4-2d89e7f32300/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/f9bdac60-efad-4cfd-0a58-ef2c44bbb700/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/eacf0c7a-c1d9-4430-ea84-ee5b6d383900/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "769e86d3-46b5-571c-b8d5-407ac219a974",
+      "slug": "david-lloyd-finchley-tennis-clinic",
+      "source_url": "https://activeaway.com/tennis-clinic/adult-tennis-clinic-david-lloyd-finchley",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Doubles clinic at David Lloyd Finchley",
+      "organizer": "Active Away",
+      "description": "Five hours of doubles coaching in North London using the Jamie Murray programme. Book one day or both days of the weekend.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-clinic/adult-tennis-clinic-david-lloyd-finchley",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "clinic",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United Kingdom",
+      "city_region": "Finchley, London",
+      "venue_name": "David Lloyd Finchley",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-07-24",
+        "end_date": "2027-07-24",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/tennis-clinic-david-lloyd-finchley-saturday-24-july-2027"
+      },
+      {
+        "start_date": "2027-07-25",
+        "end_date": "2027-07-25",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/tennis-clinic-david-lloyd-finchley-sunday-25-july-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 119,
+      "price_max": 238,
+      "currency": "GBP",
+      "price_unit": "per_person",
+      "price_notes": "£119 per day or £238 for the weekend.",
+      "inclusions": [
+        "5 hours coaching per day",
+        "video takeaways"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 5,
+      "player_to_coach_ratio": "6:1",
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/DL-FINCHLEY-HEADER.jpg/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/DL-FINCHLEY-HEADER.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/5951c01a-ffc9-4bbd-c843-9575c1d30a00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/74b8ef5c-74c5-4407-d9fd-f532889ed000/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/DL-Finchley-Gallery-Group-Pic.jpg/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "093ea566-a9dc-5116-b9af-ed5b7fb11fec",
+      "slug": "brighton-tennis-padel-weekend",
+      "source_url": "https://activeaway.com/tennis-clinic/brighton-tennis-padel-weekend",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Tennis and padel weekend in Brighton",
+      "organizer": "Active Away",
+      "description": "A three-day seaside weekend at Hove Beach Park mixing 4.5 hours of tennis with 5.5 hours of padel coaching and match play, with group dinners booked in the evenings.",
+      "coaches": [
+        "Louie Harris"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-clinic/brighton-tennis-padel-weekend",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis",
+        "padel"
+      ],
+      "category": "clinic",
+      "theme": [
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United Kingdom",
+      "city_region": "Hove, Brighton",
+      "venue_name": "Hove Beach Park",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-07-02",
+        "end_date": "2027-07-04",
+        "status": "available",
+        "duration_days": 3,
+        "booking_url": "https://activeaway.com/book/events/g4p-brighton-2-july-2027-4-july-2027-tennis-padel"
+      },
+      {
+        "start_date": "2027-07-09",
+        "end_date": "2027-07-11",
+        "status": "available",
+        "duration_days": 3,
+        "booking_url": "https://activeaway.com/book/events/g4p-brighton-9-july-2027-11-july-2027-tennis-padel"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 349,
+      "price_max": 349,
+      "currency": "GBP",
+      "price_unit": "per_person",
+      "price_notes": "£349 per person. Accommodation and meals are not included.",
+      "inclusions": [
+        "daily coaching",
+        "match play",
+        "group dinner reservations"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 10,
+      "player_to_coach_ratio": "5:1",
+      "capacity": null,
+      "accommodation_type": "self_arranged"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/5be460b1-e17b-4323-fe11-97342bfcb800/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/5be460b1-e17b-4323-fe11-97342bfcb800/w=1920,format=auto,quality=80",
+        "https://imagedelivery.net/-aT8Z2F9gGvZ9fdofZcCaQ/05c3cdcc-df52-4dd2-6323-ff81d42c5c00/w=900,h=506,fit=cover,format=auto,quality=70",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Brighton-Tennis-Padel-Weekend-Header.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Brighton-Tennis-Padel-Weekend-3.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/4dfd39d0-f32b-451e-18b9-4806b1990800/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "ef966815-05fd-5db1-b8b2-6fe979f0f9e4",
+      "slug": "ikos-kissamos-tennis-holiday",
+      "source_url": "https://activeaway.com/tennis-holiday/adult-tennis-holiday-5-ikos-kissamos",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Tennis week at Ikos Kissamos",
+      "organizer": "Active Away",
+      "description": "Seven nights at the five-star, all-inclusive Ikos Kissamos in western Crete with 22.5 hours of coaching. Six à la carte restaurants are included; non-players get £200 off.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-holiday/adult-tennis-holiday-5-ikos-kissamos",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "couples",
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Greece",
+      "city_region": "Kissamos, Crete",
+      "venue_name": "Ikos Kissamos",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-05-01",
+        "end_date": "2027-05-08",
+        "status": "available",
+        "price_override": 3054,
+        "duration_days": 8,
+        "booking_url": "https://activeaway.com/book/events/adult-tennis-holiday-ikos-kissamos-01-08-may-2027"
+      },
+      {
+        "start_date": "2027-05-08",
+        "end_date": "2027-05-15",
+        "status": "available",
+        "price_override": 3169,
+        "duration_days": 8,
+        "booking_url": "https://activeaway.com/book/events/adult-tennis-holiday-ikos-kissamos-08-15-may-2027"
+      },
+      {
+        "start_date": "2027-05-15",
+        "end_date": "2027-05-22",
+        "status": "available",
+        "price_override": 3294,
+        "duration_days": 8,
+        "booking_url": "https://activeaway.com/book/events/adult-tennis-holiday-ikos-kissamos-15-22-may-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 3054,
+      "price_max": 3294,
+      "currency": "GBP",
+      "price_unit": "per_person_sharing",
+      "price_notes": "Per person based on two sharing; single occupancy from £5,029.",
+      "inclusions": [
+        "accommodation",
+        "all inclusive",
+        "daily coaching",
+        "hosting"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 22.5,
+      "player_to_coach_ratio": "6:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/93bf4985-51a3-4b8c-2ba2-d3ce53046100/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/93bf4985-51a3-4b8c-2ba2-d3ce53046100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/8212aba4-e17b-4467-96e7-cb0ac91d5000/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/fba8a2da-30f7-42d3-2d16-21f56bec5500/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/763f9ae6-cd4f-4a64-d721-0788f5f40600/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/8eaba6ad-cd6e-438d-7d45-804da2695b00/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "99e49d46-e7b0-5c57-9a6c-15e214583b2a",
+      "slug": "sani-beach-tennis-holiday",
+      "source_url": "https://activeaway.com/tennis-holiday/adult-tennis-holiday-5-sani-beach-hotel",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Tennis week at Sani Beach",
+      "organizer": "Active Away",
+      "description": "A week on Halkidiki at Sani Resort, home of the Rafa Nadal Tennis Centre and its eight red clay courts. 22.5 hours of coaching, full board and dine-around access to the resort's restaurants.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-holiday/adult-tennis-holiday-5-sani-beach-hotel",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "couples",
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Greece",
+      "city_region": "Kassandra, Halkidiki",
+      "venue_name": "Sani Beach Hotel, Sani Resort",
+      "venue_slug": "sani-resort",
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-05-01",
+        "end_date": "2027-05-08",
+        "status": "available",
+        "price_override": 2159,
+        "duration_days": 8,
+        "booking_url": "https://activeaway.com/book/events/adult-tennis-holiday-sani-beach-01-08-may-2027"
+      },
+      {
+        "start_date": "2027-05-08",
+        "end_date": "2027-05-15",
+        "status": "available",
+        "price_override": 2199,
+        "duration_days": 8,
+        "booking_url": "https://activeaway.com/book/events/adult-tennis-holiday-sani-beach-08-15-may-2027"
+      },
+      {
+        "start_date": "2027-05-15",
+        "end_date": "2027-05-22",
+        "status": "sold_out",
+        "price_override": 2624,
+        "duration_days": 8
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 2159,
+      "price_max": 2624,
+      "currency": "GBP",
+      "price_unit": "per_person_sharing",
+      "price_notes": "Per person based on two sharing. Non-players get £200 off.",
+      "inclusions": [
+        "accommodation",
+        "full board",
+        "daily coaching",
+        "hosting",
+        "resort credit"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [
+        "Clay"
+      ],
+      "coaching_hours_total": 22.5,
+      "player_to_coach_ratio": "6:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/dbfd965c-b7aa-4497-d1c6-da49a9b26f00/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/dbfd965c-b7aa-4497-d1c6-da49a9b26f00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/3da1f35a-a894-46e6-f061-321e5b5d9a00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/b43bd01f-633d-4171-c51c-b9972f785800/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/784ee961-81c8-4b6b-b584-f0dab161ed00/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "9152dcf1-3740-533f-a526-752e7257b0b7",
+      "slug": "lensbury-tennis-weekend",
+      "source_url": "https://activeaway.com/tennis-holiday/adult-uk-tennis-break-4-the-lensbury",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Tennis weekend at The Lensbury",
+      "organizer": "Active Away",
+      "description": "Two nights at the four-star Lensbury on the Thames in Teddington, with 11 hours of coaching built on Jamie Murray's programme and organised group meals.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-holiday/adult-uk-tennis-break-4-the-lensbury",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United Kingdom",
+      "city_region": "Teddington, London",
+      "venue_name": "The Lensbury",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-07-09",
+        "end_date": "2027-07-11",
+        "status": "available",
+        "duration_days": 3,
+        "booking_url": "https://activeaway.com/book/events/the-lensbury-9-july-2027-11-july-2027-tennis"
+      },
+      {
+        "start_date": "2027-07-16",
+        "end_date": "2027-07-18",
+        "status": "available",
+        "duration_days": 3,
+        "booking_url": "https://activeaway.com/book/events/the-lensbury-16-july-2027-18-july-2027-tennis"
+      },
+      {
+        "start_date": "2027-08-06",
+        "end_date": "2027-08-08",
+        "status": "available",
+        "duration_days": 3,
+        "booking_url": "https://activeaway.com/book/events/the-lensbury-6-august-2027-8-august-2027-tennis"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 549,
+      "price_max": 549,
+      "currency": "GBP",
+      "price_unit": "per_person_sharing",
+      "price_notes": "£549 per person in a classic double or twin room, bed and breakfast.",
+      "inclusions": [
+        "accommodation",
+        "breakfast",
+        "daily coaching",
+        "hosting"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 11,
+      "player_to_coach_ratio": "6:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/0a314657-9bfa-4d64-3d06-2ee93a34f100/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/0a314657-9bfa-4d64-3d06-2ee93a34f100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Lensbury-Main-Header.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/a9b6ac37-68e5-42c6-4e19-da8abd1e9300/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/c7c5b233-aa11-4e2c-5a33-add9e6dec100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6a686b6c-b29b-45d7-4ad5-33f57bb77e00/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "1622dff1-549e-5004-bba7-930f1319a99e",
+      "slug": "engage-pickleball-oxford-advanced",
+      "source_url": "https://engagepickleball.com/products/december-19-20-2026-oxford-fl-skill-levels-3-7-4-5-advanced",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "Engage advanced camp in Oxford, Florida",
+      "organizer": "Engage Pickleball",
+      "description": "A two-day, 14-hour camp for 3.75–4.5 players focused on positioning, shot selection and point construction, with no more than eight players per coach.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://engagepickleball.com/products/december-19-20-2026-oxford-fl-skill-levels-3-7-4-5-advanced",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "camp",
+      "theme": [
+        "performance"
+      ],
+      "gender": "mixed",
+      "level": [
+        "advanced"
+      ]
+    },
+    "rating_systems": {
+      "dupr_min": 3.75,
+      "dupr_max": 4.5
+    },
+    "location": {
+      "country": "United States",
+      "city_region": "Oxford, Florida",
+      "venue_name": null,
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-12-19",
+        "end_date": "2026-12-20",
+        "status": "available",
+        "duration_days": 2
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 650,
+      "price_max": 650,
+      "currency": "USD",
+      "price_unit": "per_person",
+      "price_notes": "$650 per player. Skill bands are Engage's own 3.75–4.5 scale.",
+      "inclusions": [
+        "daily coaching",
+        "snacks and drinks",
+        "$100 paddle discount"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 14,
+      "player_to_coach_ratio": "8:1+",
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": null,
+      "images": []
+    }
+  },
+  {
+    "meta": {
+      "id": "f5e7af3f-2e1f-5641-beea-cd42cd825a14",
+      "slug": "mark-price-acworth-camp",
+      "source_url": "https://www.markpricepickleball.com/store/p/acworth-georgia-pb-camp-november-2026",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Mark Price signature camp in Acworth",
+      "organizer": "Mark Price Pickleball",
+      "description": "Three-day coaching camp with PPA pro Mark Price and his staff: dinking, third and fifth shots, movement and defence, in two groups (3.0–3.5 and 3.5+) of up to 16 players.",
+      "coaches": [
+        "Mark Price"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://www.markpricepickleball.com/store/p/acworth-georgia-pb-camp-november-2026",
+      "contact_email": "hello@markpricepickleball.com",
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "camp",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United States",
+      "city_region": "Acworth, Georgia",
+      "venue_name": null,
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-11-20",
+        "end_date": "2026-11-22",
+        "status": "available",
+        "duration_days": 3
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 395,
+      "price_max": 395,
+      "currency": "USD",
+      "price_unit": "per_person",
+      "price_notes": "$395 per player.",
+      "inclusions": [
+        "daily coaching",
+        "video analysis"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 9,
+      "player_to_coach_ratio": "8:1+",
+      "capacity": 32,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067464441-4KWO839K89IL0D3WX52Z/7J5A3236-2.jpeg",
+      "images": [
+        "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067464441-4KWO839K89IL0D3WX52Z/7J5A3236-2.jpeg",
+        "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067459277-NAHZY8QZF6FO8AU102K1/7J5A3015.jpg",
+        "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067459037-LY02KKDWU1QH4EKLOAMS/7J5A2860.jpg",
+        "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067467023-YPWCB0XBCE2EL423FFWB/7J5A3247.jpg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "8f3e3396-795c-5987-9d04-72702008edf6",
+      "slug": "nike-adult-pickleball-ttc-palms",
+      "source_url": "https://www.ussportscamps.com/pickleball/nike/adult-sunrise-country-club",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.93
+    },
+    "core_identity": {
+      "title": "Nike Adult Pickleball Camp at TTC Palms",
+      "organizer": "Nike Sports Camps",
+      "description": "A desert weekend camp with Bollettieri Pickleball in Palm Desert: over 10 hours of drills, strategy and match play, grouped from beginner to advanced. Day camp only.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://www.ussportscamps.com/pickleball/nike/adult-sunrise-country-club",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "camp",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United States",
+      "city_region": "Palm Desert, California",
+      "venue_name": "TTC Palms",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-11-06",
+        "end_date": "2026-11-08",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2026-12-04",
+        "end_date": "2026-12-06",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2026-12-11",
+        "end_date": "2026-12-13",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2027-01-23",
+        "end_date": "2027-01-25",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2027-02-26",
+        "end_date": "2027-02-28",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2027-03-05",
+        "end_date": "2027-03-07",
+        "status": "available",
+        "duration_days": 3
+      },
+      {
+        "start_date": "2027-04-02",
+        "end_date": "2027-04-04",
+        "status": "available",
+        "duration_days": 3
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 744,
+      "price_max": 744,
+      "currency": "USD",
+      "price_unit": "per_person",
+      "price_notes": "$744 per 3-day camp; lunch and housing not included.",
+      "inclusions": [
+        "daily coaching",
+        "match play"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 10,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/_responsive1400/4803015/Gallery-Images-2.webp",
+      "images": [
+        "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/_responsive1400/4803015/Gallery-Images-2.webp",
+        "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/gallery/_responsive768/476459/Pickleball-solo-hit.webp",
+        "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/gallery/_responsive768/476460/Pickleball-solo-woman-shot.webp",
+        "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/gallery/_responsive1400/476457/Pickleball-group-match.webp"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "bb42800f-ab20-51f1-a7bc-6cb3b5182ee3",
+      "slug": "tyson-mcguffin-doubles-lab-palm-desert",
+      "source_url": "https://tysonmcguffin.com/products/1-20-palm-desert-doubles-lab-2027",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "Doubles Lab in Palm Desert",
+      "organizer": "Tyson McGuffin Pickleball",
+      "description": "A one-day lab for established doubles teams led by Matthew Marceau: communication, positioning, movement patterns and team tactics in live play. Both partners register.",
+      "coaches": [
+        "Matthew Marceau"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://tysonmcguffin.com/products/1-20-palm-desert-doubles-lab-2027",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "clinic",
+      "theme": [
+        "couples"
+      ],
+      "gender": "mixed",
+      "level": [
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United States",
+      "city_region": "Palm Desert, California",
+      "venue_name": null,
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-01-20",
+        "end_date": "2027-01-20",
+        "status": "available",
+        "duration_days": 1
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 599,
+      "price_max": 599,
+      "currency": "USD",
+      "price_unit": "per_person",
+      "price_notes": "$599 per player; you must attend with your doubles partner.",
+      "inclusions": [
+        "5 hours coaching"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 5,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": null,
+      "images": []
+    }
+  },
+  {
+    "meta": {
+      "id": "d79dd79a-9ceb-5e6d-9432-f36aac8abb17",
+      "slug": "tyson-mcguffin-los-barriles-festival",
+      "source_url": "https://tysonmcguffin.com/products/los-barriles-2026-festival",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "Los Barriles pickleball festival",
+      "organizer": "Tyson McGuffin Pickleball",
+      "description": "Three mornings of clinics with Tyson McGuffin on the Sea of Cortez, with tournament warm-ups and level-matched recreational play.",
+      "coaches": [
+        "Tyson McGuffin"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://tysonmcguffin.com/products/los-barriles-2026-festival",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "clinic",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Mexico",
+      "city_region": "Los Barriles, Baja California Sur",
+      "venue_name": null,
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-12-11",
+        "end_date": "2026-12-13",
+        "status": "available",
+        "duration_days": 3
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 1499,
+      "price_max": 1499,
+      "currency": "USD",
+      "price_unit": "per_person",
+      "price_notes": "$1,499 per player, 8am–2pm each day. Travel and accommodation not included.",
+      "inclusions": [
+        "daily coaching",
+        "match play"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 18,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "self_arranged"
+    },
+    "media": {
+      "thumbnail": null,
+      "images": []
+    }
+  },
+  {
+    "meta": {
+      "id": "773a9e3f-0b47-533e-bb1b-3650ecd47c3e",
+      "slug": "pickleball-in-paradise-la-toc",
+      "source_url": "https://pickleballinparadise.com/trip/sandals-regency-la-toc-saint-lucia-with-iptpa-master-coaches-john-leesa-walker-3-7-27-3-15-27/",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "Pickleball clinic week at Sandals La Toc",
+      "organizer": "Pickleball in Paradise",
+      "description": "Daily clinics with IPTPA master coaches John and Leesa Walker at Sandals Regency La Toc, an all-inclusive resort beneath the Pitons, plus mixers, round robins and a beach farewell dinner.",
+      "coaches": [
+        "John Walker",
+        "Leesa Walker"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://pickleballinparadise.com/trip/sandals-regency-la-toc-saint-lucia-with-iptpa-master-coaches-john-leesa-walker-3-7-27-3-15-27/",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "clinic",
+      "theme": [
+        "couples"
+      ],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Saint Lucia",
+      "city_region": "Castries",
+      "venue_name": "Sandals Regency La Toc",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-03-07",
+        "end_date": "2027-03-13",
+        "status": "available",
+        "duration_days": 7
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 3699,
+      "price_max": 3699,
+      "currency": "USD",
+      "price_unit": "per_person_sharing",
+      "price_notes": "From $3,699 per person, double occupancy. $400 deposit.",
+      "inclusions": [
+        "accommodation",
+        "all inclusive",
+        "daily coaching",
+        "airport transfers",
+        "most gratuities"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": null,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_022_ff6d163faa.webp",
+      "images": [
+        "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_022_ff6d163faa.webp",
+        "https://pickleballinparadise.com/wp-content/uploads/2025/12/Sandals-Regency-La-Toc-Pool.jpg",
+        "https://pickleballinparadise.com/wp-content/uploads/2026/02/001.webp",
+        "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_031_eba12261b7.webp"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "a09a5d90-4d09-506e-9eb9-306a4e945f70",
+      "slug": "pickleball-getaways-club-med-turkoise",
+      "source_url": "https://pickleballgetaways.com/shop/turks-1-may-2027/",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.93
+    },
+    "core_identity": {
+      "title": "Pickleball week at Club Med Turkoise",
+      "organizer": "Pickleball Getaways",
+      "description": "Six nights on Grace Bay at the adults-only Club Med Turkoise with daily clinics from touring pros (six players per coach or better), level-matched play, trivia night and a catamaran trip.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://pickleballgetaways.com/shop/turks-1-may-2027/",
+      "contact_email": "info@pickleballgetaways.com",
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "group",
+        "couples"
+      ],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Turks and Caicos",
+      "city_region": "Grace Bay, Providenciales",
+      "venue_name": "Club Med Turkoise",
+      "venue_slug": "club-med-turkoise",
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-05-01",
+        "end_date": "2027-05-07",
+        "status": "available",
+        "duration_days": 7
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 3380,
+      "price_max": 3990,
+      "currency": "USD",
+      "price_unit": "per_person_sharing",
+      "price_notes": "$3,380 per person sharing; $3,990 single. Balance due 30 December 2026.",
+      "inclusions": [
+        "accommodation",
+        "all inclusive",
+        "daily coaching",
+        "resort activities"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": null,
+      "player_to_coach_ratio": "6:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://pickleballgetaways.com/wp-content/uploads/2025/05/Photo-May-04-2025-9-19-25-AM-scaled-e1747338339687.jpg",
+      "images": [
+        "https://pickleballgetaways.com/wp-content/uploads/2025/05/Photo-May-04-2025-9-19-25-AM-scaled-e1747338339687.jpg",
+        "https://pickleballgetaways.com/wp-content/uploads/2024/10/IMG_2462.jpg",
+        "https://pickleballgetaways.com/wp-content/uploads/2025/05/Photo-May-03-2025-9-03-58-AM-scaled-e1747338366389.jpg",
+        "https://pickleballgetaways.com/wp-content/uploads/2024/10/IMG_2724-scaled.jpg",
+        "https://pickleballgetaways.com/wp-content/uploads/2024/10/IMG_2287-scaled.jpg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "b758436c-a8f8-5dad-b12e-7b6e0efc2f22",
+      "slug": "empowher-punta-cana-retreat",
+      "source_url": "https://empowherpickleball.com/ret-pc-nov-03-10-2026",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.79
+    },
+    "core_identity": {
+      "title": "Empowher women's retreat in Punta Cana",
+      "organizer": "Empowher Pickleball",
+      "description": "A women-only week with 9+ hours of daily clinics from top pros, themed nights and an all-inclusive resort stay. For players rated 3.0 to 4.5.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://empowherpickleball.com/ret-pc-nov-03-10-2026",
+      "contact_email": "retreats@empowherpickleball.com",
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "singles",
+        "group"
+      ],
+      "gender": "female",
+      "level": [
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {
+      "dupr_min": 3.0,
+      "dupr_max": 4.5
+    },
+    "location": {
+      "country": "Dominican Republic",
+      "city_region": "Punta Cana",
+      "venue_name": null,
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-11-03",
+        "end_date": "2026-11-10",
+        "status": "waitlist",
+        "duration_days": 8
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 2900,
+      "price_max": 3200,
+      "currency": "USD",
+      "price_unit": "per_person_sharing",
+      "price_notes": "$2,900 per person sharing; $3,200 single. Sold out, waitlist open.",
+      "inclusions": [
+        "accommodation",
+        "all inclusive",
+        "daily coaching",
+        "social events"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": null,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/68cc418d4fae2cd8b6d40528.jpeg",
+      "images": [
+        "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/68cc418d4fae2cd8b6d40528.jpeg",
+        "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/69436480aca6ab43753e05b0.jpg",
+        "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/68b1f11d142d74180f9b6453.jpeg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "61088a98-be0e-50f9-85e4-3d9f42d4fd3a",
+      "slug": "active-away-pickleball-vilamoura",
+      "source_url": "https://activeaway.com/pickleball-holiday/adult-pickleball-holiday-hyatt-regency-vilamoura-algarve",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Pickleball break in Vilamoura",
+      "organizer": "Active Away",
+      "description": "Three nights at the Hyatt Regency Vilamoura near the beach and marina, with 11 hours of structured pickleball, four players per court and planned group dinners.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/pickleball-holiday/adult-pickleball-holiday-hyatt-regency-vilamoura-algarve",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "pickleball"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Portugal",
+      "city_region": "Vilamoura, Algarve",
+      "venue_name": "Hyatt Regency Vilamoura Algarve",
+      "venue_slug": "hyatt-regency-vilamoura",
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-02-15",
+        "end_date": "2027-02-18",
+        "status": "available",
+        "price_override": 859,
+        "duration_days": 4,
+        "booking_url": "https://activeaway.com/book/events/adult-pickleball-holiday-hyatt-regency-vilamoura-algarve-15-18-february-2027"
+      },
+      {
+        "start_date": "2027-03-22",
+        "end_date": "2027-03-25",
+        "status": "available",
+        "price_override": 819,
+        "duration_days": 4,
+        "booking_url": "https://activeaway.com/book/events/adult-pickleball-holiday-hyatt-regency-vilamoura-algarve-22-25-march-2027"
+      },
+      {
+        "start_date": "2027-04-19",
+        "end_date": "2027-04-22",
+        "status": "available",
+        "price_override": 899,
+        "duration_days": 4,
+        "booking_url": "https://activeaway.com/book/events/adult-pickleball-holiday-hyatt-regency-vilamoura-algarve-19-22-april-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 819,
+      "price_max": 899,
+      "currency": "GBP",
+      "price_unit": "per_person_sharing",
+      "price_notes": "Per person sharing, bed and breakfast.",
+      "inclusions": [
+        "accommodation",
+        "breakfast",
+        "daily coaching",
+        "hosting"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 11,
+      "player_to_coach_ratio": "6:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/2d189233-f96c-4a46-e1b4-fe196d510100/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/2d189233-f96c-4a46-e1b4-fe196d510100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/9cc62156-8fa2-43cc-3ad3-db05f52c5800/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/977a6599-15fe-473f-be62-00263ab4ff00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/ee6688ad-d2e2-4929-712a-e0fbb4eba100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/3e5828a5-4fc2-41c0-4a26-bdc647f37d00/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "5015c6eb-8946-5284-9c31-74cca6cec728",
+      "slug": "rafa-nadal-academy-padel-camp",
+      "source_url": "https://www.rafanadalacademy.com/en/adult-camps/padel-camps/full-week-padel-camp/padel-fitness-camp-adult/",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Padel & Fitness Camp at Rafa Nadal Academy",
+      "organizer": "Rafa Nadal Academy",
+      "description": "A Sunday-to-Sunday week in Manacor with 12 hours of padel in groups of four and 5 hours of padel-specific fitness, staying at the academy's residence. Groups are set by level on day one.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://www.rafanadalacademy.com/en/adult-camps/padel-camps/full-week-padel-camp/padel-fitness-camp-adult/",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "camp",
+      "theme": [
+        "performance"
+      ],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Spain",
+      "city_region": "Manacor, Mallorca",
+      "venue_name": "Rafa Nadal Academy",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-10-25",
+        "end_date": "2026-11-01",
+        "status": "available",
+        "duration_days": 8
+      }
+    ],
+    "schedule_notes": "Bookable year-round, Sunday to Sunday, subject to availability. A 4-night half-week is also offered.",
+    "pricing": {
+      "price_min": 960,
+      "price_max": 960,
+      "currency": "EUR",
+      "price_unit": "per_person",
+      "price_notes": "From €960 per week including 7 nights at the Rafa Nadal Residence (price as listed by The Padel Circle; the academy quotes on request).",
+      "inclusions": [
+        "accommodation",
+        "daily coaching",
+        "fitness training",
+        "fitness centre access"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 12,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://www.rafanadalacademy.com/wp-content/uploads/2024/02/DSC00024-scaled.jpg",
+      "images": [
+        "https://www.rafanadalacademy.com/wp-content/uploads/2024/02/DSC00024-scaled.jpg",
+        "https://www.rafanadalacademy.com/wp-content/uploads/2024/04/RNA01371-scaled-e1716476510369.jpg",
+        "https://www.rafanadalacademy.com/wp-content/uploads/2024/02/ISM03162-scaled.jpg",
+        "https://www.rafanadalacademy.com/wp-content/uploads/2024/04/MIK03852-scaled.jpg",
+        "https://www.rafanadalacademy.com/wp-content/uploads/2024/04/piscina.jpg",
+        "https://www.rafanadalacademy.com/wp-content/uploads/2024/02/15-scaled.jpg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "9c1c12d0-2525-5dfd-a4c0-fe87fbcc5df0",
+      "slug": "m3-padel-week-madrid",
+      "source_url": "https://m3padelacademy.com/en/m3-padel-week/",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "M3 Padel Week in Madrid",
+      "organizer": "M3 Padel Academy",
+      "description": "A Monday-to-Friday intensive in Madrid with high-level coaches, classes adapted to every level and optional hotel packages.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://m3padelacademy.com/en/m3-padel-week/",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "camp",
+      "theme": [
+        "performance"
+      ],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Spain",
+      "city_region": "Madrid",
+      "venue_name": "M3 Padel Academy",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-11-02",
+        "end_date": "2026-11-06",
+        "status": "available",
+        "duration_days": 5
+      },
+      {
+        "start_date": "2026-11-09",
+        "end_date": "2026-11-13",
+        "status": "available",
+        "duration_days": 5
+      },
+      {
+        "start_date": "2026-11-16",
+        "end_date": "2026-11-20",
+        "status": "available",
+        "duration_days": 5
+      },
+      {
+        "start_date": "2026-11-23",
+        "end_date": "2026-11-27",
+        "status": "available",
+        "duration_days": 5
+      },
+      {
+        "start_date": "2026-11-30",
+        "end_date": "2026-12-04",
+        "status": "available",
+        "duration_days": 5
+      },
+      {
+        "start_date": "2026-12-07",
+        "end_date": "2026-12-11",
+        "status": "available",
+        "duration_days": 5
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 1450,
+      "price_max": 2900,
+      "currency": "EUR",
+      "price_unit": "per_person",
+      "price_notes": "€1,450 training only; €2,000 with 5 nights at Exe Getafe; €2,900 with 5 nights at Hard Rock Hotel Madrid.",
+      "inclusions": [
+        "daily coaching"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": null,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": "partner_hotel"
+    },
+    "media": {
+      "thumbnail": "https://m3padelacademy.com/wp-content/uploads/2026/06/70.webp",
+      "images": [
+        "https://m3padelacademy.com/wp-content/uploads/2026/06/70.webp",
+        "https://m3padelacademy.com/wp-content/uploads/2026/06/72.webp",
+        "https://m3padelacademy.com/wp-content/uploads/2026/06/69.webp"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "f25c4f0d-a420-5bbe-b08e-0c5221d950e2",
+      "slug": "emilio-sanchez-padel-week-barcelona",
+      "source_url": "https://emiliosanchezacademy.com/en/barcelona/programs/padel",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.86
+    },
+    "core_identity": {
+      "title": "Padel week at Emilio Sánchez Academy",
+      "organizer": "Emilio Sánchez Academy",
+      "description": "Weekly and weekend padel programmes in Barcelona with English-speaking coaches. The Gold week adds an hour of fitness to two hours on court each day.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://emiliosanchezacademy.com/en/barcelona/programs/padel",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "camp",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Spain",
+      "city_region": "Barcelona",
+      "venue_name": "Emilio Sánchez Academy",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [],
+    "schedule_notes": "Weekly programmes run Monday to Friday and weekend programmes Friday to Sunday, year-round.",
+    "pricing": {
+      "price_min": 396,
+      "price_max": 930,
+      "currency": "EUR",
+      "price_unit": "per_person",
+      "price_notes": "Weekly: Gold €930, Silver €660. Weekend: Gold €603, Silver €396. Taxes included.",
+      "inclusions": [
+        "daily coaching",
+        "fitness training",
+        "gym access"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 10,
+      "player_to_coach_ratio": null,
+      "capacity": null,
+      "accommodation_type": null
+    },
+    "media": {
+      "thumbnail": "https://emiliosanchezacademy.com/images/jugador_padel.jpg",
+      "images": [
+        "https://emiliosanchezacademy.com/images/jugador_padel.jpg",
+        "https://emiliosanchezacademy.com/images/slider/padel3.webp",
+        "https://emiliosanchezacademy.com/images/slider/padel.webp",
+        "https://emiliosanchezacademy.com/images/piscina_padel.jpg",
+        "https://emiliosanchezacademy.com/images/david_padel.jpg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "3ba16d49-8342-58a7-a9a5-feaf812843eb",
+      "slug": "premier-padel-finals-experience-barcelona",
+      "source_url": "https://www.premierpadel.academy/en/barcelona/experiences/barcelona-premier-padel-residential-experience-adults",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.93
+    },
+    "core_identity": {
+      "title": "Premier Padel Finals clinic in Barcelona",
+      "organizer": "Premier Padel Academy",
+      "description": "Four days of FIP-method coaching (12+ hours, four players per court) with video analysis, an internal tournament, and a Category A ticket to the Premier Padel Finals at Palau Sant Jordi.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://www.premierpadel.academy/en/barcelona/experiences/barcelona-premier-padel-residential-experience-adults",
+      "contact_email": null,
+      "contact_phone": null
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "clinic",
+      "theme": [
+        "performance"
+      ],
+      "gender": "mixed",
+      "level": [
+        "all levels"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Spain",
+      "city_region": "Barcelona",
+      "venue_name": null,
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2026-12-09",
+        "end_date": "2026-12-12",
+        "status": "available",
+        "duration_days": 4
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 890,
+      "price_max": 890,
+      "currency": "EUR",
+      "price_unit": "per_person",
+      "price_notes": "€890 per person. Accommodation not included.",
+      "inclusions": [
+        "daily coaching",
+        "video analysis",
+        "3 lunches",
+        "group dinner",
+        "finals ticket"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 12,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://ppa-media-prod-697030116390.s3.eu-west-3.amazonaws.com/venues/b3d576a7-3b6a-437d-9c4d-8a86a421888c-Padel-Indoor-L-Hospitalet.jpg",
+      "images": [
+        "https://ppa-media-prod-697030116390.s3.eu-west-3.amazonaws.com/venues/b3d576a7-3b6a-437d-9c4d-8a86a421888c-Padel-Indoor-L-Hospitalet.jpg",
+        "https://ppa-media-prod-697030116390.s3.eu-west-3.amazonaws.com/events/6989b55167c7fa77764cd117/gallery/a27e7096-d487-4373-8e97-b0f81a11a6b6.webp",
+        "https://ppa-media-prod-697030116390.s3.eu-west-3.amazonaws.com/events/6989b55167c7fa77764cd117/gallery/ebb9a224-7fa0-42cd-99d3-b83ac24b1b10.webp",
+        "https://ppa-media-prod-697030116390.s3.eu-west-3.amazonaws.com/events/6989b55167c7fa77764cd117/gallery/c07ff1ee-7b8f-4cd3-92a0-b7e88c713068.webp",
+        "https://ppa-media-prod-697030116390.s3.eu-west-3.amazonaws.com/events/6989b55167c7fa77764cd117/gallery/376557d4-7a26-415e-a993-0084f98dbfbb.webp"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "92d2989f-3eb9-509b-b8f7-78e77ce694b8",
+      "slug": "advantage-padel-nottingham-clinic",
+      "source_url": "https://activeaway.com/tennis-clinic/adult-padel-clinic-advantage-padel-nottingham",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Padel clinic at Advantage Padel Nottingham",
+      "organizer": "Active Away",
+      "description": "A one-day clinic on four reserved indoor courts, with separate beginner and intermediate programmes and four players per coach.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-clinic/adult-padel-clinic-advantage-padel-nottingham",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "clinic",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United Kingdom",
+      "city_region": "Nottingham",
+      "venue_name": "Advantage Padel Nottingham",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-03-06",
+        "end_date": "2027-03-06",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/padel-clinic-advantage-padel-nottingham-beginner-clinic-sat-6-sat-6-march-2027"
+      },
+      {
+        "start_date": "2027-03-07",
+        "end_date": "2027-03-07",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/padel-clinic-advantage-padel-nottingham-intermediate-clinic-sun-7-sun-7-march-2027"
+      },
+      {
+        "start_date": "2027-12-04",
+        "end_date": "2027-12-04",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/padel-clinic-advantage-padel-nottingham-beginner-clinic-sat-4-sat-4-december-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 229,
+      "price_max": 229,
+      "currency": "GBP",
+      "price_unit": "per_person",
+      "price_notes": "£229 per person. 6 March and 4 December are beginner days; 7 March is intermediate.",
+      "inclusions": [
+        "4 hours coaching"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [
+        "Artificial Turf"
+      ],
+      "coaching_hours_total": 4,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6411b000-fb61-4918-6e69-fec5421d1900/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6411b000-fb61-4918-6e69-fec5421d1900/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/cf2dc59c-52e9-4b81-00fb-2bce6c144900/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/5c8cbd96-e7f2-4ce5-6313-be00d4f51100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Parkside-Padel-Clinic-Active-Away-4.jpg/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "36d19ae2-50cb-5973-b90a-75e7c104c1a8",
+      "slug": "great-western-glasgow-padel-clinic",
+      "source_url": "https://activeaway.com/tennis-clinic/adult-padel-clinic-great-western-golf-glasgow",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Padel clinic at Great Western, Glasgow",
+      "organizer": "Active Away",
+      "description": "Four hours of coaching on the Louie Harris programme, four players per court, with a beginner day and an intermediate day.",
+      "coaches": [
+        "Louie Harris"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/tennis-clinic/adult-padel-clinic-great-western-golf-glasgow",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "clinic",
+      "theme": [],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "United Kingdom",
+      "city_region": "Glasgow",
+      "venue_name": "Great Western Golf",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-07-10",
+        "end_date": "2027-07-10",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/padel-clinic-great-western-golf-glasgow-beginner-clinic-sat-10-sat-10-july-2027"
+      },
+      {
+        "start_date": "2027-07-11",
+        "end_date": "2027-07-11",
+        "status": "available",
+        "duration_days": 1,
+        "booking_url": "https://activeaway.com/book/events/padel-clinic-great-western-golf-glasgow-intermediate-clinic-sun-11-sun-11-july-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 159,
+      "price_max": 159,
+      "currency": "GBP",
+      "price_unit": "per_person",
+      "price_notes": "£159 per person. 10 July is for beginners, 11 July for intermediates.",
+      "inclusions": [
+        "4 hours coaching"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [
+        "Artificial Turf"
+      ],
+      "coaching_hours_total": 4,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "not_included"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/9b26cb4a-5ce9-4969-17c1-116ae3364000/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/9b26cb4a-5ce9-4969-17c1-116ae3364000/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6411b000-fb61-4918-6e69-fec5421d1900/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Great-Western-Golf-Padel-Clinic-1.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Great-Western-Golf-Padel-Clinic-5.jpg/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "d1d0a002-b28c-576a-a518-de079499c834",
+      "slug": "active-away-padel-barcelona",
+      "source_url": "https://activeaway.com/padel-tennis-holiday/adult-padel-holiday-barcelona",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Padel long weekend in Barcelona",
+      "organizer": "Active Away",
+      "description": "Three nights at the four-star AC Hotel Victoria Suites with 12.5 hours of coached padel over four days, four players per coach in the mornings.",
+      "coaches": [
+        "Louie Harris"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/padel-tennis-holiday/adult-padel-holiday-barcelona",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Spain",
+      "city_region": "Barcelona",
+      "venue_name": "AC Hotel Victoria Suites by Marriott",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-04-08",
+        "end_date": "2027-04-11",
+        "status": "available",
+        "price_override": 1079,
+        "duration_days": 4,
+        "booking_url": "https://activeaway.com/book/events/adult-padel-holiday-barcelona-8-11-april-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 999,
+      "price_max": 1079,
+      "currency": "GBP",
+      "price_unit": "per_person_sharing",
+      "price_notes": "From £999 per person sharing, bed and breakfast; the April date is £1,079.",
+      "inclusions": [
+        "accommodation",
+        "breakfast",
+        "daily coaching",
+        "hosting"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 12.5,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "partner_hotel"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/2c0149d4-9b6b-4263-a112-d63878571100/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/2c0149d4-9b6b-4263-a112-d63878571100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6cbfda5f-1b4b-49fa-4d35-49ff5ac06b00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/acdccec8-eaab-4917-e492-bfc891056500/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/9c5b3036-6604-40f2-6f21-94f1b5a43c00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/9726d455-ed46-447e-f572-b3d27b1c2f00/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "919ad152-3241-5990-ad15-9259173165dc",
+      "slug": "active-away-padel-vilamoura",
+      "source_url": "https://activeaway.com/padel-tennis-holiday/adult-padel-holiday-hyatt-regency-vilamoura-algarve",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 0.93
+    },
+    "core_identity": {
+      "title": "Padel break in Vilamoura",
+      "organizer": "Active Away",
+      "description": "Three nights at the Hyatt Regency Vilamoura with coached padel sessions and group dinners, a short walk from the marina.",
+      "coaches": [],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/padel-tennis-holiday/adult-padel-holiday-hyatt-regency-vilamoura-algarve",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Portugal",
+      "city_region": "Vilamoura, Algarve",
+      "venue_name": "Hyatt Regency Vilamoura Algarve",
+      "venue_slug": "hyatt-regency-vilamoura",
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-02-15",
+        "end_date": "2027-02-18",
+        "status": "available",
+        "price_override": 899,
+        "duration_days": 4,
+        "booking_url": "https://activeaway.com/book/events/adult-padel-holiday-hyatt-regency-vilamoura-algarve-15-18-february-2027"
+      },
+      {
+        "start_date": "2027-03-22",
+        "end_date": "2027-03-25",
+        "status": "available",
+        "price_override": 869,
+        "duration_days": 4,
+        "booking_url": "https://activeaway.com/book/events/adult-padel-holiday-hyatt-regency-vilamoura-algarve-22-25-march-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 849,
+      "price_max": 899,
+      "currency": "GBP",
+      "price_unit": "per_person_sharing",
+      "price_notes": "From £849 per person sharing, bed and breakfast.",
+      "inclusions": [
+        "accommodation",
+        "breakfast",
+        "daily coaching",
+        "hosting"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": null,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/b87a4713-fefc-4bb7-6dce-721a08fdae00/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/b87a4713-fefc-4bb7-6dce-721a08fdae00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/0be7aeac-be32-4e10-4b80-329ffad38c00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/48b73900-708d-4226-a154-dc5cdcbf2b00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/88a84a5a-a7f8-4d97-350b-a71b38278e00/w=1920,format=auto,quality=80",
+        "https://imagedelivery.net/-aT8Z2F9gGvZ9fdofZcCaQ/502f3216-9d73-4729-aa02-105a14bd4500/w=900,h=506,fit=cover,format=auto,quality=70"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "e326ddb1-05a0-547d-b582-7147e28db33a",
+      "slug": "active-away-padel-nana-golden-beach",
+      "source_url": "https://activeaway.com/padel-tennis-holiday/adult-padel-holiday-5-nana-golden-beach",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false,
+      "data_quality_score": 1.0
+    },
+    "core_identity": {
+      "title": "Padel week at Nana Golden Beach",
+      "organizer": "Active Away",
+      "description": "A week at the five-star, all-inclusive Nana Golden Beach on Crete with 22 hours of padel coaching, match play and tournaments, and a court for every four players.",
+      "coaches": [
+        "Louie Harris"
+      ],
+      "languages": [
+        "English"
+      ],
+      "booking_url": "https://activeaway.com/padel-tennis-holiday/adult-padel-holiday-5-nana-golden-beach",
+      "contact_email": "hello@activeaway.com",
+      "contact_phone": "+44 20 7965 7277"
+    },
+    "categorization": {
+      "racket_sport": [
+        "padel"
+      ],
+      "category": "social_getaway",
+      "theme": [
+        "couples",
+        "group"
+      ],
+      "gender": "mixed",
+      "level": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "rating_systems": {},
+    "location": {
+      "country": "Greece",
+      "city_region": "Hersonissos, Crete",
+      "venue_name": "Nana Golden Beach",
+      "venue_slug": null,
+      "lat": null,
+      "lng": null
+    },
+    "sessions": [
+      {
+        "start_date": "2027-04-17",
+        "end_date": "2027-04-24",
+        "status": "available",
+        "duration_days": 8,
+        "booking_url": "https://activeaway.com/book/events/adult-padel-holiday-nana-golden-beach-17-april-24-april-2027"
+      },
+      {
+        "start_date": "2027-04-24",
+        "end_date": "2027-05-01",
+        "status": "available",
+        "duration_days": 8,
+        "booking_url": "https://activeaway.com/book/events/adult-padel-holiday-nana-golden-beach-24-april-01-may-2027"
+      }
+    ],
+    "schedule_notes": null,
+    "pricing": {
+      "price_min": 1829,
+      "price_max": 1829,
+      "currency": "GBP",
+      "price_unit": "per_person_sharing",
+      "price_notes": "£1,829 per person sharing, all inclusive.",
+      "inclusions": [
+        "accommodation",
+        "all inclusive",
+        "daily coaching",
+        "tournament play",
+        "hosting"
+      ]
+    },
+    "sport_specific": {
+      "court_surface": [],
+      "coaching_hours_total": 22,
+      "player_to_coach_ratio": "4:1",
+      "capacity": null,
+      "accommodation_type": "on_site_resort"
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6acfc144-3f20-46e8-fb84-b16db0527800/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6acfc144-3f20-46e8-fb84-b16db0527800/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/acdccec8-eaab-4917-e492-bfc891056500/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/DONA-FILIPA-PADEL-GALLERY-Pool-Sunset.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Lyttos-Mare-Active-Away-Padel-Courts.jpg/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/79ed23a7-8326-44d8-1064-40f6c1d42500/w=1920,format=auto,quality=80"
+      ]
+    }
+  }
+]

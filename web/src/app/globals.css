@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/*
+  Court Trips tokens.
+  Colours come from real playing surfaces: hard-court blue, the green
+  surround, padel turf, and optic yellow (the ball) as the one accent.
+*/
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #16233a;
+  --color-ink-soft: #55627a;
+  --color-rule: #e3e6ec;
+  --color-ball: #dcf343;
+  --color-line: #ffffff;
+
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ball);
+  outline-offset: 2px;
+}
+
+.on-paper :focus-visible {
+  outline-color: var(--color-ink);
+}

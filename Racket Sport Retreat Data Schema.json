@@ -1,0 +1,210 @@
+{
+  "retreat_schema": {
+    "core_identity": {
+      "title": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., Elite Mediterranean Racquet Intensive"
+      },
+      "organizer": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., Global Tennis Academies"
+      },
+      "description": {
+        "data_type": "string",
+        "ui_component": "textarea",
+        "placeholder": "Full description of the retreat..."
+      },
+      "booking_url": {
+        "data_type": "string",
+        "ui_component": "url_input"
+      }
+    },
+    "categorization": {
+      "racket_sport": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "options": [
+          "tennis",
+          "pickleball",
+          "padel"
+        ],
+        "description": "Allows for retreats that offer multiple sports."
+      },
+      "retreat_type": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": [
+          "resort",
+          "camp",
+          "clinic",
+          "vacation"
+        ]
+      },
+      "gender": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": [
+          "male",
+          "female",
+          "mixed"
+        ]
+      },
+      "level": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "options": [
+          "beginner",
+          "intermediate",
+          "advanced",
+          "all levels"
+        ],
+        "description": "Multi-select allows a camp to target 'intermediate' and 'advanced' specifically."
+      }
+    },
+    "rating_systems": {
+      "utr_min": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_5",
+        "min": 1.0,
+        "max": 16.5,
+        "description": "Universal Tennis Rating (Tennis)"
+      },
+      "utr_max": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_5",
+        "min": 1.0,
+        "max": 16.5
+      },
+      "dupr_min": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_25",
+        "min": 2.0,
+        "max": 8.0,
+        "description": "Dynamic Universal Pickleball Rating (Pickleball)"
+      },
+      "dupr_max": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_25",
+        "min": 2.0,
+        "max": 8.0
+      }
+    },
+    "location": {
+      "country": {
+        "data_type": "string",
+        "ui_component": "searchable_dropdown",
+        "options": [
+          "United States",
+          "Spain",
+          "Mexico",
+          "Costa Rica",
+          "Italy",
+          "Portugal",
+          "France",
+          "United Kingdom",
+          "Australia"
+        ],
+        "description": "Keep to a standardized ISO list of countries to prevent 'USA', 'US', 'United States' duplication."
+      },
+      "city_region": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., Mallorca, Florida, Tuscany"
+      },
+      "venue_name": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., Santa Ponsa Country Club"
+      }
+    },
+    "dates": {
+      "start_date": {
+        "data_type": "string_iso",
+        "ui_component": "date_picker"
+      },
+      "end_date": {
+        "data_type": "string_iso",
+        "ui_component": "date_picker"
+      },
+      "duration_days": {
+        "data_type": "integer",
+        "ui_component": "number_input_read_only",
+        "description": "Auto-calculated based on start and end dates."
+      }
+    },
+    "pricing": {
+      "amount": {
+        "data_type": "number",
+        "ui_component": "number_input"
+      },
+      "currency": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": [
+          "USD",
+          "EUR",
+          "GBP",
+          "CAD",
+          "AUD"
+        ]
+      },
+      "inclusions": {
+        "data_type": "array",
+        "ui_component": "tags_input",
+        "suggested_options": [
+          "accommodation",
+          "meals",
+          "daily coaching",
+          "airport transfers",
+          "court fees",
+          "video analysis",
+          "match play",
+          "gym access"
+        ]
+      }
+    },
+    "sport_specific": {
+      "court_surface": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "options": [
+          "Hard",
+          "Clay",
+          "Grass",
+          "Artificial Turf",
+          "Carpet"
+        ],
+        "description": "Multi-select because some facilities offer multiple surfaces."
+      },
+      "coaching_hours_total": {
+        "data_type": "integer",
+        "ui_component": "number_input"
+      },
+      "player_to_coach_ratio": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": [
+          "1:1",
+          "2:1",
+          "3:1",
+          "4:1",
+          "5:1",
+          "6:1",
+          "8:1+"
+        ]
+      }
+    },
+    "media": {
+      "thumbnail": {
+        "data_type": "string_url",
+        "ui_component": "image_upload_single"
+      },
+      "images": {
+        "data_type": "array_of_urls",
+        "ui_component": "image_upload_gallery"
+      }
+    }
+  }
+}

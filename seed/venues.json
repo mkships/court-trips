@@ -1,0 +1,386 @@
+[
+  {
+    "meta": {
+      "id": "d31ebc93-e08e-5b38-acb3-4b49e5e2491e",
+      "slug": "sani-resort",
+      "source_url": "https://activeaway.com/tennis-holiday/adult-tennis-holiday-5-sani-beach-hotel",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false
+    },
+    "core_identity": {
+      "name": "Sani Resort",
+      "kind": "resort",
+      "stars": 5,
+      "adults_only": false,
+      "description": "A coastal resort on Halkidiki's Kassandra peninsula with its own marina, more than 20 restaurants, and the Rafa Nadal Tennis Centre's eight red clay courts.",
+      "website": "https://www.saniresort.gr/en/"
+    },
+    "location": {
+      "country": "Greece",
+      "city_region": "Kassandra, Halkidiki",
+      "lat": null,
+      "lng": null
+    },
+    "facilities": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "courts": [
+        {
+          "sport": "tennis",
+          "count": 8,
+          "surface": "Clay",
+          "indoor": false
+        }
+      ],
+      "amenities": [
+        "beach",
+        "marina",
+        "restaurants",
+        "spa",
+        "pools",
+        "kids club"
+      ]
+    },
+    "pricing": {
+      "price_notes": null
+    },
+    "relations": {
+      "program_slugs": [
+        "sani-beach-tennis-holiday"
+      ]
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/b43bd01f-633d-4171-c51c-b9972f785800/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/b43bd01f-633d-4171-c51c-b9972f785800/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/3da1f35a-a894-46e6-f061-321e5b5d9a00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/22ccb3e7-8d16-45bb-f169-e72ce7f1e700/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/784ee961-81c8-4b6b-b584-f0dab161ed00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/76a6332f-f81a-4047-a386-c5465b2d0e00/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "6f849e04-3746-51d9-8d9f-46c530a4a2cf",
+      "slug": "parkhotel-marlena",
+      "source_url": "https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps/tennis-vacation-parkhotel-marlena",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false
+    },
+    "core_identity": {
+      "name": "Parkhotel Marlena",
+      "kind": "hotel",
+      "stars": 4,
+      "adults_only": true,
+      "description": "A family-run, adults-only (14+) four-star-superior hotel above Merano with two panoramic clay courts, gourmet half board and a 1,000 m² spa. Tennis packages and private lessons are added to a stay.",
+      "website": "https://www.marlena.it/en/"
+    },
+    "location": {
+      "country": "Italy",
+      "city_region": "Marling, South Tyrol",
+      "lat": null,
+      "lng": null
+    },
+    "facilities": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "courts": [
+        {
+          "sport": "tennis",
+          "count": 2,
+          "surface": "Clay",
+          "indoor": false
+        }
+      ],
+      "amenities": [
+        "spa",
+        "indoor pool",
+        "outdoor pool",
+        "garden",
+        "half board"
+      ]
+    },
+    "pricing": {
+      "price_notes": "Stays from €519 per person for 3 nights (Thu–Sun). Tennis packages €80–€190; private lessons €55 per 55 minutes."
+    },
+    "relations": {
+      "program_slugs": []
+    },
+    "media": {
+      "thumbnail": "https://www.tennistraveller.net/images/igallery/original/434-hotel-marlena-24/tennishotel-marlena-tennis-1200x800-26.jpg",
+      "images": [
+        "https://www.tennistraveller.net/images/igallery/original/434-hotel-marlena-24/tennishotel-marlena-tennis-1200x800-26.jpg",
+        "https://www.tennistraveller.net/images/igallery/original/434-hotel-marlena-24/tennishotel-marlena-suedtirol-amsicht-1200x800.jpg",
+        "https://www.tennistraveller.net/images/igallery/original/434-hotel-marlena-24/tennishotel-marlena-suedtirol-tennis2-1200x800.jpg",
+        "https://www.tennistraveller.net/images/igallery/original/434-hotel-marlena-24/tennishotel-marlena-suedtirol-amsicht2-1200x800.jpg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "ac0274cb-23cb-514c-87ec-03093ef7cc49",
+      "slug": "park-hotel-zanzanu",
+      "source_url": "https://www.zanzanu.it/en/",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false
+    },
+    "core_identity": {
+      "name": "Park Hotel Zanzanù",
+      "kind": "hotel",
+      "stars": 4,
+      "adults_only": false,
+      "description": "A lake-view hotel in Tignale above Lake Garda with seven clay courts, apartments for families and groups, an indoor heated pool and sauna. GO Tennisurlaub runs its camps here.",
+      "website": "https://www.zanzanu.it/en/"
+    },
+    "location": {
+      "country": "Italy",
+      "city_region": "Tignale, Lake Garda",
+      "lat": null,
+      "lng": null
+    },
+    "facilities": {
+      "racket_sport": [
+        "tennis"
+      ],
+      "courts": [
+        {
+          "sport": "tennis",
+          "count": 7,
+          "surface": "Clay",
+          "indoor": false
+        }
+      ],
+      "amenities": [
+        "indoor pool",
+        "sauna",
+        "restaurant",
+        "apartments",
+        "lake views"
+      ]
+    },
+    "pricing": {
+      "price_notes": null
+    },
+    "relations": {
+      "program_slugs": [
+        "zanzanu-tennis-camp-lake-garda"
+      ]
+    },
+    "media": {
+      "thumbnail": "https://www.tennistraveller.net/images/igallery/original/901-1000/tennishotel-zanzanu-gardasee-ansicht-1200x800-957.jpg",
+      "images": [
+        "https://www.tennistraveller.net/images/igallery/original/901-1000/tennishotel-zanzanu-gardasee-ansicht-1200x800-957.jpg",
+        "https://www.tennistraveller.net/images/igallery/original/1001-1100/tennishotel-zanzanu-gardasee-ansicht3-1200x800-1047.jpg",
+        "https://zanzanu.it/wp-content/uploads/2018/12/slide-01.jpg.webp",
+        "https://www.tennistraveller.net/images/igallery/original/901-1000/tennishotel-zanzanu-gardasee-tennis-1200x800-951.jpg",
+        "https://zanzanu.it/wp-content/uploads/2025/08/zanzanu-home-img-sx-1920x1281.jpg.webp"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "f28de04a-ddd7-58eb-81a2-c840f02e789e",
+      "slug": "club-med-turkoise",
+      "source_url": "https://www.clubmed.us/r/turkoise/y",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false
+    },
+    "core_identity": {
+      "name": "Club Med Turkoise",
+      "kind": "resort",
+      "stars": null,
+      "adults_only": true,
+      "description": "An adults-only, all-inclusive resort on the widest stretch of Grace Bay beach with pickleball, tennis, a Sothys spa and some of the Caribbean's best diving.",
+      "website": "https://www.clubmed.us/r/turkoise/y"
+    },
+    "location": {
+      "country": "Turks and Caicos",
+      "city_region": "Grace Bay, Providenciales",
+      "lat": null,
+      "lng": null
+    },
+    "facilities": {
+      "racket_sport": [
+        "pickleball",
+        "tennis"
+      ],
+      "courts": [
+        {
+          "sport": "pickleball",
+          "count": null,
+          "surface": null,
+          "indoor": false
+        },
+        {
+          "sport": "tennis",
+          "count": null,
+          "surface": null,
+          "indoor": false
+        }
+      ],
+      "amenities": [
+        "beach",
+        "all inclusive",
+        "spa",
+        "pool",
+        "diving",
+        "nightly entertainment"
+      ]
+    },
+    "pricing": {
+      "price_notes": null
+    },
+    "relations": {
+      "program_slugs": [
+        "pickleball-getaways-club-med-turkoise"
+      ]
+    },
+    "media": {
+      "thumbnail": "https://production.media.dcx.clubmed/?url=https%3A%2F%2Fassets.dream.clubmed%2Fpm_7531_554_554857-43kuj3pdy5-swhr.jpg&format=webp&width=1480&height=940&quality=60",
+      "images": [
+        "https://production.media.dcx.clubmed/?url=https%3A%2F%2Fassets.dream.clubmed%2Fpm_7531_554_554857-43kuj3pdy5-swhr.jpg&format=webp&width=1480&height=940&quality=60",
+        "https://production.media.dcx.clubmed/?url=https%3A%2F%2Fassets.dream.clubmed%2Fpm_7531_251_251939-eyl7eixmcm-swhr.jpg&format=webp&width=760&height=480&quality=50",
+        "https://pickleballgetaways.com/wp-content/uploads/2025/05/Photo-May-04-2025-9-19-25-AM-scaled-e1747338339687.jpg",
+        "https://pickleballgetaways.com/wp-content/uploads/2024/10/IMG_2462.jpg"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "47abb05b-5fe4-50a0-9765-dbc55ac26f7a",
+      "slug": "hyatt-regency-vilamoura",
+      "source_url": "https://activeaway.com/pickleball-holiday/adult-pickleball-holiday-hyatt-regency-vilamoura-algarve",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false
+    },
+    "core_identity": {
+      "name": "Hyatt Regency Vilamoura Algarve",
+      "kind": "hotel",
+      "stars": null,
+      "adults_only": false,
+      "description": "A 257-room hotel near Vilamoura beach and marina with an outdoor pool and courts used for Active Away's padel and pickleball breaks.",
+      "website": "https://www.hyatt.com/hyatt-regency/en-US/faohr-hyatt-regency-vilamoura-algarve"
+    },
+    "location": {
+      "country": "Portugal",
+      "city_region": "Vilamoura, Algarve",
+      "lat": null,
+      "lng": null
+    },
+    "facilities": {
+      "racket_sport": [
+        "padel",
+        "pickleball"
+      ],
+      "courts": [
+        {
+          "sport": "pickleball",
+          "count": 3,
+          "surface": null,
+          "indoor": false
+        },
+        {
+          "sport": "padel",
+          "count": null,
+          "surface": null,
+          "indoor": false
+        }
+      ],
+      "amenities": [
+        "outdoor pool",
+        "beach nearby",
+        "marina nearby",
+        "restaurants"
+      ]
+    },
+    "pricing": {
+      "price_notes": null
+    },
+    "relations": {
+      "program_slugs": [
+        "active-away-padel-vilamoura",
+        "active-away-pickleball-vilamoura"
+      ]
+    },
+    "media": {
+      "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/9cc62156-8fa2-43cc-3ad3-db05f52c5800/w=1920,format=auto,quality=80",
+      "images": [
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/9cc62156-8fa2-43cc-3ad3-db05f52c5800/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/ee6688ad-d2e2-4929-712a-e0fbb4eba100/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/48b73900-708d-4226-a154-dc5cdcbf2b00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/977a6599-15fe-473f-be62-00263ab4ff00/w=1920,format=auto,quality=80",
+        "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/3e5828a5-4fc2-41c0-4a26-bdc647f37d00/w=1920,format=auto,quality=80"
+      ]
+    }
+  },
+  {
+    "meta": {
+      "id": "47b02669-6a44-5757-8baa-3c0d6bd10360",
+      "slug": "mohr-life-resort",
+      "source_url": "https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps/padel-special-mohr-life-resort",
+      "status": "active",
+      "scraped_at": "2026-10-22",
+      "last_seen_at": "2026-10-22",
+      "needs_review": false
+    },
+    "core_identity": {
+      "name": "MOHR life resort",
+      "kind": "resort",
+      "stars": null,
+      "adults_only": false,
+      "description": "An alpine spa resort in Lermoos facing the Zugspitze, with an infinity pool, panoramic indoor pool, 12 relaxation rooms and a padel court guests can book with their stay.",
+      "website": "https://www.mohr-life-resort.at/en/"
+    },
+    "location": {
+      "country": "Austria",
+      "city_region": "Lermoos, Tyrol",
+      "lat": null,
+      "lng": null
+    },
+    "facilities": {
+      "racket_sport": [
+        "padel"
+      ],
+      "courts": [
+        {
+          "sport": "padel",
+          "count": null,
+          "surface": null,
+          "indoor": false
+        }
+      ],
+      "amenities": [
+        "spa",
+        "infinity pool",
+        "indoor pool",
+        "mountain views",
+        "half board"
+      ]
+    },
+    "pricing": {
+      "price_notes": "“Let's Padel at MOHR”: 3 nights from €673 per person with half board and an hour of court time on two days."
+    },
+    "relations": {
+      "program_slugs": []
+    },
+    "media": {
+      "thumbnail": "https://www.tennistraveller.net/images/igallery/original/1694-mohr-life-resort-259/mohr-life-resort-padelhotel-padel-1200x800.jpg",
+      "images": [
+        "https://www.tennistraveller.net/images/igallery/original/1694-mohr-life-resort-259/mohr-life-resort-padelhotel-padel-1200x800.jpg"
+      ]
+    }
+  }
+]

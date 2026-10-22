@@ -1,0 +1,281 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RacketRetreatExtraction",
+  "description": "Strict JSON Schema used as the extraction contract for `firecrawl agent --schema-file`. Derived from directory-schema.json v2.2 but stripped of all UI metadata. Captures ONLY data fields the agent should pull from a page. System/provenance fields (id, slug, source_url, scraped_at, needs_review, lat/lng, location.venue_slug, relations.program_slugs) are populated by our pipeline, NOT extracted, and are intentionally absent here. The agent returns `retreats[]` so a single listing page yielding multiple retreats is handled, plus optional `venues[]` for the resorts, hotels, clubs and academies those retreats take place at.",
+  "type": "object",
+  "properties": {
+    "retreats": {
+      "type": "array",
+      "description": "One entry per distinct retreat/program found on the page. If the page describes a single retreat, return exactly one item. Do not invent retreats.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Name of the retreat/camp/clinic. REQUIRED. e.g. 'Elite Mediterranean Racquet Intensive'."
+          },
+          "category": {
+            "type": "string",
+            "enum": ["camp", "clinic", "social_getaway"],
+            "description": "Program format. REQUIRED. 'camp' = multi-day structured training; 'clinic' = focused/shorter skills program; 'social_getaway' = leisure/vibe-led (couples, singles, group holidays). A resort venue alone is NOT a category."
+          },
+          "theme": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["performance", "couples", "singles", "group", "family", "beginner_friendly"]
+            },
+            "description": "Optional audience/vibe tags, independent of category. e.g. a 'performance' camp or a 'couples' getaway."
+          },
+          "organizer": {
+            "type": "string",
+            "description": "The venue, academy, or brand running the retreat. REQUIRED. e.g. 'Rafa Nadal Academy', 'Global Tennis Academies'."
+          },
+          "description": {
+            "type": "string",
+            "description": "Full prose description of the retreat."
+          },
+          "coaches": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Names of coaches / pros leading the retreat, if stated."
+          },
+          "languages": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Language(s) of instruction, if stated. e.g. ['English', 'Spanish']."
+          },
+          "booking_url": {
+            "type": "string",
+            "description": "Direct booking or info link for this retreat (a URL). REQUIRED — if no dedicated link exists, leave null and the pipeline will fall back to the source page URL."
+          },
+          "contact_email": {
+            "type": "string",
+            "description": "Contact email, if listed."
+          },
+          "contact_phone": {
+            "type": "string",
+            "description": "Contact phone, if listed."
+          },
+          "racket_sport": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["tennis", "pickleball", "padel"]
+            },
+            "description": "Sport(s) offered. REQUIRED. Multiple allowed for combined retreats."
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["male", "female", "mixed"],
+            "description": "Target gender. Default to 'mixed' only if the page clearly implies open enrollment; otherwise leave null."
+          },
+          "level": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["beginner", "intermediate", "advanced", "all levels"]
+            },
+            "description": "Player level(s) targeted. REQUIRED. Use 'all levels' when the page says open to everyone."
+          },
+          "rating": {
+            "type": "object",
+            "description": "Skill-rating bounds, all optional. Tennis pages may use UTR and/or NTRP; pickleball uses DUPR; padel typically none.",
+            "properties": {
+              "utr_min": { "type": "number", "minimum": 1.0, "maximum": 16.5, "description": "Universal Tennis Rating lower bound." },
+              "utr_max": { "type": "number", "minimum": 1.0, "maximum": 16.5 },
+              "ntrp_min": { "type": "number", "minimum": 1.0, "maximum": 7.0, "description": "NTRP lower bound (common on US tennis listings)." },
+              "ntrp_max": { "type": "number", "minimum": 1.0, "maximum": 7.0 },
+              "dupr_min": { "type": "number", "minimum": 2.0, "maximum": 8.0, "description": "DUPR lower bound (pickleball)." },
+              "dupr_max": { "type": "number", "minimum": 2.0, "maximum": 8.0 }
+            }
+          },
+          "location": {
+            "type": "object",
+            "description": "Where the retreat physically happens. REQUIRED: country.",
+            "properties": {
+              "country": {
+                "type": "string",
+                "description": "REQUIRED. Canonical English short country name (ISO 3166-1), e.g. 'United States', 'Spain'. Normalize 'USA'/'US' -> 'United States'."
+              },
+              "city_region": {
+                "type": "string",
+                "description": "City, island, or region. e.g. 'Mallorca', 'Florida', 'Tuscany'."
+              },
+              "venue_name": {
+                "type": "string",
+                "description": "Specific facility/venue. e.g. 'Santa Ponsa Country Club'."
+              },
+              "address": {
+                "type": "string",
+                "description": "Full street address if available — used downstream for geocoding (we derive lat/lng ourselves)."
+              }
+            }
+          },
+          "sessions": {
+            "type": "array",
+            "description": "Each bookable date range. REQUIRED unless schedule_notes is provided. A retreat brand often runs many sessions across a year — capture each. Use ISO dates (YYYY-MM-DD). If a date in a booking link or URL disagrees with the date shown on the page, use the one in the link (some sites render dates a day early).",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start_date": { "type": "string", "description": "ISO date YYYY-MM-DD." },
+                "end_date": { "type": "string", "description": "ISO date YYYY-MM-DD." },
+                "status": {
+                  "type": "string",
+                  "enum": ["available", "waitlist", "sold_out"],
+                  "description": "Availability of this specific session, if stated."
+                },
+                "price_override": {
+                  "type": "number",
+                  "description": "Only if this session's price differs from the overall price range."
+                },
+                "booking_url": {
+                  "type": "string",
+                  "description": "Booking link for this exact date, if the page has a separate one per date (a 'Book now' link next to the date)."
+                }
+              }
+            }
+          },
+          "schedule_notes": {
+            "type": "string",
+            "description": "Free-text schedule when concrete dates aren't given. e.g. 'Weekly camps, May–September' or 'Dates on request'. Satisfies the dates requirement when sessions[] is empty."
+          },
+          "pricing": {
+            "type": "object",
+            "description": "Overall price span for the listing.",
+            "properties": {
+              "price_min": { "type": "number", "description": "Lowest advertised price." },
+              "price_max": { "type": "number", "description": "Highest advertised price. Equal to price_min for a single price." },
+              "currency": {
+                "type": "string",
+                "enum": ["USD", "EUR", "GBP", "CAD", "AUD"],
+                "description": "ISO currency of the prices."
+              },
+              "price_unit": {
+                "type": "string",
+                "enum": ["per_person", "per_person_sharing"],
+                "description": "What price_min/price_max buy. 'per_person' = the whole program for one person (no shared room involved, e.g. a clinic or day camp). 'per_person_sharing' = the whole program per person when two share a room ('pp', 'based on 2 sharing', 'double occupancy'); put any single-occupancy price in price_notes. If the page only quotes per night or per day with no program total, leave this null and explain in price_notes."
+              },
+              "price_notes": {
+                "type": "string",
+                "description": "Context, e.g. 'single occupancy from £5,029; early-bird available'."
+              },
+              "inclusions": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "What the price includes. e.g. ['accommodation', 'meals', 'daily coaching', 'airport transfers', 'court fees']."
+              }
+            }
+          },
+          "sport_specific": {
+            "type": "object",
+            "properties": {
+              "court_surface": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["Hard", "Clay", "Grass", "Artificial Turf", "Carpet"]
+                },
+                "description": "Court surface(s) available."
+              },
+              "coaching_hours_total": {
+                "type": "number",
+                "description": "Total coaching hours over the retreat, if stated. Halves are fine, e.g. 22.5."
+              },
+              "player_to_coach_ratio": {
+                "type": "string",
+                "enum": ["1:1", "2:1", "3:1", "4:1", "5:1", "6:1", "8:1+"],
+                "description": "Players per coach, written players:coach. '1 coach to 6 players', '1:6 coach to player' and 'six players per coach' all mean '6:1'. Normalize to the nearest listed bucket; 8 or more players per coach is '8:1+'."
+              },
+              "capacity": {
+                "type": "integer",
+                "description": "Maximum participants per session, if stated."
+              },
+              "accommodation_type": {
+                "type": "string",
+                "enum": ["on_site_resort", "partner_hotel", "villa", "self_arranged", "not_included"],
+                "description": "How lodging is handled."
+              }
+            }
+          },
+          "media": {
+            "type": "object",
+            "properties": {
+              "thumbnail": {
+                "type": "string",
+                "description": "Single hero/cover image URL."
+              },
+              "images": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Gallery image URLs."
+              }
+            }
+          }
+        },
+        "required": ["title", "category", "organizer", "racket_sport", "level", "location"]
+      }
+    },
+    "venues": {
+      "type": "array",
+      "description": "Optional. One entry per resort, hotel, club or academy the page describes in its own right (its courts, rooms, facilities). Match the venue_name used in retreats[].location. Leave empty when the page only mentions a venue by name.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "REQUIRED. e.g. 'Sani Resort'." },
+          "kind": {
+            "type": "string",
+            "enum": ["resort", "hotel", "club", "academy"],
+            "description": "REQUIRED. What the venue is."
+          },
+          "stars": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Official star rating, if stated (e.g. '5*')." },
+          "adults_only": { "type": "boolean", "description": "True only if the page says adults only." },
+          "description": { "type": "string" },
+          "website": { "type": "string", "description": "The venue's own website, if linked." },
+          "location": {
+            "type": "object",
+            "properties": {
+              "country": { "type": "string", "description": "REQUIRED. Canonical English short country name." },
+              "city_region": { "type": "string" },
+              "address": { "type": "string", "description": "Full street address if available, for geocoding." }
+            }
+          },
+          "racket_sport": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["tennis", "pickleball", "padel"] },
+            "description": "REQUIRED. Sports the venue has courts for."
+          },
+          "courts": {
+            "type": "array",
+            "description": "One entry per sport (and per surface if several). Leave count null when not stated.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sport": { "type": "string", "enum": ["tennis", "pickleball", "padel"] },
+                "count": { "type": "integer" },
+                "surface": { "type": "string", "enum": ["Hard", "Clay", "Grass", "Artificial Turf", "Carpet"] },
+                "indoor": { "type": "boolean" }
+              },
+              "required": ["sport"]
+            }
+          },
+          "amenities": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "e.g. ['beach', 'spa', 'indoor pool', 'all inclusive']."
+          },
+          "price_notes": { "type": "string", "description": "Room or stay prices, if given, e.g. '3 nights from €519 per person'." },
+          "media": {
+            "type": "object",
+            "properties": {
+              "thumbnail": { "type": "string" },
+              "images": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "required": ["name", "kind", "racket_sport", "location"]
+      }
+    }
+  },
+  "required": ["retreats"]
+}

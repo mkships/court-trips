@@ -1,0 +1,15 @@
+.DS_Store
+.firecrawl/
+harvest/data.db
+harvest/__pycache__/
+__pycache__/
+*.pyc
+retreats_export.json
+
+# raw scrapes: operators' copied text and contact details; the hand-checked seed/ is what we publish
+pickleball_retreats.csv
+db_export/
+
+# local tooling
+.idea/
+.claude/

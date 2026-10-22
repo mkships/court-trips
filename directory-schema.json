@@ -1,0 +1,514 @@
+{
+  "version": "2.2",
+  "description": "Finalized data schema for racket sport retreat listings. Designed to be populated by both a manual admin form and automated scraping (Firecrawl).",
+  "required_fields": {
+    "_note": "A scraped record is only accepted (needs_review can be cleared) when ALL of these are present. Records missing any are flagged needs_review=true rather than discarded.",
+    "fields": [
+      "core_identity.title",
+      "categorization.category",
+      "core_identity.organizer",
+      "categorization.racket_sport",
+      "location.country",
+      "categorization.level"
+    ],
+    "dates_rule": "Satisfied by EITHER at least one sessions[] item with start_date and end_date, OR a non-empty sessions.schedule_notes (e.g. 'weekly, May–September' / 'dates on request'). Records with neither are flagged needs_review=true.",
+    "url_rule": "At least one of core_identity.booking_url OR meta.source_url must be present. booking_url falls back to source_url when no dedicated booking/info link is found."
+  },
+  "retreat_schema": {
+    "meta": {
+      "_note": "Identity & provenance. Mostly system-populated; critical for de-duplication, re-scraping, and review triage.",
+      "id": {
+        "data_type": "string",
+        "ui_component": "read_only",
+        "description": "Primary key. Auto-generated UUID."
+      },
+      "slug": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "description": "URL-safe identifier, e.g. 'mediterranean-racquet-intensive-mallorca'."
+      },
+      "source_url": {
+        "data_type": "string_url",
+        "ui_component": "url_input",
+        "description": "The page this record was scraped from. Distinct from booking_url. Used as the de-dup key during scraping."
+      },
+      "status": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": ["active", "sold_out", "past", "draft"],
+        "default": "draft",
+        "description": "Lifecycle of the listing as a whole."
+      },
+      "scraped_at": {
+        "data_type": "string_iso",
+        "ui_component": "datetime_read_only",
+        "description": "Timestamp of first successful scrape."
+      },
+      "last_seen_at": {
+        "data_type": "string_iso",
+        "ui_component": "datetime_read_only",
+        "description": "Timestamp of the most recent scrape that still found this listing."
+      },
+      "needs_review": {
+        "data_type": "boolean",
+        "ui_component": "toggle",
+        "default": true,
+        "description": "Auto-set true when extraction confidence is low or required fields are missing. Cleared by a human reviewer."
+      },
+      "data_quality_score": {
+        "data_type": "number",
+        "ui_component": "number_input_read_only",
+        "min": 0,
+        "max": 1,
+        "description": "Heuristic 0–1 completeness/confidence score from the scrape pipeline."
+      }
+    },
+    "core_identity": {
+      "title": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "required": true,
+        "placeholder": "e.g., Elite Mediterranean Racquet Intensive"
+      },
+      "organizer": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "required": true,
+        "description": "The venue, academy, or brand organizing the retreat.",
+        "placeholder": "e.g., Global Tennis Academies"
+      },
+      "description": {
+        "data_type": "string",
+        "ui_component": "textarea",
+        "placeholder": "Full description of the retreat..."
+      },
+      "coaches": {
+        "data_type": "array",
+        "ui_component": "tags_input",
+        "description": "Named coaches or pros leading the retreat. A primary selling point on most listing pages.",
+        "placeholder": "e.g., Patrick Mouratoglou"
+      },
+      "languages": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "options": ["English", "Spanish", "French", "Italian", "German", "Portuguese"],
+        "description": "Language(s) of instruction."
+      },
+      "booking_url": {
+        "data_type": "string_url",
+        "ui_component": "url_input",
+        "required": true,
+        "description": "Booking or info link. Falls back to meta.source_url when no dedicated link exists."
+      },
+      "contact_email": {
+        "data_type": "string",
+        "ui_component": "email_input"
+      },
+      "contact_phone": {
+        "data_type": "string",
+        "ui_component": "text_input"
+      }
+    },
+    "categorization": {
+      "racket_sport": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "required": true,
+        "options": ["tennis", "pickleball", "padel"],
+        "description": "Allows for retreats that offer multiple sports."
+      },
+      "category": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "required": true,
+        "options": ["camp", "clinic", "social_getaway"],
+        "description": "Program format. 'resort' is intentionally excluded — venues live in the separate resorts directory; a camp hosted at a resort is still a camp."
+      },
+      "theme": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "options": ["performance", "couples", "singles", "group", "family", "beginner_friendly"],
+        "description": "Optional audience/vibe facet, orthogonal to category. Enables filters like 'performance camp' or 'couples getaway' without forcing a single enum to carry two dimensions."
+      },
+      "gender": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": ["male", "female", "mixed"]
+      },
+      "level": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "required": true,
+        "options": ["beginner", "intermediate", "advanced", "all levels"],
+        "description": "Multi-select allows a camp to target 'intermediate' and 'advanced' specifically."
+      }
+    },
+    "rating_systems": {
+      "_note": "All optional. A tennis retreat may use UTR and/or NTRP; pickleball uses DUPR. Padel has no widely-standardized rating.",
+      "utr_min": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_5",
+        "min": 1.0,
+        "max": 16.5,
+        "description": "Universal Tennis Rating (Tennis)"
+      },
+      "utr_max": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_5",
+        "min": 1.0,
+        "max": 16.5
+      },
+      "ntrp_min": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_5",
+        "min": 1.0,
+        "max": 7.0,
+        "description": "National Tennis Rating Program (Tennis, common on US listings)."
+      },
+      "ntrp_max": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_5",
+        "min": 1.0,
+        "max": 7.0
+      },
+      "dupr_min": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_25",
+        "min": 2.0,
+        "max": 8.0,
+        "description": "Dynamic Universal Pickleball Rating (Pickleball)"
+      },
+      "dupr_max": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_25",
+        "min": 2.0,
+        "max": 8.0
+      }
+    },
+    "location": {
+      "country": {
+        "data_type": "string",
+        "ui_component": "searchable_dropdown",
+        "required": true,
+        "options_source": "iso_3166_1",
+        "description": "Full ISO 3166-1 country list (not a fixed subset). Store the canonical English short name to prevent 'USA'/'US'/'United States' duplication."
+      },
+      "city_region": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., Mallorca, Florida, Tuscany"
+      },
+      "venue_name": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., Santa Ponsa Country Club"
+      },
+      "venue_slug": {
+        "data_type": "string",
+        "ui_component": "searchable_dropdown",
+        "options_source": "venue_schema.meta.slug",
+        "description": "Optional link to a record in the venues directory (venue_schema). Set it when the program runs at a listed venue; venue_name stays as the display name either way."
+      },
+      "lat": {
+        "data_type": "number",
+        "ui_component": "number_input_read_only",
+        "description": "Latitude, geocoded from venue/city. For map display."
+      },
+      "lng": {
+        "data_type": "number",
+        "ui_component": "number_input_read_only",
+        "description": "Longitude, geocoded from venue/city."
+      }
+    },
+    "sessions": {
+      "_note": "A retreat brand often runs many sessions across a year. Each session is one bookable date range. For rolling/on-request retreats, leave sessions empty and use schedule_notes. In a stored record, 'sessions' is the array itself and 'schedule_notes' sits beside it at the top level.",
+      "data_type": "array_of_objects",
+      "ui_component": "repeater",
+      "required_unless": "schedule_notes is present (see required_fields.dates_rule)",
+      "item_schema": {
+        "start_date": {
+          "data_type": "string_iso",
+          "ui_component": "date_picker",
+          "required": true
+        },
+        "end_date": {
+          "data_type": "string_iso",
+          "ui_component": "date_picker",
+          "required": true
+        },
+        "duration_days": {
+          "data_type": "integer",
+          "ui_component": "number_input_read_only",
+          "description": "Auto-calculated from this session's start and end dates."
+        },
+        "status": {
+          "data_type": "string",
+          "ui_component": "single_select_dropdown",
+          "options": ["available", "waitlist", "sold_out"]
+        },
+        "price_override": {
+          "data_type": "number",
+          "ui_component": "number_input",
+          "description": "Optional. Use only when this session's price differs from the listing's price range."
+        },
+        "booking_url": {
+          "data_type": "string_url",
+          "ui_component": "url_input",
+          "description": "Optional. A booking link for this exact date, when the operator has one. Falls back to core_identity.booking_url."
+        }
+      },
+      "schedule_notes": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., 'Weekly camps, May–September' or 'Dates on request'"
+      }
+    },
+    "pricing": {
+      "_note": "Overall price span for the listing. Per-session differences go in sessions[].price_override.",
+      "price_min": {
+        "data_type": "number",
+        "ui_component": "number_input"
+      },
+      "price_max": {
+        "data_type": "number",
+        "ui_component": "number_input",
+        "description": "Equal to price_min when the listing has a single price."
+      },
+      "currency": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": ["USD", "EUR", "GBP", "CAD", "AUD"]
+      },
+      "price_unit": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": ["per_person", "per_person_sharing"],
+        "description": "What price_min/price_max buy. 'per_person': the whole program for one person. 'per_person_sharing': the whole program per person in a shared (double) room; put the single-occupancy price in price_notes."
+      },
+      "price_notes": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., 'per person, double occupancy; early-bird available'"
+      },
+      "inclusions": {
+        "data_type": "array",
+        "ui_component": "tags_input",
+        "suggested_options": [
+          "accommodation",
+          "meals",
+          "daily coaching",
+          "airport transfers",
+          "court fees",
+          "video analysis",
+          "match play",
+          "gym access"
+        ]
+      }
+    },
+    "sport_specific": {
+      "court_surface": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "options": ["Hard", "Clay", "Grass", "Artificial Turf", "Carpet"],
+        "description": "Multi-select because some facilities offer multiple surfaces."
+      },
+      "coaching_hours_total": {
+        "data_type": "number",
+        "ui_component": "number_input_step_0_5",
+        "description": "Operators often quote half hours (e.g. 22.5)."
+      },
+      "player_to_coach_ratio": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": ["1:1", "2:1", "3:1", "4:1", "5:1", "6:1", "8:1+"]
+      },
+      "capacity": {
+        "data_type": "integer",
+        "ui_component": "number_input",
+        "description": "Maximum number of participants per session."
+      },
+      "accommodation_type": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": ["on_site_resort", "partner_hotel", "villa", "self_arranged", "not_included"]
+      }
+    },
+    "media": {
+      "thumbnail": {
+        "data_type": "string_url",
+        "ui_component": "image_upload_single"
+      },
+      "images": {
+        "data_type": "array_of_urls",
+        "ui_component": "image_upload_gallery"
+      }
+    }
+  },
+  "venue_required_fields": {
+    "_note": "Same rule as required_fields: a venue missing any of these is flagged needs_review=true rather than discarded.",
+    "fields": [
+      "core_identity.name",
+      "core_identity.kind",
+      "location.country",
+      "facilities.racket_sport"
+    ]
+  },
+  "venue_schema": {
+    "_note": "The venues directory: resorts, hotels, clubs and academies with courts. Programs link to a venue through location.venue_slug; a venue can exist with no programs (a 'place to stay').",
+    "meta": {
+      "id": {
+        "data_type": "string",
+        "ui_component": "read_only",
+        "description": "Primary key. Auto-generated UUID."
+      },
+      "slug": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "description": "URL-safe identifier, e.g. 'sani-resort'. Programs reference it in location.venue_slug."
+      },
+      "source_url": {
+        "data_type": "string_url",
+        "ui_component": "url_input",
+        "description": "The page the venue's details were taken from."
+      },
+      "status": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "options": ["active", "closed", "draft"],
+        "default": "draft"
+      },
+      "scraped_at": {
+        "data_type": "string_iso",
+        "ui_component": "datetime_read_only"
+      },
+      "last_seen_at": {
+        "data_type": "string_iso",
+        "ui_component": "datetime_read_only"
+      },
+      "needs_review": {
+        "data_type": "boolean",
+        "ui_component": "toggle",
+        "default": true
+      }
+    },
+    "core_identity": {
+      "name": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "required": true,
+        "placeholder": "e.g., Sani Resort"
+      },
+      "kind": {
+        "data_type": "string",
+        "ui_component": "single_select_dropdown",
+        "required": true,
+        "options": ["resort", "hotel", "club", "academy"]
+      },
+      "stars": {
+        "data_type": "integer",
+        "ui_component": "number_input",
+        "min": 1,
+        "max": 5,
+        "description": "Official hotel star rating, when the venue has one."
+      },
+      "adults_only": {
+        "data_type": "boolean",
+        "ui_component": "toggle",
+        "default": false
+      },
+      "description": {
+        "data_type": "string",
+        "ui_component": "textarea"
+      },
+      "website": {
+        "data_type": "string_url",
+        "ui_component": "url_input"
+      }
+    },
+    "location": {
+      "country": {
+        "data_type": "string",
+        "ui_component": "searchable_dropdown",
+        "required": true,
+        "options_source": "iso_3166_1"
+      },
+      "city_region": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., Kassandra, Halkidiki"
+      },
+      "lat": {
+        "data_type": "number",
+        "ui_component": "number_input_read_only"
+      },
+      "lng": {
+        "data_type": "number",
+        "ui_component": "number_input_read_only"
+      }
+    },
+    "facilities": {
+      "racket_sport": {
+        "data_type": "array",
+        "ui_component": "multi_select_dropdown",
+        "required": true,
+        "options": ["tennis", "pickleball", "padel"]
+      },
+      "courts": {
+        "data_type": "array_of_objects",
+        "ui_component": "repeater",
+        "description": "One row per sport (and per surface, if a venue has several). Leave count null when the venue doesn't say.",
+        "item_schema": {
+          "sport": {
+            "data_type": "string",
+            "ui_component": "single_select_dropdown",
+            "required": true,
+            "options": ["tennis", "pickleball", "padel"]
+          },
+          "count": {
+            "data_type": "integer",
+            "ui_component": "number_input"
+          },
+          "surface": {
+            "data_type": "string",
+            "ui_component": "single_select_dropdown",
+            "options": ["Hard", "Clay", "Grass", "Artificial Turf", "Carpet"]
+          },
+          "indoor": {
+            "data_type": "boolean",
+            "ui_component": "toggle",
+            "default": false
+          }
+        }
+      },
+      "amenities": {
+        "data_type": "array",
+        "ui_component": "tags_input",
+        "suggested_options": ["beach", "spa", "pool", "indoor pool", "restaurants", "all inclusive", "half board", "gym", "kids club"]
+      }
+    },
+    "pricing": {
+      "price_notes": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "placeholder": "e.g., '3 nights from €519 per person; tennis packages extra'"
+      }
+    },
+    "relations": {
+      "program_slugs": {
+        "data_type": "array",
+        "ui_component": "read_only",
+        "description": "Derived: slugs of programs whose location.venue_slug points here."
+      }
+    },
+    "media": {
+      "thumbnail": {
+        "data_type": "string_url",
+        "ui_component": "image_upload_single"
+      },
+      "images": {
+        "data_type": "array_of_urls",
+        "ui_component": "image_upload_gallery"
+      }
+    }
+  }
+}
