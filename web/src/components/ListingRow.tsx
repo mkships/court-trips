@@ -46,7 +46,7 @@ export function VenueRow({ sport, venues, programs }: { sport: Sport; venues: Ve
 
 function Row({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <section aria-labelledby="row-heading" className="mt-14">
+    <section aria-labelledby="row-heading" className="mt-10">
       <div className="flex items-baseline justify-between gap-4">
         <h2 id="row-heading" className="text-[1.625rem] font-extrabold tracking-[-0.02em]">
           {title}

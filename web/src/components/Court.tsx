@@ -82,7 +82,9 @@ function mix(a: Plan, b: Plan, t: number): Plan {
   };
 }
 
-export function Court({ sport, className }: { sport: Sport; className?: string }) {
+// drawIn: on first render the lines are painted across the court once, left to right,
+// like a line-marking machine. Later sport changes morph instead. Skipped for reduced motion.
+export function Court({ sport, className, drawIn }: { sport: Sport; className?: string; drawIn?: boolean }) {
   const [plan, setPlan] = useState<Plan>(PLANS[sport]);
   const current = useRef(plan);
   current.current = plan;
@@ -115,7 +117,12 @@ export function Court({ sport, className }: { sport: Sport; className?: string }
         height={plan.hy * 2}
         style={{ fill: SURFACES[sport].court, transition: `fill ${DURATION}ms` }}
       />
-      <g stroke="var(--color-line)" strokeWidth={2.5} vectorEffect="non-scaling-stroke">
+      <g
+        stroke="var(--color-line)"
+        strokeWidth={2.5}
+        vectorEffect="non-scaling-stroke"
+        className={drawIn ? "animate-[court-draw_1000ms_cubic-bezier(0.65,0,0.35,1)_250ms_both] motion-reduce:animate-none" : undefined}
+      >
         {plan.segs.map(([x1, y1, x2, y2], i) => (
           <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} vectorEffect="non-scaling-stroke" />
         ))}

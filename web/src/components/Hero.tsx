@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { Court } from "@/components/Court";
-import { DIMENSIONS, SURFACES } from "@/lib/surfaces";
+import { SURFACES } from "@/lib/surfaces";
 import { dateRange, placeLabel, priceFrom } from "@/lib/format";
 import { tileHref } from "@/lib/tiles";
 import { SPORTS, SPORT_NAMES, type Listing, type Mode, type Sport, type SportStats } from "@/lib/sports";
@@ -21,9 +21,9 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
   const name = SPORT_NAMES[sport];
 
   return (
-    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[600px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[500px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
       <div
-        className="flex flex-col px-6 pt-7 pb-6 text-white sm:px-9 sm:pt-9 md:pb-20"
+        className="flex flex-col px-6 pt-7 pb-6 text-white sm:px-9 sm:pt-9 md:pb-14"
         style={{ backgroundColor: SURFACES[sport].surround, transition: "background-color 700ms" }}
       >
         <div role="group" aria-label="Sport" className="flex flex-wrap gap-2">
@@ -40,7 +40,7 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
           ))}
         </div>
 
-        <h1 className="mt-7 text-[2.25rem] leading-[0.95] font-black tracking-[-0.035em] text-balance sm:text-[2.5rem] md:mt-8 lg:text-[3.25rem]">
+        <h1 className="mt-7 text-[2.25rem] leading-[0.95] font-black tracking-[-0.035em] text-balance sm:text-[2.5rem] md:mt-6 lg:text-[3.25rem]">
           {mode === "programs" ? `${name} trips with coaching built in` : `Stay where the ${name.toLowerCase()} courts are`}
         </h1>
 
@@ -51,14 +51,9 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
               ? `Camps, clinics and getaways in ${whereLabel(stats.countries)}.`
               : `Resorts and hotels with ${name.toLowerCase()} courts on site.`}
           </p>
-          <figure className="w-[44%] shrink-0 md:mt-auto md:w-full">
-            <Court sport={sport} className="block aspect-[28/15] w-full" />
-            <figcaption className="mt-1.5 text-[0.75rem] text-white/85 tabular-nums md:mt-2 md:text-[0.8125rem]">
-              <span className="hidden md:inline">{name} court, </span>
-              {DIMENSIONS[sport]}
-              <span className="hidden md:inline">, drawn to scale</span>
-            </figcaption>
-          </figure>
+          <div className="w-[44%] shrink-0 md:mt-auto md:w-full">
+            <Court sport={sport} drawIn className="block aspect-[28/15] w-full md:h-[190px] md:w-auto" />
+          </div>
         </div>
       </div>
 
@@ -109,7 +104,7 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
       ))}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-      <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7 md:pr-60 md:pb-20">
+      <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7 md:pr-60 md:pb-16">
         <div aria-live="polite">
           <p className="text-[0.9375rem] text-white/85">{placeLabel(current)}</p>
           <Link
@@ -126,7 +121,7 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
       </div>
 
       {featured.length > 1 && (
-        <div className="absolute top-4 right-4 flex items-center gap-2 md:top-auto md:right-7 md:bottom-20">
+        <div className="absolute top-4 right-4 flex items-center gap-2 md:top-auto md:right-7 md:bottom-16">
           <span className="mr-1 rounded-full bg-black/35 px-2.5 py-1 text-[0.8125rem] text-white tabular-nums md:bg-transparent md:px-0 md:text-white/80">
             {index + 1} of {featured.length}
           </span>

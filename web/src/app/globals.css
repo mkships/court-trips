@@ -39,3 +39,13 @@
     outline-color: var(--color-ball);
   }
 }
+
+/* the hero court's lines being painted on, once, on page load (see Court drawIn) */
+@keyframes court-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
