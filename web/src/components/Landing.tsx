@@ -37,7 +37,13 @@ export function Landing({ stats, listings, venues, initialMode = "programs", ini
           stats={stats[sport]}
           featured={featuredTiles(forSport)}
         />
-        <SearchBar key={`${mode}-${sport}`} mode={mode} sport={sport} stats={stats[sport]} />
+        <SearchBar
+          key={`${mode}-${sport}`}
+          mode={mode}
+          sport={sport}
+          tiles={forSport}
+          venues={venues.filter((v) => v.sports.includes(sport))}
+        />
         {mode === "programs" ? (
           <ListingRow sport={sport} total={stats[sport].tiles} listings={capPerProgram(forSport, ROW_CAP_PER_PROGRAM).slice(0, ROW_SIZE)} />
         ) : (

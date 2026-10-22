@@ -39,7 +39,8 @@ export function Header({
             <Link
               key={value}
               href={value === "places" ? "/?type=places" : "/"}
-              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] hover:text-ink hover:decoration-rule"
+              aria-current={mode === value ? "page" : undefined}
+              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] hover:text-ink hover:decoration-rule aria-[current=page]:text-ink aria-[current=page]:decoration-ink"
             >
               {label}
             </Link>
