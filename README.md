@@ -15,8 +15,18 @@ A directory of tennis, pickleball and padel trips: camps, clinics, getaways and 
 ```bash
 cd web
 npm install
-python3 scripts/seed.py   # downloads operator photos and builds src/data/seed.json
+python3 scripts/seed.py   # downloads operator photos into public/photos and builds src/data/seed.json
 npm run dev
 ```
 
-Operator photos are downloaded locally and not committed; get permission before publishing them.
+Locally, photos are served from `web/public/photos` (not in git).
+
+## Deploy (Vercel)
+
+The Vercel project's root directory is `web`. Photos are served from Vercel Blob:
+
+1. In Vercel, open **Storage → Create → Blob**, connect it to this project, and copy its `BLOB_READ_WRITE_TOKEN` into `web/.env.local` (see `web/.env.example`).
+2. Run `npm run photos:upload` in `web`. It uploads any photos Blob doesn't have yet and prints `NEXT_PUBLIC_PHOTO_BASE_URL`.
+3. Add `NEXT_PUBLIC_PHOTO_BASE_URL` (and `NEXT_PUBLIC_SITE_URL`) to the project's environment variables, then redeploy.
+
+Photo files are named by content hash, so they're cached for a year and never go stale. After re-running `seed.py`, run `npm run photos:upload` again; add `-- --prune` to delete photos the site no longer uses. A Vercel build without `NEXT_PUBLIC_PHOTO_BASE_URL` fails on purpose, rather than deploying broken images.

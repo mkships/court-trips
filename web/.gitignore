@@ -45,3 +45,6 @@ next-env.d.ts
 
 # outbound click log written by /go
 /.data/
+
+# the template is safe to commit
+!.env.example

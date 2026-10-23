@@ -14,6 +14,8 @@ Usage: python3 scripts/seed.py            (from web/)
        python3 scripts/seed.py --refetch  (re-download photos)
 """
 import datetime as dt
+import glob
+import hashlib
 import json
 import os
 import subprocess
@@ -36,30 +38,50 @@ FEATURED = {
 
 
 def fetch_photo(job):
-    url, dest, refetch = job
-    if os.path.exists(dest) and not refetch:
-        return dest
-    tmp = dest + ".download"
-    if subprocess.run(["curl", "-sfL", "-m", "40", "-A", "Mozilla/5.0", "-o", tmp, url]).returncode:
-        sys.exit(f"could not download {url}")
+    """Download, resize and store one photo as <n>-<content hash>.jpg; returns its site path.
+
+    Content-hashed names never change meaning, so Blob/CDN copies can be cached forever
+    and a replaced photo always gets a new URL.
+    """
+    url, slug, n, refetch = job
+    folder = os.path.join(PHOTOS, slug)
+    existing = sorted(glob.glob(os.path.join(folder, f"{n}-*.jpg")))
+    if existing and not refetch:
+        return f"/photos/{slug}/{os.path.basename(existing[0])}"
+    tmp = os.path.join(folder, f"{n}.download")
+    legacy = os.path.join(folder, f"{n}.jpg")  # copies saved before names were hashed
+    if os.path.exists(legacy) and not refetch:
+        os.replace(legacy, tmp)
+    elif subprocess.run(["curl", "-sfL", "-m", "40", "-A", "Mozilla/5.0", "-o", tmp, url]).returncode:
+        # operators move or delete photos; keep the rest of the record rather than failing the run
+        print(f"warning: photo {n} for {slug} is gone ({url}); skipping it", file=sys.stderr)
+        if os.path.exists(tmp):
+            os.remove(tmp)
+        return None
     width = int(subprocess.run(["sips", "-g", "pixelWidth", tmp], check=True, capture_output=True, text=True)
                 .stdout.split()[-1])
     # -Z would also upscale, so only pass it when the photo is larger than we need
     resize = ["-Z", str(MAX_PX)] if width > MAX_PX else []
-    subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "82", *resize, tmp, "--out", dest],
+    converted = os.path.join(folder, f"{n}.converted.jpg")
+    subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "82", *resize, tmp, "--out", converted],
                    check=True, capture_output=True)
     os.remove(tmp)
-    return dest
+    digest = hashlib.sha256(open(converted, "rb").read()).hexdigest()[:10]
+    for old in existing:
+        os.remove(old)
+    name = f"{n}-{digest}.jpg"
+    os.replace(converted, os.path.join(folder, name))
+    return f"/photos/{slug}/{name}"
 
 
 def photos_for(slug, media, refetch, jobs):
-    folder = os.path.join(PHOTOS, slug)
-    os.makedirs(folder, exist_ok=True)
-    paths = []
+    """Queue a record's photos for download; returns placeholders filled in after the downloads."""
+    os.makedirs(os.path.join(PHOTOS, slug), exist_ok=True)
+    keys = []
     for n, url in enumerate(media["images"][:MAX_PHOTOS]):
-        jobs.append((url, os.path.join(folder, f"{n}.jpg"), refetch))
-        paths.append(f"/photos/{slug}/{n}.jpg")
-    return paths
+        jobs.append((url, slug, n, refetch))
+        keys.append(f"{slug}#{n}")
+    return keys
 
 
 def place(location):
@@ -166,7 +188,9 @@ def main():
         })
 
     with ThreadPoolExecutor(8) as ex:
-        list(ex.map(fetch_photo, jobs))
+        paths = dict(zip((f"{slug}#{n}" for _, slug, n, _ in jobs), ex.map(fetch_photo, jobs)))
+    for record in [*listings, *details.values(), *places]:
+        record["photos"] = [paths[k] for k in record["photos"] if paths[k]]
 
     # what the hero and search bar offer: countries and months that still have a session
     stats = {}
