@@ -1,0 +1,33 @@
+# Runs web/scripts/smoke.mjs against every Vercel deployment once it's ready: key pages,
+# all program pages, every photo, the /go hand-off and the 404 page.
+# To have Vercel hold a production release until this passes, add the "Post-deploy check"
+# check under Vercel → Project → Settings → Deployment Checks.
+name: Post-deploy check
+
+on: deployment_status
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Post-deploy check
+    # Vercel reports "success" when a deployment is built and reachable
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check pages, photos and hand-off
+        working-directory: web
+        env:
+          # passed through env, never interpolated into the shell
+          DEPLOY_URL: ${{ github.event.deployment_status.environment_url }}
+          # lets the check through Vercel's protection on preview deployments
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: node scripts/smoke.mjs "$DEPLOY_URL"

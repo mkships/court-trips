@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SafeImage } from "@/components/SafeImage";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { Court } from "@/components/Court";
@@ -91,16 +91,21 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
       }}
     >
       {featured.map((listing, i) => (
-        <Image
+        <div
           key={listing.key}
-          src={listing.photos[0]}
-          alt=""
-          fill
-          priority={i === 0}
-          sizes="(min-width: 768px) 60vw, 100vw"
-          className="object-cover transition-opacity duration-500 motion-reduce:transition-none"
+          className="absolute inset-0 transition-opacity duration-500 motion-reduce:transition-none"
           style={{ opacity: i === index ? 1 : 0 }}
-        />
+        >
+          <SafeImage
+            sport={listing.sports[0] as Sport}
+            src={listing.photos[0]}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="(min-width: 768px) 60vw, 100vw"
+            className="object-cover"
+          />
+        </div>
       ))}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/SafeImage";
 import type { ProgramDetail, Sport, Venue } from "@/lib/sports";
 import { placeLabel } from "@/lib/format";
 
@@ -18,7 +18,7 @@ export function VenueBlock({ program, venue, sport }: { program: ProgramDetail; 
     <div className="flex max-w-[640px] gap-5">
       {venue.photos[0] && (
         <div className="relative aspect-square w-28 shrink-0 overflow-hidden rounded-2xl bg-rule sm:w-36">
-          <Image src={venue.photos[0]} alt="" fill sizes="144px" className="object-cover" />
+          <SafeImage sport={sport} src={venue.photos[0]} alt="" fill sizes="144px" className="object-cover" />
         </div>
       )}
       <div className="min-w-0">

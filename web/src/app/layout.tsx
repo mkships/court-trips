@@ -8,9 +8,17 @@ const schibsted = Schibsted_Grotesk({
   weight: ["400", "500", "600", "800", "900"],
 });
 
+// Absolute base for link-preview images: NEXT_PUBLIC_SITE_URL once the site has a domain,
+// else Vercel's production address, else local. Blank values count as unset.
+function siteUrl() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (configured) return new URL(configured);
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  return new URL(vercel ? `https://${vercel}` : "http://localhost:3000");
+}
+
 export const metadata: Metadata = {
-  // Absolute base for link-preview images; set NEXT_PUBLIC_SITE_URL once the site has a domain.
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: siteUrl(),
   title: "Court Trips",
   description: "Tennis, pickleball and padel camps, clinics and getaways worldwide.",
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SafeImage } from "@/components/SafeImage";
 import { useRef, useState } from "react";
 import { Court } from "@/components/Court";
 import { SPORT_NAMES, type Sport } from "@/lib/sports";
@@ -41,7 +41,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
         >
           {photos.map((src, i) => (
             <li key={src} className="relative aspect-[4/3] w-full shrink-0 snap-center bg-rule">
-              <Image src={src} alt={i === 0 ? title : ""} fill priority={i === 0} sizes="100vw" className="object-cover" />
+              <SafeImage sport={sport} src={src} alt={i === 0 ? title : ""} fill priority={i === 0} sizes="100vw" className="object-cover" />
             </li>
           ))}
         </ul>
@@ -58,11 +58,11 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
           side.length === 0 ? "" : side.length === 1 ? "grid-cols-2" : "grid-cols-[3fr_2fr]"
         }`}
       >
-        <Photo src={main} alt={title} priority onClick={open} />
+        <Photo src={main} alt={title} sport={sport} priority onClick={open} />
         {side.length > 0 && (
           <div className={`grid gap-2 ${side.length >= 4 ? "grid-cols-2 grid-rows-2" : "grid-rows-2"}`}>
             {side.map((src) => (
-              <Photo key={src} src={src} alt="" onClick={open} />
+              <Photo key={src} src={src} alt="" sport={sport} onClick={open} />
             ))}
           </div>
         )}
@@ -96,7 +96,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
         <ul className="mx-auto grid max-w-[920px] gap-3 px-4 py-6 sm:px-8">
           {photos.map((src) => (
             <li key={src} className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-rule">
-              <Image src={src} alt="" fill sizes="(min-width: 920px) 920px, 100vw" className="object-cover" />
+              <SafeImage sport={sport} src={src} alt="" fill sizes="(min-width: 920px) 920px, 100vw" className="object-cover" />
             </li>
           ))}
         </ul>
@@ -105,11 +105,13 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
   );
 }
 
-function Photo({ src, alt, priority, onClick }: { src: string; alt: string; priority?: boolean; onClick: () => void }) {
+type PhotoProps = { src: string; alt: string; sport: Sport; priority?: boolean; onClick: () => void };
+
+function Photo({ src, alt, sport, priority, onClick }: PhotoProps) {
   return (
     // the "Show all photos" button is the keyboard route into the viewer; these are mouse shortcuts
     <button type="button" tabIndex={-1} onClick={onClick} className="relative min-h-0 cursor-zoom-in bg-rule" aria-hidden="true">
-      <Image src={src} alt={alt} fill priority={priority} sizes={alt ? "60vw" : "20vw"} className="object-cover hover:brightness-95" />
+      <SafeImage sport={sport} src={src} alt={alt} fill priority={priority} sizes={alt ? "60vw" : "20vw"} className="object-cover hover:brightness-95" />
     </button>
   );
 }

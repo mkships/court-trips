@@ -209,6 +209,8 @@ def main():
                   f, indent=2, ensure_ascii=False)
         f.write("\n")
     print(f"wrote {len(listings)} listings and {len(places)} venues ({len(jobs)} photos) to {os.path.relpath(OUT, WEB)}")
+    # the fixed widths the site serves (see src/lib/photo-sizes.json)
+    subprocess.run(["node", os.path.join(WEB, "scripts", "photo-variants.mjs")], check=True)
 
 
 if __name__ == "__main__":

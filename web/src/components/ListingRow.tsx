@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/SafeImage";
 import { Court } from "@/components/Court";
 import { SURFACES } from "@/lib/surfaces";
 import { CATEGORY_NAMES, dateRange, levelLabel, placeLabel, priceFrom } from "@/lib/format";
@@ -122,7 +122,7 @@ function Photo({ src, sport, badge, children }: { src?: string; sport: Sport; ba
       style={{ backgroundColor: src ? "var(--color-rule)" : SURFACES[sport].surround }}
     >
       {src ? (
-        <Image src={src} alt="" fill sizes={SIZES} className="object-cover" />
+        <SafeImage sport={sport} src={src} alt="" fill sizes={SIZES} className="object-cover" />
       ) : (
         <Court sport={sport} className="absolute inset-0 m-auto h-full w-[78%]" />
       )}

@@ -1,0 +1,6 @@
+{
+  "_note": "Widths pre-generated for every photo (scripts/photo-variants.mjs) and served by src/lib/image-loader.ts. Change both by editing this file, then run npm run photos:prepare and photos:upload.",
+  "widths": [480, 960, 1600],
+  "format": "webp",
+  "quality": 78
+}

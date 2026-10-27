@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "photos:upload": "node --env-file-if-exists=.env.local scripts/upload-photos.mjs"
+    "photos:upload": "node scripts/photo-variants.mjs && node --env-file-if-exists=.env.local scripts/upload-photos.mjs",
+    "photos:prepare": "node scripts/photo-variants.mjs",
+    "smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
     "next": "15.5.9",
@@ -23,6 +25,7 @@
     "@vercel/blob": "^2.8.2",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

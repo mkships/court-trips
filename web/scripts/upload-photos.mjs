@@ -24,11 +24,17 @@ if (!process.env.BLOB_READ_WRITE_TOKEN) {
   process.exit(1);
 }
 
-// pathnames the site actually uses, e.g. "photos/sani-resort/0-1a2b3c4d5e.jpg"
+// pathnames the site actually uses: each original ("photos/sani-resort/0-1a2b3c4d5e.jpg", kept for
+// link previews) plus its pre-made widths ("...-w960.webp", see scripts/photo-variants.mjs)
 const seed = JSON.parse(await readFile(SEED, "utf8"));
-const referenced = new Set(
-  [...seed.listings, ...seed.venues, ...Object.values(seed.programs)].flatMap((r) => r.photos.map((p) => p.slice(1))),
+const sizes = JSON.parse(await readFile(path.join(WEB, "src", "lib", "photo-sizes.json"), "utf8"));
+const originals = [...seed.listings, ...seed.venues, ...Object.values(seed.programs)].flatMap((r) =>
+  r.photos.map((p) => p.slice(1)),
 );
+const referenced = new Set(
+  originals.flatMap((p) => [p, ...sizes.widths.map((w) => p.replace(/\.jpg$/, `-w${w}.${sizes.format}`))]),
+);
+const CONTENT_TYPES = { jpg: "image/jpeg", webp: "image/webp", avif: "image/avif" };
 
 async function listAll(prefix) {
   const blobs = [];
@@ -45,7 +51,7 @@ async function localFiles() {
   const files = [];
   for (const slug of await readdir(PHOTOS)) {
     for (const name of await readdir(path.join(PHOTOS, slug)).catch(() => [])) {
-      if (name.endsWith(".jpg")) files.push(`photos/${slug}/${name}`);
+      if (/\.(jpg|webp|avif)$/.test(name)) files.push(`photos/${slug}/${name}`);
     }
   }
   return files;
@@ -60,7 +66,7 @@ const missingLocally = [...referenced].filter((p) => !existing.has(p));
 const local = new Set(await localFiles());
 const notOnDisk = missingLocally.filter((p) => !local.has(p));
 if (notOnDisk.length) {
-  console.error(`These photos are in seed.json but not on disk; run python3 scripts/seed.py first:\n  ${notOnDisk.join("\n  ")}`);
+  console.error(`These photos are in seed.json but not on disk; run python3 scripts/seed.py (or npm run photos:prepare) first:\n  ${notOnDisk.join("\n  ")}`);
   process.exit(1);
 }
 
@@ -70,7 +76,7 @@ await inBatches(missingLocally, async (pathname) => {
   const blob = await put(pathname, body, {
     access: "public",
     addRandomSuffix: false,
-    contentType: "image/jpeg",
+    contentType: CONTENT_TYPES[pathname.split(".").pop()],
     cacheControlMaxAge: YEAR,
   });
   existing.set(pathname, blob.url);
@@ -91,5 +97,5 @@ if (!anyUrl) {
   process.exit(1);
 }
 const base = new URL(anyUrl).origin;
-console.log(`${uploaded} uploaded, ${referenced.size} referenced, all present in Blob.`);
+console.log(`${uploaded} uploaded, ${referenced.size} referenced (${new Set(originals).size} photos), all present in Blob.`);
 console.log(`\nSet this in Vercel (Project → Settings → Environment Variables) and redeploy:\n  NEXT_PUBLIC_PHOTO_BASE_URL=${base}`);
