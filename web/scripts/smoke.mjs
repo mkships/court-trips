@@ -13,8 +13,10 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 const WEB = path.dirname(path.dirname(new URL(import.meta.url).pathname));
-const base = (process.argv[2] ?? process.env.DEPLOY_URL ?? "").replace(/\/$/, "");
-if (!/^https?:\/\//.test(base)) {
+// Vercel's payload may send a bare host ("courttrips-abc.vercel.app"); treat that as https
+const given = (process.argv[2] ?? process.env.DEPLOY_URL ?? "").trim().replace(/\/$/, "");
+const base = given && !/^https?:\/\//.test(given) ? `https://${given}` : given;
+if (!/^https?:\/\/[^/]+/.test(base)) {
   console.error("Usage: node scripts/smoke.mjs <deployment url>");
   process.exit(2);
 }

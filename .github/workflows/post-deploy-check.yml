@@ -1,25 +1,40 @@
-# Runs web/scripts/smoke.mjs against every Vercel deployment once it's ready: key pages,
+# Runs web/scripts/smoke.mjs against every Vercel deployment as soon as it's built: key pages,
 # all program pages, every photo, the /go hand-off and the 404 page.
-# To have Vercel hold a production release until this passes, add the "Post-deploy check"
-# check under Vercel → Project → Settings → Deployment Checks.
+#
+# Vercel triggers it with a repository_dispatch event (vercel.deployment.ready fires after the
+# deployment is created and before Deployment Checks run). The status step reports the result
+# back to Vercel as "Vercel - courttrips: post-deploy-check"; add that under Vercel → Settings →
+# Deployment Checks to hold production releases until it passes.
+# Run it by hand from the Actions tab (workflow_dispatch) against any URL.
 name: Post-deploy check
 
-on: deployment_status
+on:
+  repository_dispatch:
+    types: [vercel.deployment.ready]
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Deployment URL to check
+        required: true
+        default: https://courttrips.vercel.app
 
 permissions:
   contents: read
+  statuses: write
 
 jobs:
   smoke:
     name: Post-deploy check
-    # Vercel reports "success" when a deployment is built and reachable
-    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - name: Report status to Vercel
+        if: github.event_name == 'repository_dispatch'
+        uses: vercel/repository-dispatch/actions/status@v1
         with:
-          ref: ${{ github.event.deployment.sha }}
+          name: "Vercel - courttrips: post-deploy-check"
+      # checks out the deployment's own commit, so the script matches what was deployed
+      - uses: vercel/repository-dispatch/actions/checkout@v1
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -27,7 +42,7 @@ jobs:
         working-directory: web
         env:
           # passed through env, never interpolated into the shell
-          DEPLOY_URL: ${{ github.event.deployment_status.environment_url }}
+          DEPLOY_URL: ${{ github.event.client_payload.url || inputs.url }}
           # lets the check through Vercel's protection on preview deployments
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
         run: node scripts/smoke.mjs "$DEPLOY_URL"
