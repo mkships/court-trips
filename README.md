@@ -39,5 +39,6 @@ Files are named by content hash, so they're cached for a year and never go stale
 
 `.github/workflows/post-deploy-check.yml` runs `web/scripts/smoke.mjs` against every deployment Vercel finishes: key pages, all program pages, every photo, the `/go` hand-off and the 404 page. Run it yourself with `npm run smoke -- https://courttrips.vercel.app`.
 
-- Preview deployments are protected by Vercel, so the check needs `VERCEL_AUTOMATION_BYPASS_SECRET` as a GitHub Actions secret (Vercel → Settings → Deployment Protection → Protection Bypass for Automation).
-- To hold a production release until the check passes, add **Post-deploy check** under Vercel → Settings → Deployment Checks.
+- Vercel starts it through a `repository_dispatch` event (Vercel → Settings → Git → repository_dispatch Events, on).
+- Deployment URLs are protected by Vercel, so the check needs `VERCEL_AUTOMATION_BYPASS_SECRET` as a GitHub Actions secret (Vercel → Settings → Deployment Protection → Protection Bypass for Automation). Set.
+- It reports back as **Vercel - courttrips: post-deploy-check**, which is a required Deployment Check (Vercel → Settings → Build and Deployment): a production deployment only goes live once it passes. If it fails, the previous version keeps serving.
