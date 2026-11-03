@@ -35,6 +35,16 @@ The Vercel project's root directory is `web`. Photos are served from Vercel Blob
 
 Files are named by content hash, so they're cached for a year and never go stale. After re-running `seed.py`, run `npm run photos:upload` again; add `-- --prune` to delete photos the site no longer uses. A Vercel build without `NEXT_PUBLIC_PHOTO_BASE_URL` fails on purpose, rather than deploying broken images.
 
+## Database and clicks
+
+The site uses Neon Postgres (added through the Vercel Marketplace) with Drizzle. The schema lives in `web/src/db/schema.ts`, and migrations are generated into `web/drizzle/` and checked into git.
+
+- Every "Book" button goes through `/go/<program>`, which redirects straight away and then saves the click to the `clicks` table: program, session date, organizer, the page it came from (or the other site's host), country and target URL. No IPs or user agents are stored. Bots, link previews, browser prefetches and the post-deploy check are not counted.
+- `npm run build` applies pending migrations first (`scripts/migrate.mjs`). Each Vercel deployment migrates its own database (production, or the preview's Neon branch). A Vercel build without `DATABASE_URL` fails on purpose, so clicks can't go missing without anyone noticing.
+- After changing the schema: `npm run db:generate`, then commit the new file in `web/drizzle/`. `npm run db:studio` opens a browser view of the data.
+- Locally, work against the Neon `dev` branch, never production: `npx neon checkout dev` in `web` writes its URLs to `.env.local` (`web/.neon` remembers the project). Don't `vercel env pull` the database URLs. Without them, clicks are only logged to the console.
+- Agent tooling: `.mcp.json` adds the Neon MCP server (OAuth, scoped to this project) and `skills-lock.json` pins the Neon agent skills. Refresh them with `npx neon skills update -y`.
+
 ## Post-deploy check
 
 `.github/workflows/post-deploy-check.yml` runs `web/scripts/smoke.mjs` against every deployment Vercel finishes: key pages, all program pages, every photo, the `/go` hand-off and the 404 page. Run it yourself with `npm run smoke -- https://courttrips.vercel.app`.

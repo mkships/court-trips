@@ -21,9 +21,13 @@ if (!/^https?:\/\/[^/]+/.test(base)) {
   process.exit(2);
 }
 
-const headers = process.env.VERCEL_AUTOMATION_BYPASS_SECRET
-  ? { "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET }
-  : {};
+// the user agent tells /go this is a check, not a visitor, so it isn't counted as a click
+const headers = {
+  "user-agent": "courttrips-smoke",
+  ...(process.env.VERCEL_AUTOMATION_BYPASS_SECRET
+    ? { "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET }
+    : {}),
+};
 const TIMEOUT_MS = 20_000;
 const CONCURRENCY = 8;
 const failures = [];
