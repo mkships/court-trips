@@ -4,14 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node --env-file-if-exists=.env.local scripts/migrate.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "photos:upload": "node scripts/photo-variants.mjs && node --env-file-if-exists=.env.local scripts/upload-photos.mjs",
     "photos:prepare": "node scripts/photo-variants.mjs",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate.mjs",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "drizzle-orm": "^0.45.4",
     "next": "15.5.9",
     "react": "19.1.0",
     "react-dom": "19.1.0"
@@ -23,6 +28,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vercel/blob": "^2.8.2",
+    "drizzle-kit": "^0.31.11",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "sharp": "^0.34.5",
