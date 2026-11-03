@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 /**
- * Uploads the site's photos (public/photos, built by scripts/seed.py) to Vercel Blob.
+ * Uploads the site's photos (public/photos, built by scripts/seed.py and listed in data/photos.json) to Vercel Blob.
  *
  * Photos are named by content hash, so an existing pathname never changes: we upload only
  * what Blob doesn't have yet and let CDNs cache each file for a year. With --prune, photos
- * no longer referenced by src/data/seed.json are deleted from Blob.
+ * no longer referenced are deleted from Blob: that is, not in data/photos.json and not in the
+ * database's photos table (--prune needs DATABASE_URL, so it can't delete a photo a listing uses).
  *
  * Needs BLOB_READ_WRITE_TOKEN (Vercel → Storage → your Blob store → .env.local).
  * Usage: npm run photos:upload [-- --prune]
  */
 import { del, list, put } from "@vercel/blob";
+import { neon } from "@neondatabase/serverless";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
 const WEB = path.dirname(path.dirname(new URL(import.meta.url).pathname));
 const PHOTOS = path.join(WEB, "public", "photos");
-const SEED = path.join(WEB, "src", "data", "seed.json");
+const MANIFEST = path.join(WEB, "data", "photos.json");
 const CONCURRENCY = 6;
 const YEAR = 60 * 60 * 24 * 365;
 
@@ -26,14 +28,21 @@ if (!process.env.BLOB_READ_WRITE_TOKEN) {
 
 // pathnames the site actually uses: each original ("photos/sani-resort/0-1a2b3c4d5e.jpg", kept for
 // link previews) plus its pre-made widths ("...-w960.webp", see scripts/photo-variants.mjs)
-const seed = JSON.parse(await readFile(SEED, "utf8"));
+const prune = process.argv.includes("--prune");
+const dbUrl = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+if (prune && !dbUrl) {
+  console.error("--prune needs DATABASE_URL, so photos the database still uses are kept. Run `npx neon checkout dev` first.");
+  process.exit(1);
+}
+const manifest = JSON.parse(await readFile(MANIFEST, "utf8"));
 const sizes = JSON.parse(await readFile(path.join(WEB, "src", "lib", "photo-sizes.json"), "utf8"));
-const originals = [...seed.listings, ...seed.venues, ...Object.values(seed.programs)].flatMap((r) =>
-  r.photos.map((p) => p.slice(1)),
-);
-const referenced = new Set(
-  originals.flatMap((p) => [p, ...sizes.widths.map((w) => p.replace(/\.jpg$/, `-w${w}.${sizes.format}`))]),
-);
+const withSizes = (p) => [p, ...sizes.widths.map((w) => p.replace(/\.jpg$/, `-w${w}.${sizes.format}`))];
+const originals = [...new Set(Object.values(manifest).flatMap((group) => Object.values(group).flat().map((f) => f.path.slice(1))))];
+const referenced = new Set(originals.flatMap(withSizes));
+// photos listings in the database use; only consulted when pruning
+const inDatabase = prune
+  ? new Set((await neon(dbUrl)`select distinct path from photos`).flatMap((r) => withSizes(r.path.slice(1))))
+  : new Set();
 const CONTENT_TYPES = { jpg: "image/jpeg", webp: "image/webp", avif: "image/avif" };
 
 async function listAll(prefix) {
@@ -66,7 +75,7 @@ const missingLocally = [...referenced].filter((p) => !existing.has(p));
 const local = new Set(await localFiles());
 const notOnDisk = missingLocally.filter((p) => !local.has(p));
 if (notOnDisk.length) {
-  console.error(`These photos are in seed.json but not on disk; run python3 scripts/seed.py (or npm run photos:prepare) first:\n  ${notOnDisk.join("\n  ")}`);
+  console.error(`These photos are in data/photos.json but not on disk; run python3 scripts/seed.py (or npm run photos:prepare) first:\n  ${notOnDisk.join("\n  ")}`);
   process.exit(1);
 }
 
@@ -85,8 +94,8 @@ await inBatches(missingLocally, async (pathname) => {
 });
 if (uploaded) process.stdout.write("\n");
 
-if (process.argv.includes("--prune")) {
-  const stale = [...existing.keys()].filter((p) => !referenced.has(p));
+if (prune) {
+  const stale = [...existing.keys()].filter((p) => !referenced.has(p) && !inDatabase.has(p));
   if (stale.length) await del(stale.map((p) => existing.get(p)));
   console.log(`pruned ${stale.length} unreferenced photos`);
 }
@@ -97,5 +106,5 @@ if (!anyUrl) {
   process.exit(1);
 }
 const base = new URL(anyUrl).origin;
-console.log(`${uploaded} uploaded, ${referenced.size} referenced (${new Set(originals).size} photos), all present in Blob.`);
+console.log(`${uploaded} uploaded, ${referenced.size} referenced (${originals.length} photos), all present in Blob.`);
 console.log(`\nSet this in Vercel (Project → Settings → Environment Variables) and redeploy:\n  NEXT_PUBLIC_PHOTO_BASE_URL=${base}`);

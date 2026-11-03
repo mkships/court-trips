@@ -1,6 +1,6 @@
 # Seed data
 
-A small, hand-checked set of listings to build the site against: 27 programs (three per sport and category) and 6 venues. Every value was read off the live operator page on 22 October 2026. `meta.source_url` is the page it came from.
+A small, hand-checked set of listings, loaded into Postgres with `npm run db:seed` (in `web/`). Once imported, the database is the source of truth; these files are the import format. The set: 27 programs (three per sport and category) and 6 venues. Every value was read off the live operator page on 22 October 2026. `meta.source_url` is the page it came from.
 
 | | Camp | Clinic | Getaway |
 |---|---|---|---|
@@ -17,7 +17,7 @@ Both files follow `directory-schema.json` v2.2 group by group:
 - `programs.json` follows `retreat_schema`. `pricing.price_unit` says what the price buys: `per_person` or `per_person_sharing` (double occupancy). `location.venue_slug` links a program to a venue. `schedule_notes` sits at the top level, next to the `sessions` array.
 - `venues.json` follows `venue_schema`: `core_identity` (name, kind, stars, adults only), `location`, `facilities` (sports, `courts[]`, amenities), `pricing.price_notes`, `relations.program_slugs` (derived from the programs) and `media`.
 
-`media.images` holds the operators' full-size image URLs. `web/scripts/seed.py` downloads them for the site. The photos belong to the operators, so get permission before anything goes public.
+`media.images` holds the operators' full-size image URLs. `web/scripts/seed.py` downloads them for the site and lists the files in `web/data/photos.json`, which `db:seed` reads. The photos belong to the operators, so get permission before anything goes public.
 
 ## Things to know
 

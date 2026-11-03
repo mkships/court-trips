@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Post-deploy check: loads a deployment the way a visitor would and fails if anything is broken.
- *   - key pages and every program page return 200 and look like Court Trips
+ *   - key pages and every program page return 200 and look like Court Trips (program pages are
+ *     found from the search pages, so the check covers whatever is in the deployment's database)
  *   - every photo those pages reference returns a real image (all sizes, plus link previews)
  *   - the booking hand-off (/go) redirects, and unknown pages return 404
  *
@@ -9,10 +10,6 @@
  * Protected preview deployments: set VERCEL_AUTOMATION_BYPASS_SECRET.
  * Runs in CI from .github/workflows/post-deploy-check.yml after every Vercel deployment.
  */
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-
-const WEB = path.dirname(path.dirname(new URL(import.meta.url).pathname));
 // Vercel's payload may send a bare host ("courttrips-abc.vercel.app"); treat that as https
 const given = (process.argv[2] ?? process.env.DEPLOY_URL ?? "").trim().replace(/\/$/, "");
 const base = given && !/^https?:\/\//.test(given) ? `https://${given}` : given;
@@ -56,6 +53,7 @@ function collectImages(html) {
   for (const [, og] of html.matchAll(/property="og:image" content="([^"]+)"/g)) imageUrls.add(decode(og));
 }
 
+const programSlugs = new Set();
 async function checkPage(pathname, expected = 200) {
   try {
     const res = await request(base + pathname);
@@ -64,36 +62,43 @@ async function checkPage(pathname, expected = 200) {
     if (expected === 200) {
       if (!html.includes("Court Trips")) failures.push(`${pathname}: page loaded but doesn't look like Court Trips`);
       collectImages(html);
+      for (const [, slug] of html.matchAll(/href="\/programs\/([a-z0-9-]+)/g)) programSlugs.add(slug);
     }
   } catch (error) {
     failures.push(`${pathname}: ${error.message}`);
   }
 }
 
-const seed = JSON.parse(await readFile(path.join(WEB, "src", "data", "seed.json"), "utf8"));
-const programSlugs = Object.keys(seed.programs);
-
-const pages = [
+// every program has at least one tile, so the unfiltered search pages link to all of them
+const keyPages = [
   "/",
   "/?sport=pickleball",
   "/?sport=padel",
   "/?type=places",
   "/search?sport=tennis",
+  "/search?sport=pickleball",
+  "/search?sport=padel",
   "/search?sport=pickleball&level=advanced",
   "/search?sport=padel&type=places",
-  ...programSlugs.map((slug) => `/programs/${slug}`),
 ];
-await inBatches(pages, (p) => checkPage(p));
+await inBatches(keyPages, (p) => checkPage(p));
+if (programSlugs.size === 0) failures.push("no program links on the search pages; are there listings in the database?");
+const programPages = [...programSlugs].map((slug) => `/programs/${slug}`);
+await inBatches(programPages, (p) => checkPage(p));
 await checkPage("/this-page-does-not-exist", 404);
+const pages = [...keyPages, ...programPages];
 
 // the booking hand-off must redirect to the operator, not render a page
-try {
-  const res = await request(`${base}/go/${programSlugs[0]}`, { redirect: "manual" });
-  const location = res.headers.get("location") ?? "";
-  if (res.status < 300 || res.status >= 400 || !/^https?:\/\//.test(location))
-    failures.push(`/go/${programSlugs[0]}: expected a redirect to the operator, got ${res.status} ${location}`);
-} catch (error) {
-  failures.push(`/go: ${error.message}`);
+const [firstSlug] = programSlugs;
+if (firstSlug) {
+  try {
+    const res = await request(`${base}/go/${firstSlug}`, { redirect: "manual" });
+    const location = res.headers.get("location") ?? "";
+    if (res.status < 300 || res.status >= 400 || !/^https?:\/\//.test(location))
+      failures.push(`/go/${firstSlug}: expected a redirect to the operator, got ${res.status} ${location}`);
+  } catch (error) {
+    failures.push(`/go: ${error.message}`);
+  }
 }
 
 const images = [...imageUrls].filter((u) => !u.startsWith("data:")).map((u) => new URL(u, base).toString());

@@ -1,6 +1,6 @@
 import type { Listing } from "@/lib/sports";
 
-// Tiles arrive sorted soonest first (scripts/seed.py), one per program per date.
+// Tiles arrive sorted soonest first (src/lib/db.ts), one per program per date.
 
 // A curated row of `size` tiles: each program's next date first, so one operator's
 // back-to-back dates can't fill it; if programs run out, later dates top it up.

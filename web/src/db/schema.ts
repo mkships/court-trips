@@ -1,4 +1,213 @@
-import { bigint, date, index, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { relations, sql } from "drizzle-orm";
+import {
+  bigint,
+  boolean,
+  check,
+  date,
+  doublePrecision,
+  index,
+  integer,
+  jsonb,
+  numeric,
+  pgTable,
+  real,
+  text,
+  timestamp,
+  uniqueIndex,
+  uuid,
+} from "drizzle-orm/pg-core";
+
+// Listings follow directory-schema.json v2.2: `programs` is retreat_schema, `venues` is venue_schema,
+// and the two repeating groups get their own tables (`sessions`, `courts`), as do photos.
+// Columns are the schema's fields flattened (core_identity.title → title, location.country → country).
+// Groups whose shape varies a lot from listing to listing (ratings, inclusions, amenities) are JSONB.
+// Enumerated fields are text with CHECK constraints, so adding an option is a one-line migration.
+// The database is the source of truth; seed/*.json is only an import format (scripts/db-seed.mjs).
+
+const list = (values: readonly string[]) => sql.raw(values.map((v) => `'${v}'`).join(", "));
+
+export const PROGRAM_STATUSES = ["active", "sold_out", "past", "draft"] as const;
+export const VENUE_STATUSES = ["active", "closed", "draft"] as const;
+export const CATEGORIES = ["camp", "clinic", "social_getaway"] as const;
+export const SESSION_STATUSES = ["available", "waitlist", "sold_out"] as const;
+export const VENUE_KINDS = ["resort", "hotel", "club", "academy"] as const;
+
+// meta.* fields shared by programs and venues (a function, so each table gets its own column builders)
+const meta = () => ({
+  id: uuid().primaryKey().defaultRandom(),
+  slug: text().notNull().unique(),
+  sourceUrl: text(),
+  needsReview: boolean().notNull().default(true),
+  scrapedAt: timestamp({ withTimezone: true }),
+  lastSeenAt: timestamp({ withTimezone: true }),
+  createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
+});
+
+export const venues = pgTable(
+  "venues",
+  {
+    ...meta(),
+    status: text().$type<(typeof VENUE_STATUSES)[number]>().notNull().default("draft"),
+    // core_identity
+    name: text().notNull(),
+    kind: text().$type<(typeof VENUE_KINDS)[number]>().notNull(),
+    stars: integer(),
+    adultsOnly: boolean().notNull().default(false),
+    description: text(),
+    website: text(),
+    // location
+    country: text().notNull(),
+    cityRegion: text(),
+    lat: doublePrecision(),
+    lng: doublePrecision(),
+    // facilities (courts[] is its own table)
+    sports: text().array().notNull(),
+    amenities: jsonb().$type<string[]>().notNull().default([]),
+    // pricing
+    priceNotes: text(),
+  },
+  (t) => [
+    check("venues_status_check", sql`${t.status} in (${list(VENUE_STATUSES)})`),
+    check("venues_kind_check", sql`${t.kind} in (${list(VENUE_KINDS)})`),
+  ],
+);
+
+export const courts = pgTable(
+  "courts",
+  {
+    id: bigint({ mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
+    venueId: uuid()
+      .notNull()
+      .references(() => venues.id, { onDelete: "cascade" }),
+    // order as listed by the venue
+    position: integer().notNull(),
+    sport: text().notNull(),
+    count: integer(),
+    surface: text(),
+    indoor: boolean().notNull().default(false),
+  },
+  (t) => [uniqueIndex("courts_venue_position_idx").on(t.venueId, t.position)],
+);
+
+export type Ratings = { dupr_min?: number; dupr_max?: number; utr_min?: number; utr_max?: number; ntrp_min?: number; ntrp_max?: number };
+
+export const programs = pgTable(
+  "programs",
+  {
+    ...meta(),
+    status: text().$type<(typeof PROGRAM_STATUSES)[number]>().notNull().default("draft"),
+    dataQualityScore: real(),
+    // core_identity
+    title: text().notNull(),
+    organizer: text().notNull(),
+    description: text(),
+    coaches: text().array().notNull().default([]),
+    languages: text().array().notNull().default([]),
+    bookingUrl: text().notNull(),
+    contactEmail: text(),
+    contactPhone: text(),
+    // categorization
+    sports: text().array().notNull(),
+    category: text().$type<(typeof CATEGORIES)[number]>().notNull(),
+    theme: text().array().notNull().default([]),
+    gender: text().$type<"male" | "female" | "mixed">(),
+    level: text().array().notNull(),
+    // rating_systems
+    ratings: jsonb().$type<Ratings>().notNull().default({}),
+    // location; venue_slug becomes a foreign key, venue_name stays the display name
+    country: text().notNull(),
+    cityRegion: text(),
+    venueName: text(),
+    venueId: uuid().references(() => venues.id, { onDelete: "set null" }),
+    lat: doublePrecision(),
+    lng: doublePrecision(),
+    // sessions[] is its own table; schedule_notes sits beside it
+    scheduleNotes: text(),
+    // pricing
+    priceMin: numeric({ mode: "number" }),
+    priceMax: numeric({ mode: "number" }),
+    currency: text(),
+    priceUnit: text().$type<"per_person" | "per_person_sharing">(),
+    priceNotes: text(),
+    inclusions: jsonb().$type<string[]>().notNull().default([]),
+    // sport_specific
+    courtSurfaces: text().array().notNull().default([]),
+    coachingHoursTotal: numeric({ mode: "number" }),
+    playerToCoachRatio: text(),
+    capacity: integer(),
+    accommodationType: text().$type<"on_site_resort" | "partner_hotel" | "villa" | "self_arranged" | "not_included">(),
+    // Not in the schema: position in its sport's hero carousel on the home page; null when not featured.
+    featuredRank: integer(),
+  },
+  (t) => [
+    check("programs_status_check", sql`${t.status} in (${list(PROGRAM_STATUSES)})`),
+    check("programs_category_check", sql`${t.category} in (${list(CATEGORIES)})`),
+    index("programs_venue_idx").on(t.venueId),
+  ],
+);
+
+export const sessions = pgTable(
+  "sessions",
+  {
+    id: bigint({ mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
+    programId: uuid()
+      .notNull()
+      .references(() => programs.id, { onDelete: "cascade" }),
+    startDate: date().notNull(),
+    endDate: date().notNull(),
+    status: text().$type<(typeof SESSION_STATUSES)[number]>().notNull().default("available"),
+    priceOverride: numeric({ mode: "number" }),
+    bookingUrl: text(),
+  },
+  (t) => [
+    uniqueIndex("sessions_program_start_idx").on(t.programId, t.startDate),
+    index("sessions_start_idx").on(t.startDate),
+    check("sessions_status_check", sql`${t.status} in (${list(SESSION_STATUSES)})`),
+    check("sessions_dates_check", sql`${t.endDate} >= ${t.startDate}`),
+  ],
+);
+
+// media.images for both programs and venues: one row per photo, in display order.
+// `path` is the content-hashed file the site serves ("/photos/<slug>/0-1a2b3c4d5e.jpg", made by
+// scripts/seed.py and uploaded to Blob); `sourceUrl` is the operator's original.
+export const photos = pgTable(
+  "photos",
+  {
+    id: bigint({ mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
+    programId: uuid().references(() => programs.id, { onDelete: "cascade" }),
+    venueId: uuid().references(() => venues.id, { onDelete: "cascade" }),
+    position: integer().notNull(),
+    path: text().notNull(),
+    sourceUrl: text(),
+  },
+  (t) => [
+    check("photos_owner_check", sql`num_nonnulls(${t.programId}, ${t.venueId}) = 1`),
+    uniqueIndex("photos_program_position_idx").on(t.programId, t.position),
+    uniqueIndex("photos_venue_position_idx").on(t.venueId, t.position),
+  ],
+);
+
+export const venuesRelations = relations(venues, ({ many }) => ({
+  courts: many(courts),
+  photos: many(photos),
+  programs: many(programs),
+}));
+export const courtsRelations = relations(courts, ({ one }) => ({
+  venue: one(venues, { fields: [courts.venueId], references: [venues.id] }),
+}));
+export const programsRelations = relations(programs, ({ one, many }) => ({
+  venue: one(venues, { fields: [programs.venueId], references: [venues.id] }),
+  sessions: many(sessions),
+  photos: many(photos),
+}));
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  program: one(programs, { fields: [sessions.programId], references: [programs.id] }),
+}));
+export const photosRelations = relations(photos, ({ one }) => ({
+  program: one(programs, { fields: [photos.programId], references: [programs.id] }),
+  venue: one(venues, { fields: [photos.venueId], references: [venues.id] }),
+}));
 
 // One row per visitor hand-off through /go. No IPs or user agents: enough to count leads per
 // program, date and organizer, and to see where they came from, without tracking people.

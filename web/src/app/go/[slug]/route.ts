@@ -1,12 +1,12 @@
 import { after, NextResponse, type NextRequest } from "next/server";
 import { isRealVisitor, recordClick } from "@/lib/clicks";
-import { getProgram } from "@/lib/seed";
+import { getProgram } from "@/lib/db";
 
 // Outbound hand-off to the operator. Every "Book" button points here so we can
 // count leads per program and date before redirecting.
 export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const program = getProgram(slug);
+  const program = await getProgram(slug);
   if (!program) return new NextResponse("Program not found", { status: 404 });
 
   const date = request.nextUrl.searchParams.get("date");
