@@ -20,10 +20,12 @@ type Props = {
 export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
   const name = SPORT_NAMES[sport];
 
+  // The row is held at the hero's height: a longer heading (pickleball's runs to three lines) shrinks
+  // the court drawing rather than stretching the row, which pushed the photo caption under the search bar.
   return (
-    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[500px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[500px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:grid-rows-[minmax(0,1fr)]">
       <div
-        className="flex flex-col px-6 pt-7 pb-6 text-white sm:px-9 sm:pt-9 md:pb-14"
+        className="flex min-h-0 flex-col px-6 pt-7 pb-6 text-white sm:px-9 sm:pt-9 md:pb-14"
         style={{ backgroundColor: SURFACES[sport].surround, transition: "background-color 700ms" }}
       >
         <div role="group" aria-label="Sport" className="flex flex-wrap gap-2">
@@ -51,8 +53,12 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
               ? `Camps, clinics and getaways in ${whereLabel(stats.countries)}.`
               : `Resorts and hotels with ${name.toLowerCase()} courts on site.`}
           </p>
-          <div className="w-[44%] shrink-0 md:mt-auto md:w-full">
-            <Court sport={sport} drawIn className="block aspect-[28/15] w-full md:h-[190px] md:w-auto" />
+          <div className="w-[44%] shrink-0 md:relative md:mt-5 md:min-h-0 md:w-full md:flex-1">
+            <Court
+              sport={sport}
+              drawIn
+              className="block aspect-[28/15] w-full md:absolute md:bottom-0 md:left-0 md:h-full md:max-h-[190px] md:w-auto"
+            />
           </div>
         </div>
       </div>
@@ -76,13 +82,18 @@ const AUTOPLAY_MS = 6000;
 
 function FeaturedPhotos({ featured }: { featured: Listing[] }) {
   const [index, setIndex] = useState(0);
+  // the slide being faded out stays fully visible underneath, so the two never blend into each other
+  const [previous, setPrevious] = useState<number | null>(null);
   // the carousel moves on by itself unless the visitor prefers less motion or presses pause
   const [playing, setPlaying] = useState(false);
   // and holds still while someone is pointing at it or using its controls
   const [held, setHeld] = useState(false);
   const touchX = useRef<number | null>(null);
   const current = featured[index];
-  const step = (by: number) => setIndex((i) => (i + by + featured.length) % featured.length);
+  const step = (by: number) => {
+    setPrevious(index);
+    setIndex((index + by + featured.length) % featured.length);
+  };
   const moving = playing && !held && featured.length > 1;
 
   useEffect(() => {
@@ -97,7 +108,7 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
     const tick = () => (document.hidden ? (timer = setTimeout(tick, AUTOPLAY_MS)) : step(1));
     timer = setTimeout(tick, AUTOPLAY_MS);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- step only reads featured.length
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- step only reads index and featured.length
   }, [moving, index, featured.length]);
 
   return (
@@ -121,23 +132,26 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
         touchX.current = null;
       }}
     >
-      {featured.map((listing, i) => (
-        <div
-          key={listing.key}
-          className="absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none"
-          style={{ opacity: i === index ? 1 : 0 }}
-        >
-          <SafeImage
-            sport={listing.sports[0] as Sport}
-            src={listing.photos[0]}
-            alt=""
-            fill
-            priority={i === 0}
-            sizes="(min-width: 768px) 60vw, 100vw"
-            className="object-cover"
-          />
-        </div>
-      ))}
+      {/* own stacking layer, so the slides' order doesn't lift them over the caption and controls */}
+      <div className="absolute inset-0 isolate">
+        {featured.map((listing, i) => (
+          <div
+            key={listing.key}
+            className={`absolute inset-0 ${i === index ? "z-[2] transition-opacity duration-700 motion-reduce:transition-none" : i === previous ? "z-[1]" : ""}`}
+            style={{ opacity: i === index || i === previous ? 1 : 0 }}
+          >
+            <SafeImage
+              sport={listing.sports[0] as Sport}
+              src={listing.photos[0]}
+              alt=""
+              fill
+              priority={i === 0}
+              sizes="(min-width: 768px) 60vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
       <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7 md:pr-60 md:pb-16">

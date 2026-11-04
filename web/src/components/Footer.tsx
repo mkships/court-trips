@@ -3,7 +3,7 @@ import { SPORTS, SPORT_NAMES } from "@/lib/sports";
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-rule">
+    <footer className="mt-20 border-t border-rule md:mt-24">
       <div className="mx-auto grid max-w-[1280px] gap-10 px-4 py-12 sm:px-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-[46ch]">
           <p className="text-[1.25rem] font-black tracking-[-0.03em]">Court Trips</p>
