@@ -80,6 +80,7 @@ const keyPages = [
   "/search?sport=padel",
   "/search?sport=pickleball&level=advanced",
   "/search?sport=padel&type=places",
+  "/list-your-program",
 ];
 await inBatches(keyPages, (p) => checkPage(p));
 if (programSlugs.size === 0) failures.push("no program links on the search pages; are there listings in the database?");

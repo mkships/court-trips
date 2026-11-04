@@ -12,7 +12,21 @@ if (process.env.VERCEL && !photoBase) {
   );
 }
 
+// "List your program" in production needs a real bot check and someone to hear about submissions.
+// Previews and local builds fall back to Turnstile's test keys and log the email instead.
+if (process.env.VERCEL_ENV === "production") {
+  const missing = ["NEXT_PUBLIC_TURNSTILE_SITE_KEY", "TURNSTILE_SECRET_KEY", "RESEND_API_KEY", "SUBMISSIONS_NOTIFY_TO"].filter(
+    (name) => !process.env[name]?.trim(),
+  );
+  if (missing.length)
+    throw new Error(`${missing.join(", ")} not set. See "Operator submissions" in the README, add them to Vercel (Production) and redeploy.`);
+}
+
 const nextConfig: NextConfig = {
+  experimental: {
+    // photos are shrunk in the browser to fit (src/lib/submission.ts); Vercel's own cap is 4.5 MB
+    serverActions: { bodySizeLimit: "4mb" },
+  },
   images: {
     // Photos are pre-sized (scripts/photo-variants.mjs); the loader picks a size, so nothing is
     // resized on demand and a first visitor can't hit a cold resize.

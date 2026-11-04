@@ -56,9 +56,30 @@ The database is the source of truth for listings. `seed/*.json` is an import for
 
 - Every "Book" button goes through `/go/<program>`, which redirects straight away and then saves the click to the `clicks` table: program, session date, organizer, the page it came from (or the other site's host), country and target URL. No IPs or user agents are stored. Bots, link previews, browser prefetches and the post-deploy check are not counted.
 - `npm run build` applies pending migrations first (`scripts/migrate.mjs`). Each Vercel deployment migrates its own database (production, or the preview's Neon branch). A Vercel build without `DATABASE_URL` fails on purpose, so clicks can't go missing without anyone noticing.
+- `submissions` holds "List your program" entries (see **Operator submissions**).
 - After changing the schema: `npm run db:generate`, then commit the new file in `web/drizzle/`. `npm run db:studio` opens a browser view of the data.
 - Locally, work against the Neon `dev` branch, never production: `npx neon checkout dev` in `web` writes its URLs to `.env.local` (`web/.neon` remembers the project). Don't `vercel env pull` the database URLs.
 - Agent tooling: `.mcp.json` adds the Neon MCP server (OAuth, scoped to this project) and `skills-lock.json` pins the Neon agent skills. Refresh them with `npx neon skills update -y`.
+
+## Operator submissions
+
+`/list-your-program` is a public form for operators (linked from the header and footer). It follows the schema's required fields, plus the optional ones players filter on.
+
+- The form posts to a server action (`web/src/app/list-your-program/actions.ts`). It checks Cloudflare Turnstile, then validates with `web/src/lib/submission.ts`, uploads the photos to Blob (`submissions/<id>/`, unguessable names), and saves a `pending` row in the `submissions` table. `data` holds the program in `retreat_schema` shape, ready to become a draft program. A hidden honeypot field catches simple bots.
+- Photos (up to 5) are shrunk in the browser to 1600px JPEGs, so a whole submission fits in Vercel's 4.5 MB request limit.
+- Each submission is emailed through Resend once the visitor has seen the thank-you message, with reply-to set to the operator.
+- Submitters' names and emails are stored to reply to them; no IPs.
+
+Setup (Vercel → Settings → Environment Variables, Production; a production build fails without the first four):
+
+| Variable | Where it comes from |
+|---|---|
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Cloudflare → Turnstile → add a widget for the site's domain |
+| `RESEND_API_KEY` | Resend → API Keys (sending access) |
+| `SUBMISSIONS_NOTIFY_TO` | Where the notification goes; comma-separate several |
+| `RESEND_FROM` | Optional: a sender on a domain verified in Resend. Until then, `onboarding@resend.dev` only delivers to the Resend account's own address |
+
+Previews and local builds use Cloudflare's always-pass test keys and log the email instead of sending it. `BLOB_READ_WRITE_TOKEN` comes with the Blob store already connected to the project; locally without it, photos are skipped with a warning.
 
 ## Post-deploy check
 

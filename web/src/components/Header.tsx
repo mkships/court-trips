@@ -47,7 +47,13 @@ export function Header({
           ),
         )}
       </nav>
-      {/* "List your program" returns here once operator listings are built; travellers don't need accounts. */}
+      {/* travellers don't need accounts; this is the only way in for operators */}
+      <Link
+        href="/list-your-program"
+        className="col-start-2 row-start-1 justify-self-end rounded-full border border-rule px-4 py-2 text-[0.9375rem] font-semibold hover:border-ink md:col-start-3"
+      >
+        List your program
+      </Link>
     </header>
   );
 }

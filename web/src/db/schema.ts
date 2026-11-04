@@ -209,6 +209,34 @@ export const photosRelations = relations(photos, ({ one }) => ({
   venue: one(venues, { fields: [photos.venueId], references: [venues.id] }),
 }));
 
+// "List your program" (src/app/list-your-program). `data` is the program in retreat_schema shape
+// (src/lib/submission.ts toRetreat); `photos` are the uploads in Vercel Blob, in order. Every
+// submission waits as `pending` until someone reviews it; approving one makes a draft program.
+// The submitter's name and email are kept to reply to them; no IPs or user agents.
+export const SUBMISSION_STATUSES = ["pending", "approved", "rejected"] as const;
+export type SubmissionPhoto = { url: string; pathname: string; width: number; height: number };
+
+export const submissions = pgTable(
+  "submissions",
+  {
+    id: uuid().primaryKey().defaultRandom(),
+    createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
+    status: text().$type<(typeof SUBMISSION_STATUSES)[number]>().notNull().default("pending"),
+    submitterName: text().notNull(),
+    submitterEmail: text().notNull(),
+    data: jsonb().$type<import("@/lib/submission").RetreatData>().notNull(),
+    photos: jsonb().$type<SubmissionPhoto[]>().notNull().default([]),
+    reviewedAt: timestamp({ withTimezone: true }),
+    reviewNote: text(),
+    // the draft program an approved submission became
+    programId: uuid().references(() => programs.id, { onDelete: "set null" }),
+  },
+  (t) => [
+    check("submissions_status_check", sql`${t.status} in (${list(SUBMISSION_STATUSES)})`),
+    index("submissions_status_created_idx").on(t.status, t.createdAt),
+  ],
+);
+
 // One row per visitor hand-off through /go. No IPs or user agents: enough to count leads per
 // program, date and organizer, and to see where they came from, without tracking people.
 // `program` is the slug as text, not a foreign key, so a click survives a program being renamed or removed.
