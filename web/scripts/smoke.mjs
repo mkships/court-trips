@@ -5,6 +5,7 @@
  *     found from the search pages, so the check covers whatever is in the deployment's database)
  *   - every photo those pages reference returns a real image (all sizes, plus link previews)
  *   - the booking hand-off (/go) redirects, and unknown pages return 404
+ *   - /admin is locked: it sends visitors without a session to the sign-in page
  *
  * Usage: node scripts/smoke.mjs https://courttrips.vercel.app
  * Protected preview deployments: set VERCEL_AUTOMATION_BYPASS_SECRET.
@@ -88,6 +89,16 @@ const programPages = [...programSlugs].map((slug) => `/programs/${slug}`);
 await inBatches(programPages, (p) => checkPage(p));
 await checkPage("/this-page-does-not-exist", 404);
 const pages = [...keyPages, ...programPages];
+
+// the admin area must never render for a visitor who isn't signed in
+try {
+  const res = await request(`${base}/admin`, { redirect: "manual" });
+  const location = res.headers.get("location") ?? "";
+  if (res.status < 300 || res.status >= 400 || !location.includes("/admin/login"))
+    failures.push(`/admin: expected a redirect to /admin/login, got ${res.status} ${location}`);
+} catch (error) {
+  failures.push(`/admin: ${error.message}`);
+}
 
 // the booking hand-off must redirect to the operator, not render a page
 const [firstSlug] = programSlugs;

@@ -3,4 +3,5 @@
 // e.g. in local development, they come from public/photos.
 const BASE = process.env.NEXT_PUBLIC_PHOTO_BASE_URL?.trim().replace(/\/$/, "") ?? "";
 
-export const photoUrl = (path: string) => `${BASE}${path}`;
+// Photos from operator submissions are already full Blob URLs and are used as they are.
+export const photoUrl = (path: string) => (/^https?:\/\//.test(path) ? path : `${BASE}${path}`);
