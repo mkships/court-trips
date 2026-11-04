@@ -28,7 +28,7 @@ export function Landing({ stats, listings, venues, initialMode = "programs", ini
   return (
     <div className="on-paper">
       <Header mode={mode} onModeChange={setMode} />
-      <main className="mx-auto max-w-[1280px] px-4 pb-20 sm:px-8">
+      <main className="mx-auto max-w-[1280px] px-4 sm:px-8">
         <Hero
           mode={mode}
           sport={sport}

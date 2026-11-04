@@ -4,24 +4,25 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { SPORT_NAMES, type Listing, type Mode, type Sport, type Venue } from "@/lib/sports";
 import { SURFACES } from "@/lib/surfaces";
 import { matchesTile, type SearchKey, type SearchValues } from "@/lib/filters";
+import { CategoryIcon, LevelIcon } from "@/components/icons";
 
 // Airbnb-style search: one pill of fields. Opening a field greys the bar, lifts that field
 // out as a white pill and shows its panel underneath. Choosing an option moves to the next field.
 
 type Key = SearchKey;
 type Values = SearchValues;
-type Option = { value: string; label: string; hint?: string };
+type Option = { value: string; label: string; hint?: string; icon?: React.ReactNode };
 
 const LEVELS: Option[] = [
-  { value: "beginner", label: "Beginner", hint: "New to the sport, or coming back after a break" },
-  { value: "intermediate", label: "Intermediate", hint: "You rally comfortably and know how to score" },
-  { value: "advanced", label: "Advanced", hint: "You play matches or tournaments regularly" },
-];
+  { value: "beginner", label: "Beginner", hint: "New, or coming back after a break" },
+  { value: "intermediate", label: "Intermediate", hint: "You can rally and keep score" },
+  { value: "advanced", label: "Advanced", hint: "You play matches or tournaments" },
+].map((o) => ({ ...o, icon: <LevelIcon level={[o.value]} className="size-6" /> }));
 const FORMATS: Option[] = [
-  { value: "camp", label: "Camp", hint: "Several days of structured training" },
-  { value: "clinic", label: "Clinic", hint: "A day or a weekend of focused coaching" },
-  { value: "social_getaway", label: "Getaway", hint: "A holiday with coaching and social play" },
-];
+  { value: "camp", label: "Camp", hint: "Several days of coaching, often with a stay" },
+  { value: "clinic", label: "Clinic", hint: "A day, a weekend or a few sessions" },
+  { value: "social_getaway", label: "Getaway", hint: "A holiday with play and some coaching" },
+].map((o) => ({ ...o, icon: <CategoryIcon category={o.value as Listing["category"]} className="size-6" /> }));
 const SURFACE_OPTIONS: Option[] = [
   { value: "Hard", label: "Hard" },
   { value: "Clay", label: "Clay" },
@@ -258,6 +259,7 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
               title="Playing level"
               options={LEVELS}
               anyLabel="Any level"
+              anyIcon={<LevelIcon level={["all levels"]} className="size-6" />}
               counts={countFor("level", LEVELS)}
               selected={values.level}
               onChoose={(v) => choose("level", v)}
@@ -268,6 +270,7 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
               title="Format"
               options={FORMATS}
               anyLabel="Any format"
+              anyIcon={<AnyFormatIcon />}
               counts={countFor("format", FORMATS)}
               selected={values.format}
               onChoose={(v) => choose("format", v)}
@@ -309,7 +312,7 @@ function SearchButton({ expanded }: { expanded: boolean }) {
     <button
       type="submit"
       aria-label="Search"
-      className={`mr-2 flex h-12 shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-ball font-extrabold text-ink transition-[width] duration-200 hover:brightness-95 ${
+      className={`mr-2 flex h-12 shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-ball font-extrabold text-ink transition-[width,background-color] duration-200 hover:bg-ball-hover active:bg-ball-press ${
         expanded ? "w-[7.25rem]" : "w-12"
       }`}
     >
@@ -402,7 +405,7 @@ function MonthPanel(props: { months: { month: string; count: number }[]; selecte
   const { months, selected, onChoose } = props;
   return (
     <div className="px-1 py-2 md:px-4">
-      <p className="text-center text-[1.0625rem] font-semibold">When do you want to go?</p>
+      <p className="text-center text-[1.0625rem] font-semibold">When can you go?</p>
       <ul className="mt-5 flex snap-x gap-3 overflow-x-auto pr-10 pb-2 [mask-image:linear-gradient(to_right,black_calc(100%-48px),transparent)]">
         <li className="snap-start">
           <MonthCard selected={!selected} onClick={() => onChoose(undefined)} title="Any time" sub="All dates" />
@@ -448,13 +451,34 @@ type OptionsPanelProps = {
   title: string;
   options: Option[];
   anyLabel: string;
+  anyIcon?: React.ReactNode;
   // trips per option ("" = any); options with none are dimmed
   counts?: Record<string, number>;
   selected?: string;
   onChoose: (v?: string) => void;
 };
 
-function OptionsPanel({ title, options, anyLabel, counts, selected, onChoose }: OptionsPanelProps) {
+function OptionTile({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white ring-1 ring-rule" aria-hidden="true">
+      {children}
+    </span>
+  );
+}
+
+// four tiles for "any format"
+function AnyFormatIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3.5" y="3.5" width="7" height="7" rx="2" fill="var(--color-ball)" />
+      <rect x="13.5" y="3.5" width="7" height="7" rx="2" />
+      <rect x="3.5" y="13.5" width="7" height="7" rx="2" />
+      <rect x="13.5" y="13.5" width="7" height="7" rx="2" fill="var(--color-ball)" />
+    </svg>
+  );
+}
+
+function OptionsPanel({ title, options, anyLabel, anyIcon, counts, selected, onChoose }: OptionsPanelProps) {
   const count = (v: string) =>
     counts && <span className="ml-auto shrink-0 pl-3 text-[0.875rem] text-ink-soft tabular-nums">{plural(counts[v] ?? 0, "trip")}</span>;
   return (
@@ -462,6 +486,7 @@ function OptionsPanel({ title, options, anyLabel, counts, selected, onChoose }: 
       <PanelTitle>{title}</PanelTitle>
       <Row selected={!selected} onClick={() => onChoose(undefined)}>
         <Radio on={!selected} />
+        {anyIcon && <OptionTile>{anyIcon}</OptionTile>}
         <span className="font-semibold">{anyLabel}</span>
         {count("")}
       </Row>
@@ -473,6 +498,7 @@ function OptionsPanel({ title, options, anyLabel, counts, selected, onChoose }: 
           onClick={() => onChoose(o.value)}
         >
           <Radio on={selected === o.value} />
+          {o.icon && <OptionTile>{o.icon}</OptionTile>}
           <span>
             <span className="block font-semibold">{o.label}</span>
             {o.hint && <span className="block text-[0.875rem] text-ink-soft">{o.hint}</span>}

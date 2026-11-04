@@ -10,6 +10,7 @@ import { getHomeData } from "@/lib/db";
 import { SPORTS, SPORT_NAMES, type Sport } from "@/lib/sports";
 import { SURFACES } from "@/lib/surfaces";
 import { programCount } from "@/lib/tiles";
+import { BTN_OUTLINE, LINK } from "@/lib/ui";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
@@ -109,7 +110,7 @@ export default async function SearchPage({ searchParams }: Props) {
               key={s}
               href={searchHref(s, mode, values)}
               aria-current={s === sport ? "page" : undefined}
-              className="rounded-full border border-rule px-4 py-1.5 text-[0.9375rem] font-semibold hover:border-ink aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-white"
+              className={`px-4 py-1.5 text-[0.9375rem] ${s === sport ? "inline-flex rounded-full border border-ink bg-ink font-semibold text-white" : BTN_OUTLINE}`}
             >
               {SPORT_NAMES[s]}
             </Link>
@@ -132,7 +133,7 @@ export default async function SearchPage({ searchParams }: Props) {
                 <Link
                   href={searchHref(sport, mode, values, key)}
                   aria-label={`Remove filter: ${chipLabel(key, value)}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-mist py-1.5 pr-2.5 pl-3.5 text-[0.875rem] font-semibold hover:bg-rule"
+                  className="inline-flex items-center gap-2 rounded-full bg-mist py-1.5 pr-2.5 pl-3.5 text-[0.875rem] font-semibold transition-colors hover:bg-rule"
                 >
                   {chipLabel(key, value)}
                   <svg viewBox="0 0 12 12" className="size-2.5" aria-hidden="true">
@@ -143,7 +144,7 @@ export default async function SearchPage({ searchParams }: Props) {
             ))}
             {active.length > 1 && (
               <li>
-                <Link href={searchHref(sport, mode, {})} className="inline-block py-1.5 text-[0.875rem] font-semibold underline underline-offset-4">
+                <Link href={searchHref(sport, mode, {})} className={`inline-block py-1.5 text-[0.875rem] ${LINK}`}>
                   Clear all
                 </Link>
               </li>
@@ -188,7 +189,7 @@ function Empty(props: { sport: Sport; mode: "programs" | "places"; values: Searc
                 <li key={key}>
                   <Link
                     href={searchHref(sport, mode, values, key)}
-                    className="inline-block rounded-full border border-ink/20 bg-white px-4 py-2 text-[0.9375rem] font-semibold hover:border-ink"
+                    className={`px-4 py-2 text-[0.9375rem] ${BTN_OUTLINE}`}
                   >
                     Without {key === "where" ? value : chipLabel(key, value).toLowerCase()}
                   </Link>

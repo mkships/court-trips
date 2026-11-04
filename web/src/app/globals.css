@@ -12,6 +12,10 @@
   --color-rule: #e3e6ec;
   --color-mist: #f2f4f7;
   --color-ball: #dcf343;
+  /* hover and pressed states of the ball-coloured buttons; ink's hover */
+  --color-ball-hover: #cbe42c;
+  --color-ball-press: #bcd420;
+  --color-ink-hover: #2b3b58;
   --color-line: #ffffff;
   /* form errors */
   --color-alert: #b3261e;
@@ -25,6 +29,18 @@
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
+  }
+
+  /* Tailwind v4 leaves buttons on the arrow cursor; anything clickable gets the hand */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  select:not(:disabled),
+  summary,
+  label:has(> input:is([type="checkbox"], [type="radio"]):not(:disabled)),
+  input:is([type="checkbox"], [type="radio"], [type="file"]):not(:disabled),
+  input:not(:disabled)::file-selector-button,
+  input:not(:disabled)::-webkit-calendar-picker-indicator {
+    cursor: pointer;
   }
 
   :focus-visible {
@@ -49,5 +65,45 @@
   }
   to {
     clip-path: inset(0 0 0 0);
+  }
+}
+
+/* the featured trips carousel's countdown ring (see Hero) */
+@keyframes carousel-progress {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* the hero court's ball: appears once the lines are drawn, then hops on every shot (see Court Ball) */
+@keyframes ball-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ball-hop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-1.1px) scale(1.6);
+  }
+}
+@keyframes ball-shadow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.65);
+    opacity: 0.45;
   }
 }

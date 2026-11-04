@@ -15,11 +15,11 @@ export default function ListYourProgramPage() {
       <Header />
       <main className="mx-auto max-w-[880px] px-4 sm:px-8">
         <h1 className="mt-6 max-w-[20ch] text-[2.25rem] leading-[1] font-black tracking-[-0.035em] text-balance sm:text-[3rem]">
-          List your program on Court Trips
+          List your program
         </h1>
         <p className="mt-4 max-w-[60ch] text-[1.0625rem] leading-relaxed text-ink-soft">
-          Camps, clinics and getaways for tennis, pickleball and padel. Listing is free, and players book with you directly:
-          we link to your booking page and don&apos;t take a cut. We check each listing before it goes live.
+          Tennis, pickleball or padel camps, clinics and getaways. It&apos;s free: players book with you directly and we
+          never take a cut. We check every listing before it goes live.
         </p>
         <ListingForm siteKey={turnstileSiteKey()} turnstileAction={TURNSTILE_ACTION} />
       </main>

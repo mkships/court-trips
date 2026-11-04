@@ -1,7 +1,9 @@
 import { SafeImage } from "@/components/SafeImage";
 import { Court } from "@/components/Court";
 import { SURFACES } from "@/lib/surfaces";
-import { CATEGORY_NAMES, dateRange, levelLabel, placeLabel, priceFrom } from "@/lib/format";
+import { CategoryIcon } from "@/components/icons";
+import { CATEGORY_NAMES, dateRange, levelLabel, placeLabel, priceFrom, shortPlaceLabel } from "@/lib/format";
+import { LINK } from "@/lib/ui";
 import { SPORT_NAMES, type Listing, type Sport, type Venue } from "@/lib/sports";
 import Link from "next/link";
 import { programCount, tileHref } from "@/lib/tiles";
@@ -16,7 +18,7 @@ export function ListingRow({ sport, total, listings }: { sport: Sport; total: nu
     <Row
       title={`Upcoming ${SPORT_NAMES[sport].toLowerCase()} trips`}
       action={
-        <a href={`/search?sport=${sport}`} className="shrink-0 text-[0.9375rem] font-semibold underline underline-offset-4 hover:no-underline">
+        <a href={`/search?sport=${sport}`} className={`shrink-0 text-[0.9375rem] ${LINK}`}>
           Show all {total}
         </a>
       }
@@ -35,7 +37,7 @@ export function VenueRow({ sport, venues, programs }: { sport: Sport; venues: Ve
   return (
     <Row title={`Places to stay with ${name} courts`}>
       {venues.length === 0 && (
-        <li className="text-ink-soft sm:col-span-2">No {name} venues listed yet. Try another sport.</li>
+        <li className="text-ink-soft sm:col-span-2">No {name} places yet. Try another sport.</li>
       )}
       {venues.map((venue) => (
         <li key={venue.slug}>
@@ -71,14 +73,15 @@ export function ListingCard({ listing, sport }: { listing: Listing; sport: Sport
         sport={sport}
         badge={status && <span className="rounded-full bg-ink px-3 py-1 text-[0.8125rem] font-semibold text-white">{status}</span>}
       >
-        <span className="rounded-full bg-white px-3 py-1 text-[0.8125rem] font-semibold">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-white py-1 pr-3 pl-2 text-[0.8125rem] font-semibold">
+          <CategoryIcon category={listing.category} className="size-4" />
           {CATEGORY_NAMES[listing.category]}
         </span>
         <span className="rounded-full bg-white/85 px-3 py-1 text-[0.8125rem] backdrop-blur-sm">{levelLabel(listing.level)}</span>
       </Photo>
       {/* one line each, like Airbnb, so cards in a row line up */}
       <p className="mt-3 truncate text-[0.9375rem] font-bold" title={placeLabel(listing)}>
-        {placeLabel(listing)}
+        {shortPlaceLabel(listing)}
       </p>
       <p className="truncate text-[0.9375rem] text-ink-soft group-hover:underline" title={listing.title}>
         {listing.title}
@@ -101,7 +104,9 @@ export function VenueCard({ venue, sport, programs }: { venue: Venue; sport: Spo
       <Photo src={venue.photos[0]} sport={sport}>
         <span className="rounded-full bg-white px-3 py-1 text-[0.8125rem] font-semibold capitalize">{venue.kind}</span>
       </Photo>
-      <p className="mt-3 truncate text-[0.9375rem] font-bold">{placeLabel(venue)}</p>
+      <p className="mt-3 truncate text-[0.9375rem] font-bold" title={placeLabel(venue)}>
+        {shortPlaceLabel(venue)}
+      </p>
       <p className="truncate text-[0.9375rem] text-ink-soft group-hover:underline">{venue.name}</p>
       <p className="truncate text-[0.9375rem] text-ink-soft first-letter:uppercase">{courts.join(", ")}</p>
       {programs > 0 && (
@@ -122,9 +127,16 @@ function Photo({ src, sport, badge, children }: { src?: string; sport: Sport; ba
       style={{ backgroundColor: src ? "var(--color-rule)" : SURFACES[sport].surround }}
     >
       {src ? (
-        <SafeImage sport={sport} src={src} alt="" fill sizes={SIZES} className="object-cover" />
+        <SafeImage
+          sport={sport}
+          src={src}
+          alt=""
+          fill
+          sizes={SIZES}
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+        />
       ) : (
-        <Court sport={sport} className="absolute inset-0 m-auto h-full w-[78%]" />
+        <Court sport={sport} className="absolute inset-0 m-auto h-full w-[78%] transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none" />
       )}
       <div className="absolute top-3 right-3 left-3 flex flex-wrap gap-1.5">{children}</div>
       {badge && <div className="absolute bottom-3 left-3">{badge}</div>}
