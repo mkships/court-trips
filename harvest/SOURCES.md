@@ -1,9 +1,10 @@
 # Proposed sources for the first harvest
 
-Pages the harvester would read to grow Court Trips from 27 to roughly 120 programs. `sources.csv` is the same list in the form the harvester reads.
+Pages the harvester would read to grow Court Trips from 27 to roughly 120 programs, plus places to stay. `sources.csv` is the same list in the form the harvester reads.
 
 - **Est.** is how many adult programs I expect from that page, after removing past dates, junior camps and duplicates. It includes the ones already live.
 - **Status:** `existing` is already in `target_urls.xlsx`; `new` is added here; `lead` needs the real operator found first; `drop` is removed, with the reason.
+- **Target:** most rows give programs; `venue` rows give a place to stay (Places to stay on the site) instead.
 - **Access:** `browser` means the site blocks plain requests or builds the page with JavaScript, so the harvester opens it in a headless browser.
 
 ## Expected mix
@@ -12,15 +13,15 @@ Pages the harvester would read to grow Court Trips from 27 to roughly 120 progra
 |---|---:|---:|---:|---:|
 | North America | 19 | 39 | 0 | 58 |
 | Europe | 17 | 8 | 11 | 36 |
-| SE Asia | 6 | 2 | 2 | 10 |
+| SE Asia | 4 | 2 | 2 | 8 |
 | Maldives & Caribbean | 4 | 11 | 2 | 16 |
-| **All** | **46** | **60** | **15** | **120** |
+| **All** | **44** | **60** | **15** | **118** |
 
 ## Where it's thin
 
 - **North American pickleball is heavy (about 39).** I'd cap it at 25 for the first harvest, taking the soonest and most varied trips, so it doesn't swamp the rest.
 - **Padel in North America: none.** The US and Canada have padel clubs with weekly classes, but I found no padel trips or camps. Mexico and the Caribbean are the nearest.
-- **SE Asia is small (about 10).** The supply is mostly Thanyapura in Phuket, Mouratoglou in Bali and Malaysia, and Rafa Nadal Academy's Thailand camp. I found no pickleball trips in Vietnam or the Philippines, only local coaching sessions.
+- **SE Asia is small (about 8).** The supply is mostly Mouratoglou in Bali and Malaysia and Rafa Nadal Academy's Thailand camp; Thanyapura in Phuket is listed as a place to stay. I found no pickleball trips in Vietnam or the Philippines, only local coaching sessions.
 - **The Maldives runs on one-off events,** such as a visiting pro hosting a week, rather than repeating programs. Expect a few listings that need re-checking each season.
 - **Many 2027 dates aren't published yet.** Seasonal pages, for example Neilson and Suncoast, will land as drafts flagged "no upcoming dates" until the operator publishes them.
 
@@ -49,7 +50,7 @@ Pages the harvester would read to grow Court Trips from 27 to roughly 120 progra
 | [Mouratoglou at TTR Templeton](https://www.ttrtennis.com/tennis/mouratoglou-high-performance-camps/) | US | Tennis | camp | 1 | existing | 1 already live |
 | [Nike Pickleball Camps (US Sports Camps)](https://www.ussportscamps.com/search/results?live=1&sportSlug=pickleball) | US | Pickleball | camp | 3 | existing | 1 already live (browser) |
 | [Nike Tennis Camps (US Sports Camps)](https://www.ussportscamps.com/search/results?live=1&sportSlug=tennis) | US | Tennis | camp | 3 | existing | adult camps only; 1 already live (browser) |
-| [Pickleball Cruises](https://pickleballcruises.com/) | Cruise | Pickleball | getaway | 1 | existing | cruise; keep 1 at most |
+| [Pickleball Cruises](https://pickleballcruises.com/) | Cruise | Pickleball | getaway | 1 | lead | HTTPS certificate expired when checked on 4 Nov 2026: check the site is still running |
 | [Pickleball Getaways](https://pickleballgetaways.com/getaways/) | US | Pickleball | getaway | 3 | existing | 1 already live (Club Med Turkoise) |
 | [Pickleball Trips](https://pickleballtrips.com/trips/) | US | Pickleball | getaway | 2 | existing |  |
 | [PickleballTrips.net](https://pickleballtrips.net/upcoming) | US | Pickleball | getaway | 2 | existing |  |
@@ -86,7 +87,7 @@ Pages the harvester would read to grow Court Trips from 27 to roughly 120 progra
 | [Active Away](https://activeaway.com/venues?types=tennis-holiday) | Greece / Portugal / Spain | Tennis | getaway | 2 | existing |  |
 | [Active Away](https://activeaway.com/venues?types=padel-tennis-holiday) | Portugal / Spain | Padel | getaway | 2 | existing | 4 already live |
 | [Active Away (junior camps)](https://activeaway.com/venues?types=junior-tennis-camp) | UK | Tennis | camp | 0 | drop | junior-only; Court Trips lists adult trips |
-| [JSL Events](https://www.jsl-events.de/reisen/) | Germany / Europe | Tennis | camp, getaway | 2 | existing | German-language pages |
+| [JSL Events](https://www.jsl-events.de/reisen/) | Germany / Europe | Tennis | camp, getaway | 2 | lead | Page gone (404) when checked on 4 Nov 2026: find their current trips page |
 | [Pickleball in Paradise](https://pickleballinparadise.com/trips/?_sft_trip_type=river-cruise-2) | Europe (river cruise) | Pickleball | getaway, clinic | 1 | existing |  |
 | [Tennis Traveller (directory)](https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps?limit=72&cc=p) | Europe | Tennis, Padel | camp, clinic, getaway | 0 | drop | a booking directory, not an operator: use it to find operators, then list them directly |
 | [Tennis Traveller (directory)](https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps?cc=p&start=72) | Europe | Tennis, Padel | camp, clinic, getaway | 0 | drop | a booking directory, not an operator: use it to find operators, then list them directly |
@@ -100,7 +101,7 @@ Pages the harvester would read to grow Court Trips from 27 to roughly 120 progra
 | [Mouratoglou Academy Malaysia](https://www.mouratoglou.epsomcollege.edu.my/adultcamps) | Malaysia | Tennis | camp | 2 | new | weekend intensive, full week |
 | [Mouratoglou Tennis Center Bali](https://www.mouratoglou.com/en/international/bali/tennis-lessons/) | Indonesia (Bali) | Tennis, Padel, Pickleball | getaway | 3 | new | custom retreats at the Westin Ubud; prices on request |
 | [Rafa Nadal Academy camps](https://camps.rafanadalacademy.com/en/programs/thailand/) | Thailand | Tennis | camp | 1 | new | adult camp; 2026 dates passed, watch for 2027 (browser) |
-| [Thanyapura](https://www.thanyapura-phuket.com/promotion/5days-4nights-tennis-holiday/) | Thailand (Phuket) | Tennis | getaway, camp | 2 | new | bot check on plain requests (browser) |
+| [Thanyapura](https://www.thanyapura-phuket.com/) | Thailand (Phuket) | Tennis | place to stay | – | new | Listed under Places to stay, not as a program: a sports resort with its own tennis centre (browser) |
 | [10-day Bali pickleball retreat](https://bookretreats.com/r/10-day-pickleball-retreat-in-paradise-bali-indonesia) | Indonesia (Bali) | Pickleball | getaway | 1 | lead | found on BookRetreats: find the organiser and list them directly |
 
 ## Maldives & Caribbean

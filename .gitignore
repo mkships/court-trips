@@ -1,7 +1,8 @@
 .DS_Store
 .firecrawl/
-harvest/data.db
-harvest/__pycache__/
+# harvest working files: page text, run plans, logs, listing files before import
+harvest/.cache/
+harvest/out/
 __pycache__/
 *.pyc
 retreats_export.json
@@ -12,4 +13,6 @@ db_export/
 
 # local tooling
 .idea/
-.claude/
+# Claude Code: personal settings stay local; the project's commands (/harvest) are shared
+.claude/*
+!.claude/commands/

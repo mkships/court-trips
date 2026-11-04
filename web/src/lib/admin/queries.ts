@@ -1,5 +1,5 @@
 import "server-only";
-import { and, asc, desc, eq, ilike, inArray, ne, or, sql } from "drizzle-orm";
+import { and, asc, desc, eq, ilike, inArray, isNotNull, isNull, ne, or, sql } from "drizzle-orm";
 import { db as maybeDb } from "@/db";
 import { photos, programs, sessions, submissions, venues } from "@/db/schema";
 import { programChecks, venueChecks } from "@/lib/admin/checks";
@@ -26,14 +26,18 @@ export function venueState(v: { status: string; needsReview: boolean }): Listing
 const inReview = (t: typeof programs | typeof venues) =>
   and(ne(t.status, "archived"), or(eq(t.needsReview, true), eq(t.status, "draft")));
 
+// a harvest found something on a listing that needs a person (src/db/schema.ts PendingChanges)
+const hasChanges = and(isNotNull(programs.pendingChanges), ne(programs.status, "archived"));
+
 export async function queueCounts() {
   const d = adminDb();
-  const [[s], [p], [v]] = await Promise.all([
+  const [[s], [p], [v], [c]] = await Promise.all([
     d.select({ n: sql<number>`count(*)::int` }).from(submissions).where(eq(submissions.status, "pending")),
-    d.select({ n: sql<number>`count(*)::int` }).from(programs).where(inReview(programs)),
+    d.select({ n: sql<number>`count(*)::int` }).from(programs).where(and(inReview(programs), isNull(programs.pendingChanges))),
     d.select({ n: sql<number>`count(*)::int` }).from(venues).where(and(inReview(venues), ne(venues.status, "closed"))),
+    d.select({ n: sql<number>`count(*)::int` }).from(programs).where(hasChanges),
   ]);
-  return { submissions: s.n, programs: p.n, venues: v.n, total: s.n + p.n + v.n };
+  return { submissions: s.n, programs: p.n, venues: v.n, changes: c.n, total: s.n + p.n + v.n + c.n };
 }
 
 export async function pendingSubmissions() {
@@ -79,6 +83,10 @@ const withChecks = (p: ProgramRow) => ({ ...p, checks: programChecks({ ...p, pho
 export async function program(slug: string) {
   const [p] = await findPrograms(eq(programs.slug, slug));
   return p ? withChecks(p) : null;
+}
+
+export async function programsWithChanges() {
+  return (await findPrograms(hasChanges)).map(withChecks);
 }
 
 export type ProgramFilter = { state?: ListingState; q?: string };

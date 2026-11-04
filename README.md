@@ -7,8 +7,7 @@ A directory of tennis, pickleball and padel trips: camps, clinics, getaways and 
 | `web/` | The site (Next.js + Tailwind). Listings come from Postgres; see **Database** below. |
 | `seed/` | Hand-checked seed data: 27 programs and 6 venues, the format `npm run db:seed` imports. Start with `seed/README.md`. |
 | `directory-schema.json` | The data model for programs and venues (v2.2). |
-| `extraction-schema.json` | The contract the harvester gives the Firecrawl agent. |
-| `harvest/` | Scraper that pulls listings from the sources in `target_urls.xlsx`. |
+| `harvest/` | The harvest: `sources.csv` (the operator pages to read; `SOURCES.md` is the readable version), the scripts that fetch, check and import listings, and the every-3-days refresh. See **Harvest** below. |
 
 ## Run the site
 
@@ -99,6 +98,49 @@ Setup (Vercel → Settings → Environment Variables, Production and Preview). W
 | `ADMIN_SESSION_SECRET` | Any random string of 32+ characters, e.g. `openssl rand -base64 32`. Changing it signs you out everywhere. |
 
 Locally, `npm run dev` offers "Continue without GitHub" on the sign-in page (development only; production answers 404), so none of this is needed to work on the admin.
+
+## Harvest
+
+New listings and updates come from operators' own pages, listed in `harvest/sources.csv`. The work is split, so the AI part only runs where something changed:
+
+1. **`npm run harvest:fetch`** (in `web/`, no AI): fetches every source page and every harvested program's own page. It saves their text to `harvest/.cache/pages/` and writes a plan (`harvest/.cache/run.json`) of what's new, changed, unchanged or blocked by a bot check. Blocked pages are retried in a headless browser when Playwright is installed (`npx playwright install chromium`).
+2. **`/harvest`** in Claude Code (`.claude/commands/harvest.md`): reads the pages in the plan, opens each program's own page (`npm --prefix web run harvest:page -- <url>`), and writes one file per program to `harvest/out/<slug>.json` in `seed/programs.json`'s shape, plus `harvest/out/venues/` for places to stay (`target` = `venue` in `sources.csv`). It also writes `_report.json` saying which programs each page showed. It runs `npm --prefix web run harvest:check` until the files pass the import rules (`web/scripts/harvest/validate.mjs`).
+3. **`npm run harvest:import`** (`-- --dry-run` to preview, `-- --email` to send the summary):
+   - **New programs** become hidden drafts, with photos sized and uploaded to Blob (to `web/public/photos` without `BLOB_READ_WRITE_TOKEN`).
+   - **Drafts nobody has edited** are replaced by the new reading.
+   - **Live or hand-edited listings** get the safe changes straight away: new dates, a date's availability or booking link, prices within 25%. Everything else is saved as `pending_changes`, which `/admin` shows under **Proposed changes** with Apply and Dismiss.
+   - **Missing programs:** a program its page stops showing is flagged after 2 runs.
+   - **Archived programs** are skipped.
+   - Pages are only marked as seen once their results are imported, so a failed run is retried next time.
+
+Programs with no published dates are listed with `schedule_notes` instead ("Held each November; 2027 dates to be announced"), which the site shows in place of dates.
+
+### On a schedule (macOS)
+
+`harvest/refresh.sh` runs the three steps, using `claude -p` for step 2 with only file edits, web fetches and the `harvest:` npm scripts pre-approved. It logs to `harvest/.cache/logs/`. To schedule it about every 3 days (days 1, 4, 7 … 28 at 07:17; a run missed while the Mac sleeps happens on wake):
+
+```bash
+bash harvest/install-mac.sh
+```
+
+Before installing, check these on the Mac:
+- Node 20+ and Claude Code are installed, and you're signed in (run `claude` once).
+- `web/.env.local` has `DATABASE_URL` for the database to update (production's, for the live site), `BLOB_READ_WRITE_TOKEN`, `RESEND_API_KEY` and `SUBMISSIONS_NOTIFY_TO`.
+- The repo isn't in Documents, Desktop or Downloads, which macOS blocks for scheduled jobs (or give `/bin/bash` Full Disk Access).
+
+Run it now with `launchctl kickstart gui/$(id -u)/com.courttrips.refresh`; remove it with `bash harvest/install-mac.sh uninstall`.
+
+### First harvest
+
+Run it by region, so each Claude session stays small:
+
+```bash
+npm --prefix web run harvest:fetch -- --all --region Europe
+claude "/harvest all Europe"
+npm --prefix web run harvest:import -- --email
+```
+
+Then review the drafts in `/admin`.
 
 ## Post-deploy check
 
