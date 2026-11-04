@@ -25,7 +25,7 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
   // The row is held at the hero's height: a longer heading (pickleball's runs to three lines) shrinks
   // the court drawing rather than stretching the row, which pushed the photo caption under the search bar.
   return (
-    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[500px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:grid-rows-[minmax(0,1fr)]">
+    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[500px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:grid-rows-[minmax(0,1fr)] lg:grid-cols-[minmax(0,3fr)_minmax(0,5fr)]">
       <div
         className="flex min-h-0 flex-col px-6 pt-7 pb-6 text-white sm:px-9 sm:pt-9 md:pb-14"
         style={{ backgroundColor: SURFACES[sport].surround, transition: "background-color 700ms" }}
@@ -44,7 +44,9 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
           ))}
         </div>
 
-        <h1 className="mt-7 text-[2.25rem] leading-[0.95] font-black tracking-[-0.035em] text-balance sm:text-[2.5rem] md:mt-6 lg:text-[3.25rem]">
+        {/* from laptops up the text column is 3/8 of the hero; the heading scales with it so
+            "somewhere new" keeps to one line */}
+        <h1 className="mt-7 text-[2.25rem] leading-[0.95] font-black tracking-[-0.035em] text-balance sm:text-[2.5rem] md:mt-6 lg:text-[clamp(2.25rem,calc(4.6vw-10px),3rem)]">
           {mode === "programs" ? `Play ${name.toLowerCase()} somewhere new` : `Stay where the ${name.toLowerCase()} courts are`}
         </h1>
 

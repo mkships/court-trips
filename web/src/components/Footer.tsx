@@ -8,7 +8,7 @@ export function Footer() {
         <div className="max-w-[46ch]">
           <p className="text-[1.25rem] font-black tracking-[-0.03em]">Court Trips</p>
           <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
-            Tennis, pickleball and padel trips, worldwide. You book direct with the people who run them.
+            Tennis, pickleball and padel trips, worldwide. You book directly with the operators who run them.
           </p>
         </div>
         <nav aria-label="Browse">
