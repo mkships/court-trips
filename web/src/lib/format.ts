@@ -32,8 +32,9 @@ const day = (iso: string, opts: Intl.DateTimeFormatOptions) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { timeZone: "UTC", ...opts });
 
 // "24–29 Oct 2026", "22 Apr – 1 May 2027", "28 Dec 2026 – 3 Jan 2027"
+// Undated programs show their schedule note ("Held each November; 2027 dates to be announced").
 export function dateRange({ start, end, scheduleNotes }: Pick<Listing, "start" | "end" | "scheduleNotes">) {
-  if (!start) return scheduleNotes ? "Seasonal, dates on request" : "Dates on request";
+  if (!start) return scheduleNotes?.trim() || "Dates on request";
   if (!end || end === start) return day(start, { day: "numeric", month: "short", year: "numeric" });
   const sameYear = start.slice(0, 4) === end.slice(0, 4);
   const sameMonth = sameYear && start.slice(5, 7) === end.slice(5, 7);

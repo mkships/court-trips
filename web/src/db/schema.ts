@@ -91,6 +91,15 @@ export const courts = pgTable(
   (t) => [uniqueIndex("courts_venue_position_idx").on(t.venueId, t.position)],
 );
 
+// A harvest's proposal for a listing someone may already have published or edited: the changed
+// fields' new values (sessions as a whole set), and/or a note that it's gone from the operator's page.
+export type PendingChanges = {
+  foundAt: string;
+  fields?: Record<string, { from: unknown; to: unknown }>;
+  sessions?: { from: unknown[]; to: { start_date: string; end_date: string; status: string; price_override: number | null; booking_url: string | null }[] };
+  missing?: boolean;
+};
+
 export type Ratings = { dupr_min?: number; dupr_max?: number; utr_min?: number; utr_max?: number; ntrp_min?: number; ntrp_max?: number };
 
 export const programs = pgTable(
@@ -140,6 +149,12 @@ export const programs = pgTable(
     accommodationType: text().$type<"on_site_resort" | "partner_hotel" | "villa" | "self_arranged" | "not_included">(),
     // Not in the schema: position in its sport's hero carousel on the home page; null when not featured.
     featuredRank: integer(),
+    // Harvest bookkeeping (scripts/harvest-import.mjs). listingUrl: the source page (harvest/sources.csv)
+    // it was found on; missedRuns: harvests of that page in a row that didn't find it; pendingChanges:
+    // what a harvest found that needs a human before it's applied (see PendingChanges).
+    listingUrl: text(),
+    missedRuns: integer().notNull().default(0),
+    pendingChanges: jsonb().$type<PendingChanges>(),
   },
   (t) => [
     check("programs_status_check", sql`${t.status} in (${list(PROGRAM_STATUSES)})`),

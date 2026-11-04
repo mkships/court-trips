@@ -1,19 +1,22 @@
 import Link from "next/link";
 import { CheckCount, day, PageTitle } from "@/components/admin/bits";
-import { pendingSubmissions, programList, recentlyReviewedSubmissions, venueList } from "@/lib/admin/queries";
+import { pendingSubmissions, programList, programsWithChanges, recentlyReviewedSubmissions, venueList } from "@/lib/admin/queries";
 import { CATEGORY_NAMES } from "@/lib/format";
 
 // Everything waiting for a decision: operator submissions first (someone is waiting on a reply),
 // then draft and flagged programs, then venues.
 export default async function QueuePage({ searchParams }: { searchParams: Promise<{ rejected?: string }> }) {
-  const [subs, progs, places, reviewed, { rejected }] = await Promise.all([
+  const [subs, allInReview, changed, places, reviewed, { rejected }] = await Promise.all([
     pendingSubmissions(),
     programList({ state: "review" }),
+    programsWithChanges(),
     venueList("review"),
     recentlyReviewedSubmissions(5),
     searchParams,
   ]);
-  const empty = subs.length + progs.length + places.length === 0;
+  // a program with proposed changes is listed once, under them
+  const progs = allInReview.filter((p) => !p.pendingChanges);
+  const empty = subs.length + progs.length + places.length + changed.length === 0;
 
   return (
     <div className="grid gap-10">
@@ -30,6 +33,25 @@ export default async function QueuePage({ searchParams }: { searchParams: Promis
               title={s.data.core_identity.title}
               meta={[s.data.core_identity.organizer, s.data.location.country, CATEGORY_NAMES[s.data.categorization.category]]}
               aside={<span className="text-[0.875rem] text-ink-soft">Sent {day(s.createdAt)}</span>}
+            />
+          ))}
+        </Section>
+      )}
+
+      {changed.length > 0 && (
+        <Section title="Proposed changes" count={changed.length} intro="A harvest found something different on the operator's site. Nothing here has changed on Court Trips yet.">
+          {changed.map((p) => (
+            <Row
+              key={p.id}
+              href={`/admin/programs/${p.slug}`}
+              title={p.title}
+              meta={[
+                p.organizer,
+                p.pendingChanges?.missing ? "No longer on the operator's page" : null,
+                ...Object.keys(p.pendingChanges?.fields ?? {}).map((f) => f.replace(/_/g, " ")),
+                p.pendingChanges?.sessions ? "dates" : null,
+              ]}
+              aside={<span className="text-[0.875rem] text-ink-soft">Found {day(p.pendingChanges?.foundAt ?? null)}</span>}
             />
           ))}
         </Section>

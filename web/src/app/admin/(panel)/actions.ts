@@ -225,6 +225,65 @@ export async function createDraftFromSubmission(id: string) {
   redirect(`/admin/programs/${slug}?from=submission`);
 }
 
+// The harvest's column names (snake_case) that a proposal can change, as the table's field names.
+const PROPOSABLE = {
+  title: "title", organizer: "organizer", description: "description", booking_url: "bookingUrl", category: "category",
+  sports: "sports", level: "level", country: "country", city_region: "cityRegion", venue_name: "venueName",
+  schedule_notes: "scheduleNotes", currency: "currency", price_unit: "priceUnit", price_notes: "priceNotes",
+  inclusions: "inclusions", court_surfaces: "courtSurfaces", coaching_hours_total: "coachingHoursTotal",
+  player_to_coach_ratio: "playerToCoachRatio", capacity: "capacity", accommodation_type: "accommodationType",
+  coaches: "coaches", languages: "languages", price_min: "priceMin", price_max: "priceMax",
+} as const;
+
+export async function applyPendingChanges(id: string) {
+  await requireAdmin();
+  const d = adminDb();
+  const p = await d.query.programs.findFirst({ where: eq(programs.id, id) });
+  if (!p?.pendingChanges) redirect(p ? `/admin/programs/${p.slug}` : "/admin");
+  const { fields = {}, sessions: proposedDates } = p.pendingChanges;
+  const set: Record<string, unknown> = {};
+  for (const [column, change] of Object.entries(fields))
+    if (column in PROPOSABLE) set[PROPOSABLE[column as keyof typeof PROPOSABLE]] = change.to;
+  const today = new Date().toISOString().slice(0, 10);
+  await d.batch([
+    // a missing flag stays until it's dismissed or the listing archived
+    d
+      .update(programs)
+      .set({ ...set, pendingChanges: p.pendingChanges.missing ? { foundAt: p.pendingChanges.foundAt, missing: true } : null, updatedAt: new Date() })
+      .where(eq(programs.id, id)),
+    ...(proposedDates
+      ? [
+          d.delete(sessions).where(and(eq(sessions.programId, id), sql`${sessions.startDate} >= ${today}`)),
+          ...(proposedDates.to.length
+            ? [
+                d.insert(sessions).values(
+                  proposedDates.to.map((s) => ({
+                    programId: id,
+                    startDate: s.start_date,
+                    endDate: s.end_date,
+                    status: s.status as "available" | "waitlist" | "sold_out",
+                    priceOverride: s.price_override,
+                    bookingUrl: s.booking_url,
+                  })),
+                ),
+              ]
+            : []),
+        ]
+      : []),
+  ]);
+  refreshSite();
+  // a fresh value each time, so the editor re-reads the listing instead of keeping what's on screen
+  redirect(`/admin/programs/${p.slug}?applied=${Date.now()}`);
+}
+
+export async function dismissPendingChanges(id: string) {
+  await requireAdmin();
+  const d = adminDb();
+  const [p] = await d.update(programs).set({ pendingChanges: null, missedRuns: 0 }).where(eq(programs.id, id)).returning({ slug: programs.slug });
+  revalidatePath("/admin", "layout");
+  redirect(p ? `/admin/programs/${p.slug}?dismissed=${Date.now()}` : "/admin");
+}
+
 export async function rejectSubmission(id: string, form: FormData) {
   await requireAdmin();
   const d = adminDb();

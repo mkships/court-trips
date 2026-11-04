@@ -1,0 +1,74 @@
+region,country,sports,category,operator,url,target,est_programs,status,access,note
+North America,US,pickleball,camp,Level Up Pickleball Camps,https://www.leveluppickleballcamps.com/by-state,programs,3,existing,page,
+North America,US,pickleball,social_getaway,Pickleball Getaways,https://pickleballgetaways.com/getaways/,programs,3,existing,page,1 already live (Club Med Turkoise)
+North America,US,pickleball,camp,Better Pickleball,https://betterpickleball.com/camp-locations/,programs,3,existing,page,
+North America,US,pickleball,social_getaway,Mark Price Pickleball,https://www.markpricepickleball.com/pickleball-coaching/pickleball-vacations,programs,1,existing,page,
+North America,US,pickleball,camp,Mark Price Pickleball,https://www.markpricepickleball.com/store/pickleball-camps,programs,1,existing,page,1 already live
+North America,US,pickleball,"camp, clinic",Tyson McGuffin,https://tysonmcguffin.com/pages/all-camps,programs,2,existing,page,1 already live
+North America,US,pickleball,camp,Nike Pickleball Camps (US Sports Camps),https://www.ussportscamps.com/search/results?live=1&sportSlug=pickleball,programs,3,existing,browser,1 already live
+North America,US,tennis,camp,Nike Tennis Camps (US Sports Camps),https://www.ussportscamps.com/search/results?live=1&sportSlug=tennis,programs,3,existing,browser,adult camps only; 1 already live
+North America,US,pickleball,social_getaway,Pickleball Trips,https://pickleballtrips.com/trips/,programs,2,existing,page,
+North America,US,pickleball,social_getaway,PickleballTrips.net,https://pickleballtrips.net/upcoming,programs,2,existing,page,
+Maldives & Caribbean,St Lucia / various,pickleball,clinic,Pickleball in Paradise,https://pickleballinparadise.com/trips/?_sft_trip_type=clinic,programs,2,existing,page,1 already live (La Toc)
+Europe,Europe (river cruise),pickleball,"social_getaway, clinic",Pickleball in Paradise,https://pickleballinparadise.com/trips/?_sft_trip_type=river-cruise-2,programs,1,existing,page,
+North America,Cruise,pickleball,social_getaway,Pickleball Cruises,https://pickleballcruises.com/,programs,1,lead,page,HTTPS certificate expired when checked on 4 Nov 2026: check the site is still running
+North America,US,pickleball,social_getaway,Elite Pickleball Retreats,https://www.elitepickleballretreats.com/trip,programs,2,existing,page,
+North America,US,pickleball,camp,Engage Pickleball,https://engagepickleball.com/collections/all-training-camps,programs,1,existing,page,1 already live
+North America,US,pickleball,"camp, clinic",Rise Pickleball,https://www.risepickleball.com/camps,programs,2,existing,page,
+North America,US,pickleball,camp,US Pickleball Camps,https://uspickleballcamps.com/locations,programs,2,existing,page,
+North America,US,pickleball,camp,Suncoast Pickleball,https://suncoastpickleball.com/camps-2026/,programs,1,existing,page,page is 2026; look for 2027
+North America,US / worldwide,pickleball,"social_getaway, camp",Road Scholar,https://www.roadscholar.org/collections/pickleball/,programs,2,existing,page,
+Europe,Portugal / Spain,pickleball,social_getaway,Active Away,https://activeaway.com/venues?types=pickleball-holiday,programs,2,existing,page,1 already live
+Europe,UK,tennis,clinic,Active Away,https://activeaway.com/venues?types=tennis-clinic,programs,2,existing,page,2 already live; dates shown a day early
+Europe,Greece / Portugal / Spain,tennis,social_getaway,Active Away,https://activeaway.com/venues?types=tennis-holiday,programs,2,existing,page,
+Europe,UK,tennis,camp,Active Away (junior camps),https://activeaway.com/venues?types=junior-tennis-camp,programs,0,drop,page,junior-only; Court Trips lists adult trips
+Europe,Portugal / Spain,padel,social_getaway,Active Away,https://activeaway.com/venues?types=padel-tennis-holiday,programs,2,existing,page,4 already live
+Maldives & Caribbean,Dominican Republic / US,pickleball,social_getaway,Empowher Pickleball,https://empowherpickleball.com/empowherretreats,programs,1,existing,page,1 already live (Punta Cana)
+North America,US,pickleball,camp,Empowher Pickleball,https://empowherpickleball.com/empowhercamps,programs,1,existing,page,
+North America,US,pickleball,camp,Cape Columbia Pickleball,https://www.capecolumbiapickleball.com/collections/indoor-pickleball-camps,programs,1,existing,page,
+North America,Canada,pickleball,camp,Taylored Pickleball Academy,https://www.tayloredpickleballacademy.ca/camps,programs,1,existing,page,
+North America,Canada,pickleball,clinic,Taylored Pickleball Academy,https://www.tayloredpickleballacademy.ca/clinics,programs,1,existing,page,
+North America,Canada / abroad,pickleball,social_getaway,Taylored Pickleball Academy,https://www.tayloredpickleballacademy.ca/vacations,programs,1,existing,page,
+North America,US,tennis,clinic,TTR Tennis (Templeton),https://www.ttrtennis.com/tennis/instruction/adult-tennis-clinics-and-lessons/,programs,1,existing,page,
+North America,US,tennis,camp,Mouratoglou at TTR Templeton,https://www.ttrtennis.com/tennis/mouratoglou-high-performance-camps/,programs,1,existing,page,1 already live
+Europe,Europe,"tennis, padel","camp, clinic, social_getaway",Tennis Traveller (directory),https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps?limit=72&cc=p,programs,0,drop,page,"a booking directory, not an operator: use it to find operators, then list them directly"
+Europe,Europe,"tennis, padel","camp, clinic, social_getaway",Tennis Traveller (directory),https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps?cc=p&start=72,programs,0,drop,page,"a booking directory, not an operator: use it to find operators, then list them directly"
+Europe,Europe,"tennis, padel","camp, clinic, social_getaway",Tennis Traveller (directory),https://www.tennistraveller.net/en/tennis-camps/looking-for-tennis-camps?cc=p&start=96,programs,0,drop,page,"a booking directory, not an operator: use it to find operators, then list them directly"
+Europe,Germany / Europe,tennis,"camp, social_getaway",JSL Events,https://www.jsl-events.de/reisen/,programs,2,lead,page,page gone (404) when checked on 4 Nov 2026: find their current trips page
+Europe,France (Biot),tennis,"camp, clinic",Mouratoglou Academy,https://www.mouratoglou.com/en/types/adults/,programs,3,new,page,"weekend, morning week, intensive week, competition week"
+Europe,Spain (Mallorca),tennis,camp,Rafa Nadal Academy,https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/,programs,2,new,page,"premium week, holiday-period camps"
+Europe,Spain (Mallorca),padel,camp,Rafa Nadal Academy,https://www.rafanadalacademy.com/en/adult-camps/padel-camps/,programs,1,new,page,1 already live; adds weekly premium / Easter
+Europe,Greece / Turkey,tennis,social_getaway,Mark Warner,https://www.markwarner.co.uk/activity-holidays/intensive-tennis-weeks/,programs,2,new,page,
+Europe,Greece,padel,social_getaway,Mark Warner,https://www.markwarner.co.uk/activity-holidays/tennis-and-padel/padel/,programs,1,new,page,
+Europe,Turkey / Greece,pickleball,social_getaway,Mark Warner,https://www.markwarner.co.uk/activity-holidays/tennis-and-padel/pickleball/,programs,1,new,page,
+Europe,Greece / Turkey / Croatia,tennis,social_getaway,Neilson,https://www.neilson.co.uk/beach/activities/tennis-holidays,programs,2,new,page,2026 dates 'to be confirmed' when checked
+Europe,Switzerland,tennis,camp,TCCB,https://www.tccb.ch/en/adult-camps,programs,1,new,page,
+Europe,Portugal (Algarve),"tennis, padel",clinic,Croft Academy at Pine Cliffs,https://www.pinecliffs.com/en/golf-sports/tennis/,programs,2,new,page,weekly adult tennis and padel courses
+Europe,Spain / Portugal / Italy,padel,social_getaway,The Padel School,https://thepadelschool.com/events,programs,2,new,browser,events page redirects; find the current holidays page
+Europe,Spain (Mallorca) / Portugal,padel,social_getaway,iPadel,https://ipadel.co.uk/Padel-Holidays,programs,3,new,page,
+Europe,Spain (Mallorca),padel,camp,Spain Padel Experiences,https://www.spainpadelexperiences.com/mallorca-padel-camps,programs,1,new,browser,bot check on plain requests
+Europe,Portugal,pickleball,camp,O-Sports,https://www.o-sports.pt/en/training-camps/pickleball-training-camps,programs,1,new,page,
+Europe,Spain / Italy / Croatia,pickleball,social_getaway,Mickle Pickleball Trips,https://micklepickleballtrips.com/,programs,3,new,page,10-day guided trips
+North America,US (Florida),tennis,"camp, clinic",Saddlebrook Resort,https://www.saddlebrook.com/racquets/,programs,2,new,page,
+North America,US (Texas),tennis,camp,John Newcombe Tennis Ranch,https://newktennis.com/adult-tennis/,programs,2,new,page,"adult weekend and week camps, all year"
+North America,"US (South Carolina, Virginia)",tennis,"clinic, camp",Van der Meer Tennis,https://vandermeertennis.com/adult-tennis-clinics/,programs,3,new,page,Hilton Head clinics; Sweet Briar camps
+North America,US (Florida),tennis,camp,IMG Academy,https://www.imgacademy.com/adult-tennis-camp,programs,2,new,page,"1-, 3- and 5-day adult camps"
+North America,US (Texas),tennis,camp,Mouratoglou at Horseshoe Bay,https://www.hsbresort.com/mouratoglou-tennis-center/,programs,1,new,page,
+North America,Canada (Ontario),tennis,camp,Niagara Academy of Tennis,https://www.niagaraacademyoftennis.com/,programs,1,new,page,"adult 3-, 4- and 6-day programs"
+North America,Canada (Quebec),tennis,camp,Matchpoint International,https://www.matchpointinternational.com/,programs,1,new,page,Mont-Tremblant; check it's current
+North America,Mexico (Baja California),pickleball,social_getaway,Rancho La Puerta,https://rancholapuerta.com/pickleball-proweeks-2026/,programs,1,new,browser,pro weeks; bot check
+North America,Mexico (Los Barriles),pickleball,social_getaway,Pickleball Cabo,https://www.wetravel.com/trips/self-guided-trips-january-2027-november-2027-pickleball-cabo-4242877983,programs,2,new,page,sells through WeTravel; also a March 2027 tournament week
+North America,Mexico (Costa Mujeres),tennis,camp,Rafa Nadal Tennis Center Costa Mujeres,https://camps.rafanadalacademy.com/en/programs/adult-programs/,programs,2,new,browser,Caribbean coast; page builds with JavaScript
+SE Asia,Thailand (Phuket),tennis,,Thanyapura,https://www.thanyapura-phuket.com/,venue,0,new,browser,"a place to stay (sports resort with its own tennis centre), not a program; bot check on plain requests"
+SE Asia,Thailand,tennis,camp,Rafa Nadal Academy camps,https://camps.rafanadalacademy.com/en/programs/thailand/,programs,1,new,browser,"adult camp; 2026 dates passed, watch for 2027"
+SE Asia,Malaysia,tennis,camp,Mouratoglou Academy Malaysia,https://www.mouratoglou.epsomcollege.edu.my/adultcamps,programs,2,new,page,"weekend intensive, full week"
+SE Asia,Indonesia (Bali),"tennis, padel, pickleball",social_getaway,Mouratoglou Tennis Center Bali,https://www.mouratoglou.com/en/international/bali/tennis-lessons/,programs,3,new,page,custom retreats at the Westin Ubud; prices on request
+SE Asia,Indonesia (Bali),padel,social_getaway,Goddess Retreats (Padel Goddess),https://www.goddessretreats.com/,programs,1,new,page,women-only padel and wellness retreat
+SE Asia,Indonesia (Bali),pickleball,social_getaway,10-day Bali pickleball retreat,https://bookretreats.com/r/10-day-pickleball-retreat-in-paradise-bali-indonesia,programs,1,lead,page,found on BookRetreats: find the organiser and list them directly
+Maldives & Caribbean,Antigua,tennis,social_getaway,Curtain Bluff,https://curtainbluff.com/tennis/,programs,2,new,page,"Tennis Challenge Week (Nov), Antigua Tennis Week (spring)"
+Maldives & Caribbean,Anguilla,pickleball,social_getaway,Aurora Anguilla,https://www.auroraanguilla.com/pickleball-trips/,programs,2,new,page,
+Maldives & Caribbean,Turks & Caicos / Dominican Republic / St Lucia / Mexico,pickleball,social_getaway,PPA Pickleball Vacations,https://www.ppatour.com/vacations/,programs,3,new,page,pro-led weeks at Club Med and other resorts
+Maldives & Caribbean,Mexico / Dominican Republic,pickleball,clinic,Club Med,https://www.clubmed.us/l/pickleball-all-inclusive-vacations-club-med,programs,2,new,page,"daily clinics at Cancún, Ixtapa, Punta Cana"
+Maldives & Caribbean,Dominican Republic,"tennis, pickleball, padel",clinic,Casa de Campo,https://www.casadecampo.com.do/experiences/racquet-center/,programs,2,new,page,
+Maldives & Caribbean,Maldives,padel,social_getaway,Kuredu Island Resort,https://www.kuredu.com/activities/#tennis--padel,programs,1,new,page,Padel Tennis Week; check for dates
+Maldives & Caribbean,Maldives,tennis,clinic,Four Seasons Kuda Huraa,https://www.fourseasons.com/maldiveskh/services-and-amenities/tennis/,programs,1,new,browser,tennis academy with visiting pros; blocks plain requests
