@@ -81,9 +81,28 @@ Setup (Vercel → Settings → Environment Variables, Production; a production b
 
 Previews and local builds use Cloudflare's always-pass test keys and log the email instead of sending it. `BLOB_READ_WRITE_TOKEN` comes with the Blob store already connected to the project; locally without it, photos are skipped with a warning.
 
+## Admin
+
+`/admin` is where listings get reviewed and edited. Only one GitHub account can sign in.
+
+- **Review queue** (`/admin`): pending operator submissions, then programs and venues that are drafts or flagged `needs_review`. Archived ones (rejected drafts, retired listings) stay out of it, and future harvests skip them.
+- **Submissions**: everything the operator sent, with their photos. "Create draft listing" makes a hidden draft program (photos included) and opens it in the editor; "Reject" keeps the record with an optional note and deletes the uploaded photos. The operator isn't emailed either way.
+- **Editor** (`/admin/programs/<slug>`, `/admin/venues/<slug>`): every field, every date (past ones too), photo removal, map coordinates and the homepage carousel position. Automatic checks (`web/src/lib/admin/checks.ts`) run on each listing: errors (no dates and no schedule notes, a price without a currency…) block publishing; warnings (passed dates, a booking link whose date differs from the session's, no photos…) don't. Publish, unpublish and archive take effect on the public site straight away.
+- Sign-in is GitHub OAuth with no auth library (`web/src/app/admin/auth/`): the callback asks GitHub whose account it is and signs in only `ADMIN_GITHUB_LOGIN`, with a 30-day session cookie signed with `ADMIN_SESSION_SECRET`. `web/src/middleware.ts` guards every `/admin` page, and each server action checks again. The post-deploy check confirms `/admin` redirects to the sign-in page.
+
+Setup (Vercel → Settings → Environment Variables, Production and Preview). Without these the sign-in page lists what's missing; the rest of the site is unaffected.
+
+| Variable | Where it comes from |
+|---|---|
+| `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` | GitHub → Settings → Developer settings → OAuth Apps → New OAuth App. Homepage URL: the site; callback URL: `https://courttrips.vercel.app/admin/auth/callback`. GitHub accepts any subdomain of the callback's host, so previews on `*.vercel.app` work too. |
+| `ADMIN_GITHUB_LOGIN` | Your GitHub username |
+| `ADMIN_SESSION_SECRET` | Any random string of 32+ characters, e.g. `openssl rand -base64 32`. Changing it signs you out everywhere. |
+
+Locally, `npm run dev` offers "Continue without GitHub" on the sign-in page (development only; production answers 404), so none of this is needed to work on the admin.
+
 ## Post-deploy check
 
-`.github/workflows/post-deploy-check.yml` runs `web/scripts/smoke.mjs` against every deployment Vercel finishes: key pages, every program page linked from search (so whatever is in that deployment's database), every photo, the `/go` hand-off and the 404 page. Run it yourself with `npm run smoke -- https://courttrips.vercel.app`.
+`.github/workflows/post-deploy-check.yml` runs `web/scripts/smoke.mjs` against every deployment Vercel finishes: key pages, every program page linked from search (so whatever is in that deployment's database), every photo, the `/go` hand-off, the 404 page, and that `/admin` is locked. Run it yourself with `npm run smoke -- https://courttrips.vercel.app`.
 
 - Vercel starts it through a `repository_dispatch` event (Vercel → Settings → Git → repository_dispatch Events, on).
 - Deployment URLs are protected by Vercel, so the check needs `VERCEL_AUTOMATION_BYPASS_SECRET` as a GitHub Actions secret (Vercel → Settings → Deployment Protection → Protection Bypass for Automation). Set.

@@ -59,8 +59,9 @@ export function TextField(props: {
   max?: number;
   autoComplete?: string;
   className?: string;
+  defaultValue?: string | number | null;
 }) {
-  const { name, label, hint, optional, error, type = "text", className, ...rest } = props;
+  const { name, label, hint, optional, error, type = "text", className, defaultValue, ...rest } = props;
   return (
     <Field name={name} label={label} hint={hint} optional={optional} error={error} className={className}>
       <input
@@ -74,6 +75,7 @@ export function TextField(props: {
         spellCheck={type === "url" || type === "email" ? false : undefined}
         required={!optional}
         className={INPUT}
+        defaultValue={defaultValue ?? undefined}
         {...invalid(name, error)}
         {...rest}
       />
@@ -90,13 +92,14 @@ export function SelectField(props: {
   error?: string;
   placeholder?: string;
   className?: string;
+  defaultValue?: string | null;
 }) {
-  const { name, label, options, hint, optional, error, placeholder = "Choose…", className } = props;
+  const { name, label, options, hint, optional, error, placeholder = "Choose…", className, defaultValue } = props;
   return (
     <Field name={name} label={label} hint={hint} optional={optional} error={error} className={className}>
       {/* the browser's own arrow sits hard against the edge; this one has room to breathe */}
       <div className="relative">
-        <select id={name} name={name} required={!optional} defaultValue="" className={`${INPUT} appearance-none pr-11`} {...invalid(name, error)}>
+        <select id={name} name={name} required={!optional} defaultValue={defaultValue ?? ""} className={`${INPUT} appearance-none pr-11`} {...invalid(name, error)}>
           <option value="">{placeholder}</option>
           {options.map((o) => {
             const [value, text] = typeof o === "string" ? [o, o] : o;
@@ -128,8 +131,10 @@ export function Choices(props: {
   columns?: string;
   // an icon per option value, shown before its label
   icons?: Partial<Record<string, ReactNode>>;
+  // values ticked to begin with (editing an existing listing)
+  checked?: readonly string[];
 }) {
-  const { name, legend, options, type = "checkbox", hint, optional, error, columns = "sm:grid-cols-3", icons } = props;
+  const { name, legend, options, type = "checkbox", hint, optional, error, columns = "sm:grid-cols-3", icons, checked } = props;
   return (
     <fieldset {...invalid(name, error)}>
       <legend className="text-[0.9375rem] font-semibold">
@@ -150,6 +155,7 @@ export function Choices(props: {
                 name={name}
                 value={value}
                 id={i === 0 ? name : undefined}
+                defaultChecked={checked?.includes(value)}
                 required={type === "radio" && !optional}
                 className="mt-1 size-4 shrink-0 accent-ink"
               />

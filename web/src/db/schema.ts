@@ -26,8 +26,9 @@ import {
 
 const list = (values: readonly string[]) => sql.raw(values.map((v) => `'${v}'`).join(", "));
 
-export const PROGRAM_STATUSES = ["active", "sold_out", "past", "draft"] as const;
-export const VENUE_STATUSES = ["active", "closed", "draft"] as const;
+// archived: hidden and out of the review queue (a rejected draft, a retired listing); harvests skip it
+export const PROGRAM_STATUSES = ["active", "sold_out", "past", "draft", "archived"] as const;
+export const VENUE_STATUSES = ["active", "closed", "draft", "archived"] as const;
 export const CATEGORIES = ["camp", "clinic", "social_getaway"] as const;
 export const SESSION_STATUSES = ["available", "waitlist", "sold_out"] as const;
 export const VENUE_KINDS = ["resort", "hotel", "club", "academy"] as const;
@@ -200,6 +201,8 @@ export const programsRelations = relations(programs, ({ one, many }) => ({
   venue: one(venues, { fields: [programs.venueId], references: [venues.id] }),
   sessions: many(sessions),
   photos: many(photos),
+  // the operator submission (if any) this program was made from
+  submissions: many(submissions),
 }));
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   program: one(programs, { fields: [sessions.programId], references: [programs.id] }),
@@ -236,6 +239,10 @@ export const submissions = pgTable(
     index("submissions_status_created_idx").on(t.status, t.createdAt),
   ],
 );
+
+export const submissionsRelations = relations(submissions, ({ one }) => ({
+  program: one(programs, { fields: [submissions.programId], references: [programs.id] }),
+}));
 
 // One row per visitor hand-off through /go. No IPs or user agents: enough to count leads per
 // program, date and organizer, and to see where they came from, without tracking people.

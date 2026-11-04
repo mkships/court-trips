@@ -20,15 +20,15 @@ import {
   MAX_SESSIONS,
 } from "@/lib/submission-options";
 
-const values = <T extends readonly (readonly [string, ...string[]])[]>(options: T) =>
+export const values = <T extends readonly (readonly [string, ...string[]])[]>(options: T) =>
   options.map((o) => o[0]) as unknown as [T[number][0], ...T[number][0][]];
 
 // FormData gives strings; blanks mean "not given".
-const text = (max: number) =>
+export const text = (max: number) =>
   z.preprocess((v) => (typeof v === "string" && v.trim() ? v.trim() : null), z.string().max(max, `Keep it under ${max} characters`).nullable());
-const required = (max: number, message: string) =>
+export const required = (max: number, message: string) =>
   z.preprocess((v) => (typeof v === "string" ? v.trim() : ""), z.string().min(1, message).max(max, `Keep it under ${max} characters`));
-const number = (min: number, max: number, integer = false) =>
+export const number = (min: number, max: number, integer = false) =>
   z.preprocess(
     (v) => (typeof v === "string" && v.trim() ? Number(v) : null),
     (integer ? z.number().int("Use a whole number") : z.number())
@@ -36,12 +36,12 @@ const number = (min: number, max: number, integer = false) =>
       .max(max, `At most ${max}`)
       .nullable(),
   );
-const choice = <T extends [string, ...string[]]>(options: T, message: string) =>
+export const choice = <T extends [string, ...string[]]>(options: T, message: string) =>
   z.preprocess((v) => (v === "" ? undefined : v), z.enum(options, { error: message }));
-const optionalChoice = <T extends [string, ...string[]]>(options: T) =>
+export const optionalChoice = <T extends [string, ...string[]]>(options: T) =>
   z.preprocess((v) => (v === "" || v == null ? null : v), z.enum(options).nullable());
-const many = <T extends [string, ...string[]]>(options: T) => z.array(z.enum(options)).default([]);
-const url = (message: string) =>
+export const many = <T extends [string, ...string[]]>(options: T) => z.array(z.enum(options)).default([]);
+export const url = (message: string) =>
   z.preprocess(
     (v) => {
       const s = typeof v === "string" ? v.trim() : "";
@@ -51,7 +51,7 @@ const url = (message: string) =>
     z.url({ protocol: /^https?$/, error: message }).max(500),
   );
 const email = (message: string) => z.preprocess((v) => (typeof v === "string" ? v.trim() : ""), z.email({ error: message }).max(200));
-const list = (max: number) =>
+export const list = (max: number) =>
   z.preprocess(
     (v) =>
       typeof v === "string"
@@ -62,7 +62,7 @@ const list = (max: number) =>
         : [],
     z.array(z.string().max(80)).max(max),
   );
-const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use a date");
+export const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use a date");
 
 const session = z
   .object({ start: isoDate, end: isoDate, price: number(0, 1_000_000) })
