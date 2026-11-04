@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import { ListingCard, TILE_GRID, VenueCard } from "@/components/ListingRow";
 import { SearchBar } from "@/components/SearchBar";
 import { matchesTile, matchesVenue, parseSearch, searchHref, type SearchKey, type SearchValues } from "@/lib/filters";
-import { getHomeData } from "@/lib/seed";
+import { getHomeData } from "@/lib/db";
 import { SPORTS, SPORT_NAMES, type Sport } from "@/lib/sports";
 import { SURFACES } from "@/lib/surfaces";
 import { programCount } from "@/lib/tiles";
@@ -70,7 +70,7 @@ function placesHeading(n: number, sport: Sport, v: SearchValues) {
 
 export default async function SearchPage({ searchParams }: Props) {
   const { sport, mode, values } = parseSearch(await searchParams);
-  const { listings, venues } = getHomeData();
+  const { listings, venues } = await getHomeData();
   const forSport = listings.filter((l) => l.sports.includes(sport));
   const venuesForSport = venues.filter((v) => v.sports.includes(sport));
 

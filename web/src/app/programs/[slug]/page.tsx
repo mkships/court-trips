@@ -9,7 +9,7 @@ import { DateTable } from "@/components/program/DateTable";
 import { Gallery } from "@/components/program/Gallery";
 import { VenueBlock } from "@/components/program/VenueBlock";
 import { CATEGORY_NAMES, hostOf, placeLabel } from "@/lib/format";
-import { getProgram, getVenue, programSlugs } from "@/lib/seed";
+import { getProgram, getVenue, programSlugs } from "@/lib/db";
 import { SPORT_NAMES, type ProgramDetail, type Sport } from "@/lib/sports";
 
 type Props = {
@@ -17,12 +17,15 @@ type Props = {
   searchParams: Promise<{ date?: string }>;
 };
 
-export function generateStaticParams() {
-  return programSlugs().map((slug) => ({ slug }));
+// Prerendered at build, then refreshed hourly so edits show up and past dates drop off.
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return (await programSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const program = getProgram((await params).slug);
+  const program = await getProgram((await params).slug);
   if (!program) return {};
   const title = `${program.title}, ${placeLabel(program)} | Court Trips`;
   return {
@@ -44,11 +47,11 @@ function pickSession(program: ProgramDetail, date?: string) {
 }
 
 export default async function ProgramPage({ params, searchParams }: Props) {
-  const program = getProgram((await params).slug);
+  const program = await getProgram((await params).slug);
   if (!program) notFound();
   const session = pickSession(program, (await searchParams).date);
   const sport = program.sports[0] as Sport;
-  const venue = program.venueSlug ? getVenue(program.venueSlug) : null;
+  const venue = program.venueSlug ? await getVenue(program.venueSlug) : null;
 
   return (
     <div className="on-paper pb-28 lg:pb-20">

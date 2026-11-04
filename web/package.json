@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node --env-file-if-exists=.env.local scripts/migrate.mjs && next build",
+    "build": "node --env-file-if-exists=.env.local scripts/migrate.mjs && node --env-file-if-exists=.env.local scripts/db-seed.mjs --if-empty && next build",
     "start": "next start",
     "lint": "eslint",
     "photos:upload": "node scripts/photo-variants.mjs && node --env-file-if-exists=.env.local scripts/upload-photos.mjs",
@@ -12,6 +12,7 @@
     "smoke": "node scripts/smoke.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate.mjs",
+    "db:seed": "node --env-file-if-exists=.env.local scripts/db-seed.mjs",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {

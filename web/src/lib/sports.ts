@@ -20,7 +20,7 @@ export type Mode = "programs" | "places";
 
 export type Level = "beginner" | "intermediate" | "advanced" | "all levels";
 
-// One tile in src/data/seed.json (built by scripts/seed.py): a program on one set of dates
+// One tile (src/lib/db.ts): a program on one upcoming set of dates, or an undated program
 export type Listing = {
   // programSlug@start_date, unique per tile
   key: string;
@@ -60,14 +60,7 @@ export type Venue = {
   website: string;
 };
 
-export type SeedData = {
-  stats: Record<Sport, SportStats>;
-  listings: Listing[];
-  venues: Venue[];
-  programs: Record<string, ProgramDetail>;
-};
-
-// Full record for one program page (src/data/seed.json "programs")
+// Full record for one program page (src/lib/db.ts getProgram)
 export type ProgramDetail = {
   slug: string;
   title: string;
