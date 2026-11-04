@@ -82,9 +82,23 @@ function mix(a: Plan, b: Plan, t: number): Plan {
   };
 }
 
+// Where the ball lands, as fractions of the court's half-length and half-width. Even shots land on
+// the left, odd ones on the right, so every shot crosses the net.
+const SPOTS: [number, number][] = [
+  [-0.62, 0.42],
+  [0.58, -0.46],
+  [-0.4, -0.52],
+  [0.7, 0.3],
+  [-0.74, -0.12],
+  [0.36, 0.55],
+];
+
 // drawIn: on first render the lines are painted across the court once, left to right,
 // like a line-marking machine. Later sport changes morph instead. Skipped for reduced motion.
-export function Court({ sport, className, drawIn }: { sport: Sport; className?: string; drawIn?: boolean }) {
+// rally: a shot count; each new count hits the ball over the net to its next spot.
+type CourtProps = { sport: Sport; className?: string; drawIn?: boolean; rally?: number };
+
+export function Court({ sport, className, drawIn, rally }: CourtProps) {
   const [plan, setPlan] = useState<Plan>(PLANS[sport]);
   const current = useRef(plan);
   current.current = plan;
@@ -127,6 +141,43 @@ export function Court({ sport, className, drawIn }: { sport: Sport; className?: 
           <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} vectorEffect="non-scaling-stroke" />
         ))}
       </g>
+      {rally != null && <Ball sport={sport} shot={rally} delayed={drawIn} />}
     </svg>
+  );
+}
+
+// Seen from above, a ball in the air is a ball closer to you: it grows and lifts off its shadow
+// mid-flight, then lands. Travel uses the court's morph timing, so a sport change carries it along.
+const HOP = "animate-[ball-hop_700ms_ease-in-out] motion-reduce:animate-none";
+const HOP_SHADOW = "animate-[ball-shadow_700ms_ease-in-out] motion-reduce:animate-none";
+const FROM_CENTRE = { transformBox: "fill-box", transformOrigin: "center" } as const;
+
+function Ball({ sport, shot, delayed }: { sport: Sport; shot: number; delayed?: boolean }) {
+  const { hx, hy } = PLANS[sport];
+  const [fx, fy] = SPOTS[shot % SPOTS.length];
+  return (
+    <g
+      className={delayed ? "animate-[ball-in_300ms_ease-out_1250ms_both] motion-reduce:animate-none" : undefined}
+      style={{
+        transform: `translate(${fx * hx}px, ${fy * hy}px)`,
+        transition: `transform ${DURATION}ms cubic-bezier(0.45, 0, 0.55, 1)`,
+      }}
+    >
+      {/* new key per shot, so the hop plays again */}
+      <g key={shot} className={shot > 0 ? HOP_SHADOW : undefined} style={FROM_CENTRE}>
+        <ellipse cx="0.18" cy="0.22" rx="0.5" ry="0.42" fill="rgba(0,0,0,0.28)" />
+      </g>
+      <g key={`b${shot}`} className={shot > 0 ? HOP : undefined} style={FROM_CENTRE}>
+        <circle r="0.5" fill="var(--color-ball)" />
+        <path
+          d="M-0.36 -0.34a0.55 0.55 0 0 1 0 0.68M0.36 -0.34a0.55 0.55 0 0 0 0 0.68"
+          fill="none"
+          stroke="#fff"
+          strokeOpacity="0.85"
+          strokeWidth="0.09"
+          strokeLinecap="round"
+        />
+      </g>
+    </g>
   );
 }

@@ -19,6 +19,8 @@ type Props = {
 
 export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
   const name = SPORT_NAMES[sport];
+  // every change of featured trip is a shot: the ball on the court crosses the net with it
+  const [shots, setShots] = useState(0);
 
   // The row is held at the hero's height: a longer heading (pickleball's runs to three lines) shrinks
   // the court drawing rather than stretching the row, which pushed the photo caption under the search bar.
@@ -43,27 +45,28 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
         </div>
 
         <h1 className="mt-7 text-[2.25rem] leading-[0.95] font-black tracking-[-0.035em] text-balance sm:text-[2.5rem] md:mt-6 lg:text-[3.25rem]">
-          {mode === "programs" ? `${name} trips with coaching built in` : `Stay where the ${name.toLowerCase()} courts are`}
+          {mode === "programs" ? `Play ${name.toLowerCase()} somewhere new` : `Stay where the ${name.toLowerCase()} courts are`}
         </h1>
 
         {/* Phones: summary and court side by side. Wider: stacked, court pinned to the bottom. */}
         <div className="mt-4 flex items-end justify-between gap-5 md:contents">
-          <p className="max-w-[34ch] text-[1rem] leading-snug text-white/85 md:mt-4 md:text-[1.0625rem]">
+          <p className="max-w-[34ch] text-[1rem] leading-snug text-pretty text-white/85 md:mt-4 md:text-[1.0625rem]">
             {mode === "programs"
-              ? `Camps, clinics and getaways in ${whereLabel(stats.countries)}.`
-              : `Resorts and hotels with ${name.toLowerCase()} courts on site.`}
+              ? `Coached camps, clinics and getaways in ${whereLabel(stats.countries)}.`
+              : "Resorts and hotels with courts on site."}
           </p>
           <div className="w-[44%] shrink-0 md:relative md:mt-5 md:min-h-0 md:w-full md:flex-1">
             <Court
               sport={sport}
               drawIn
+              rally={shots}
               className="block aspect-[28/15] w-full md:absolute md:bottom-0 md:left-0 md:h-full md:max-h-[190px] md:w-auto"
             />
           </div>
         </div>
       </div>
 
-      <FeaturedPhotos key={sport} featured={featured} />
+      <FeaturedPhotos key={sport} featured={featured} onStep={() => setShots((n) => n + 1)} />
     </div>
   );
 }
@@ -80,7 +83,7 @@ const SWIPE_PX = 40;
 // long enough to read the trip's name, place and price before it moves on
 const AUTOPLAY_MS = 6000;
 
-function FeaturedPhotos({ featured }: { featured: Listing[] }) {
+function FeaturedPhotos({ featured, onStep }: { featured: Listing[]; onStep: () => void }) {
   const [index, setIndex] = useState(0);
   // the slide being faded out stays fully visible underneath, so the two never blend into each other
   const [previous, setPrevious] = useState<number | null>(null);
@@ -91,6 +94,7 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
   const touchX = useRef<number | null>(null);
   const current = featured[index];
   const step = (by: number) => {
+    onStep();
     setPrevious(index);
     setIndex((index + by + featured.length) % featured.length);
   };

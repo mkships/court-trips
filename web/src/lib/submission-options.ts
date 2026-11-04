@@ -7,9 +7,9 @@ export const SPORT_OPTIONS = [
   ["padel", "Padel"],
 ] as const;
 export const CATEGORY_OPTIONS = [
-  ["camp", "Camp", "Several days of coaching, often with accommodation"],
-  ["clinic", "Clinic", "A shorter coaching event: a day, a weekend, a few sessions"],
-  ["social_getaway", "Getaway", "A holiday with play and some coaching, built around the trip"],
+  ["camp", "Camp", "Several days of coaching, often with a stay"],
+  ["clinic", "Clinic", "A day, a weekend or a few sessions"],
+  ["social_getaway", "Getaway", "A holiday with play and some coaching"],
 ] as const;
 export const LEVEL_OPTIONS = [
   ["beginner", "Beginner"],

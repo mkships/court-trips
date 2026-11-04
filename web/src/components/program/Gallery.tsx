@@ -21,7 +21,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
       >
         <Court sport={sport} className="h-[70%] w-full max-w-[640px]" />
         <figcaption className="mt-3 text-center text-[0.8125rem] text-white/85">
-          {SPORT_NAMES[sport]} court, {DIMENSIONS[sport]}. The organiser hasn&apos;t published photos.
+          No photos yet. Here&apos;s a {SPORT_NAMES[sport].toLowerCase()} court instead: {DIMENSIONS[sport]}.
         </figcaption>
       </figure>
     );

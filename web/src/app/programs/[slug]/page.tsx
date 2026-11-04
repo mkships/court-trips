@@ -101,7 +101,7 @@ export default async function ProgramPage({ params, searchParams }: Props) {
             </Section>
 
             {program.inclusions.length > 0 && (
-              <Section title="What the price includes">
+              <Section title="What's included">
                 <ul className="grid max-w-[640px] gap-x-8 gap-y-3 sm:grid-cols-2">
                   {program.inclusions.map((item) => (
                     <li key={item} className="flex items-center gap-3 text-[1rem]">
@@ -125,7 +125,7 @@ export default async function ProgramPage({ params, searchParams }: Props) {
             </Section>
 
             {(venue || program.venueName) && (
-              <Section title="Where it happens">
+              <Section title="Where you'll play">
                 <VenueBlock program={program} venue={venue} sport={sport} />
               </Section>
             )}

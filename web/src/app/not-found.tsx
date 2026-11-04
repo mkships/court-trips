@@ -16,10 +16,10 @@ export default function NotFound() {
           <span aria-hidden="true" className="absolute right-[12%] bottom-[14%] size-4 rounded-full bg-ball shadow-[0_0_0_3px_rgba(0,0,0,0.12)]" />
         </div>
         <h1 className="mt-10 text-[2.25rem] leading-[1] font-black tracking-[-0.035em] sm:text-[3rem]">
-          We can&apos;t find that page
+          That one&apos;s out
         </h1>
         <p className="mt-3 max-w-[50ch] text-[1.0625rem] text-ink-soft">
-          It may have moved, or the trip is no longer listed.
+          The page has moved, or the trip isn&apos;t listed any more.
         </p>
         <Link href="/" className={`mt-7 h-14 px-7 ${BTN_PRIMARY}`}>
           Back to all trips

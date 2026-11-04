@@ -37,7 +37,7 @@ export function VenueRow({ sport, venues, programs }: { sport: Sport; venues: Ve
   return (
     <Row title={`Places to stay with ${name} courts`}>
       {venues.length === 0 && (
-        <li className="text-ink-soft sm:col-span-2">No {name} venues listed yet. Try another sport.</li>
+        <li className="text-ink-soft sm:col-span-2">No {name} places yet. Try another sport.</li>
       )}
       {venues.map((venue) => (
         <li key={venue.slug}>

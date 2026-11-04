@@ -8,8 +8,7 @@ export function Footer() {
         <div className="max-w-[46ch]">
           <p className="text-[1.25rem] font-black tracking-[-0.03em]">Court Trips</p>
           <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
-            Tennis, pickleball and padel trips from operators around the world. You book directly with the operator;
-            Court Trips doesn&apos;t take payment.
+            Tennis, pickleball and padel trips, worldwide. You book direct with the people who run them.
           </p>
         </div>
         <nav aria-label="Browse">
@@ -36,8 +35,8 @@ export function Footer() {
         </nav>
       </div>
       <p className="mx-auto max-w-[1280px] px-4 pb-10 text-[0.8125rem] leading-relaxed text-ink-soft sm:px-8">
-        Dates and prices are checked against each operator&apos;s site and can change. Photos belong to the operators
-        named on each listing. © 2026 Court Trips.
+        Dates and prices come from each operator and can change. Photos belong to the operators named on each
+        listing. © 2026 Court Trips.
       </p>
     </footer>
   );

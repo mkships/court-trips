@@ -72,8 +72,8 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
       <div className="mt-8 rounded-[28px] bg-mist p-6 sm:p-10" role="status">
         <p className="text-[1.5rem] font-extrabold tracking-[-0.02em]">Thanks, we&apos;ve got it.</p>
         <p className="mt-2 max-w-[55ch] text-ink-soft">
-          We check every listing against your website before it goes live, usually within a few days. If anything&apos;s
-          unclear we&apos;ll email you.
+          We&apos;ll check it against your website and publish it, usually within a few days. If anything&apos;s unclear,
+          we&apos;ll email you.
         </p>
         <Link href="/" className={`mt-6 px-5 py-2.5 ${BTN_DARK}`}>
           Back to Court Trips
@@ -112,7 +112,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         </label>
       </div>
 
-      <Section title="The program" intro="What players will see first.">
+      <Section title="The program" intro="Players see this first.">
         <TextField name="title" label="Program name" placeholder="e.g. Clay-court tennis week in Mallorca" maxLength={120} error={errors.title} />
         <TextField name="organizer" label="Run by" hint="Your club, academy, coach or travel company." maxLength={120} error={errors.organizer} />
         <Field name="description" label="Description" hint="What a day looks like, who it's for, what makes it good. A few sentences." error={errors.description}>
@@ -137,7 +137,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         <TextField name="venue_name" label="Venue" optional hint="The club, resort or academy where it takes place." error={errors.venue_name} />
       </Section>
 
-      <Section title="Dates" intro="Add each date players can book. If it runs all season or on request, say so in the schedule notes instead.">
+      <Section title="Dates" intro="Add each date players can book. Runs all season, or on request? Say so in the schedule notes.">
         <div>
           <ul className="grid gap-3">
             {rows.map((row, i) => (
@@ -177,7 +177,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         <TextField name="schedule_notes" label="Schedule notes" optional placeholder="e.g. Weekly, Sunday to Sunday, May to September" maxLength={300} error={errors.schedule_notes} />
       </Section>
 
-      <Section title="Price" intro="The price for the whole program. If there's one price, fill in just From. Leave it blank if you only quote on request.">
+      <Section title="Price" intro="For the whole program. One price? Fill in From only. Quote on request? Leave it blank.">
         <div className="grid gap-6 sm:grid-cols-3">
           <TextField name="price_min" label="From" optional type="number" min={0} step="any" error={errors.price_min} />
           <TextField name="price_max" label="Up to" optional type="number" min={0} step="any" error={errors.price_max} />
@@ -189,7 +189,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         <TextField name="other_inclusions" label="Also included" optional hint="Anything else, separated by commas." error={errors.other_inclusions} />
       </Section>
 
-      <Section title="On court" intro="All optional, but players filter and compare on these.">
+      <Section title="On court" intro="Optional, but players filter and compare on these.">
         <Choices name="court_surface" legend="Court surface" optional options={SURFACE_OPTIONS} columns="grid-cols-2 sm:grid-cols-5" error={errors.court_surface} />
         <div className="grid gap-6 sm:grid-cols-3">
           <TextField name="coaching_hours_total" label="Coaching hours in total" optional type="number" min={0} step="0.5" error={errors.coaching_hours_total} />
@@ -226,7 +226,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         </div>
       </Section>
 
-      <Section title="About you" intro="So we can check the listing with you. We don't publish these.">
+      <Section title="About you" intro="So we can check the listing with you. Never published.">
         <div className="grid gap-6 sm:grid-cols-2">
           <TextField name="submitter_name" label="Your name" autoComplete="name" error={errors.submitter_name} />
           <TextField name="submitter_email" label="Your email" type="email" autoComplete="email" error={errors.submitter_email} />
@@ -253,7 +253,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
           >
             {pending ? "Sending…" : "Send for review"}
           </button>
-          {!verified && !pending && <p className="text-[0.875rem] text-ink-soft">The button turns on once the check above is done.</p>}
+          {!verified && !pending && <p className="text-[0.875rem] text-ink-soft">Finish the check above to send.</p>}
         </div>
       </div>
     </form>

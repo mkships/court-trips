@@ -81,7 +81,7 @@ export function PhotoPicker({ photos, onChange, error }: { photos: PickedPhoto[]
         Photos <span className="font-normal text-ink-soft">(optional, up to {MAX_PHOTOS})</span>
       </label>
       <p className="mt-0.5 max-w-[60ch] text-[0.875rem] text-ink-soft">
-        Courts, coaching, the place you stay. Landscape photos at least 1,200 pixels wide look best. The first one is the
+        Courts, coaching, where players stay. Landscape and at least 1,200 pixels wide works best. The first is the
         cover.
       </p>
       {photos.length > 0 && (

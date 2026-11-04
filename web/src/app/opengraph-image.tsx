@@ -36,9 +36,9 @@ export default async function OpengraphImage() {
           <div style={{ fontSize: 40, fontWeight: 800, letterSpacing: -1 }}>Court Trips</div>
           {/* explicit lines: next/og has no text-wrap: balance */}
           <div style={{ display: "flex", flexDirection: "column", fontSize: 60, fontWeight: 800, lineHeight: 1.02, letterSpacing: -2 }}>
-            <span>Tennis, pickleball</span>
-            <span>and padel trips with</span>
-            <span>coaching built in</span>
+            <span>Play tennis,</span>
+            <span>pickleball and padel</span>
+            <span>somewhere new</span>
           </div>
         </div>
         <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "flex-end" }}>

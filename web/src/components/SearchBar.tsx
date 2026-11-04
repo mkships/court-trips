@@ -14,14 +14,14 @@ type Values = SearchValues;
 type Option = { value: string; label: string; hint?: string; icon?: React.ReactNode };
 
 const LEVELS: Option[] = [
-  { value: "beginner", label: "Beginner", hint: "New to the sport, or coming back after a break" },
-  { value: "intermediate", label: "Intermediate", hint: "You rally comfortably and know how to score" },
-  { value: "advanced", label: "Advanced", hint: "You play matches or tournaments regularly" },
+  { value: "beginner", label: "Beginner", hint: "New, or coming back after a break" },
+  { value: "intermediate", label: "Intermediate", hint: "You can rally and keep score" },
+  { value: "advanced", label: "Advanced", hint: "You play matches or tournaments" },
 ].map((o) => ({ ...o, icon: <LevelIcon level={[o.value]} className="size-6" /> }));
 const FORMATS: Option[] = [
-  { value: "camp", label: "Camp", hint: "Several days of structured training" },
-  { value: "clinic", label: "Clinic", hint: "A day or a weekend of focused coaching" },
-  { value: "social_getaway", label: "Getaway", hint: "A holiday with coaching and social play" },
+  { value: "camp", label: "Camp", hint: "Several days of coaching, often with a stay" },
+  { value: "clinic", label: "Clinic", hint: "A day, a weekend or a few sessions" },
+  { value: "social_getaway", label: "Getaway", hint: "A holiday with play and some coaching" },
 ].map((o) => ({ ...o, icon: <CategoryIcon category={o.value as Listing["category"]} className="size-6" /> }));
 const SURFACE_OPTIONS: Option[] = [
   { value: "Hard", label: "Hard" },
@@ -405,7 +405,7 @@ function MonthPanel(props: { months: { month: string; count: number }[]; selecte
   const { months, selected, onChoose } = props;
   return (
     <div className="px-1 py-2 md:px-4">
-      <p className="text-center text-[1.0625rem] font-semibold">When do you want to go?</p>
+      <p className="text-center text-[1.0625rem] font-semibold">When can you go?</p>
       <ul className="mt-5 flex snap-x gap-3 overflow-x-auto pr-10 pb-2 [mask-image:linear-gradient(to_right,black_calc(100%-48px),transparent)]">
         <li className="snap-start">
           <MonthCard selected={!selected} onClick={() => onChoose(undefined)} title="Any time" sub="All dates" />

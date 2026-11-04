@@ -120,7 +120,7 @@ export function BookingCard({ program, session }: { program: ProgramDetail; sess
         <ExternalIcon className="size-[18px]" />
       </a>
       <p className="mt-3 text-center text-[0.8125rem] text-ink-soft">
-        You&apos;ll finish on {hostOf(session?.bookingUrl ?? program.bookingUrl)}. Court Trips doesn&apos;t take payment.
+        You&apos;ll book and pay on {hostOf(session?.bookingUrl ?? program.bookingUrl)}.
       </p>
     </div>
   );
