@@ -22,6 +22,12 @@ export function placeLabel({ place, country }: Pick<Listing, "place" | "country"
   return `${place}, ${country}`;
 }
 
+// Cards have one line for the place, so long country names get their usual short form.
+const SHORT_COUNTRIES: Record<string, string> = { "United States": "US", "United Kingdom": "UK", "United Arab Emirates": "UAE" };
+export function shortPlaceLabel({ place, country }: Pick<Listing, "place" | "country">) {
+  return placeLabel({ place, country: country ? (SHORT_COUNTRIES[country] ?? country) : country });
+}
+
 const day = (iso: string, opts: Intl.DateTimeFormatOptions) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { timeZone: "UTC", ...opts });
 

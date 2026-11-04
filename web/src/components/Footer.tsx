@@ -3,7 +3,7 @@ import { SPORTS, SPORT_NAMES } from "@/lib/sports";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-rule">
+    <footer className="mt-16 border-t border-rule">
       <div className="mx-auto grid max-w-[1280px] gap-10 px-4 py-12 sm:px-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-[46ch]">
           <p className="text-[1.25rem] font-black tracking-[-0.03em]">Court Trips</p>
@@ -17,18 +17,18 @@ export function Footer() {
           <ul className="mt-3 space-y-2 text-[0.9375rem]">
             {SPORTS.map((sport) => (
               <li key={sport}>
-                <Link href={`/?sport=${sport}`} className="hover:underline">
+                <Link href={`/?sport=${sport}`} className="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-ink">
                   {SPORT_NAMES[sport]} trips
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="/?type=places" className="hover:underline">
+              <Link href="/?type=places" className="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-ink">
                 Places to stay
               </Link>
             </li>
             <li>
-              <Link href="/list-your-program" className="hover:underline">
+              <Link href="/list-your-program" className="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-ink">
                 List your program
               </Link>
             </li>

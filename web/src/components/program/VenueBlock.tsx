@@ -1,6 +1,8 @@
 import { SafeImage } from "@/components/SafeImage";
 import type { ProgramDetail, Sport, Venue } from "@/lib/sports";
+import { ExternalIcon } from "@/components/icons";
 import { placeLabel } from "@/lib/format";
+import { LINK } from "@/lib/ui";
 
 export function VenueBlock({ program, venue, sport }: { program: ProgramDetail; venue: Venue | null; sport: Sport }) {
   if (!venue) {
@@ -27,8 +29,9 @@ export function VenueBlock({ program, venue, sport }: { program: ProgramDetail; 
           <span className="capitalize">{venue.kind}</span> in {placeLabel(venue)}
         </p>
         {courts.length > 0 && <p className="mt-1 text-ink-soft first-letter:uppercase">{courts.join(", ")}</p>}
-        <a href={venue.website} className="mt-2 inline-block font-semibold underline underline-offset-4" target="_blank" rel="noopener noreferrer">
+        <a href={venue.website} className={`mt-2 inline-flex items-center gap-1.5 ${LINK}`} target="_blank" rel="noopener noreferrer">
           Venue website
+          <ExternalIcon className="size-4" />
         </a>
       </div>
     </div>

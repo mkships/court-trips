@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { Court } from "@/components/Court";
 import { SPORT_NAMES, type Sport } from "@/lib/sports";
 import { DIMENSIONS, SURFACES } from "@/lib/surfaces";
+import { BTN_OUTLINE } from "@/lib/ui";
 
 // Desktop: Airbnb-style mosaic, one large photo with up to four beside it.
 // Phones: a swipeable strip of every photo. Both can open the full set.
@@ -15,7 +16,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
   if (photos.length === 0) {
     return (
       <figure
-        className="mt-7 flex h-[260px] flex-col items-center justify-center rounded-[28px] px-6 md:h-[400px]"
+        className="mt-6 flex h-[260px] flex-col items-center justify-center rounded-[28px] px-6 md:h-[400px]"
         style={{ backgroundColor: SURFACES[sport].surround }}
       >
         <Court sport={sport} className="h-[70%] w-full max-w-[640px]" />
@@ -33,7 +34,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
   return (
     <>
       {/* phones */}
-      <div className="relative mt-7 -mx-4 md:hidden">
+      <div className="relative mt-6 -mx-4 md:hidden">
         <ul
           className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none]"
           onScroll={(e) => setShown(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
@@ -54,7 +55,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
 
       {/* tablets and up */}
       <div
-        className={`relative mt-7 hidden h-[460px] gap-2 overflow-hidden rounded-[28px] md:grid ${
+        className={`relative mt-6 hidden h-[460px] gap-2 overflow-hidden rounded-[28px] md:grid ${
           side.length === 0 ? "" : side.length === 1 ? "grid-cols-2" : "grid-cols-[3fr_2fr]"
         }`}
       >
@@ -70,7 +71,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
           <button
             type="button"
             onClick={open}
-            className="absolute right-4 bottom-4 rounded-full bg-white px-4 py-2 text-[0.875rem] font-semibold shadow-sm ring-1 ring-ink/10 hover:bg-paper"
+            className="absolute right-4 bottom-4 rounded-full bg-white px-4 py-2 text-[0.875rem] font-semibold shadow-sm ring-1 ring-ink/10 transition-colors hover:bg-mist hover:ring-ink"
           >
             Show all {photos.length} photos
           </button>
@@ -88,7 +89,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
           <button
             type="button"
             onClick={() => viewer.current?.close()}
-            className="rounded-full border border-rule px-4 py-2 text-[0.875rem] font-semibold hover:border-ink"
+            className={`px-4 py-2 text-[0.875rem] ${BTN_OUTLINE}`}
           >
             Close
           </button>
@@ -111,7 +112,7 @@ function Photo({ src, alt, sport, priority, onClick }: PhotoProps) {
   return (
     // the "Show all photos" button is the keyboard route into the viewer; these are mouse shortcuts
     <button type="button" tabIndex={-1} onClick={onClick} className="relative min-h-0 cursor-zoom-in bg-rule" aria-hidden="true">
-      <SafeImage sport={sport} src={src} alt={alt} fill priority={priority} sizes={alt ? "60vw" : "20vw"} className="object-cover hover:brightness-95" />
+      <SafeImage sport={sport} src={src} alt={alt} fill priority={priority} sizes={alt ? "60vw" : "20vw"} className="object-cover transition-[filter] hover:brightness-90" />
     </button>
   );
 }

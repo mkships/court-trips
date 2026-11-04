@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRef, useState, useTransition, type FormEvent } from "react";
 import { submitProgram } from "@/app/list-your-program/actions";
+import { CategoryIcon, LevelIcon } from "@/components/icons";
 import { Choices, ErrorText, Field, INPUT, invalid, Section, SelectField, TextField } from "@/components/submit/fields";
 import { PhotoPicker, type PickedPhoto } from "@/components/submit/PhotoPicker";
 import { Turnstile, type TurnstileHandle } from "@/components/submit/Turnstile";
@@ -23,6 +24,10 @@ import {
   THEME_OPTIONS,
 } from "@/lib/submission-options";
 import type { FieldErrors } from "@/lib/submission";
+import { BTN_DARK, BTN_OUTLINE } from "@/lib/ui";
+
+const CATEGORY_ICONS = Object.fromEntries(CATEGORY_OPTIONS.map(([v]) => [v, <CategoryIcon key={v} category={v} className="size-6" />]));
+const LEVEL_ICONS = Object.fromEntries(LEVEL_OPTIONS.map(([v]) => [v, <LevelIcon key={v} level={[v]} className="size-6" />]));
 
 let nextRow = 0;
 const newRow = () => nextRow++;
@@ -70,7 +75,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
           We check every listing against your website before it goes live, usually within a few days. If anything&apos;s
           unclear we&apos;ll email you.
         </p>
-        <Link href="/" className="mt-6 inline-block rounded-full bg-ink px-5 py-2.5 font-semibold text-white hover:bg-ink/90">
+        <Link href="/" className={`mt-6 px-5 py-2.5 ${BTN_DARK}`}>
           Back to Court Trips
         </Link>
       </div>
@@ -114,8 +119,8 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
           <textarea id="description" name="description" required minLength={40} maxLength={3000} rows={6} className={INPUT} {...invalid("description", errors.description)} />
         </Field>
         <Choices name="racket_sport" legend="Sport" options={SPORT_OPTIONS} error={errors.racket_sport} />
-        <Choices name="category" legend="Kind of program" type="radio" options={CATEGORY_OPTIONS} error={errors.category} />
-        <Choices name="level" legend="Who it's for" options={LEVEL_OPTIONS} columns="grid-cols-2 sm:grid-cols-4" error={errors.level} />
+        <Choices name="category" legend="Kind of program" type="radio" options={CATEGORY_OPTIONS} icons={CATEGORY_ICONS} error={errors.category} />
+        <Choices name="level" legend="Who it's for" options={LEVEL_OPTIONS} icons={LEVEL_ICONS} columns="grid-cols-2 sm:grid-cols-4" error={errors.level} />
         <Choices name="theme" legend="Good for" optional options={THEME_OPTIONS} error={errors.theme} />
         <div className="grid gap-6 sm:grid-cols-2">
           <SelectField name="gender" label="Open to" optional options={GENDER_OPTIONS} placeholder="Everyone" error={errors.gender} />
@@ -143,14 +148,14 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
                 <Field name={`session_end-${i}`} label="Ends" error={sessionError("end", i)}>
                   <input id={`session_end-${i}`} name="session_end" type="date" className={INPUT} {...invalid(`session_end-${i}`, sessionError("end", i))} />
                 </Field>
-                <Field name={`session_price-${i}`} label="Price for these dates" optional error={sessionError("price", i)}>
+                <Field name={`session_price-${i}`} label="Price" optional error={sessionError("price", i)}>
                   <input id={`session_price-${i}`} name="session_price" type="number" min={0} step="any" inputMode="decimal" className={INPUT} {...invalid(`session_price-${i}`, sessionError("price", i))} />
                 </Field>
                 <button
                   type="button"
                   onClick={() => setRows(rows.filter((r) => r !== row))}
                   disabled={rows.length === 1}
-                  className="self-end rounded-full px-3 py-2.5 text-[0.9375rem] font-semibold text-ink-soft hover:text-ink disabled:invisible"
+                  className="self-end rounded-full px-3 py-2.5 text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:bg-mist hover:text-ink disabled:invisible"
                   aria-label={`Remove date ${i + 1}`}
                 >
                   Remove
@@ -162,7 +167,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
             <button
               type="button"
               onClick={() => setRows([...rows, newRow()])}
-              className="mt-3 rounded-full border border-ink px-4 py-2 text-[0.9375rem] font-semibold hover:bg-mist"
+              className={`mt-3 px-4 py-2 text-[0.9375rem] ${BTN_OUTLINE}`}
             >
               Add another date
             </button>
@@ -193,7 +198,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         </div>
         <SelectField name="accommodation_type" label="Accommodation" optional options={ACCOMMODATION_OPTIONS} error={errors.accommodation_type} />
         <details className="group rounded-2xl border border-rule p-5">
-          <summary className="cursor-pointer font-semibold">Player ratings (optional)</summary>
+          <summary className="font-semibold transition-colors hover:text-ink-soft">Player ratings (optional)</summary>
           <p className="mt-1 text-[0.875rem] text-ink-soft">If the program asks for a rating range: DUPR for pickleball, UTR or NTRP for tennis.</p>
           <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {(
@@ -244,7 +249,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
           <button
             type="submit"
             disabled={pending || !verified}
-            className="rounded-full bg-ink px-6 py-3 text-[1rem] font-semibold text-white hover:bg-ink/90 disabled:cursor-not-allowed disabled:opacity-50"
+            className={`px-6 py-3 text-[1rem] ${BTN_DARK}`}
           >
             {pending ? "Sending…" : "Send for review"}
           </button>

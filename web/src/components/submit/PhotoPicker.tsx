@@ -95,7 +95,7 @@ export function PhotoPicker({ photos, onChange, error }: { photos: PickedPhoto[]
                 type="button"
                 onClick={() => remove(p.id)}
                 aria-label={`Remove photo ${i + 1}`}
-                className="absolute top-2 right-2 grid size-7 place-items-center rounded-full bg-white shadow hover:bg-mist"
+                className="absolute top-2 right-2 grid size-7 place-items-center rounded-full bg-white shadow transition-colors hover:bg-ink hover:text-white"
               >
                 <svg viewBox="0 0 12 12" className="size-2.5" aria-hidden="true">
                   <path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -115,7 +115,7 @@ export function PhotoPicker({ photos, onChange, error }: { photos: PickedPhoto[]
             multiple
             disabled={busy}
             onChange={(e) => add(e.target.files)}
-            className="block w-full text-[0.9375rem] file:mr-3 file:rounded-full file:border file:border-ink file:bg-white file:px-4 file:py-2 file:font-semibold hover:file:bg-mist"
+            className="block w-full text-[0.9375rem] file:mr-3 file:rounded-full file:border file:border-rule file:bg-white file:px-4 file:py-2 file:font-semibold file:transition-colors hover:file:border-ink hover:file:bg-mist"
             {...invalid("photos", error)}
           />
           {busy && <p className="mt-1.5 text-[0.875rem] text-ink-soft">Preparing photos…</p>}

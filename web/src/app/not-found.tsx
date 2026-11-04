@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BTN_PRIMARY } from "@/lib/ui";
 import { Court } from "@/components/Court";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -20,7 +21,7 @@ export default function NotFound() {
         <p className="mt-3 max-w-[50ch] text-[1.0625rem] text-ink-soft">
           It may have moved, or the trip is no longer listed.
         </p>
-        <Link href="/" className="mt-7 inline-flex h-14 items-center rounded-full bg-ball px-7 font-extrabold text-ink hover:brightness-95">
+        <Link href="/" className={`mt-7 h-14 px-7 ${BTN_PRIMARY}`}>
           Back to all trips
         </Link>
       </main>

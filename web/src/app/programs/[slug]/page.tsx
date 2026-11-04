@@ -8,7 +8,8 @@ import { CourtFacts } from "@/components/program/CourtFacts";
 import { DateTable } from "@/components/program/DateTable";
 import { Gallery } from "@/components/program/Gallery";
 import { VenueBlock } from "@/components/program/VenueBlock";
-import { CATEGORY_NAMES, hostOf, placeLabel } from "@/lib/format";
+import { CategoryIcon, InclusionIcon, LevelIcon, PinIcon } from "@/components/icons";
+import { CATEGORY_NAMES, PRICE_UNIT_NAMES, levelLabel, placeLabel } from "@/lib/format";
 import { getProgram, getVenue, programSlugs } from "@/lib/db";
 import { SPORT_NAMES, type ProgramDetail, type Sport } from "@/lib/sports";
 
@@ -54,23 +55,39 @@ export default async function ProgramPage({ params, searchParams }: Props) {
   const venue = program.venueSlug ? await getVenue(program.venueSlug) : null;
 
   return (
-    <div className="on-paper pb-28 lg:pb-20">
+    <div className="on-paper pb-24 lg:pb-0">
       <Header />
       <main className="mx-auto max-w-[1280px] px-4 sm:px-8">
-        <Link href={`/?sport=${sport}`} className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink hover:underline">
+        <Link href={`/?sport=${sport}`} className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:text-ink">
+          <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true">
+            <path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
           All {SPORT_NAMES[sport].toLowerCase()} trips
         </Link>
         <h1 className="mt-3 max-w-[22ch] text-[2.25rem] leading-[1] font-black tracking-[-0.035em] text-balance sm:text-[3rem]">
           {program.title}
         </h1>
-        <p className="mt-3 text-[1rem] text-ink-soft">
-          {CATEGORY_NAMES[program.category]} in {placeLabel(program)}. Run by{" "}
-          <span className="font-semibold text-ink">{program.organizer}</span>.
-        </p>
+        <ul className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.9375rem]">
+          <li className="flex items-center gap-2 font-semibold">
+            <CategoryIcon category={program.category} />
+            {CATEGORY_NAMES[program.category]}
+          </li>
+          <li className="flex items-center gap-2">
+            <LevelIcon level={program.level} />
+            {levelLabel(program.level)}
+          </li>
+          <li className="flex items-center gap-2">
+            <PinIcon className="size-5 text-ink-soft" />
+            {placeLabel(program)}
+          </li>
+          <li className="text-ink-soft">
+            Run by <span className="font-semibold text-ink">{program.organizer}</span>
+          </li>
+        </ul>
 
         <Gallery photos={program.photos} sport={sport} title={program.title} />
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_380px]">
+        <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="min-w-0">
             <CourtFacts program={program} session={session} sport={sport} />
 
@@ -85,10 +102,10 @@ export default async function ProgramPage({ params, searchParams }: Props) {
 
             {program.inclusions.length > 0 && (
               <Section title="What the price includes">
-                <ul className="grid max-w-[640px] gap-x-8 gap-y-2.5 sm:grid-cols-2">
+                <ul className="grid max-w-[640px] gap-x-8 gap-y-3 sm:grid-cols-2">
                   {program.inclusions.map((item) => (
-                    <li key={item} className="flex items-baseline gap-3 text-[1rem]">
-                      <span aria-hidden="true" className="h-[2px] w-3 shrink-0 translate-y-[-3px] bg-ink" />
+                    <li key={item} className="flex items-center gap-3 text-[1rem]">
+                      <InclusionIcon item={item} className="size-6" />
                       <span className="first-letter:uppercase">{item}</span>
                     </li>
                   ))}
@@ -97,6 +114,13 @@ export default async function ProgramPage({ params, searchParams }: Props) {
             )}
 
             <Section title="Dates and prices" id="dates">
+              {/* the table lists bare amounts, so say what they cover: the operator's own notes if
+                  there are any, else the price unit */}
+              {program.sessions.length > 0 && (program.priceNotes || program.priceUnit) && (
+                <p className="mb-3 max-w-[65ch] text-[0.9375rem] text-ink-soft">
+                  {program.priceNotes ?? `Prices are ${PRICE_UNIT_NAMES[program.priceUnit!]}.`}
+                </p>
+              )}
               <DateTable program={program} selected={session?.start ?? null} />
             </Section>
 
@@ -105,13 +129,6 @@ export default async function ProgramPage({ params, searchParams }: Props) {
                 <VenueBlock program={program} venue={venue} sport={sport} />
               </Section>
             )}
-
-            <p className="mt-12 max-w-[65ch] border-t border-rule pt-6 text-[0.875rem] leading-relaxed text-ink-soft">
-              {program.priceNotes && <>{program.priceNotes} </>}
-              Details checked on {new Date(program.checkedAt).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}{" "}
-              from <a href={program.sourceUrl} className="underline hover:text-ink">{hostOf(program.sourceUrl)}</a>.
-              You book and pay with {program.organizer} directly; Court Trips doesn&apos;t take payment.
-            </p>
           </div>
 
           <aside className="hidden lg:block">
@@ -129,8 +146,8 @@ export default async function ProgramPage({ params, searchParams }: Props) {
 
 function Section({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) {
   return (
-    <section id={id} className="mt-12 scroll-mt-6">
-      <h2 className="mb-5 text-[1.375rem] font-extrabold tracking-[-0.02em]">{title}</h2>
+    <section id={id} className="mt-10 scroll-mt-6">
+      <h2 className="mb-4 text-[1.375rem] font-extrabold tracking-[-0.02em]">{title}</h2>
       {children}
     </section>
   );

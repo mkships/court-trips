@@ -2,7 +2,7 @@
 
 import { SafeImage } from "@/components/SafeImage";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Court } from "@/components/Court";
 import { SURFACES } from "@/lib/surfaces";
 import { dateRange, placeLabel, priceFrom } from "@/lib/format";
@@ -33,7 +33,7 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
               type="button"
               aria-pressed={sport === value}
               onClick={() => onSportChange(value)}
-              className="rounded-full border border-white/40 px-4 py-1.5 text-[0.9375rem] font-semibold hover:border-white aria-pressed:border-white aria-pressed:bg-white aria-pressed:text-ink"
+              className="rounded-full border border-white/40 px-4 py-1.5 text-[0.9375rem] font-semibold transition-colors hover:border-white hover:bg-white/15 aria-pressed:border-white aria-pressed:bg-white aria-pressed:text-ink"
             >
               {SPORT_NAMES[value]}
             </button>
@@ -71,19 +71,50 @@ function whereLabel(countries: string[]) {
 }
 
 const SWIPE_PX = 40;
+// long enough to read the trip's name, place and price before it moves on
+const AUTOPLAY_MS = 6000;
 
 function FeaturedPhotos({ featured }: { featured: Listing[] }) {
   const [index, setIndex] = useState(0);
+  // the carousel moves on by itself unless the visitor prefers less motion or presses pause
+  const [playing, setPlaying] = useState(false);
+  // and holds still while someone is pointing at it or using its controls
+  const [held, setHeld] = useState(false);
   const touchX = useRef<number | null>(null);
   const current = featured[index];
   const step = (by: number) => setIndex((i) => (i + by + featured.length) % featured.length);
+  const moving = playing && !held && featured.length > 1;
+
+  useEffect(() => {
+    setPlaying(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  // restarts on every change of slide, so a manual step gets a full interval too
+  useEffect(() => {
+    if (!moving) return;
+    // in a background tab, wait for another interval rather than move on unseen
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => (document.hidden ? (timer = setTimeout(tick, AUTOPLAY_MS)) : step(1));
+    timer = setTimeout(tick, AUTOPLAY_MS);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- step only reads featured.length
+  }, [moving, index, featured.length]);
 
   return (
     <section
       aria-label="Featured trips"
+      aria-roledescription="carousel"
       className="relative aspect-[4/3] touch-pan-y bg-ink md:aspect-auto"
-      onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+      onMouseEnter={() => setHeld(true)}
+      onMouseLeave={() => setHeld(false)}
+      onFocus={() => setHeld(true)}
+      onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setHeld(false)}
+      onTouchStart={(e) => {
+        touchX.current = e.touches[0].clientX;
+        setHeld(true);
+      }}
       onTouchEnd={(e) => {
+        setHeld(false);
         if (touchX.current == null) return;
         const dx = e.changedTouches[0].clientX - touchX.current;
         if (Math.abs(dx) > SWIPE_PX) step(dx < 0 ? 1 : -1);
@@ -93,7 +124,7 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
       {featured.map((listing, i) => (
         <div
           key={listing.key}
-          className="absolute inset-0 transition-opacity duration-500 motion-reduce:transition-none"
+          className="absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none"
           style={{ opacity: i === index ? 1 : 0 }}
         >
           <SafeImage
@@ -110,11 +141,12 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
       <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7 md:pr-60 md:pb-16">
-        <div aria-live="polite">
+        {/* announced when someone steps through it, not every few seconds while it plays */}
+        <div aria-live={moving ? "off" : "polite"}>
           <p className="text-[0.9375rem] text-white/85">{placeLabel(current)}</p>
           <Link
             href={tileHref(current)}
-            className="mt-1 block text-[1.5rem] leading-tight font-extrabold tracking-[-0.02em] hover:underline sm:text-[1.75rem]"
+            className="mt-1 block text-[1.5rem] leading-tight font-extrabold tracking-[-0.02em] underline decoration-transparent decoration-2 underline-offset-4 transition-colors hover:decoration-white sm:text-[1.75rem]"
           >
             {current.title}
           </Link>
@@ -130,6 +162,28 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
           <span className="mr-1 rounded-full bg-black/35 px-2.5 py-1 text-[0.8125rem] text-white tabular-nums md:bg-transparent md:px-0 md:text-white/80">
             {index + 1} of {featured.length}
           </span>
+          <div className="relative">
+            <RoundButton label={playing ? "Pause featured trips" : "Play featured trips"} onClick={() => setPlaying(!playing)}>
+              {playing ? <path d="M5.5 3.5v9M10.5 3.5v9" /> : <path d="M5.5 3.2v9.6L12.5 8 5.5 3.2Z" fill="currentColor" />}
+            </RoundButton>
+            {/* time until the next trip, drawn round the button; starts over on each slide and after a pause */}
+            {moving && (
+              <svg key={index} viewBox="0 0 44 44" className="pointer-events-none absolute -inset-0.5 -rotate-90" aria-hidden="true">
+                <circle
+                  cx="22"
+                  cy="22"
+                  r="20.5"
+                  fill="none"
+                  stroke="var(--color-ball)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  pathLength="100"
+                  strokeDasharray="100"
+                  style={{ animation: `carousel-progress ${AUTOPLAY_MS}ms linear forwards` }}
+                />
+              </svg>
+            )}
+          </div>
           <ArrowButton direction="previous" onClick={() => step(-1)} />
           <ArrowButton direction="next" onClick={() => step(1)} />
         </div>
@@ -138,24 +192,25 @@ function FeaturedPhotos({ featured }: { featured: Listing[] }) {
   );
 }
 
-function ArrowButton({ direction, onClick }: { direction: "previous" | "next"; onClick: () => void }) {
+function RoundButton({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={direction === "next" ? "Next featured trip" : "Previous featured trip"}
-      className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-ink hover:bg-white"
+      aria-label={label}
+      className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-ink shadow-sm transition-colors hover:bg-ball"
     >
-      <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden="true">
-        <path
-          d={direction === "next" ? "M6 3l5 5-5 5" : "M10 3 5 8l5 5"}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
+      <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        {children}
       </svg>
     </button>
+  );
+}
+
+function ArrowButton({ direction, onClick }: { direction: "previous" | "next"; onClick: () => void }) {
+  return (
+    <RoundButton label={direction === "next" ? "Next featured trip" : "Previous featured trip"} onClick={onClick}>
+      <path d={direction === "next" ? "M6 3l5 5-5 5" : "M10 3 5 8l5 5"} />
+    </RoundButton>
   );
 }

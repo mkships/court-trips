@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Mode } from "@/lib/sports";
+import { BTN_OUTLINE } from "@/lib/ui";
 
 const MODES: [Mode, string][] = [
   ["programs", "Programs"],
@@ -31,7 +32,7 @@ export function Header({
               type="button"
               aria-pressed={mode === value}
               onClick={() => onModeChange(value)}
-              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] hover:text-ink hover:decoration-rule aria-pressed:text-ink aria-pressed:decoration-ink"
+              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] transition-colors hover:text-ink hover:decoration-ink/25 aria-pressed:text-ink aria-pressed:decoration-ink"
             >
               {label}
             </button>
@@ -40,7 +41,7 @@ export function Header({
               key={value}
               href={value === "places" ? "/?type=places" : "/"}
               aria-current={mode === value ? "page" : undefined}
-              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] hover:text-ink hover:decoration-rule aria-[current=page]:text-ink aria-[current=page]:decoration-ink"
+              className="px-4 py-2 text-[0.9375rem] font-semibold text-ink-soft underline decoration-transparent decoration-2 underline-offset-[10px] transition-colors hover:text-ink hover:decoration-ink/25 aria-[current=page]:text-ink aria-[current=page]:decoration-ink"
             >
               {label}
             </Link>
@@ -50,7 +51,7 @@ export function Header({
       {/* travellers don't need accounts; this is the only way in for operators */}
       <Link
         href="/list-your-program"
-        className="col-start-2 row-start-1 justify-self-end rounded-full border border-rule px-4 py-2 text-[0.9375rem] font-semibold hover:border-ink md:col-start-3"
+        className={`col-start-2 row-start-1 justify-self-end px-4 py-2 text-[0.9375rem] md:col-start-3 ${BTN_OUTLINE}`}
       >
         List your program
       </Link>
