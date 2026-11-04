@@ -7,7 +7,7 @@
 #                      the summary is emailed (RESEND_API_KEY and SUBMISSIONS_NOTIFY_TO in web/.env.local)
 #
 # Everything is logged to harvest/.cache/logs/. Needs node, npm and claude on PATH, and web/.env.local
-# with DATABASE_URL (production's, to update the live site) and BLOB_READ_WRITE_TOKEN (for photos).
+# with HARVEST_DATABASE_URL (production's, to update the live site) and BLOB_READ_WRITE_TOKEN (for photos).
 set -uo pipefail
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 LOGS="$REPO/harvest/.cache/logs"

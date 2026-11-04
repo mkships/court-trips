@@ -2,7 +2,9 @@
 // Prints archived programs (rejected or retired on purpose) so /harvest doesn't write them again.
 import { neon } from "@neondatabase/serverless";
 
-const url = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+// HARVEST_DATABASE_URL: the database the harvest updates (production's), kept apart from the
+// DATABASE_URL local development uses (the Neon dev branch)
+const url = process.env.HARVEST_DATABASE_URL || process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
 if (!url) {
   console.log("no DATABASE_URL: can't check archived programs; harvest:import skips them anyway");
   process.exit(0);

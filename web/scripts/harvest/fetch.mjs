@@ -33,7 +33,9 @@ const sources = (await readSources()).filter(
 );
 
 // each harvested program's own page too: dates and prices change there, not on the listing page
-const dbUrl = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+// HARVEST_DATABASE_URL: the database the harvest updates (production's), kept apart from the
+// DATABASE_URL local development uses (the Neon dev branch)
+const dbUrl = process.env.HARVEST_DATABASE_URL || process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
 let programPages = [];
 if (dbUrl && !region && !match) {
   const rows = await neon(dbUrl)`

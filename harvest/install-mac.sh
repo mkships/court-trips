@@ -22,7 +22,7 @@ NODE="$(command -v node || true)"
 CLAUDE="$(command -v claude || true)"
 [ -n "$NODE" ] || { echo "node isn't on your PATH. Install Node.js 20+ first."; exit 1; }
 [ -n "$CLAUDE" ] || { echo "claude isn't on your PATH. Install Claude Code and sign in (run claude once) first."; exit 1; }
-[ -f "$REPO/web/.env.local" ] || { echo "web/.env.local is missing; the refresh needs DATABASE_URL there."; exit 1; }
+[ -f "$REPO/web/.env.local" ] || { echo "web/.env.local is missing; the refresh needs HARVEST_DATABASE_URL there."; exit 1; }
 case "$REPO" in
   "$HOME/Documents"*|"$HOME/Desktop"*|"$HOME/Downloads"*)
     echo "Note: macOS stops scheduled jobs reading Documents, Desktop and Downloads unless /bin/bash has Full Disk"

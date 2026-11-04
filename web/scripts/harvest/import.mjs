@@ -29,9 +29,11 @@ import { today, validate, validateVenue } from "./validate.mjs";
 const WEB = path.dirname(path.dirname(path.dirname(new URL(import.meta.url).pathname)));
 const dryRun = process.argv.includes("--dry-run");
 const email = process.argv.includes("--email");
-const url = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+// HARVEST_DATABASE_URL: the database the harvest updates (production's), kept apart from the
+// DATABASE_URL local development uses (the Neon dev branch)
+const url = process.env.HARVEST_DATABASE_URL || process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
 if (!url) {
-  console.error("DATABASE_URL is not set. Run from web/ with .env.local in place (npx neon checkout <branch>).");
+  console.error("No database: set HARVEST_DATABASE_URL (production's, for the live site) or DATABASE_URL in web/.env.local.");
   process.exit(1);
 }
 const sql = neon(url);

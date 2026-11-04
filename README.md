@@ -125,7 +125,7 @@ bash harvest/install-mac.sh
 
 Before installing, check these on the Mac:
 - Node 20+ and Claude Code are installed, and you're signed in (run `claude` once).
-- `web/.env.local` has `DATABASE_URL` for the database to update (production's, for the live site), `BLOB_READ_WRITE_TOKEN`, `RESEND_API_KEY` and `SUBMISSIONS_NOTIFY_TO`.
+- `web/.env.local` has `HARVEST_DATABASE_URL` (production's database URL, from Vercel → Storage → your Neon database; the harvest only writes hidden drafts and the safe changes above), `BLOB_READ_WRITE_TOKEN`, `RESEND_API_KEY` and `SUBMISSIONS_NOTIFY_TO`. `DATABASE_URL` can stay on the dev branch for local work.
 - The repo isn't in Documents, Desktop or Downloads, which macOS blocks for scheduled jobs (or give `/bin/bash` Full Disk Access).
 
 Run it now with `launchctl kickstart gui/$(id -u)/com.courttrips.refresh`; remove it with `bash harvest/install-mac.sh uninstall`.
