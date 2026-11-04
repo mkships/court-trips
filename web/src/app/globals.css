@@ -13,6 +13,8 @@
   --color-mist: #f2f4f7;
   --color-ball: #dcf343;
   --color-line: #ffffff;
+  /* form errors */
+  --color-alert: #b3261e;
 
   --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
 }

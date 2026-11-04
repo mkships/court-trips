@@ -27,6 +27,11 @@ export function Footer() {
                 Places to stay
               </Link>
             </li>
+            <li>
+              <Link href="/list-your-program" className="hover:underline">
+                List your program
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
