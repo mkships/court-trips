@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "slug": "spain-padel-experiences-camp-marbella",
+    "source_url": "https://www.spainpadelexperiences.com/camps/marbella",
+    "listing_url": "https://www.spainpadelexperiences.com/mallorca-padel-camps",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Four-day padel camp in Marbella",
+    "organizer": "Spain Padel Experiences",
+    "description": "A Thursday-to-Sunday padel camp in Marbella for all levels: six hours of small-group training with match play between clubs, with three nights in a 4-star hotel and breakfast as an option.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.spainpadelexperiences.com/camps/marbella",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "padel"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Spain",
+    "city_region": "Marbella",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": 36.51,
+    "lng": -4.89
+  },
+  "sessions": [
+    {
+      "start_date": "2026-11-12",
+      "end_date": "2026-11-15",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-01-28",
+      "end_date": "2027-01-31",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-02-11",
+      "end_date": "2027-02-14",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-02-25",
+      "end_date": "2027-02-28",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-03-11",
+      "end_date": "2027-03-14",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-03-18",
+      "end_date": "2027-03-21",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-03-25",
+      "end_date": "2027-03-28",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-04-08",
+      "end_date": "2027-04-11",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-04-15",
+      "end_date": "2027-04-18",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-04-22",
+      "end_date": "2027-04-25",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-05-06",
+      "end_date": "2027-05-09",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-05-13",
+      "end_date": "2027-05-16",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-05-20",
+      "end_date": "2027-05-23",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-06-03",
+      "end_date": "2027-06-06",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-06-10",
+      "end_date": "2027-06-13",
+      "status": "available"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 399,
+    "price_max": 849,
+    "currency": "EUR",
+    "price_unit": "per_person",
+    "price_notes": "Thursday to Sunday. €399 for the training only; €699pp with three nights in a 4-star hotel sharing a double room, €849 in a single room. High season €749pp.",
+    "inclusions": [
+      "6 hours group training",
+      "3 nights in a 4-star hotel",
+      "breakfast",
+      "match play"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 6,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "partner_hotel"
+  },
+  "media": {
+    "thumbnail": "https://static.wixstatic.com/media/2ebcf1_3f57c5b4519141c984d508560b57c92d~mv2.jpg",
+    "images": [
+      "https://static.wixstatic.com/media/2ebcf1_3f57c5b4519141c984d508560b57c92d~mv2.jpg",
+      "https://static.wixstatic.com/media/50af51_df1f19642a0e4652986eaf3cf180254c~mv2.jpg"
+    ]
+  }
+}

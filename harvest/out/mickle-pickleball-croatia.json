@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "slug": "mickle-pickleball-croatia",
+    "source_url": "https://micklepickleballtrips.com/all-trips/croatia/",
+    "listing_url": "https://micklepickleballtrips.com/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.7
+  },
+  "core_identity": {
+    "title": "Pickleball trip to Split and Dubrovnik",
+    "organizer": "Mickle Pickleball Trips",
+    "description": "Ten days on the Croatian coast: seven days of pickleball open play, instruction and friendly competition, seven nights in Split and two in Dubrovnik in 4-star hotels, five group meals and guided tours.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://micklepickleballtrips.com/all-trips/croatia/",
+    "contact_email": "info@micklepickleballtrips.com",
+    "contact_phone": "+1 949-732-0882"
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Croatia",
+    "city_region": "Split and Dubrovnik",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": 43.51,
+    "lng": 16.44
+  },
+  "sessions": [
+    {
+      "start_date": "2027-06-09",
+      "end_date": "2027-06-18",
+      "status": "available"
+    },
+    {
+      "start_date": "2027-09-01",
+      "end_date": "2027-09-10",
+      "status": "available"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 5290,
+    "price_max": 5290,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "From US$5,290 per person sharing. Flights not included. Playing level isn't stated.",
+    "inclusions": [
+      "9 nights in 4-star hotels",
+      "7 days of pickleball",
+      "daily breakfast",
+      "5 group meals",
+      "guided tours"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "partner_hotel"
+  },
+  "media": {
+    "thumbnail": "https://micklepickleballtrips.com/wp-content/uploads/2025/08/Split-Waterfront-Mickle-Pickleball-Trips-Croatia-1-1024x708.jpg",
+    "images": [
+      "https://micklepickleballtrips.com/wp-content/uploads/2025/08/Split-Waterfront-Mickle-Pickleball-Trips-Croatia-1-1024x708.jpg",
+      "https://micklepickleballtrips.com/wp-content/uploads/2026/01/Dubrovnik-Marina-Mickle-Pickleball-Trips-Croatia_result-1024x532.jpg"
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "id": "1f1429da-de4a-5516-9bae-229e2227859a",
+    "slug": "st-georges-hill-grass-court-clinic",
+    "source_url": "https://activeaway.com/tennis-clinic/adult-outdoor-grass-court-tennis-clinic-st-georges-hill",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 1.0,
+    "listing_url": "https://activeaway.com/tennis-clinic/adult-outdoor-grass-court-tennis-clinic-st-georges-hill"
+  },
+  "core_identity": {
+    "title": "Grass-court doubles clinic at St George's Hill",
+    "organizer": "Active Away",
+    "description": "A one-day doubles clinic on four side-by-side natural grass courts at St George's Hill Lawn Tennis Club, following Jamie Murray's doubles programme. Five hours on court, six players per coach.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://activeaway.com/tennis-clinic/adult-outdoor-grass-court-tennis-clinic-st-georges-hill",
+    "contact_email": "hello@activeaway.com",
+    "contact_phone": "+44 20 7965 7277"
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "clinic",
+    "theme": [
+      "group"
+    ],
+    "gender": "mixed",
+    "level": [
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United Kingdom",
+    "city_region": "Weybridge, Surrey",
+    "venue_name": "St George's Hill Lawn Tennis Club",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2027-08-28",
+      "end_date": "2027-08-28",
+      "status": "available",
+      "duration_days": 1,
+      "booking_url": "https://activeaway.com/book/events/tennis-clinic-st-georges-hill-saturday-28-august-2027"
+    },
+    {
+      "start_date": "2027-08-29",
+      "end_date": "2027-08-29",
+      "status": "available",
+      "duration_days": 1,
+      "booking_url": "https://activeaway.com/book/events/tennis-clinic-st-georges-hill-sunday-29-august-2027"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 199,
+    "price_max": 398,
+    "currency": "GBP",
+    "price_unit": "per_person",
+    "price_notes": "£199 per day or £398 for both days. Open to players rating 2–6 on Active Away's self-rating guide.",
+    "inclusions": [
+      "5 hours coaching per day",
+      "video takeaways"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [
+      "Grass"
+    ],
+    "coaching_hours_total": 5,
+    "player_to_coach_ratio": "6:1",
+    "capacity": null,
+    "accommodation_type": "not_included"
+  },
+  "media": {
+    "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/ST-GEORGES-HILL-LTC-GRASS-COURT-CLINIC-HEADER.jpg/w=1920,format=auto,quality=80",
+    "images": [
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/ST-GEORGES-HILL-LTC-GRASS-COURT-CLINIC-HEADER.jpg/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/c6e58a61-423f-408a-99d4-2d89e7f32300/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/f9bdac60-efad-4cfd-0a58-ef2c44bbb700/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/eacf0c7a-c1d9-4430-ea84-ee5b6d383900/w=1920,format=auto,quality=80"
+    ]
+  }
+}

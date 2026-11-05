@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "id": "9152dcf1-3740-533f-a526-752e7257b0b7",
+    "slug": "lensbury-tennis-weekend",
+    "source_url": "https://activeaway.com/tennis-holiday/adult-uk-tennis-break-4-the-lensbury",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 1.0,
+    "listing_url": "https://activeaway.com/venues?types=tennis-holiday"
+  },
+  "core_identity": {
+    "title": "Tennis weekend at The Lensbury",
+    "organizer": "Active Away",
+    "description": "Two nights at the four-star Lensbury on the Thames in Teddington, with 11 hours of coaching built on Jamie Murray's programme and organised group meals.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://activeaway.com/tennis-holiday/adult-uk-tennis-break-4-the-lensbury",
+    "contact_email": "hello@activeaway.com",
+    "contact_phone": "+44 20 7965 7277"
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "social_getaway",
+    "theme": [
+      "group"
+    ],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United Kingdom",
+    "city_region": "Teddington, London",
+    "venue_name": "The Lensbury",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2027-07-09",
+      "end_date": "2027-07-11",
+      "status": "available",
+      "duration_days": 3,
+      "booking_url": "https://activeaway.com/book/events/the-lensbury-9-july-2027-11-july-2027-tennis"
+    },
+    {
+      "start_date": "2027-07-16",
+      "end_date": "2027-07-18",
+      "status": "available",
+      "duration_days": 3,
+      "booking_url": "https://activeaway.com/book/events/the-lensbury-16-july-2027-18-july-2027-tennis"
+    },
+    {
+      "start_date": "2027-08-06",
+      "end_date": "2027-08-08",
+      "status": "available",
+      "duration_days": 3,
+      "booking_url": "https://activeaway.com/book/events/the-lensbury-6-august-2027-8-august-2027-tennis"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 549,
+    "price_max": 549,
+    "currency": "GBP",
+    "price_unit": "per_person_sharing",
+    "price_notes": "£549 per person in a classic double or twin room, bed and breakfast.",
+    "inclusions": [
+      "accommodation",
+      "breakfast",
+      "daily coaching",
+      "hosting"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 11,
+    "player_to_coach_ratio": "6:1",
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/0a314657-9bfa-4d64-3d06-2ee93a34f100/w=1920,format=auto,quality=80",
+    "images": [
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/0a314657-9bfa-4d64-3d06-2ee93a34f100/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/Lensbury-Main-Header.jpg/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/a9b6ac37-68e5-42c6-4e19-da8abd1e9300/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/c7c5b233-aa11-4e2c-5a33-add9e6dec100/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/6a686b6c-b29b-45d7-4ad5-33f57bb77e00/w=1920,format=auto,quality=80"
+    ]
+  }
+}

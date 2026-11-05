@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "id": "99e49d46-e7b0-5c57-9a6c-15e214583b2a",
+    "slug": "sani-beach-tennis-holiday",
+    "source_url": "https://activeaway.com/tennis-holiday/adult-tennis-holiday-5-sani-beach-hotel",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 1.0,
+    "listing_url": "https://activeaway.com/venues?types=tennis-holiday"
+  },
+  "core_identity": {
+    "title": "Tennis week at Sani Beach",
+    "organizer": "Active Away",
+    "description": "A week on Halkidiki at Sani Resort, home of the Rafa Nadal Tennis Centre and its eight red clay courts. 22.5 hours of coaching, full board and dine-around access to the resort's restaurants.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://activeaway.com/tennis-holiday/adult-tennis-holiday-5-sani-beach-hotel",
+    "contact_email": "hello@activeaway.com",
+    "contact_phone": "+44 20 7965 7277"
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "social_getaway",
+    "theme": [
+      "couples",
+      "group"
+    ],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Greece",
+    "city_region": "Kassandra, Halkidiki",
+    "venue_name": "Sani Beach Hotel, Sani Resort",
+    "venue_slug": "sani-resort",
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2027-05-01",
+      "end_date": "2027-05-08",
+      "status": "available",
+      "price_override": 2159,
+      "duration_days": 8,
+      "booking_url": "https://activeaway.com/book/events/adult-tennis-holiday-sani-beach-01-08-may-2027"
+    },
+    {
+      "start_date": "2027-05-08",
+      "end_date": "2027-05-15",
+      "status": "available",
+      "price_override": 2199,
+      "duration_days": 8,
+      "booking_url": "https://activeaway.com/book/events/adult-tennis-holiday-sani-beach-08-15-may-2027"
+    },
+    {
+      "start_date": "2027-05-15",
+      "end_date": "2027-05-22",
+      "status": "sold_out",
+      "price_override": 2624,
+      "duration_days": 8
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 2159,
+    "price_max": 2624,
+    "currency": "GBP",
+    "price_unit": "per_person_sharing",
+    "price_notes": "Per person based on two sharing. Non-players get £200 off.",
+    "inclusions": [
+      "accommodation",
+      "full board",
+      "daily coaching",
+      "hosting",
+      "resort credit"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [
+      "Clay"
+    ],
+    "coaching_hours_total": 22.5,
+    "player_to_coach_ratio": "6:1",
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/dbfd965c-b7aa-4497-d1c6-da49a9b26f00/w=1920,format=auto,quality=80",
+    "images": [
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/dbfd965c-b7aa-4497-d1c6-da49a9b26f00/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/3da1f35a-a894-46e6-f061-321e5b5d9a00/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/b43bd01f-633d-4171-c51c-b9972f785800/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/784ee961-81c8-4b6b-b584-f0dab161ed00/w=1920,format=auto,quality=80"
+    ]
+  }
+}

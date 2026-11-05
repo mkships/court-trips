@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "slug": "mark-warner-classic-padel-course-paleros",
+    "source_url": "https://www.markwarner.co.uk/activity-holidays/tennis-and-padel/padel/",
+    "listing_url": "https://www.markwarner.co.uk/activity-holidays/tennis-and-padel/padel/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Classic padel course at Paleros Beach Resort",
+    "organizer": "Mark Warner",
+    "description": "Three 90-minute padel lessons over a week for players who already play at home, on the resort's two padel courts, with a weekly doubles tournament and evening social play.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.markwarner.co.uk/activity-holidays/tennis-and-padel/padel/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "padel"
+    ],
+    "category": "clinic",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Greece",
+    "city_region": "Paleros, Ionian Coast",
+    "venue_name": "Paleros Beach Resort",
+    "venue_slug": null,
+    "lat": 38.78,
+    "lng": 20.88
+  },
+  "sessions": [],
+  "schedule_notes": "Runs weekly through the summer season; 2027 dates to be announced.",
+  "pricing": {
+    "price_min": 90,
+    "price_max": 90,
+    "currency": "GBP",
+    "price_unit": "per_person",
+    "price_notes": "£90 pre-booked, on top of a Mark Warner holiday. Up to 6 players per course; over-13s.",
+    "inclusions": [
+      "3 × 90-minute lessons",
+      "weekly doubles tournament",
+      "evening social play"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 4.5,
+    "player_to_coach_ratio": null,
+    "capacity": 6,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "slug": "rafa-nadal-academy-christmas-tennis-camp",
+    "source_url": "https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/tennis-camps-for-adults-during-holiday-periods/christmas-tennis-camp-adult/",
+    "listing_url": "https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Christmas tennis camp at the Rafa Nadal Academy",
+    "organizer": "Rafa Nadal Academy",
+    "description": "A Sunday-to-Sunday week over Christmas at the Rafa Nadal Academy: 12 hours of small-group technical training (four players per court), 4.5 hours of physical preparation, a Christmas Challenge and seven nights at the Rafa Nadal Residence.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/tennis-camps-for-adults-during-holiday-periods/christmas-tennis-camp-adult/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Spain",
+    "city_region": "Manacor, Mallorca",
+    "venue_name": "Rafa Nadal Academy",
+    "venue_slug": null,
+    "lat": 39.57,
+    "lng": 3.2
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-20",
+      "end_date": "2026-12-27",
+      "status": "available"
+    },
+    {
+      "start_date": "2026-12-27",
+      "end_date": "2027-01-03",
+      "status": "available"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": "EUR",
+    "price_unit": null,
+    "price_notes": "Price on request from the academy; includes 7 nights at the Rafa Nadal Residence. For players over 18.",
+    "inclusions": [
+      "12 hours group coaching",
+      "4.5 hours physical preparation",
+      "Christmas Challenge",
+      "7 nights at the Rafa Nadal Residence"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 12,
+    "player_to_coach_ratio": "4:1",
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://www.rafanadalacademy.com/wp-content/uploads/2025/10/DSCF2388-copia-scaled-e1761735027739.jpg",
+    "images": [
+      "https://www.rafanadalacademy.com/wp-content/uploads/2025/10/DSCF2388-copia-scaled-e1761735027739.jpg"
+    ]
+  }
+}

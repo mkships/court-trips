@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "slug": "rafa-nadal-academy-premium-tennis-week",
+    "source_url": "https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/full-week-tennis-camps/premium-tennis-program/",
+    "listing_url": "https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Premium tennis week at the Rafa Nadal Academy",
+    "organizer": "Rafa Nadal Academy",
+    "description": "A week of private or duo coaching at the Rafa Nadal Academy in Manacor: 12 hours of personalised tennis from Monday to Saturday, 5 hours of physical preparation, two sports massages and seven nights at the Rafa Nadal Residence.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/full-week-tennis-camps/premium-tennis-program/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Spain",
+    "city_region": "Manacor, Mallorca",
+    "venue_name": "Rafa Nadal Academy",
+    "venue_slug": null,
+    "lat": 39.57,
+    "lng": 3.2
+  },
+  "sessions": [],
+  "schedule_notes": "Weekly all year.",
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": "EUR",
+    "price_unit": null,
+    "price_notes": "Price on request from the academy; includes 7 nights at the Rafa Nadal Residence. For players over 18.",
+    "inclusions": [
+      "12 hours private or duo coaching",
+      "5 hours physical preparation",
+      "2 sports massages",
+      "7 nights at the Rafa Nadal Residence"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 12,
+    "player_to_coach_ratio": "2:1",
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://www.rafanadalacademy.com/wp-content/uploads/2026/05/RNA_26092024_ExperienciaRNA_130-91-1-scaled-e1778079158243.jpg",
+    "images": [
+      "https://www.rafanadalacademy.com/wp-content/uploads/2026/05/RNA_26092024_ExperienciaRNA_130-91-1-scaled-e1778079158243.jpg"
+    ]
+  }
+}

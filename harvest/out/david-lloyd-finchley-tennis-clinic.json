@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "id": "769e86d3-46b5-571c-b8d5-407ac219a974",
+    "slug": "david-lloyd-finchley-tennis-clinic",
+    "source_url": "https://activeaway.com/tennis-clinic/adult-tennis-clinic-david-lloyd-finchley",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 1.0,
+    "listing_url": "https://activeaway.com/tennis-clinic/adult-tennis-clinic-david-lloyd-finchley"
+  },
+  "core_identity": {
+    "title": "Doubles clinic at David Lloyd Finchley",
+    "organizer": "Active Away",
+    "description": "Five hours of doubles coaching in North London using the Jamie Murray programme. Book one day or both days of the weekend.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://activeaway.com/tennis-clinic/adult-tennis-clinic-david-lloyd-finchley",
+    "contact_email": "hello@activeaway.com",
+    "contact_phone": "+44 20 7965 7277"
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "clinic",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United Kingdom",
+    "city_region": "Finchley, London",
+    "venue_name": "David Lloyd Finchley",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2027-07-24",
+      "end_date": "2027-07-24",
+      "status": "available",
+      "duration_days": 1,
+      "booking_url": "https://activeaway.com/book/events/tennis-clinic-david-lloyd-finchley-saturday-24-july-2027"
+    },
+    {
+      "start_date": "2027-07-25",
+      "end_date": "2027-07-25",
+      "status": "available",
+      "duration_days": 1,
+      "booking_url": "https://activeaway.com/book/events/tennis-clinic-david-lloyd-finchley-sunday-25-july-2027"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 119,
+    "price_max": 238,
+    "currency": "GBP",
+    "price_unit": "per_person",
+    "price_notes": "£119 per day or £238 for the weekend.",
+    "inclusions": [
+      "5 hours coaching per day",
+      "video takeaways"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 5,
+    "player_to_coach_ratio": "6:1",
+    "capacity": null,
+    "accommodation_type": "not_included"
+  },
+  "media": {
+    "thumbnail": "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/DL-FINCHLEY-HEADER.jpg/w=1920,format=auto,quality=80",
+    "images": [
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/DL-FINCHLEY-HEADER.jpg/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/5951c01a-ffc9-4bbd-c843-9575c1d30a00/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/74b8ef5c-74c5-4407-d9fd-f532889ed000/w=1920,format=auto,quality=80",
+      "https://activeaway.com/cdn-cgi/imagedelivery/-aT8Z2F9gGvZ9fdofZcCaQ/activeaway.com/DL-Finchley-Gallery-Group-Pic.jpg/w=1920,format=auto,quality=80"
+    ]
+  }
+}

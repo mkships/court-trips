@@ -1,0 +1,216 @@
+{
+  "pages": [
+    {
+      "url": "https://activeaway.com/venues?types=tennis-holiday",
+      "read": true,
+      "programs": [
+        "active-away-tennis-aphrodite-hills",
+        "active-away-tennis-daphnila-bay-corfu",
+        "active-away-tennis-liberty-lykia",
+        "active-away-tennis-font-de-sa-cala-mallorca",
+        "ikos-kissamos-tennis-holiday",
+        "sani-beach-tennis-holiday",
+        "lensbury-tennis-weekend"
+      ],
+      "note": "12 tennis holidays listed; 4 added for variety (Cyprus, Corfu, Türkiye, Mallorca); dates from the 2027 calendar PDF since the pages load dates in the browser; family holiday and the other Turkish and Cretan resorts left for later"
+    },
+    {
+      "url": "https://activeaway.com/venues?types=padel-tennis-holiday",
+      "read": true,
+      "programs": [
+        "active-away-padel-nana-golden-beach",
+        "active-away-padel-barcelona",
+        "active-away-padel-vilamoura"
+      ],
+      "note": "Lyttos Mare padel has no 2027 dates or price yet"
+    },
+    {
+      "url": "https://activeaway.com/venues?types=tennis-clinic",
+      "read": true,
+      "programs": [],
+      "note": "the same page as the holiday listing (the filter runs in the browser); clinics are tracked through their own pages"
+    },
+    {
+      "url": "https://activeaway.com/venues?types=pickleball-holiday",
+      "read": true,
+      "programs": [],
+      "note": "the same page as the holiday listing; pickleball Vilamoura is tracked through its own page"
+    },
+    {
+      "url": "https://www.markwarner.co.uk/activity-holidays/intensive-tennis-weeks/",
+      "read": true,
+      "programs": [
+        "mark-warner-intensive-tennis-week-phokaia",
+        "mark-warner-intensive-tennis-week-paleros"
+      ],
+      "note": "2027 dates not out yet"
+    },
+    {
+      "url": "https://www.markwarner.co.uk/activity-holidays/tennis-and-padel/padel/",
+      "read": true,
+      "programs": [
+        "mark-warner-classic-padel-course-paleros"
+      ],
+      "note": "intro sessions and private lessons skipped"
+    },
+    {
+      "url": "https://www.markwarner.co.uk/activity-holidays/tennis-and-padel/pickleball/",
+      "read": true,
+      "programs": [],
+      "note": "only free intro sessions, social play and private lessons: no bookable program"
+    },
+    {
+      "url": "https://activeaway.com/pickleball-holiday/adult-pickleball-holiday-hyatt-regency-vilamoura-algarve",
+      "read": true,
+      "programs": [
+        "active-away-pickleball-vilamoura"
+      ],
+      "note": "carried over from the hand-checked seed (22 Oct 2026)"
+    },
+    {
+      "url": "https://activeaway.com/tennis-clinic/adult-outdoor-grass-court-tennis-clinic-st-georges-hill",
+      "read": true,
+      "programs": [
+        "st-georges-hill-grass-court-clinic"
+      ],
+      "note": "carried over from the hand-checked seed (22 Oct 2026)"
+    },
+    {
+      "url": "https://activeaway.com/tennis-clinic/adult-tennis-clinic-david-lloyd-finchley",
+      "read": true,
+      "programs": [
+        "david-lloyd-finchley-tennis-clinic"
+      ],
+      "note": "carried over from the hand-checked seed (22 Oct 2026)"
+    },
+    {
+      "url": "https://activeaway.com/tennis-clinic/brighton-tennis-padel-weekend",
+      "read": true,
+      "programs": [
+        "brighton-tennis-padel-weekend"
+      ],
+      "note": "carried over from the hand-checked seed (22 Oct 2026)"
+    },
+    {
+      "url": "https://activeaway.com/tennis-clinic/adult-padel-clinic-advantage-padel-nottingham",
+      "read": true,
+      "programs": [
+        "advantage-padel-nottingham-clinic"
+      ],
+      "note": "carried over from the hand-checked seed (22 Oct 2026)"
+    },
+    {
+      "url": "https://activeaway.com/tennis-clinic/adult-padel-clinic-great-western-golf-glasgow",
+      "read": true,
+      "programs": [
+        "great-western-glasgow-padel-clinic"
+      ],
+      "note": "carried over from the hand-checked seed (22 Oct 2026)"
+    },
+    {
+      "url": "https://www.mouratoglou.com/en/types/adults/",
+      "read": true,
+      "programs": [
+        "mouratoglou-adult-weekend-camp",
+        "mouratoglou-adult-intensive-week",
+        "mouratoglou-adult-morning-clinic-week"
+      ],
+      "note": "prices and dates only on the booking site"
+    },
+    {
+      "url": "https://www.rafanadalacademy.com/en/adult-camps/tennis-camps/",
+      "read": true,
+      "programs": [
+        "rafa-nadal-academy-premium-tennis-week",
+        "rafa-nadal-academy-christmas-tennis-camp",
+        "rafa-nadal-academy-easter-tennis-camp"
+      ],
+      "note": "no prices on the pages; summer, autumn, high-performance and tennis & fitness camps left for later"
+    },
+    {
+      "url": "https://www.rafanadalacademy.com/en/adult-camps/padel-camps/",
+      "read": true,
+      "programs": [
+        "rafa-nadal-academy-premium-padel-week",
+        "rafa-nadal-academy-padel-camp"
+      ],
+      "note": "the live Padel & Fitness camp is unchanged"
+    },
+    {
+      "url": "https://www.spainpadelexperiences.com/mallorca-padel-camps",
+      "read": true,
+      "programs": [
+        "spain-padel-experiences-camp-marbella",
+        "spain-padel-experiences-camp-barcelona",
+        "spain-padel-experiences-camp-alicante"
+      ],
+      "note": "fixed-date camps from /camps; the Malaga page didn't load; private 2-4 day packages skipped"
+    },
+    {
+      "url": "https://micklepickleballtrips.com/",
+      "read": true,
+      "programs": [
+        "mickle-pickleball-austria-germany",
+        "mickle-pickleball-southern-spain",
+        "mickle-pickleball-croatia",
+        "mickle-pickleball-barcelona"
+      ],
+      "note": "the Newport Beach, California trip belongs with North America"
+    },
+    {
+      "url": "https://www.neilson.co.uk/beach/activities/tennis-holidays",
+      "read": true,
+      "programs": [],
+      "note": "Mark Petchey tennis weeks, but no resorts or 2027 dates named"
+    },
+    {
+      "url": "https://www.tccb.ch/en/adult-camps",
+      "read": true,
+      "programs": [],
+      "note": "a Swiss club's Easter and summer courses; no dates, prices or location"
+    },
+    {
+      "url": "https://www.pinecliffs.com/en/golf-sports/tennis/",
+      "read": true,
+      "programs": [],
+      "note": "memberships and weekly tournaments only; adult courses not on this page"
+    },
+    {
+      "url": "https://thepadelschool.com/events",
+      "read": true,
+      "programs": [],
+      "note": "now redirects to an online coaching product; holidays page not found"
+    },
+    {
+      "url": "https://ipadel.co.uk/Padel-Holidays",
+      "read": true,
+      "programs": [],
+      "note": "says 'coming soon in 2026'"
+    },
+    {
+      "url": "https://www.o-sports.pt/en/training-camps/pickleball-training-camps",
+      "read": true,
+      "programs": [],
+      "note": "group tours on request only"
+    },
+    {
+      "url": "https://pickleballinparadise.com/trips/?_sft_trip_type=river-cruise-2",
+      "read": true,
+      "programs": [],
+      "note": "no river cruises listed"
+    }
+  ],
+  "leads": [
+    {
+      "operator": "Active Away",
+      "url": "https://files.activeaway.com/2027-Calendar",
+      "note": "PDF with every 2027 date and price; a better source than the listing pages, but harvest:fetch can't read PDFs yet"
+    },
+    {
+      "operator": "Annabel Croft Padel Academy (Pine Cliffs)",
+      "url": "https://www.pinecliffs.com/en/golf-sports/padel/",
+      "note": "may list the weekly adult courses the tennis page doesn't"
+    }
+  ],
+  "finishedAt": "2026-11-05T12:00:00Z"
+}
