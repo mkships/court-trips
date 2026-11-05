@@ -89,11 +89,11 @@ Previews and local builds use Cloudflare's always-pass test keys and log the ema
 - **Editor** (`/admin/programs/<slug>`, `/admin/venues/<slug>`): every field, every date (past ones too), photo removal, map coordinates and the homepage carousel position. Automatic checks (`web/src/lib/admin/checks.ts`) run on each listing: errors (no dates and no schedule notes, a price without a currency…) block publishing; warnings (passed dates, a booking link whose date differs from the session's, no photos…) don't. Publish, unpublish and archive take effect on the public site straight away.
 - Sign-in is GitHub OAuth with no auth library (`web/src/app/admin/auth/`): the callback asks GitHub whose account it is and signs in only `ADMIN_GITHUB_LOGIN`, with a 30-day session cookie signed with `ADMIN_SESSION_SECRET`. `web/src/middleware.ts` guards every `/admin` page, and each server action checks again. The post-deploy check confirms `/admin` redirects to the sign-in page.
 
-Setup (Vercel → Settings → Environment Variables, Production and Preview). Without these the sign-in page lists what's missing; the rest of the site is unaffected.
+Setup (Vercel → Settings → Environment Variables, Production; redeploy after adding them). Without these the sign-in page lists what's missing; the rest of the site is unaffected.
 
 | Variable | Where it comes from |
 |---|---|
-| `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` | GitHub → Settings → Developer settings → OAuth Apps → New OAuth App. Homepage URL: the site; callback URL: `https://courttrips.vercel.app/admin/auth/callback`. GitHub accepts any subdomain of the callback's host, so previews on `*.vercel.app` work too. |
+| `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` | GitHub → Settings → Developer settings → OAuth Apps → New OAuth App. Homepage URL: the site; callback URL: `https://courttrips.vercel.app/admin/auth/callback`. GitHub only accepts that host (or subdomains of it), so sign-in works on production, not on preview links (`courttrips-git-…vercel.app`); locally, `npm run dev` has its own sign-in. |
 | `ADMIN_GITHUB_LOGIN` | Your GitHub username |
 | `ADMIN_SESSION_SECRET` | Any random string of 32+ characters, e.g. `openssl rand -base64 32`. Changing it signs you out everywhere. |
 
