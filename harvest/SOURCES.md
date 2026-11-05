@@ -102,7 +102,15 @@ Pages the harvester would read to grow Court Trips from 27 to roughly 120 progra
 | [Mouratoglou Tennis Center Bali](https://www.mouratoglou.com/en/international/bali/tennis-lessons/) | Indonesia (Bali) | Tennis, Padel, Pickleball | getaway | 3 | new | custom retreats at the Westin Ubud; prices on request |
 | [Rafa Nadal Academy camps](https://camps.rafanadalacademy.com/en/programs/thailand/) | Thailand | Tennis | camp | 1 | new | adult camp; 2026 dates passed, watch for 2027 (browser) |
 | [Thanyapura](https://www.thanyapura-phuket.com/) | Thailand (Phuket) | Tennis | place to stay | – | new | Listed under Places to stay, not as a program: a sports resort with its own tennis centre (browser) |
-| [10-day Bali pickleball retreat](https://bookretreats.com/r/10-day-pickleball-retreat-in-paradise-bali-indonesia) | Indonesia (Bali) | Pickleball | getaway | 1 | lead | found on BookRetreats: find the organiser and list them directly |
+| [SoCal Wellness Retreats (John Quirk)](https://www.socalwellnessretreats.com/pickle-ball) | Indonesia (Bali) | Pickleball | getaway | 1 | new | the organiser of the BookRetreats lead; on 5 Nov 2026 the site redirected to a domain that no longer resolves |
+| [Pickleball Pro Retreats](https://pickleballproretreats.com/) | Indonesia (Bali) / Vietnam / Malaysia / Europe | Pickleball | getaway, clinic | 5 | new | Ubud, Da Nang, Kuala Lumpur, Fuengirola, Alba (added 5 Nov 2026) |
+| [Padel in Paradise Retreats](https://padelinparadiseretreats.com/) | Indonesia (Bali) | Padel | getaway | 1 | new | 7-night retreats across Sanur, Canggu and Ubud (added 5 Nov 2026) |
+| [Wanderlands](https://wanderlands.travel/bali-padel-camp/) | Indonesia (Bali) | Padel | camp | 1 | new | intensive weekends in Ubud (added 5 Nov 2026) |
+| [Tropical Padel Camp](https://tropicalpadelcamp.com/) | Thailand (Koh Samui) | Padel | camp | 1 | new | calls itself peer-led, not a professional coaching service (added 5 Nov 2026) |
+| [Thanyapura tennis packages](https://www.thanyapura-phuket.com/promotion/5days-4nights-tennis-holiday/) | Thailand (Phuket) | Tennis | camp, getaway | 3 | new | 3-, 5- and 8-day adult packages; blocks plain requests (browser) (added 5 Nov 2026) |
+| [Liga.Tennis](https://liga.tennis/ltca/program/tennis-camps) | Indonesia (Bali) | Tennis | camp | 2 | new | adult camps in Canggu, Sanur, Nusa Dua and Ubud; refuses plain requests (browser) (added 5 Nov 2026) |
+| [Paradise Island Pickleball](https://paradiseislandpickleball.com/) | Indonesia (Bali) | Pickleball | getaway | 1 | new | looked dormant on 5 Nov 2026 ("2026 dates coming soon") |
+| [Padel Pickleball Retreats](https://padelpickleballretreats.com/pages/bali-pickleball-retreat-canggu-and-ubud) | Indonesia (Bali) | Pickleball | getaway | 1 | new | 7-day retreat in Canggu and Ubud; site didn't answer on 5 Nov 2026 |
 
 ## Maldives & Caribbean
 
@@ -114,6 +122,25 @@ Pages the harvester would read to grow Court Trips from 27 to roughly 120 progra
 | [Curtain Bluff](https://curtainbluff.com/tennis/) | Antigua | Tennis | getaway | 2 | new | Tennis Challenge Week (Nov), Antigua Tennis Week (spring) |
 | [Four Seasons Kuda Huraa](https://www.fourseasons.com/maldiveskh/services-and-amenities/tennis/) | Maldives | Tennis | clinic | 1 | new | tennis academy with visiting pros; blocks plain requests (browser) |
 | [Kuredu Island Resort](https://www.kuredu.com/activities/#tennis--padel) | Maldives | Padel | getaway | 1 | new | Padel Tennis Week; check for dates |
+| [COMO Maalifushi (with Rafa Nadal Academy)](https://comohotels.com/stories/head-in-the-game) | Maldives | Padel | camp | 1 | lead | ran a padel camp in Oct 2024; new padel court in 2026; watch for camp dates |
 | [PPA Pickleball Vacations](https://www.ppatour.com/vacations/) | Turks & Caicos / Dominican Republic / St Lucia / Mexico | Pickleball | getaway | 3 | new | pro-led weeks at Club Med and other resorts |
 | [Empowher Pickleball](https://empowherpickleball.com/empowherretreats) | Dominican Republic / US | Pickleball | getaway | 1 | existing | 1 already live (Punta Cana) |
 | [Pickleball in Paradise](https://pickleballinparadise.com/trips/?_sft_trip_type=clinic) | St Lucia / various | Pickleball | clinic | 2 | existing | 1 already live (La Toc) |
+
+## Directories and marketplaces
+
+Sites that list other people's camps. The harvester doesn't take listings from them (Court Trips links to the operator), but they're useful for finding operators, and a few camps are only sold through them. Seen during the first harvest, November 2026:
+
+| Site | What it is | Takes the booking? | Seen for |
+|---|---|---|---|
+| [BookRetreats](https://bookretreats.com/) | Retreat marketplace; hosts list their own retreats | Yes: booking and payment on the site, with a best-price rule for hosts | Bali pickleball retreat (John Quirk), The Padel Retreat Bali, tennis and padel retreats in Spain |
+| [Weebora](https://weebora.com/) | Padel trip marketplace, organised by destination and club | Yes: 30% deposit by card or bank transfer | Phuket Padel Escape (Destination Padel Club) |
+| [The Padel Circle](https://www.thepadelcircle.com/) | Padel camp directory with "best of" lists | Through its own enquiry form; camp pages don't link to the organiser | Phuket, Koh Samui, Bali and Spanish padel camps |
+| [WeTravel](https://www.wetravel.com/) | Booking and payment software that operators use for their own trip pages | Yes, on the operator's behalf | Pickleball Cabo (listed: the page is the operator's own) |
+| [World Tennis Travel](https://www.worldtennistravel.com/) | Tennis holiday seller; ownership not clear | Yes | Thanyapura and Melbourne Park packages |
+| [Tennis in the Sun](https://www.tennisinthesun.com/) | Tennis holiday company | Yes | Vietnam tennis break (2025) |
+| [TennisTraveller](https://www.tennistraveller.net/) | Tennis hotel directory | Links to hotels | Robinson Nam Hoi An |
+| [Pickleball Resort Guide](https://www.pickleballresortguide.com/) | Directory of resorts with pickleball courts | Links to resorts | Wyndham Hua Hin Pranburi |
+| [PickleTrip](https://www.pickletrip.com/) | Pickleball stays and rentals | Links out | Hua Hin rentals |
+
+Not directories: Active Away, Mark Warner, Pickleball Getaways and the like run their own holidays, so their listings are operator listings. Playtomic, Matchi and Padelmates book club courts and classes, not camps. Pickleball Travel and Trevello Travel are travel agents behind one operator's trips (Engage, Taylored).

@@ -64,7 +64,7 @@ SE Asia,Thailand,tennis,camp,Rafa Nadal Academy camps,https://camps.rafanadalaca
 SE Asia,Malaysia,tennis,camp,Mouratoglou Academy Malaysia,https://www.mouratoglou.epsomcollege.edu.my/adultcamps,programs,2,new,page,"weekend intensive, full week"
 SE Asia,Indonesia (Bali),"tennis, padel, pickleball",social_getaway,Mouratoglou Tennis Center Bali,https://www.mouratoglou.com/en/international/bali/tennis-lessons/,programs,3,new,page,custom retreats at the Westin Ubud; prices on request
 SE Asia,Indonesia (Bali),padel,social_getaway,Goddess Retreats (Padel Goddess),https://www.goddessretreats.com/,programs,1,new,page,women-only padel and wellness retreat
-SE Asia,Indonesia (Bali),pickleball,social_getaway,10-day Bali pickleball retreat,https://bookretreats.com/r/10-day-pickleball-retreat-in-paradise-bali-indonesia,programs,1,lead,page,found on BookRetreats: find the organiser and list them directly
+SE Asia,Indonesia (Bali),pickleball,social_getaway,SoCal Wellness Retreats (John Quirk),https://www.socalwellnessretreats.com/pickle-ball,programs,1,new,page,"the BookRetreats lead's own site; on 5 Nov 2026 it redirected to a domain that no longer resolves"
 Maldives & Caribbean,Antigua,tennis,social_getaway,Curtain Bluff,https://curtainbluff.com/tennis/,programs,2,new,page,"Tennis Challenge Week (Nov), Antigua Tennis Week (spring)"
 Maldives & Caribbean,Anguilla,pickleball,social_getaway,Aurora Anguilla,https://www.auroraanguilla.com/pickleball-trips/,programs,2,new,page,
 Maldives & Caribbean,Turks & Caicos / Dominican Republic / St Lucia / Mexico,pickleball,social_getaway,PPA Pickleball Vacations,https://www.ppatour.com/vacations/,programs,3,new,page,pro-led weeks at Club Med and other resorts
@@ -72,3 +72,12 @@ Maldives & Caribbean,Mexico / Dominican Republic,pickleball,clinic,Club Med,http
 Maldives & Caribbean,Dominican Republic,"tennis, pickleball, padel",clinic,Casa de Campo,https://www.casadecampo.com.do/experiences/racquet-center/,programs,2,new,page,
 Maldives & Caribbean,Maldives,padel,social_getaway,Kuredu Island Resort,https://www.kuredu.com/activities/#tennis--padel,programs,1,new,page,Padel Tennis Week; check for dates
 Maldives & Caribbean,Maldives,tennis,clinic,Four Seasons Kuda Huraa,https://www.fourseasons.com/maldiveskh/services-and-amenities/tennis/,programs,1,new,browser,tennis academy with visiting pros; blocks plain requests
+SE Asia,Indonesia (Bali) / Vietnam / Malaysia / Europe,pickleball,"social_getaway, clinic",Pickleball Pro Retreats,https://pickleballproretreats.com/,programs,5,new,page,"Ubud, Da Nang and Kuala Lumpur, plus Fuengirola and Alba in Europe"
+SE Asia,Indonesia (Bali),padel,social_getaway,Padel in Paradise Retreats,https://padelinparadiseretreats.com/,programs,1,new,page,"7-night retreats across Sanur, Canggu and Ubud"
+SE Asia,Indonesia (Bali),padel,camp,Wanderlands,https://wanderlands.travel/bali-padel-camp/,programs,1,new,page,
+SE Asia,Thailand (Koh Samui),padel,camp,Tropical Padel Camp,https://tropicalpadelcamp.com/,programs,1,new,page,"calls itself peer-led, not a professional coaching service"
+SE Asia,Thailand (Phuket),tennis,"camp, social_getaway",Thanyapura,https://www.thanyapura-phuket.com/promotion/5days-4nights-tennis-holiday/,programs,3,new,browser,"adult tennis packages (3, 5 and 8 days); the resort itself is a place to stay; blocks plain requests"
+SE Asia,Indonesia (Bali),tennis,camp,Liga.Tennis,https://liga.tennis/ltca/program/tennis-camps,programs,2,new,browser,"adult camps in Canggu, Sanur, Nusa Dua and Ubud; refuses plain requests"
+SE Asia,Indonesia (Bali),pickleball,social_getaway,Paradise Island Pickleball,https://paradiseislandpickleball.com/,programs,1,new,page,
+SE Asia,Indonesia (Bali),pickleball,social_getaway,Padel Pickleball Retreats,https://padelpickleballretreats.com/pages/bali-pickleball-retreat-canggu-and-ubud,programs,1,new,page,"7-day retreat in Canggu and Ubud; site didn't answer on 5 Nov 2026"
+Maldives & Caribbean,Maldives,padel,camp,COMO Maalifushi (with Rafa Nadal Academy),https://comohotels.com/stories/head-in-the-game,programs,1,lead,page,"ran a padel camp with Rafa Nadal Academy in Oct 2024; new padel court in 2026; watch for camp dates"

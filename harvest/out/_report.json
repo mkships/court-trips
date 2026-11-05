@@ -1,76 +1,97 @@
 {
   "pages": [
     {
-      "url": "https://empowherpickleball.com/empowherretreats",
+      "url": "https://pickleballproretreats.com/",
       "read": true,
       "programs": [
-        "empowher-turks-and-caicos-retreat",
-        "empowher-marbella-retreat",
-        "empowher-punta-cana-retreat"
+        "ppr-ubud-bali-pickleball-wellness-retreat",
+        "ppr-da-nang-pickleball-retreat",
+        "ppr-kuala-lumpur-performance-clinic",
+        "ppr-fuengirola-pickleball-retreat",
+        "ppr-alba-pickleball-retreat"
       ],
-      "note": "Punta Cana (3-10 Nov) and Turks & Caicos (1-8 Dec) are sold out; Marbella is in Spain"
+      "note": "5 destinations, 16 dates on the calendar (Oct 2026 Fuengirola weeks have passed); cover photos are Getty stock, so none taken"
     },
     {
-      "url": "https://www.auroraanguilla.com/pickleball-trips/",
+      "url": "https://padelinparadiseretreats.com/",
       "read": true,
       "programs": [
-        "aurora-anguilla-pickleball-clinic-trips"
-      ],
-      "note": "no dates or prices on the page"
+        "padel-in-paradise-retreats-bali"
+      ]
     },
     {
-      "url": "https://pickleballinparadise.com/trips/?_sft_trip_type=clinic",
+      "url": "https://wanderlands.travel/bali-padel-camp/",
       "read": true,
       "programs": [
-        "pickleball-in-paradise-beaches-turks-and-caicos",
-        "pickleball-in-paradise-sandals-royal-curacao",
-        "pickleball-in-paradise-sandals-south-coast",
-        "pickleball-in-paradise-la-toc-atkins-merrill",
-        "pickleball-in-paradise-la-toc"
-      ],
-      "note": "both list pages read; fully sold-out weeks (Royal Bahamian, Joia Paraiso, ladies-only Beaches, mahjong at La Toc, Curaçao advanced) skipped; the Ascent trip is invite-only"
+        "wanderlands-bali-padel-camp-weekend"
+      ]
     },
     {
-      "url": "https://curtainbluff.com/tennis/",
+      "url": "https://tropicalpadelcamp.com/",
       "read": true,
       "programs": [
-        "curtain-bluff-tennis-challenge-week"
+        "tropical-padel-camp-koh-samui"
       ],
-      "note": "Antigua Tennis Week (spring) isn't on this page"
+      "note": "the August camp has no year on the page"
     },
     {
-      "url": "https://www.clubmed.us/l/pickleball-all-inclusive-vacations-club-med",
+      "url": "https://paradiseislandpickleball.com/",
       "read": true,
       "programs": [],
-      "note": "pickleball is a resort activity with occasional clinics, not a programme; Club Med Turkoise is already a place to stay"
+      "note": "read with curl (Node's fetch was reset); still says '2026 dates coming soon' and its last event is July 2024, so it looks dormant"
     },
     {
-      "url": "https://www.ppatour.com/vacations/",
-      "read": true,
-      "programs": [
-        "ppa-pickleball-vacation-club-med-turkoise"
-      ],
-      "note": "the September Punta Cana trip has finished"
-    },
-    {
-      "url": "https://www.casadecampo.com.do/experiences/racquet-center/",
-      "read": true,
-      "programs": [],
-      "note": "hourly lessons and group clinics only; would suit Places to Stay (11 Har-Tru, 4 padel and 8 pickleball courts)"
-    },
-    {
-      "url": "https://www.kuredu.com/activities/#tennis--padel",
-      "read": true,
-      "programs": [],
-      "note": "courts only; no padel week on the page, and the resort's services page didn't load"
-    },
-    {
-      "url": "https://www.fourseasons.com/maldiveskh/services-and-amenities/tennis/",
+      "url": "https://www.socalwellnessretreats.com/pickle-ball",
       "read": false,
       "programs": [],
-      "note": "bot check on plain and browser requests; for the Mac refresh to read with its web tool"
+      "note": "redirects to best-liferetreats.com and then to a domain that no longer resolves"
+    },
+    {
+      "url": "https://padelpickleballretreats.com/pages/bali-pickleball-retreat-canggu-and-ubud",
+      "read": false,
+      "programs": [],
+      "note": "the site didn't answer"
+    },
+    {
+      "url": "https://liga.tennis/ltca/program/tennis-camps",
+      "read": false,
+      "programs": [],
+      "note": "refuses automated requests (403); for the Mac refresh to read with its web tool"
+    },
+    {
+      "url": "https://www.thanyapura-phuket.com/promotion/5days-4nights-tennis-holiday/",
+      "read": false,
+      "programs": [],
+      "note": "refuses automated requests (403); for the Mac refresh"
+    },
+    {
+      "url": "https://www.thanyapura-phuket.com/",
+      "read": false,
+      "programs": [],
+      "note": "place to stay; refuses automated requests (403)"
     }
   ],
-  "leads": [],
+  "leads": [
+    {
+      "operator": "The Padel Retreat Bali (Sara and Chris)",
+      "url": "https://bookretreats.com/organizers/o/sara-and-chris",
+      "note": "Uluwatu and Ubud padel weeks; only on BookRetreats and The Padel Circle"
+    },
+    {
+      "operator": "Phuket Padel Lifestyle Camp",
+      "url": "https://www.thepadelcircle.com/best-padel-camps/full-week",
+      "note": "6-day camps Jan-Mar 2027 from US$1,790; only on The Padel Circle"
+    },
+    {
+      "operator": "Da Nang, Hoi An & Hue Padel Retreat",
+      "url": "https://www.thepadelcircle.com/padel-camps/spain-padel-competition-camp-adult-daily-at-rafa-nadal-academy",
+      "note": "seen on The Padel Circle (in its related camps) with Apr and Sep 2027 dates; organiser not named"
+    },
+    {
+      "operator": "Phuket Padel Escape (Destination Padel Club)",
+      "url": "https://weebora.com/en/destinations/phuket/destination-padel-club/phuket-padel-escape",
+      "note": "4-day trip; only on Weebora"
+    }
+  ],
   "finishedAt": "2026-11-05T12:00:00Z"
 }

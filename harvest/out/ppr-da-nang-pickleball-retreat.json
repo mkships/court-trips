@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "slug": "ppr-da-nang-pickleball-retreat",
+    "source_url": "https://pickleballproretreats.com/da-nang-vietnam",
+    "listing_url": "https://pickleballproretreats.com/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Beach pickleball retreat in Da Nang, Vietnam",
+    "organizer": "Pickleball Pro Retreats",
+    "description": "Seven nights at a beachfront resort in Da Nang with dedicated pickleball courts, Pickleball Pro Retreats coaching, a mini tournament with a local club, a cultural excursion and a farewell dinner. At most 16 players.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballproretreats.com/da-nang-vietnam",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Vietnam",
+    "city_region": "Da Nang",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": 16.05,
+    "lng": 108.25
+  },
+  "sessions": [
+    {
+      "start_date": "2027-02-21",
+      "end_date": "2027-02-28",
+      "status": "available",
+      "price_override": 1950
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 1950,
+    "price_max": 2300,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "US$1,950 per person sharing; US$2,300 single. Flights not included.",
+    "inclusions": [
+      "7 nights beachfront accommodation",
+      "coaching and court fees",
+      "breakfast and some meals",
+      "cultural excursion",
+      "farewell dinner"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": 16,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}
