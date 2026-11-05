@@ -88,6 +88,7 @@ const FIELDS = {
   player_to_coach_ratio: "player_to_coach_ratio", capacity: "capacity", accommodation_type: "accommodation_type",
   coaches: "coaches", languages: "languages", price_min: "price_min", price_max: "price_max",
 };
+const NUMERIC = new Set(["price_min", "price_max", "coaching_hours_total"]);
 // filled only when empty: a person's value always wins
 const FILL_ONLY = ["lat", "lng", "contact_email", "contact_phone", "theme", "gender", "ratings", "data_quality_score"];
 
@@ -238,6 +239,8 @@ for (const f of files) {
   const safe = {};
   const fields = {};
   for (const [key, col] of Object.entries(FIELDS)) {
+    // numeric columns come back from Postgres as text ("22.5"); compare them as numbers
+    if (NUMERIC.has(col) && existing[col] != null) existing[col] = Number(existing[col]);
     if (same(existing[col], r[key])) continue;
     if ((key === "price_min" || key === "price_max") && (existing[col] == null || near(r[key], Number(existing[col])))) safe[col] = r[key];
     else fields[col] = { from: existing[col], to: r[key] };

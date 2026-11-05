@@ -13,7 +13,7 @@ Arguments: `$ARGUMENTS`. With no arguments, or `changed`, work through the pages
 
 - `harvest/.cache/run.json`: the plan from `harvest:fetch`. Each page has `url`, `target` (`programs`, or `venue` for a place to stay), `kind` (`source` for a page in `harvest/sources.csv`, `program` for a program's own page), `change`, `file` (the page text, relative to `harvest/.cache/`), and for sources the `region`, `sports`, `category`, `operator`, `est_programs` and `note` columns of `sources.csv`.
 - The page text: plain text with links written as `[text](url)` and photos as `[image: url]`. `[cover: url]` is the page's sharing image.
-- To read a program's own page (a link from a source page), run `npm --prefix web run harvest:page -- <url>`. For a page marked `blocked`, try your web fetch tool. If that fails too, record the page as unreadable in the report and move on. Don't guess its contents.
+- To read a program's own page (a link from a source page), run `npm --prefix web run harvest:page -- <url>`. If the dates or prices are missing from what it prints (some sites, Active Away among them, load them after the page opens), run it again with `--browser` at the end. For a page marked `blocked`, try your web fetch tool. If that fails too, record the page as unreadable in the report and move on. Don't guess its contents.
 - `directory-schema.json` (repo root) defines every field. `seed/programs.json` has 27 finished examples; match their style.
 
 ## What to write
