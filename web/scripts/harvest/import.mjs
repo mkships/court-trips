@@ -15,6 +15,9 @@
  *   apply or dismiss in /admin.
  * - archived: skipped.
  * Programs a source page no longer shows get missed_runs + 1; at 2, they're flagged in /admin.
+ * Each program is linked to its operator (organizations, by name or alias; a new name becomes a new
+ * operator) and, when core_identity.sold_through names one, the marketplace it's sold through. The
+ * report's leads are saved as organizations with status lead, for /admin → Operators → Leads.
  * Pages are only marked as seen (harvest/state.json) once their results are in.
  */
 import { neon } from "@neondatabase/serverless";
@@ -88,6 +91,7 @@ const FIELDS = {
   player_to_coach_ratio: "player_to_coach_ratio", capacity: "capacity", accommodation_type: "accommodation_type",
   coaches: "coaches", languages: "languages", price_min: "price_min", price_max: "price_max",
 };
+const NUMERIC = new Set(["price_min", "price_max", "coaching_hours_total"]);
 // filled only when empty: a person's value always wins
 const FILL_ONLY = ["lat", "lng", "contact_email", "contact_phone", "theme", "gender", "ratings", "data_quality_score"];
 
@@ -118,6 +122,55 @@ function sessionsDiff(existing, next) {
     }
   }
   return { changed, safe, upcoming };
+}
+
+// ---------- operators and marketplaces (organizations) ----------
+// same as slugify in src/lib/admin/forms.ts
+const slugify = (s) =>
+  s.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
+const findOrganization = async (name) =>
+  (
+    await sql`select id, name, status from organizations
+      where lower(name) = lower(${name}) or exists (select 1 from unnest(aliases) a where lower(a) = lower(${name}))
+      order by (lower(name) = lower(${name})) desc limit 1`
+  )[0];
+
+// a new row with a free slug; another row may take the name or slug first, so look again after a clash
+async function createOrganization(values) {
+  const base = slugify(values.name) || values.kind || "operator";
+  for (let n = 1; n < 50; n++) {
+    const slug = n === 1 ? base : `${base}-${n}`;
+    const [row] = await sql`insert into organizations (slug, name, kind, status, note, source_url, seen_on_id)
+      values (${slug}, ${values.name}, ${values.kind ?? "operator"}, ${values.status ?? "active"}, ${values.note ?? null},
+        ${values.sourceUrl ?? null}, ${values.seenOnId ?? null})
+      on conflict do nothing returning id`;
+    if (row) return row.id;
+    const found = await findOrganization(values.name);
+    if (found) return found.id;
+  }
+  throw new Error(`no free slug for organization ${values.name}`);
+}
+
+// The operator (or marketplace) a listing names, created when it's new, and the name listings show:
+// the organisation's own spelling, so "Active Away Ltd" (an alias) reads "Active Away" and isn't
+// proposed as a change every run. A lead that now has a listing becomes active.
+const organizationIds = new Map();
+async function organization(name, kind = "operator") {
+  const n = name?.trim();
+  if (!n) return { id: null, name: n };
+  if (organizationIds.has(n.toLowerCase())) return organizationIds.get(n.toLowerCase());
+  const found = await findOrganization(n);
+  let result = { id: found?.id ?? null, name: found?.name ?? n };
+  if (found?.status === "lead") {
+    summary.leadsListed.push(found.name);
+    if (!dryRun) await sql`update organizations set status = 'active', updated_at = now() where id = ${found.id}`;
+  }
+  if (!found) {
+    summary.newOrganizations.push(kind === "marketplace" ? `${n} (marketplace)` : n);
+    if (!dryRun) result = { id: await createOrganization({ name: n, kind }), name: n };
+  }
+  organizationIds.set(n.toLowerCase(), result);
+  return result;
 }
 
 // ---------- writing ----------
@@ -167,7 +220,7 @@ async function insertPhotos(id, photos, owner = "program_id") {
 }
 
 // ---------- the run ----------
-const summary = { at: now, dryRun, new: [], newVenues: [], venuesFilled: [], replaced: [], autoUpdated: [], proposed: [], unchanged: [], archivedSkipped: [], refused: [], missing: [], photoProblems: [], unread: [], leads: [] };
+const summary = { at: now, dryRun, new: [], newVenues: [], newOrganizations: [], leadsSaved: [], leadsListed: [], venuesFilled: [], replaced: [], autoUpdated: [], proposed: [], unchanged: [], archivedSkipped: [], refused: [], missing: [], photoProblems: [], unread: [], leads: [] };
 
 const files = (await readdir(OUT).catch(() => [])).filter((f) => f.endsWith(".json") && !f.startsWith("_")).sort();
 const report = await readJson(REPORT, { pages: [], leads: [] });
@@ -191,6 +244,10 @@ for (const f of files) {
     from programs p
     where p.slug = ${r.slug} or (p.source_url = ${r.source_url} and lower(p.title) = lower(${r.title}))
     order by (p.slug = ${r.slug}) desc limit 1`;
+  const operator = await organization(r.organizer);
+  r.organizer = operator.name;
+  const operatorId = operator.id;
+  const soldThroughId = r.sold_through ? (await organization(r.sold_through, "marketplace")).id : null;
   const values = Object.fromEntries(COLUMNS.map((c) => [c, r[c]]));
   const label = `${r.title} (${r.slug})${warnings.length ? ` [${warnings.length} warning${warnings.length > 1 ? "s" : ""}]` : ""}`;
 
@@ -202,9 +259,9 @@ for (const f of files) {
     const id = randomUUID();
     await sql.transaction([
       sql.query(
-        `insert into programs (id, slug, status, needs_review, source_url, listing_url, scraped_at, last_seen_at, updated_at, ${COLUMNS.join(", ")})
-         values ($1, $2, 'draft', true, $3, $4, $5, $5, $5, ${COLUMNS.map((c, i) => `$${i + 6}${JSONB.has(c) ? "::jsonb" : ""}`).join(", ")})`,
-        [id, r.slug, r.source_url, r.listing_url, now, ...COLUMNS.map((c) => param(c, r[c]))],
+        `insert into programs (id, slug, status, needs_review, source_url, listing_url, scraped_at, last_seen_at, updated_at, operator_id, sold_through_id, ${COLUMNS.join(", ")})
+         values ($1, $2, 'draft', true, $3, $4, $5, $5, $5, $6, $7, ${COLUMNS.map((c, i) => `$${i + 8}${JSONB.has(c) ? "::jsonb" : ""}`).join(", ")})`,
+        [id, r.slug, r.source_url, r.listing_url, now, operatorId, soldThroughId, ...COLUMNS.map((c) => param(c, r[c]))],
       ),
       ...replaceUpcomingSessions(id, r.sessions),
     ]);
@@ -222,12 +279,20 @@ for (const f of files) {
   // the import stamps updated_at and last_seen_at together, so a later updated_at means a person saved it
   const lastHarvest = new Date(existing.last_seen_at ?? existing.scraped_at ?? 0).getTime();
   const editedByHand = new Date(existing.updated_at).getTime() > lastHarvest + 2000;
-  const seen = { last_seen_at: now, updated_at: now, missed_runs: 0, listing_url: existing.listing_url ?? r.listing_url };
+  // links a person set stay; the harvest only fills them in
+  const seen = {
+    last_seen_at: now, updated_at: now, missed_runs: 0, listing_url: existing.listing_url ?? r.listing_url,
+    operator_id: existing.operator_id ?? operatorId, sold_through_id: existing.sold_through_id ?? soldThroughId,
+  };
   const photos = Number(existing.photo_count) === 0 && r.images.length ? r.images : [];
 
   if (!live && !editedByHand) {
     if (!dryRun) {
-      await sql.transaction([updateQuery(existing.id, values, { ...seen, source_url: r.source_url, pending_changes: null }), ...replaceUpcomingSessions(existing.id, r.sessions)]);
+      await sql.transaction([
+        // an untouched draft takes the new reading whole, its operator link included
+        updateQuery(existing.id, values, { ...seen, operator_id: operatorId, sold_through_id: soldThroughId, source_url: r.source_url, pending_changes: null }),
+        ...replaceUpcomingSessions(existing.id, r.sessions),
+      ]);
       if (photos.length) await insertPhotos(existing.id, await storePhotos(existing.slug, photos));
     }
     summary.replaced.push(label);
@@ -238,6 +303,8 @@ for (const f of files) {
   const safe = {};
   const fields = {};
   for (const [key, col] of Object.entries(FIELDS)) {
+    // numeric columns come back from Postgres as text ("22.5"); compare them as numbers
+    if (NUMERIC.has(col) && existing[col] != null) existing[col] = Number(existing[col]);
     if (same(existing[col], r[key])) continue;
     if ((key === "price_min" || key === "price_max") && (existing[col] == null || near(r[key], Number(existing[col])))) safe[col] = r[key];
     else fields[col] = { from: existing[col], to: r[key] };
@@ -329,6 +396,26 @@ for (const page of (report.pages ?? []).filter((p) => p.read)) {
   }
 }
 
+// leads: operators the harvest found but couldn't list (only on a marketplace, a page that's gone…),
+// saved for /admin → Operators → Leads unless we already know them
+const hostOf = (u) => {
+  try {
+    return new URL(u).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+};
+const marketplaces = await sql`select id, website from organizations where kind = 'marketplace' and website is not null`;
+for (const lead of summary.leads) {
+  const name = lead.operator?.trim();
+  if (!name || (await findOrganization(name))) continue;
+  // the same lead under another name: a report names them however the page did
+  if (lead.url && (await sql`select 1 from organizations where source_url = ${lead.url} or website = ${lead.url} limit 1`).length) continue;
+  const seenOnId = marketplaces.find((m) => hostOf(m.website) && hostOf(m.website) === hostOf(lead.url))?.id ?? null;
+  summary.leadsSaved.push(name);
+  if (!dryRun) await createOrganization({ name, status: "lead", note: lead.note ?? null, sourceUrl: lead.url ?? null, seenOnId });
+}
+
 // mark pages seen only now that their results are in
 if (!dryRun) {
   const run = await readJson(RUN, { pages: [] });
@@ -354,6 +441,8 @@ if (!dryRun) {
 const SECTIONS = [
   ["new", "New drafts to review"],
   ["newVenues", "New places to stay to review"],
+  ["newOrganizations", "New operators (in /admin → Operators)"],
+  ["leadsListed", "Leads that now have a listing"],
   ["proposed", "Changes waiting for you (live or edited listings)"],
   ["missing", "No longer on the operator's page"],
   ["refused", "Refused (fix and re-run /harvest)"],
@@ -369,7 +458,12 @@ for (const [key, title] of SECTIONS) {
   if (!summary[key].length) continue;
   lines.push(`${title}: ${summary[key].length}`, ...summary[key].map((s) => `  - ${s}`), "");
 }
-if (summary.leads.length) lines.push(`Leads to look at: ${summary.leads.length}`, ...summary.leads.map((l) => `  - ${l.operator}: ${l.url}${l.note ? ` (${l.note})` : ""}`), "");
+if (summary.leads.length)
+  lines.push(
+    `Leads to look at: ${summary.leads.length}${summary.leadsSaved.length ? ` (${summary.leadsSaved.length} new, saved in /admin → Operators → Leads)` : ""}`,
+    ...summary.leads.map((l) => `  - ${l.operator}: ${l.url}${l.note ? ` (${l.note})` : ""}`),
+    "",
+  );
 lines.push(`${summary.unchanged.length} unchanged. Review at /admin.`);
 const text = lines.join("\n");
 console.log(text);

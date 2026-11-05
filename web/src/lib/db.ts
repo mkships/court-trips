@@ -2,9 +2,9 @@ import "server-only";
 import { and, asc, eq, gte, inArray, sql } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 import { db as maybeDb } from "@/db";
-import { photos, programs, sessions, venues } from "@/db/schema";
+import { organizations, photos, programs, sessions, venues } from "@/db/schema";
 import { photoUrl } from "@/lib/photos";
-import { SPORTS, type Listing, type ProgramDetail, type Sport, type SportStats, type Venue } from "@/lib/sports";
+import { SPORTS, type Listing, type Operator, type ProgramDetail, type Sport, type SportStats, type Venue } from "@/lib/sports";
 
 // Listings, read from Postgres. Import only from server components and route handlers.
 // Results are cached for an hour (tag "listings"): the site reads the database at most once an hour
@@ -118,6 +118,8 @@ async function queryProgram(slug: string): Promise<ProgramDetail | null> {
     where: and(programIsPublic, eq(programs.slug, slug)),
     with: {
       venue: { columns: { slug: true, status: true, needsReview: true } },
+      operator: { columns: { slug: true, kind: true, status: true } },
+      soldThrough: { columns: { name: true } },
       sessions: { where: upcoming, orderBy: (s, { asc }) => asc(s.startDate) },
       photos: { orderBy: (ph, { asc }) => asc(ph.position) },
     },
@@ -128,6 +130,9 @@ async function queryProgram(slug: string): Promise<ProgramDetail | null> {
     slug: p.slug,
     title: p.title,
     organizer: p.organizer,
+    // a public listing makes its operator's page public too
+    operatorSlug: p.operator?.kind === "operator" && p.operator.status === "active" ? p.operator.slug : null,
+    soldThrough: p.soldThrough?.name ?? null,
     description: p.description ?? "",
     coaches: p.coaches,
     languages: p.languages,
@@ -203,3 +208,28 @@ export const programSlugs = unstable_cache(
   ["program-slugs"],
   CACHE,
 );
+
+// Operators with at least one public listing, the most listings first. Their pages show those
+// listings' tiles (getHomeData), so an operator page never shows anything the rest of the site doesn't.
+async function queryOperators(slug?: string): Promise<Operator[]> {
+  const rows = await database()
+    .select({
+      slug: organizations.slug,
+      name: organizations.name,
+      description: organizations.description,
+      website: organizations.website,
+      programSlugs: sql<string[]>`array(
+        select p.slug from ${programs} p
+        where p.operator_id = ${organizations}.id and p.status in ('active', 'sold_out') and not p.needs_review
+        order by p.slug)`,
+    })
+    .from(organizations)
+    .where(and(eq(organizations.kind, "operator"), eq(organizations.status, "active"), slug ? eq(organizations.slug, slug) : undefined));
+  return rows
+    .filter((o) => o.programSlugs.length > 0)
+    .sort((a, b) => b.programSlugs.length - a.programSlugs.length || a.name.localeCompare(b.name));
+}
+
+export const getOperators = unstable_cache(() => queryOperators(), ["operators"], CACHE);
+
+export const getOperator = unstable_cache(async (slug: string) => (await queryOperators(slug))[0] ?? null, ["operator"], CACHE);

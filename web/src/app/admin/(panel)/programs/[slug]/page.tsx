@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { applyPendingChanges, dismissPendingChanges } from "@/app/admin/(panel)/actions";
 import { ChecksPanel, day, StateBadge } from "@/components/admin/bits";
 import { ProgramEditor } from "@/components/admin/ProgramEditor";
+import { organizationOptions } from "@/lib/admin/organizations";
 import { program as getProgram, venueOptions } from "@/lib/admin/queries";
 import { dateRange } from "@/lib/format";
 import { photoUrl } from "@/lib/photos";
@@ -10,7 +11,7 @@ import { BTN_OUTLINE, BTN_PRIMARY } from "@/lib/ui";
 
 export default async function EditProgramPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ from?: string; saved?: string; applied?: string; dismissed?: string }> }) {
   const [{ slug }, { from, saved, applied, dismissed }] = await Promise.all([params, searchParams]);
-  const [p, venues] = await Promise.all([getProgram(slug), venueOptions()]);
+  const [p, venues, organizations] = await Promise.all([getProgram(slug), venueOptions(), organizationOptions()]);
   if (!p) notFound();
 
   return (
@@ -24,7 +25,14 @@ export default async function EditProgramPage({ params, searchParams }: { params
           <StateBadge state={p.state} />
         </div>
         <p className="mt-1 text-[0.9375rem] text-ink-soft">
-          {p.organizer} · updated {day(p.updatedAt)}
+          {p.operator ? (
+            <Link href={`/admin/operators/${p.operator.slug}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+              {p.organizer}
+            </Link>
+          ) : (
+            p.organizer
+          )}
+          {p.soldThrough && ` · sold through ${p.soldThrough.name}`} · updated {day(p.updatedAt)}
           {p.sourceUrl && (
             <>
               {" · "}
@@ -68,6 +76,7 @@ export default async function EditProgramPage({ params, searchParams }: { params
           photos: p.photos.map((ph) => ({ id: ph.id, url: photoUrl(ph.path) })),
         }}
         venues={venues}
+        organizations={organizations}
       />
     </div>
   );

@@ -73,6 +73,8 @@ function findPrograms(where?: ReturnType<typeof and>) {
       photos: { orderBy: [asc(photos.position)] },
       venue: { columns: { slug: true, name: true } },
       submissions: { columns: { id: true } },
+      operator: { columns: { slug: true, name: true } },
+      soldThrough: { columns: { slug: true, name: true } },
     },
   });
 }

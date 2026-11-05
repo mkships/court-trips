@@ -13,7 +13,7 @@ Arguments: `$ARGUMENTS`. With no arguments, or `changed`, work through the pages
 
 - `harvest/.cache/run.json`: the plan from `harvest:fetch`. Each page has `url`, `target` (`programs`, or `venue` for a place to stay), `kind` (`source` for a page in `harvest/sources.csv`, `program` for a program's own page), `change`, `file` (the page text, relative to `harvest/.cache/`), and for sources the `region`, `sports`, `category`, `operator`, `est_programs` and `note` columns of `sources.csv`.
 - The page text: plain text with links written as `[text](url)` and photos as `[image: url]`. `[cover: url]` is the page's sharing image.
-- To read a program's own page (a link from a source page), run `npm --prefix web run harvest:page -- <url>`. For a page marked `blocked`, try your web fetch tool. If that fails too, record the page as unreadable in the report and move on. Don't guess its contents.
+- To read a program's own page (a link from a source page), run `npm --prefix web run harvest:page -- <url>`. If the dates or prices are missing from what it prints (some sites, Active Away among them, load them after the page opens), run it again with `--browser` at the end. For a page marked `blocked`, try your web fetch tool. If that fails too, record the page as unreadable in the report and move on. Don't guess its contents.
 - `directory-schema.json` (repo root) defines every field. `seed/programs.json` has 27 finished examples; match their style.
 
 ## What to write
@@ -21,6 +21,7 @@ Arguments: `$ARGUMENTS`. With no arguments, or `changed`, work through the pages
 One JSON file per program in `harvest/out/<slug>.json`, in the same shape as an entry of `seed/programs.json`: `meta`, `core_identity`, `categorization`, `rating_systems`, `location`, `sessions`, `schedule_notes`, `pricing`, `sport_specific`, `media`. Then write `harvest/out/_report.json` (format below).
 
 - **One program = one product with its own dates and price.** Several dates of the same product are `sessions` of one program, not separate programs. The same product at two venues is two programs.
+- **`core_identity.organizer`** is who runs the program, spelled the way they write it; the import links it to that operator's record (by name or a known other spelling) or adds a new one. `core_identity.sold_through` stays null unless a marketplace is the only way to book.
 - **`meta`:**
   - `slug`: lowercase-hyphenated and descriptive, e.g. `mark-warner-intensive-tennis-week-phokaia`.
   - `source_url`: the program's own page; the source page if it has none.
@@ -67,7 +68,11 @@ A page whose `target` in `run.json` is `venue` is a place to stay (a resort or h
 - **Junior-only programs.** Family programs that include adults are fine.
 - **Single lessons, memberships, open play** and anything that isn't a camp, clinic or getaway.
 - **Programs whose every date has passed** with no sign they run again.
-- **Pages that aren't the operator's:** booking directories and marketplaces. Note the operator in the report instead.
+- **Marketplaces and directories themselves** (BookRetreats, Weebora, The Padel Circle, TennisTraveller): never list the site, and never put it in `organizer`. A camp you find on one is listed only when you know who runs it:
+  - The operator goes in `organizer`, and `booking_url` is the operator's own booking page if they have one.
+  - If the operator takes bookings only through the marketplace, set `core_identity.sold_through` to the marketplace's name.
+  - If the page doesn't say who runs it, don't list it: add it to the report's `leads`, named as the operator calls itself, with the marketplace page as `url`. The import keeps leads in /admin → Operators → Leads.
+- **Telling them apart:** a marketplace or directory shows camps from many different organisers (their names, ratings, "hosted by"), invites organisers to list ("List your camp", "Become a host"), and often takes a deposit or promises the lowest price. An operator's site shows only its own camps, coaches and dates. Booking software on an operator's own site (WeTravel, Shopify, a Squarespace shop) doesn't make it a marketplace, and neither does a form for clubs to host the operator's camps.
 - **Archived programs:** before writing a file, check the slug isn't archived (run `npm --prefix web run harvest:archived`). Archived ones were rejected or retired on purpose.
 
 ## Balance (first harvest)

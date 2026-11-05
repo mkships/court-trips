@@ -1,5 +1,6 @@
 import { relations, sql } from "drizzle-orm";
 import {
+  type AnyPgColumn,
   bigint,
   boolean,
   check,
@@ -91,6 +92,47 @@ export const courts = pgTable(
   (t) => [uniqueIndex("courts_venue_position_idx").on(t.venueId, t.position)],
 );
 
+// Who's behind a listing. An operator runs programmes: it sets the dates, hires the coaches and is
+// responsible on the day (an academy, a coach, a resort running its own weeks, a tour operator such as
+// Active Away). A marketplace lists programmes other people run, and usually takes the booking or
+// payment (BookRetreats, Weebora, The Padel Circle); directories that only link out (TennisTraveller)
+// are filed as marketplaces too, since we treat them the same: never listed or featured themselves.
+// Booking software operators use on their own pages (WeTravel) is neither: the operator still sells.
+// status: active (shown when it has public listings), lead (known, not listed yet: `note` says why
+// and `sourceUrl` where we saw it, `seenOnId` the marketplace if it was one), archived (hidden).
+export const ORGANIZATION_KINDS = ["operator", "marketplace"] as const;
+export const ORGANIZATION_STATUSES = ["active", "lead", "archived"] as const;
+
+export const organizations = pgTable(
+  "organizations",
+  {
+    id: uuid().primaryKey().defaultRandom(),
+    slug: text().notNull().unique(),
+    name: text().notNull(),
+    kind: text().$type<(typeof ORGANIZATION_KINDS)[number]>().notNull().default("operator"),
+    status: text().$type<(typeof ORGANIZATION_STATUSES)[number]>().notNull().default("active"),
+    website: text(),
+    description: text(),
+    // where they're based
+    country: text(),
+    // for leads, which have no listings to take sports from
+    sports: text().array().notNull().default([]),
+    // other spellings listings use for the same organisation, so imports link them here
+    aliases: text().array().notNull().default([]),
+    // internal: what to check, why it isn't listed
+    note: text(),
+    sourceUrl: text(),
+    seenOnId: uuid().references((): AnyPgColumn => organizations.id, { onDelete: "set null" }),
+    createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    check("organizations_kind_check", sql`${t.kind} in (${list(ORGANIZATION_KINDS)})`),
+    check("organizations_status_check", sql`${t.status} in (${list(ORGANIZATION_STATUSES)})`),
+    uniqueIndex("organizations_name_idx").on(sql`lower(${t.name})`),
+  ],
+);
+
 // A harvest's proposal for a listing someone may already have published or edited: the changed
 // fields' new values (sessions as a whole set), and/or a note that it's gone from the operator's page.
 export type PendingChanges = {
@@ -110,7 +152,11 @@ export const programs = pgTable(
     dataQualityScore: real(),
     // core_identity
     title: text().notNull(),
+    // the operator's name as shown; operatorId links the organisation record (kept in step on save)
     organizer: text().notNull(),
+    operatorId: uuid().references(() => organizations.id, { onDelete: "set null" }),
+    // set only when the programme can only be booked through a marketplace
+    soldThroughId: uuid().references(() => organizations.id, { onDelete: "set null" }),
     description: text(),
     coaches: text().array().notNull().default([]),
     languages: text().array().notNull().default([]),
@@ -160,6 +206,7 @@ export const programs = pgTable(
     check("programs_status_check", sql`${t.status} in (${list(PROGRAM_STATUSES)})`),
     check("programs_category_check", sql`${t.category} in (${list(CATEGORIES)})`),
     index("programs_venue_idx").on(t.venueId),
+    index("programs_operator_idx").on(t.operatorId),
   ],
 );
 
@@ -212,8 +259,15 @@ export const venuesRelations = relations(venues, ({ many }) => ({
 export const courtsRelations = relations(courts, ({ one }) => ({
   venue: one(venues, { fields: [courts.venueId], references: [venues.id] }),
 }));
+export const organizationsRelations = relations(organizations, ({ one, many }) => ({
+  programs: many(programs, { relationName: "operator" }),
+  sold: many(programs, { relationName: "soldThrough" }),
+  seenOn: one(organizations, { fields: [organizations.seenOnId], references: [organizations.id], relationName: "seenOn" }),
+}));
 export const programsRelations = relations(programs, ({ one, many }) => ({
   venue: one(venues, { fields: [programs.venueId], references: [venues.id] }),
+  operator: one(organizations, { fields: [programs.operatorId], references: [organizations.id], relationName: "operator" }),
+  soldThrough: one(organizations, { fields: [programs.soldThroughId], references: [organizations.id], relationName: "soldThrough" }),
   sessions: many(sessions),
   photos: many(photos),
   // the operator submission (if any) this program was made from
