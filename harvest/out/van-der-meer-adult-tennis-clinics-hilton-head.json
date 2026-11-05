@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "slug": "van-der-meer-adult-tennis-clinics-hilton-head",
+    "source_url": "https://vandermeertennis.com/adult-tennis-clinics/",
+    "listing_url": "https://vandermeertennis.com/adult-tennis-clinics/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.7
+  },
+  "core_identity": {
+    "title": "Adult tennis clinics with Van der Meer, Hilton Head",
+    "organizer": "Van der Meer Tennis",
+    "description": "Adult tennis clinics on Hilton Head Island for all ability levels: 18-hour week-long programmes and 9-hour weekend clinics.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://vandermeertennis.com/adult-tennis-clinics/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "clinic",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Hilton Head Island, South Carolina",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": 32.19,
+    "lng": -80.74
+  },
+  "sessions": [],
+  "schedule_notes": "Weekly and weekend clinics through the year; see the schedule.",
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": "USD",
+    "price_unit": null,
+    "price_notes": "Prices on Van der Meer's schedule page.",
+    "inclusions": []
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 18,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "self_arranged"
+  },
+  "media": {
+    "thumbnail": "https://vandermeertennis.com/wp-content/uploads/2016/02/adult-tennis.jpg",
+    "images": [
+      "https://vandermeertennis.com/wp-content/uploads/2016/02/adult-tennis.jpg",
+      "https://vandermeertennis.com/wp-content/uploads/2016/02/drill-play.jpg",
+      "https://vandermeertennis.com/wp-content/uploads/2016/02/doubles.jpg",
+      "https://vandermeertennis.com/wp-content/uploads/2023/07/daily.jpg"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "slug": "pickleball-getaways-antigua-luxury",
+    "source_url": "https://pickleballgetaways.com/shop/antigua-1-dec-2026/",
+    "listing_url": "https://pickleballgetaways.com/getaways/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.65
+  },
+  "core_identity": {
+    "title": "Luxury pickleball villa week in Antigua",
+    "organizer": "Pickleball Getaways",
+    "description": "Pickleball Getaways' luxury edition in Antigua: five nights in a villa with breakfast served, pickleball coaching and play, for a small group.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballgetaways.com/shop/antigua-1-dec-2026/",
+    "contact_email": "info@pickleballgetaways.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Antigua and Barbuda",
+    "city_region": null,
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-01",
+      "end_date": "2026-12-06",
+      "status": "available",
+      "price_override": 10900
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 10900,
+    "price_max": 10900,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "US$10,900 per person sharing (US$21,800 for two). Non-playing companions get a discount. Flights not included.",
+    "inclusions": [
+      "villa accommodation",
+      "pickleball coaching and play"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "villa"
+  },
+  "media": {
+    "thumbnail": "https://pickleballgetaways.com/wp-content/uploads/2026/07/spacious-outdoor-living.jpg",
+    "images": [
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/spacious-outdoor-living.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/breakfast-in-villa.jpg"
+    ]
+  }
+}

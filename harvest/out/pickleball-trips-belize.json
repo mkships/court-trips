@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "slug": "pickleball-trips-belize",
+    "source_url": "https://pickleballtrips.com/shop/blissful-belize-2027/",
+    "listing_url": "https://pickleballtrips.com/trips/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.7
+  },
+  "core_identity": {
+    "title": "Pickleball week on Ambergris Caye, Belize",
+    "organizer": "Pickleball Trips",
+    "description": "Six nights at a beachfront house on Ambergris Caye with a private chef, morning clinics from Pickleball Trips instructors, snorkelling and boating.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballtrips.com/shop/blissful-belize-2027/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Belize",
+    "city_region": "Ambergris Caye",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [],
+  "schedule_notes": "Winter 2026–27; join the waitlist for dates.",
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "Open to players from novice to advanced; no age requirement. Flights not included.",
+    "inclusions": [
+      "6 nights in a beachfront house",
+      "meals by a private chef",
+      "morning clinics"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "villa"
+  },
+  "media": {
+    "thumbnail": "https://pickleballtrips.com/wp-content/uploads/2023/06/Pickleball-Trips-Belize-Banner-Image-3-of-3.jpg",
+    "images": [
+      "https://pickleballtrips.com/wp-content/uploads/2023/06/Pickleball-Trips-Belize-Banner-Image-3-of-3.jpg",
+      "https://pickleballtrips.com/wp-content/uploads/2023/06/Pickleball-Trips-Belize-Banner-Image-1-of-3-1024x576.jpg"
+    ]
+  }
+}

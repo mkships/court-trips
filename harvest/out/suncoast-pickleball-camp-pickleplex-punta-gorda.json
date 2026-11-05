@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "slug": "suncoast-pickleball-camp-pickleplex-punta-gorda",
+    "source_url": "https://suncoastpickleball.com/camp-pickleplex-2027/",
+    "listing_url": "https://suncoastpickleball.com/camps-2026/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Suncoast Pickleball training camp at PicklePlex, Punta Gorda",
+    "organizer": "Suncoast Pickleball Association",
+    "description": "Four days of training with pros including Mindy Yoder, Scott Tingley and John Sperling at PicklePlex in Punta Gorda, Florida, with play-with-a-pro sessions, lunch each day and optional evening socials. Limited to 32 players.",
+    "coaches": [
+      "Mindy Yoder",
+      "Scott Tingley",
+      "John Sperling"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://suncoastpickleball.com/camp-pickleplex-2027/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Punta Gorda, Florida",
+    "venue_name": "PicklePlex",
+    "venue_slug": null,
+    "lat": 26.93,
+    "lng": -82.05
+  },
+  "sessions": [
+    {
+      "start_date": "2027-02-22",
+      "end_date": "2027-02-25",
+      "status": "available",
+      "price_override": 849
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 849,
+    "price_max": 849,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "US$849 per person. Lodging not included; a discounted rate at the Four Points by Sheraton Punta Gorda. Private lessons extra.",
+    "inclusions": [
+      "4 days training",
+      "lunch daily",
+      "play with a pro"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": 32,
+    "accommodation_type": "self_arranged"
+  },
+  "media": {
+    "thumbnail": "https://suncoastpickleball.com/wp-content/uploads/2024/12/pickleplex-2020-group-training-scaled.jpg",
+    "images": [
+      "https://suncoastpickleball.com/wp-content/uploads/2024/12/pickleplex-2020-group-training-scaled.jpg",
+      "https://suncoastpickleball.com/wp-content/uploads/2024/12/pickleplex-2020-scott-training-scaled.jpg"
+    ]
+  }
+}

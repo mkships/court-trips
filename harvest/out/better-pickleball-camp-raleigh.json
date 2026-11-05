@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "slug": "better-pickleball-camp-raleigh",
+    "source_url": "https://betterpickleball.com/camp-locations/",
+    "listing_url": "https://betterpickleball.com/camp-locations/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.75
+  },
+  "core_identity": {
+    "title": "Better Pickleball camp in Raleigh, North Carolina",
+    "organizer": "Better Pickleball",
+    "description": "A two-day Better Pickleball camp: 12 hours of instruction including five hours on court a day and a lunch-and-learn, with no more than eight players per pro.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://betterpickleball.com/camp-locations/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Raleigh, North Carolina",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": 35.78,
+    "lng": -78.64
+  },
+  "sessions": [
+    {
+      "start_date": "2027-04-29",
+      "end_date": "2027-04-30",
+      "status": "available"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "Price on the camp's enrolment page.",
+    "inclusions": [
+      "12 hours instruction",
+      "lunch daily"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 12,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "self_arranged"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

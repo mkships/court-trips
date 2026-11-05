@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "slug": "cape-columbia-holiday-intensive-long-beach",
+    "source_url": "https://www.capecolumbiapickleball.com/collections/indoor-pickleball-camps/products/intenzivni-holiday-pickleball-camp-december-4-6-2026",
+    "listing_url": "https://www.capecolumbiapickleball.com/collections/indoor-pickleball-camps",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.75
+  },
+  "core_identity": {
+    "title": "Holiday pickleball weekend camp in Long Beach, Washington",
+    "organizer": "Cape Columbia Pickleball",
+    "description": "A weekend camp with Lighthouse pro Roman Sada at the Lighthouse Oceanfront Resort on the Washington coast: three hours of instruction each day, with a Czech Christmas theme. For 3.0 to 4.0 players; not for beginners.",
+    "coaches": [
+      "Roman Sada"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.capecolumbiapickleball.com/collections/indoor-pickleball-camps/products/intenzivni-holiday-pickleball-camp-december-4-6-2026",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "intermediate"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Long Beach, Washington",
+    "venue_name": "Lighthouse Oceanfront Resort",
+    "venue_slug": null,
+    "lat": 46.37,
+    "lng": -124.05
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-05",
+      "end_date": "2026-12-06",
+      "status": "available",
+      "price_override": 179
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 179,
+    "price_max": 179,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "US$179 per person.",
+    "inclusions": [
+      "6 hours instruction"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 6,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": null
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

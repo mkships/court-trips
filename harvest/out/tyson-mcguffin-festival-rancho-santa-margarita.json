@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "slug": "tyson-mcguffin-festival-rancho-santa-margarita",
+    "source_url": "https://tysonmcguffin.com/products/rancho-santa-margarita-festival",
+    "listing_url": "https://tysonmcguffin.com/pages/all-camps",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Tyson McGuffin pickleball festival in Rancho Santa Margarita",
+    "organizer": "Tyson McGuffin Pickleball",
+    "description": "Two days with Tyson McGuffin at the Picklr Rancho Santa Margarita, 9am to 3pm: a coached tournament day with a pro-am, exhibition, Q&A and an MLP-style tournament, then a day on the soft game, serve, return, drives and volleys.",
+    "coaches": [
+      "Tyson McGuffin"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://tysonmcguffin.com/products/rancho-santa-margarita-festival",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Rancho Santa Margarita, California",
+    "venue_name": "Picklr Rancho Santa Margarita",
+    "venue_slug": null,
+    "lat": 33.64,
+    "lng": -117.6
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-08",
+      "end_date": "2026-12-09",
+      "status": "available",
+      "price_override": 999
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 999,
+    "price_max": 999,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "US$999 per player. Lunch break around noon; lunch not stated as included.",
+    "inclusions": []
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "self_arranged"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

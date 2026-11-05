@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "slug": "empowher-womens-camp-orange-park",
+    "source_url": "https://empowherpickleball.com/camp-details-orange-park-fl-dec-14-15-2026",
+    "listing_url": "https://empowherpickleball.com/empowhercamps",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Empowher women's pickleball camp in Orange Park, Florida",
+    "organizer": "Empowher Pickleball",
+    "description": "A two-day women's-only camp at The Hub in Orange Park, near Jacksonville: 12 hours with PPR-certified coaches, eight players per coach, on serves, returns, third shots, court coverage and resets. For players with six months' steady play.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://empowherpickleball.com/camp-details-orange-park-fl-dec-14-15-2026",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "female",
+    "level": [
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Orange Park, Florida",
+    "venue_name": "The Hub",
+    "venue_slug": null,
+    "lat": 30.17,
+    "lng": -81.74
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-14",
+      "end_date": "2026-12-15",
+      "status": "available",
+      "price_override": 549
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 549,
+    "price_max": 549,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "US$549 per player. Lunch not included. A group rate at a nearby Marriott.",
+    "inclusions": [
+      "12 hours instruction"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 12,
+    "player_to_coach_ratio": "8:1+",
+    "capacity": null,
+    "accommodation_type": "self_arranged"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

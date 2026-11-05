@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "slug": "newcombe-tennis-ranch-weekend",
+    "source_url": "https://newktennis.com/adult-tennis/",
+    "listing_url": "https://newktennis.com/adult-tennis/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Adult tennis weekend at John Newcombe Tennis Ranch",
+    "organizer": "John Newcombe Tennis Ranch",
+    "description": "A three-day adult tennis weekend at John Newcombe's ranch in Texas Hill Country: three tennis clinics, six buffet meals, accommodation and Aussie-style entertainment. Runs all year, on flexible days.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://newktennis.com/adult-tennis/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "New Braunfels, Texas",
+    "venue_name": "John Newcombe Tennis Ranch",
+    "venue_slug": null,
+    "lat": 29.7,
+    "lng": -98.12
+  },
+  "sessions": [],
+  "schedule_notes": "All year; pick your days.",
+  "pricing": {
+    "price_min": 465,
+    "price_max": 1040,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "Per person: US$465–520 (2-for-1), US$505–585 (companion), US$930–1,040 (Grand Slam).",
+    "inclusions": [
+      "3 tennis clinics",
+      "6 buffet meals",
+      "accommodation",
+      "entertainment"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://newktennis.com/wp-content/uploads/2026/08/adults.jpg",
+    "images": [
+      "https://newktennis.com/wp-content/uploads/2026/08/adults.jpg",
+      "https://newktennis.com/wp-content/uploads/2019/11/camp_img.jpg",
+      "https://newktennis.com/wp-content/uploads/2019/11/lodge-img.jpg"
+    ]
+  }
+}

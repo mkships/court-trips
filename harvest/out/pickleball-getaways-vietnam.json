@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "slug": "pickleball-getaways-vietnam",
+    "source_url": "https://pickleballgetaways.com/shop/vietnam-23-feb-2027/",
+    "listing_url": "https://pickleballgetaways.com/getaways/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball week in Hoi An, Vietnam",
+    "organizer": "Pickleball Getaways",
+    "description": "A week at the New World Hoiana Beach Resort near Hoi An with 9+ hours of instruction and play with the pros on eight permanent courts (four indoor), a pro exhibition and three included tours.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballgetaways.com/shop/vietnam-23-feb-2027/",
+    "contact_email": "info@pickleballgetaways.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Vietnam",
+    "city_region": "Hoi An, Quang Nam",
+    "venue_name": "New World Hoiana Beach Resort",
+    "venue_slug": null,
+    "lat": 15.8,
+    "lng": 108.4
+  },
+  "sessions": [
+    {
+      "start_date": "2027-02-23",
+      "end_date": "2027-03-02",
+      "status": "available",
+      "price_override": 3080,
+      "booking_url": "https://pickleballgetaways.com/shop/vietnam-23-feb-2027/"
+    },
+    {
+      "start_date": "2027-03-02",
+      "end_date": "2027-03-09",
+      "status": "available",
+      "price_override": 3080,
+      "booking_url": "https://pickleballgetaways.com/shop/vietnam-2-mar-2027/"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 3080,
+    "price_max": 3080,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "Per person sharing a double room; single occupancy costs more. Non-playing companions get a discount. Flights not included.",
+    "inclusions": [
+      "accommodation",
+      "9+ hours instruction and play",
+      "3 tours"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 9,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://pickleballgetaways.com/wp-content/uploads/2025/08/sNew-World-Hotel-Hoiana-review-Cove-Bar-Grill-poolside-dining.jpg",
+    "images": [
+      "https://pickleballgetaways.com/wp-content/uploads/2025/08/sNew-World-Hotel-Hoiana-review-Cove-Bar-Grill-poolside-dining.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2025/08/square-courts.jpg"
+    ]
+  }
+}

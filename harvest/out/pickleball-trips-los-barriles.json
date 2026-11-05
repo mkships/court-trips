@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "slug": "pickleball-trips-los-barriles",
+    "source_url": "https://pickleballtrips.com/shop/local-los-barriles/",
+    "listing_url": "https://pickleballtrips.com/trips/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball week in Los Barriles, Baja",
+    "organizer": "Pickleball Trips",
+    "description": "Six nights on the beach at Hotel Palmas de Cortez in Los Barriles on Baja's East Cape, with clinics, play with locals and outings, for up to 12 players.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballtrips.com/shop/local-los-barriles/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Mexico",
+    "city_region": "Los Barriles, Baja California Sur",
+    "venue_name": "Hotel Palmas de Cortez",
+    "venue_slug": null,
+    "lat": 23.68,
+    "lng": -109.7
+  },
+  "sessions": [
+    {
+      "start_date": "2027-02-16",
+      "end_date": "2027-02-22",
+      "status": "available",
+      "price_override": 3600
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 3600,
+    "price_max": 3600,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "From the price shown per person. Open to players from novice to advanced; no age requirement. Flights not included.",
+    "inclusions": [
+      "6 nights at Hotel Palmas de Cortez",
+      "clinics",
+      "outings"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": 12,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://pickleballtrips.com/wp-content/uploads/2024/11/qtq80-UaA1Xp.jpeg",
+    "images": [
+      "https://pickleballtrips.com/wp-content/uploads/2024/11/qtq80-UaA1Xp.jpeg",
+      "https://pickleballtrips.com/wp-content/uploads/2021/06/Pool-view4.jpg"
+    ]
+  }
+}

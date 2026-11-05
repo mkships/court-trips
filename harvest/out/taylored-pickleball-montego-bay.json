@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "slug": "taylored-pickleball-montego-bay",
+    "source_url": "https://www.tayloredpickleballacademy.ca/tpa-trips/jamaica",
+    "listing_url": "https://www.tayloredpickleballacademy.ca/trips",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.75
+  },
+  "core_identity": {
+    "title": "Taylored Pickleball week in Montego Bay, Jamaica",
+    "organizer": "Taylored Pickleball Academy",
+    "description": "Five nights all-inclusive at Iberostar Selection Rose Hall Suites, or the adults-only JOIA Rose Hall, with 20+ hours of organised, play-based pickleball, mentored games and an MLP-style team tournament with Cameron Taylor.",
+    "coaches": [
+      "Cameron Taylor"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.tayloredpickleballacademy.ca/tpa-trips/jamaica",
+    "contact_email": "info@tayloredpickleballacademy.ca",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Jamaica",
+    "city_region": "Montego Bay",
+    "venue_name": "Iberostar Selection Rose Hall Suites",
+    "venue_slug": null,
+    "lat": 18.51,
+    "lng": -77.83
+  },
+  "sessions": [
+    {
+      "start_date": "2027-04-08",
+      "end_date": "2027-04-13",
+      "status": "available",
+      "price_override": 1899
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 1899,
+    "price_max": 1899,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "From US$1,899 per person sharing. Booked through Trevello Travel, TPA's travel partner. Flights not included.",
+    "inclusions": [
+      "accommodation",
+      "all inclusive",
+      "20+ hours pickleball",
+      "team tournament"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

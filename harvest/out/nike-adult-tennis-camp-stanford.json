@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "id": "a09c1e39-b3aa-52d4-9ae8-952c25d1177d",
+    "slug": "nike-adult-tennis-camp-stanford",
+    "source_url": "https://www.ussportscamps.com/tennis/nike/stanford-university-nike-tennis-camp-adult-tennis-school",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 0.86,
+    "listing_url": "https://www.ussportscamps.com/search/results?live=1&sportSlug=tennis"
+  },
+  "core_identity": {
+    "title": "Nike Adult Tennis Camp at Stanford",
+    "organizer": "Nike Sports Camps",
+    "description": "A three-day adult camp at Stanford's Arrillaga Tennis Center, run by Stanford assistant coach and former ATP player Brandon Coupe. Players are grouped by level, from beginners to advanced.",
+    "coaches": [
+      "Brandon Coupe"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.ussportscamps.com/tennis/nike/stanford-university-nike-tennis-camp-adult-tennis-school",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Stanford, California",
+    "venue_name": "Taube Pavilion, Arrillaga Tennis Center",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-12",
+      "end_date": "2026-12-14",
+      "status": "available",
+      "duration_days": 3
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 644,
+    "price_max": 644,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "$644 for the 3-day camp; a deposit holds your place. Adults 18+.",
+    "inclusions": [
+      "daily coaching",
+      "match play"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "not_included"
+  },
+  "media": {
+    "thumbnail": "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867480/4.webp",
+    "images": [
+      "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867480/4.webp",
+      "https://cdn.ussportscamps.com/craftcms/media/images/_responsive2800/4916010/Screenshot-2026-06-11-131540.webp",
+      "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867479/3.webp",
+      "https://cdn.ussportscamps.com/craftcms/media/images/tennis/Stanford-Facility-Photos-2026-approved/_responsive2800/4867478/2.webp"
+    ]
+  }
+}

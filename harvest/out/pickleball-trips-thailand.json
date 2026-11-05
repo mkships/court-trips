@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "slug": "pickleball-trips-thailand",
+    "source_url": "https://pickleballtrips.com/shop/exotic-thailand/",
+    "listing_url": "https://pickleballtrips.com/trips/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball trip through Thailand",
+    "organizer": "Pickleball Trips",
+    "description": "Ten days through Bangkok, Hua Hin and Chiang Mai with clinics from Pickleball Trips instructors, games at local clubs and sightseeing, for up to 16 players.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballtrips.com/shop/exotic-thailand/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Thailand",
+    "city_region": "Bangkok, Hua Hin and Chiang Mai",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2027-01-12",
+      "end_date": "2027-01-21",
+      "status": "available",
+      "price_override": 3850
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 3850,
+    "price_max": 3850,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "From the price shown per person. Open to players from novice to advanced; no age requirement. Flights not included.",
+    "inclusions": [
+      "hotels",
+      "clinics",
+      "local club play",
+      "sightseeing"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": 16,
+    "accommodation_type": "partner_hotel"
+  },
+  "media": {
+    "thumbnail": "https://pickleballtrips.com/wp-content/uploads/2023/01/AdobeStock_103181695-scaled.jpeg",
+    "images": [
+      "https://pickleballtrips.com/wp-content/uploads/2023/01/AdobeStock_103181695-scaled.jpeg"
+    ]
+  }
+}

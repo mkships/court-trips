@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "id": "8f3e3396-795c-5987-9d04-72702008edf6",
+    "slug": "nike-adult-pickleball-ttc-palms",
+    "source_url": "https://www.ussportscamps.com/pickleball/nike/adult-sunrise-country-club",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 0.93,
+    "listing_url": "https://www.ussportscamps.com/search/results?live=1&sportSlug=pickleball"
+  },
+  "core_identity": {
+    "title": "Nike Adult Pickleball Camp at TTC Palms",
+    "organizer": "Nike Sports Camps",
+    "description": "A desert weekend camp with Bollettieri Pickleball in Palm Desert: over 10 hours of drills, strategy and match play, grouped from beginner to advanced. Day camp only.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.ussportscamps.com/pickleball/nike/adult-sunrise-country-club",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Palm Desert, California",
+    "venue_name": "TTC Palms",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "status": "available",
+      "duration_days": 3
+    },
+    {
+      "start_date": "2026-12-04",
+      "end_date": "2026-12-06",
+      "status": "available",
+      "duration_days": 3
+    },
+    {
+      "start_date": "2026-12-11",
+      "end_date": "2026-12-13",
+      "status": "available",
+      "duration_days": 3
+    },
+    {
+      "start_date": "2027-01-23",
+      "end_date": "2027-01-25",
+      "status": "available",
+      "duration_days": 3
+    },
+    {
+      "start_date": "2027-02-26",
+      "end_date": "2027-02-28",
+      "status": "available",
+      "duration_days": 3
+    },
+    {
+      "start_date": "2027-03-05",
+      "end_date": "2027-03-07",
+      "status": "available",
+      "duration_days": 3
+    },
+    {
+      "start_date": "2027-04-02",
+      "end_date": "2027-04-04",
+      "status": "available",
+      "duration_days": 3
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 744,
+    "price_max": 744,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "$744 per 3-day camp; lunch and housing not included.",
+    "inclusions": [
+      "daily coaching",
+      "match play"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 10,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "not_included"
+  },
+  "media": {
+    "thumbnail": "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/_responsive1400/4803015/Gallery-Images-2.webp",
+    "images": [
+      "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/_responsive1400/4803015/Gallery-Images-2.webp",
+      "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/gallery/_responsive768/476459/Pickleball-solo-hit.webp",
+      "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/gallery/_responsive768/476460/Pickleball-solo-woman-shot.webp",
+      "https://cdn.ussportscamps.com/craftcms/media/images/pickleball/gallery/_responsive1400/476457/Pickleball-group-match.webp"
+    ]
+  }
+}

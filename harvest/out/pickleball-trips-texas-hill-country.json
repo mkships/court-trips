@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "slug": "pickleball-trips-texas-hill-country",
+    "source_url": "https://pickleballtrips.com/shop/hill-country-hideaway/",
+    "listing_url": "https://pickleballtrips.com/trips/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball retreat at Sage Hill Inn, Texas",
+    "organizer": "Pickleball Trips",
+    "description": "Four nights at Sage Hill Inn & Spa in the Texas Hill Country with private group clinics from Pickleball Trips' instructors and time to unwind.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballtrips.com/shop/hill-country-hideaway/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Texas Hill Country",
+    "venue_name": "Sage Hill Inn & Spa",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2026-11-08",
+      "end_date": "2026-11-12",
+      "status": "available",
+      "price_override": 2550
+    },
+    {
+      "start_date": "2027-04-04",
+      "end_date": "2027-04-08",
+      "status": "available",
+      "price_override": 2550
+    },
+    {
+      "start_date": "2027-11-07",
+      "end_date": "2027-11-11",
+      "status": "available",
+      "price_override": 2550
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 2550,
+    "price_max": 2550,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "From the price shown per person. Open to players from novice to advanced; no age requirement. Flights not included.",
+    "inclusions": [
+      "4 nights at Sage Hill Inn & Spa",
+      "private group clinics"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://pickleballtrips.com/wp-content/uploads/2026/03/sage-hill-pickleball-pavilion-slide.jpeg-scaled.webp",
+    "images": [
+      "https://pickleballtrips.com/wp-content/uploads/2026/03/sage-hill-pickleball-pavilion-slide.jpeg-scaled.webp"
+    ]
+  }
+}

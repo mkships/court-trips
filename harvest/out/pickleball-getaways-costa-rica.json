@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "slug": "pickleball-getaways-costa-rica",
+    "source_url": "https://pickleballgetaways.com/shop/cr-13-apr-2027/",
+    "listing_url": "https://pickleballgetaways.com/getaways/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball week in Costa Rica",
+    "organizer": "Pickleball Getaways",
+    "description": "A week at the Tilajari Hotel Resort in northern Costa Rica with 7.5+ hours of instruction and play with the pros on covered, lit courts, a pro exhibition, open play and four included tours.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballgetaways.com/shop/cr-13-apr-2027/",
+    "contact_email": "info@pickleballgetaways.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Costa Rica",
+    "city_region": "San Carlos, Alajuela",
+    "venue_name": "Tilajari Hotel Resort",
+    "venue_slug": null,
+    "lat": 10.47,
+    "lng": -84.47
+  },
+  "sessions": [
+    {
+      "start_date": "2027-04-13",
+      "end_date": "2027-04-20",
+      "status": "available",
+      "price_override": 2980,
+      "booking_url": "https://pickleballgetaways.com/shop/cr-13-apr-2027/"
+    },
+    {
+      "start_date": "2027-10-05",
+      "end_date": "2027-10-12",
+      "status": "available",
+      "price_override": 2980,
+      "booking_url": "https://pickleballgetaways.com/shop/costa-rica-5-oct-2027/"
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 2980,
+    "price_max": 2980,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "Per person sharing a double room; single occupancy costs more. Non-playing companions get a discount. Flights not included.",
+    "inclusions": [
+      "accommodation",
+      "7.5+ hours instruction and play",
+      "4 tours"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 7.5,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://pickleballgetaways.com/wp-content/uploads/2023/10/costa-rica-1200x1200-16.jpg",
+    "images": [
+      "https://pickleballgetaways.com/wp-content/uploads/2023/10/costa-rica-1200x1200-16.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2023/10/costa-rica-1200x1200-15.jpg"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "slug": "pickleball-cabo-week-los-barriles",
+    "source_url": "https://www.wetravel.com/trips/self-guided-trips-january-2027-november-2027-pickleball-cabo-4242877983",
+    "listing_url": "https://www.wetravel.com/trips/self-guided-trips-january-2027-november-2027-pickleball-cabo-4242877983",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.75
+  },
+  "core_identity": {
+    "title": "Pickleball Cabo week in Los Barriles, Baja",
+    "organizer": "Pickleball Cabo",
+    "description": "A week on Baja's East Cape on dates you choose: six nights at Palmas de Cortez or Playa del Sol, two hours of coaching and drills plus free play each morning, afternoon round robins and ladders, and a free day.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.wetravel.com/trips/self-guided-trips-january-2027-november-2027-pickleball-cabo-4242877983",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Mexico",
+    "city_region": "Los Barriles, Baja California Sur",
+    "venue_name": "Palmas de Cortez",
+    "venue_slug": null,
+    "lat": 23.68,
+    "lng": -109.7
+  },
+  "sessions": [],
+  "schedule_notes": "Weekly from January to November 2027; request your dates.",
+  "pricing": {
+    "price_min": 1695,
+    "price_max": 1695,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "US$1,695 per person sharing; single room US$750 more. Deposit US$595. Meals not included.",
+    "inclusions": [
+      "6 nights accommodation",
+      "airport transfers",
+      "pickleball instruction and court fees"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://cdn.filestackcontent.com/rotate=deg:exif/resize=fit:max,width:1920,height:630/quality=v:65/compress/output=format:jpg/cache=expiry:2628000/fallback=file:dTYl6suKR6u25dRVO00q,cache:2628000/dTYl6suKR6u25dRVO00q",
+    "images": [
+      "https://cdn.filestackcontent.com/rotate=deg:exif/resize=fit:max,width:1920,height:630/quality=v:65/compress/output=format:jpg/cache=expiry:2628000/fallback=file:dTYl6suKR6u25dRVO00q,cache:2628000/dTYl6suKR6u25dRVO00q"
+    ]
+  }
+}

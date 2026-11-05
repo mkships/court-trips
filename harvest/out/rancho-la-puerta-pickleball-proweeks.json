@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "slug": "rancho-la-puerta-pickleball-proweeks",
+    "source_url": "https://rancholapuerta.com/pickleball-proweeks-2026/",
+    "listing_url": "https://rancholapuerta.com/pickleball-proweeks-2026/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball ProWeek at Rancho La Puerta",
+    "organizer": "Rancho La Puerta",
+    "description": "A Saturday-to-Saturday week at the Rancho La Puerta wellness resort in Baja California with coach Mario Boschi and master instructors: 15 hours of small-group instruction, open play, three spa treatments and the Ranch's hikes, classes and meals.",
+    "coaches": [
+      "Mario Boschi"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://rancholapuerta.com/pickleball-proweeks-2026/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "clinic",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "beginner",
+      "intermediate"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Mexico",
+    "city_region": "Tecate, Baja California",
+    "venue_name": "Rancho La Puerta",
+    "venue_slug": null,
+    "lat": 32.56,
+    "lng": -116.64
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-05",
+      "end_date": "2026-12-12",
+      "status": "available",
+      "price_override": 1000
+    },
+    {
+      "start_date": "2026-12-12",
+      "end_date": "2026-12-19",
+      "status": "available",
+      "price_override": 1000
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 1000,
+    "price_max": 1000,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "US$1,000 per person per week for the pickleball programme, on top of a 7-night stay at the Ranch. For 2.5 to 4.0 players.",
+    "inclusions": [
+      "15 hours instruction",
+      "3 spa treatments",
+      "open play"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 15,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://rancholapuerta.com/wp-content/uploads/Rancho-La-Puerta-Pickleball-ProWeeks.jpg",
+    "images": [
+      "https://rancholapuerta.com/wp-content/uploads/Rancho-La-Puerta-Pickleball-ProWeeks.jpg"
+    ]
+  }
+}

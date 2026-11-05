@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "slug": "taylored-pickleball-croatian-cruise",
+    "source_url": "https://www.tayloredpickleballacademy.ca/tpa-trips/croatian-cruise",
+    "listing_url": "https://www.tayloredpickleballacademy.ca/trips",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.75
+  },
+  "core_identity": {
+    "title": "Taylored Pickleball yacht cruise along the Croatian coast",
+    "organizer": "Taylored Pickleball Academy",
+    "description": "Seven nights island-hopping on a private yacht along the Adriatic, with 8+ hours of instruction and open play in Split and on Korčula, and excursions in each port.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.tayloredpickleballacademy.ca/tpa-trips/croatian-cruise",
+    "contact_email": "info@tayloredpickleballacademy.ca",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Croatia",
+    "city_region": "Split and the Dalmatian islands",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": 43.51,
+    "lng": 16.44
+  },
+  "sessions": [
+    {
+      "start_date": "2027-05-23",
+      "end_date": "2027-05-30",
+      "status": "available",
+      "price_override": 4675
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 4675,
+    "price_max": 4675,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "From US$4,675 per person sharing a cabin. Flights not included.",
+    "inclusions": [
+      "7 nights on a private yacht",
+      "8+ hours pickleball",
+      "excursions"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": null
+  },
+  "media": {
+    "thumbnail": "https://static.wixstatic.com/media/187cec_8206a5b9581245778d27a8618de5c536~mv2.jpg",
+    "images": [
+      "https://static.wixstatic.com/media/187cec_8206a5b9581245778d27a8618de5c536~mv2.jpg",
+      "https://static.wixstatic.com/media/187cec_6ea9793051d44c049ea203c13f727e77~mv2.jpg"
+    ]
+  }
+}

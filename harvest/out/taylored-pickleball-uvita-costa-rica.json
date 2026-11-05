@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "slug": "taylored-pickleball-uvita-costa-rica",
+    "source_url": "https://www.tayloredpickleballacademy.ca/tpa-trips/uvita-costa-rica",
+    "listing_url": "https://www.tayloredpickleballacademy.ca/trips",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.75
+  },
+  "core_identity": {
+    "title": "Taylored Pickleball jungle retreat in Uvita, Costa Rica",
+    "organizer": "Taylored Pickleball Academy",
+    "description": "Six nights in jungle cabinas at Invictus in Uvita, with four covered, lit courts on site, 23+ hours of pickleball, chef-prepared meals and trips to the Nauyaca waterfalls and the Whale's Tail at Marino Ballena National Park.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.tayloredpickleballacademy.ca/tpa-trips/uvita-costa-rica",
+    "contact_email": "info@tayloredpickleballacademy.ca",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Costa Rica",
+    "city_region": "Uvita, Puntarenas",
+    "venue_name": "Invictus",
+    "venue_slug": null,
+    "lat": 9.16,
+    "lng": -83.74
+  },
+  "sessions": [
+    {
+      "start_date": "2027-04-30",
+      "end_date": "2027-05-06",
+      "status": "available",
+      "price_override": 2940
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 2940,
+    "price_max": 2940,
+    "currency": "CAD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "From C$2,940 per person sharing. Flights not included.",
+    "inclusions": [
+      "6 nights accommodation",
+      "meals",
+      "23+ hours pickleball",
+      "2 excursions"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://static.wixstatic.com/media/041b35_efec46ff41b44afcac254c5c1788956c~mv2.jpg",
+    "images": [
+      "https://static.wixstatic.com/media/041b35_efec46ff41b44afcac254c5c1788956c~mv2.jpg",
+      "https://static.wixstatic.com/media/041b35_c9823cb9a4044575a464facb8c836a04~mv2.avif",
+      "https://static.wixstatic.com/media/041b35_ac2fdb085bd14977b34104196cab65f3~mv2.avif"
+    ]
+  }
+}

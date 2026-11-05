@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "slug": "pickleball-getaways-curacao",
+    "source_url": "https://pickleballgetaways.com/shop/curacao-24-sep-2027/",
+    "listing_url": "https://pickleballgetaways.com/getaways/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball week at Sandals Royal Curaçao",
+    "organizer": "Pickleball Getaways",
+    "description": "Six nights all-inclusive at Sandals Royal Curaçao, an adults-only resort on the island's south coast, with 7.5+ hours of clinics from the Pickleball Getaways coaches, daily open play, water sports and airport transfers.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballgetaways.com/shop/curacao-24-sep-2027/",
+    "contact_email": "info@pickleballgetaways.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Curaçao",
+    "city_region": "Santa Barbara Plantation",
+    "venue_name": "Sandals Royal Curaçao",
+    "venue_slug": null,
+    "lat": 12.08,
+    "lng": -68.86
+  },
+  "sessions": [
+    {
+      "start_date": "2027-09-24",
+      "end_date": "2027-09-30",
+      "status": "available",
+      "price_override": 4760
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 4760,
+    "price_max": 6780,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "US$4,760 per person sharing (US$9,520 for two); US$6,780 single. Deposit US$1,000 (single) or US$1,200 (double); balance due 26 May 2027. Flights not included.",
+    "inclusions": [
+      "accommodation",
+      "all inclusive",
+      "7.5+ hours clinics",
+      "daily open play",
+      "airport transfers",
+      "water sports"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 7.5,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://pickleballgetaways.com/wp-content/uploads/2026/07/Pickleball-courts-1.jpg",
+    "images": [
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/Pickleball-courts-1.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/Coastline.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/Pickleball-courts-2.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/Aerial-view-1.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/Bedroom.jpg",
+      "https://pickleballgetaways.com/wp-content/uploads/2026/07/Infinity-pool-1.jpg"
+    ]
+  }
+}

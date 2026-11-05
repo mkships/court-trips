@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "id": "f5e7af3f-2e1f-5641-beea-cd42cd825a14",
+    "slug": "mark-price-acworth-camp",
+    "source_url": "https://www.markpricepickleball.com/store/p/acworth-georgia-pb-camp-november-2026",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 1.0,
+    "listing_url": "https://www.markpricepickleball.com/store/pickleball-camps"
+  },
+  "core_identity": {
+    "title": "Mark Price signature camp in Acworth",
+    "organizer": "Mark Price Pickleball",
+    "description": "Three-day coaching camp with PPA pro Mark Price and his staff: dinking, third and fifth shots, movement and defence, in two groups (3.0–3.5 and 3.5+) of up to 16 players.",
+    "coaches": [
+      "Mark Price"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.markpricepickleball.com/store/p/acworth-georgia-pb-camp-november-2026",
+    "contact_email": "hello@markpricepickleball.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "United States",
+    "city_region": "Acworth, Georgia",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-22",
+      "status": "available",
+      "duration_days": 3
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 395,
+    "price_max": 395,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "$395 per player.",
+    "inclusions": [
+      "daily coaching",
+      "video analysis"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 9,
+    "player_to_coach_ratio": "8:1+",
+    "capacity": 32,
+    "accommodation_type": "not_included"
+  },
+  "media": {
+    "thumbnail": "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067464441-4KWO839K89IL0D3WX52Z/7J5A3236-2.jpeg",
+    "images": [
+      "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067464441-4KWO839K89IL0D3WX52Z/7J5A3236-2.jpeg",
+      "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067459277-NAHZY8QZF6FO8AU102K1/7J5A3015.jpg",
+      "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067459037-LY02KKDWU1QH4EKLOAMS/7J5A2860.jpg",
+      "https://images.squarespace-cdn.com/content/v1/61c0b5ba0502384c32458717/1642067467023-YPWCB0XBCE2EL423FFWB/7J5A3247.jpg"
+    ]
+  }
+}

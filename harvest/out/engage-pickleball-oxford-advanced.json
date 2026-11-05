@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "id": "1622dff1-549e-5004-bba7-930f1319a99e",
+    "slug": "engage-pickleball-oxford-advanced",
+    "source_url": "https://engagepickleball.com/products/december-19-20-2026-oxford-fl-skill-levels-3-7-4-5-advanced",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 0.86,
+    "listing_url": "https://engagepickleball.com/collections/all-training-camps"
+  },
+  "core_identity": {
+    "title": "Engage advanced camp in Oxford, Florida",
+    "organizer": "Engage Pickleball",
+    "description": "A two-day, 14-hour camp for 3.75–4.5 players focused on positioning, shot selection and point construction, with no more than eight players per coach.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://engagepickleball.com/products/december-19-20-2026-oxford-fl-skill-levels-3-7-4-5-advanced",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "camp",
+    "theme": [
+      "performance"
+    ],
+    "gender": "mixed",
+    "level": [
+      "advanced"
+    ]
+  },
+  "rating_systems": {
+    "dupr_min": 3.75,
+    "dupr_max": 4.5
+  },
+  "location": {
+    "country": "United States",
+    "city_region": "Oxford, Florida",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-19",
+      "end_date": "2026-12-20",
+      "status": "available",
+      "duration_days": 2
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 650,
+    "price_max": 650,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "$650 per player. Skill bands are Engage's own 3.75–4.5 scale.",
+    "inclusions": [
+      "daily coaching",
+      "snacks and drinks",
+      "$100 paddle discount"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 14,
+    "player_to_coach_ratio": "8:1+",
+    "capacity": null,
+    "accommodation_type": "not_included"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}
