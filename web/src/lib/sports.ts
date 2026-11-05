@@ -65,6 +65,10 @@ export type ProgramDetail = {
   slug: string;
   title: string;
   organizer: string;
+  // the operator's page (/operators/slug); null when it has none
+  operatorSlug: string | null;
+  // the marketplace it's booked through, when it can't be booked with the operator directly
+  soldThrough: string | null;
   description: string;
   coaches: string[];
   languages: string[];
@@ -95,4 +99,13 @@ export type ProgramDetail = {
   bookingUrl: string;
   sourceUrl: string;
   checkedAt: string;
+};
+
+// An operator with at least one public listing (src/lib/db.ts getOperators)
+export type Operator = {
+  slug: string;
+  name: string;
+  description: string | null;
+  website: string | null;
+  programSlugs: string[];
 };

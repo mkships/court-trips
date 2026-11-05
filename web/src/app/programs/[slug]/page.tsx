@@ -81,7 +81,15 @@ export default async function ProgramPage({ params, searchParams }: Props) {
             {placeLabel(program)}
           </li>
           <li className="text-ink-soft">
-            Run by <span className="font-semibold text-ink">{program.organizer}</span>
+            Run by{" "}
+            {program.operatorSlug ? (
+              <Link href={`/operators/${program.operatorSlug}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-ink">
+                {program.organizer}
+              </Link>
+            ) : (
+              <span className="font-semibold text-ink">{program.organizer}</span>
+            )}
+            {program.soldThrough && <>, sold through {program.soldThrough}</>}
           </li>
         </ul>
 

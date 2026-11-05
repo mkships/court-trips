@@ -2,7 +2,7 @@
 // (src/components/admin/ProgramEditor.tsx, VenueEditor.tsx), as on the public form.
 
 import { z } from "zod";
-import { CATEGORIES, SESSION_STATUSES, VENUE_KINDS } from "@/db/schema";
+import { CATEGORIES, ORGANIZATION_KINDS, ORGANIZATION_STATUSES, SESSION_STATUSES, VENUE_KINDS } from "@/db/schema";
 import { COUNTRIES } from "@/lib/countries";
 import { isoDate, list, many, number, optionalChoice, required, text, url, values } from "@/lib/submission";
 import {
@@ -32,6 +32,8 @@ export const programFormSchema = z
     slug: z.preprocess((v) => (typeof v === "string" ? v.trim().toLowerCase() : ""), z.string().regex(SLUG, "Lowercase letters, numbers and hyphens").max(80)),
     title: required(160, "Give the program a name"),
     organizer: required(120, "Who runs it?"),
+    // a marketplace's id, when the programme can only be booked through one
+    sold_through_id: z.preprocess((v) => (v ? v : null), z.uuid().nullable()),
     description: text(4000),
     booking_url: url("Add the booking page"),
     source_url: z.preprocess((v) => (typeof v === "string" && v.trim() ? v.trim() : null), z.url({ protocol: /^https?$/ }).nullable()),
@@ -139,3 +141,33 @@ export const slugify = (s: string) =>
     .replace(/^-+|-+$/g, "")
     .slice(0, 80)
     .replace(/-+$/, "");
+
+const optionalUrl = z.preprocess((v) => (typeof v === "string" && v.trim() ? v.trim() : null), z.url({ protocol: /^https?$/, error: "Check the address" }).nullable());
+
+export const organizationFormSchema = z.object({
+  slug: z.preprocess((v) => (typeof v === "string" ? v.trim().toLowerCase() : ""), z.string().regex(SLUG, "Lowercase letters, numbers and hyphens").max(80)),
+  name: required(120, "Give it a name"),
+  kind: z.enum(ORGANIZATION_KINDS, { error: "Operator or marketplace?" }),
+  status: z.enum(ORGANIZATION_STATUSES, { error: "Pick a status" }),
+  website: optionalUrl,
+  description: text(2000),
+  country: z.preprocess((v) => (v ? v : null), z.enum([...COUNTRIES] as [string, ...string[]]).nullable()),
+  sports: z.array(z.enum(values(SPORT_OPTIONS))).default([]),
+  // other spellings listings use, one per line or comma-separated
+  aliases: list(20),
+  note: text(2000),
+  source_url: optionalUrl,
+  seen_on_id: z.preprocess((v) => (v ? v : null), z.uuid().nullable()),
+});
+
+export type OrganizationForm = z.infer<typeof organizationFormSchema>;
+
+export function organizationFormToObject(form: FormData) {
+  const obj: Record<string, unknown> = {};
+  for (const key of new Set(form.keys())) {
+    if (key.startsWith("$ACTION") || key === "intent") continue;
+    obj[key] = key === "sports" ? form.getAll(key) : form.get(key);
+  }
+  obj.sports ??= [];
+  return obj;
+}

@@ -11,6 +11,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     ["/admin", "Review queue", counts.total],
     ["/admin/programs", "Programs", null],
     ["/admin/venues", "Venues", null],
+    ["/admin/operators", "Operators", null],
   ] as const;
 
   return (

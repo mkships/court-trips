@@ -111,7 +111,8 @@ export function BookingCard({ program, session }: { program: ProgramDetail; sess
           </>
         )}
         <SummaryRow icon={<StoreIcon />} label="Book with">
-          {program.organizer}
+          {/* a marketplace takes the booking for the operator, so say both */}
+          {program.soldThrough ? `${program.soldThrough}, for ${program.organizer}` : program.organizer}
         </SummaryRow>
       </dl>
 

@@ -27,6 +27,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/operators" className="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-ink">
+                Operators
+              </Link>
+            </li>
+            <li>
               <Link href="/list-your-program" className="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-ink">
                 List your program
               </Link>

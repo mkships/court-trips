@@ -21,6 +21,7 @@ Arguments: `$ARGUMENTS`. With no arguments, or `changed`, work through the pages
 One JSON file per program in `harvest/out/<slug>.json`, in the same shape as an entry of `seed/programs.json`: `meta`, `core_identity`, `categorization`, `rating_systems`, `location`, `sessions`, `schedule_notes`, `pricing`, `sport_specific`, `media`. Then write `harvest/out/_report.json` (format below).
 
 - **One program = one product with its own dates and price.** Several dates of the same product are `sessions` of one program, not separate programs. The same product at two venues is two programs.
+- **`core_identity.organizer`** is who runs the program, spelled the way they write it; the import links it to that operator's record (by name or a known other spelling) or adds a new one. `core_identity.sold_through` stays null unless a marketplace is the only way to book.
 - **`meta`:**
   - `slug`: lowercase-hyphenated and descriptive, e.g. `mark-warner-intensive-tennis-week-phokaia`.
   - `source_url`: the program's own page; the source page if it has none.
@@ -67,7 +68,7 @@ A page whose `target` in `run.json` is `venue` is a place to stay (a resort or h
 - **Junior-only programs.** Family programs that include adults are fine.
 - **Single lessons, memberships, open play** and anything that isn't a camp, clinic or getaway.
 - **Programs whose every date has passed** with no sign they run again.
-- **Pages that aren't the operator's:** booking directories and marketplaces. Note the operator in the report instead.
+- **Pages that aren't the operator's:** booking directories and marketplaces (BookRetreats, Weebora, The Padel Circle). Add the operator to the report's `leads` instead, named as the operator calls itself, with the marketplace page as `url`; the import keeps leads in /admin → Operators → Leads. If a program really can only be booked through a marketplace, it can be listed: set `core_identity.sold_through` to the marketplace's name (the site then says who you book with).
 - **Archived programs:** before writing a file, check the slug isn't archived (run `npm --prefix web run harvest:archived`). Archived ones were rejected or retired on purpose.
 
 ## Balance (first harvest)
