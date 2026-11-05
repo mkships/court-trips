@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "slug": "curtain-bluff-tennis-challenge-week",
+    "source_url": "https://curtainbluff.com/tennis/",
+    "listing_url": "https://curtainbluff.com/tennis/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.6
+  },
+  "core_identity": {
+    "title": "Tennis Challenge Week at Curtain Bluff, Antigua",
+    "organizer": "Curtain Bluff",
+    "description": "Curtain Bluff's yearly tennis week with former Davis Cup player Dick Stockton, former resort pro Robert Raedisch and other pros, on four lit championship hard courts by the sea.",
+    "coaches": [
+      "Dick Stockton",
+      "Robert Raedisch"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://curtainbluff.com/tennis/",
+    "contact_email": "curtainbluff@curtainbluff.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Antigua and Barbuda",
+    "city_region": "Old Road, Antigua",
+    "venue_name": "Curtain Bluff",
+    "venue_slug": null,
+    "lat": 17.0,
+    "lng": -61.87
+  },
+  "sessions": [],
+  "schedule_notes": "Held each November; dates aren't given on the page.",
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": null,
+    "price_unit": null,
+    "price_notes": "Prices not published; private lessons US$90 an hour.",
+    "inclusions": []
+  },
+  "sport_specific": {
+    "court_surface": [
+      "Hard"
+    ],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://curtainbluff.com/wp-content/uploads/2022/01/25-Tennis-at-Curtain-Bluff.jpg",
+    "images": [
+      "https://curtainbluff.com/wp-content/uploads/2022/01/25-Tennis-at-Curtain-Bluff.jpg",
+      "https://curtainbluff.com/wp-content/uploads/2022/01/Curtain-Bluff-Tennis-Class.jpg",
+      "https://curtainbluff.com/wp-content/uploads/2020/09/pt-tennis-bg.jpg"
+    ]
+  }
+}

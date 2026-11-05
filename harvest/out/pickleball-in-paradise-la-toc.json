@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "id": "773a9e3f-0b47-533e-bb1b-3650ecd47c3e",
+    "slug": "pickleball-in-paradise-la-toc",
+    "source_url": "https://pickleballinparadise.com/trip/sandals-regency-la-toc-saint-lucia-with-iptpa-master-coaches-john-leesa-walker-3-7-27-3-15-27/",
+    "status": "active",
+    "scraped_at": "2026-11-05",
+    "last_seen_at": "2026-10-22",
+    "needs_review": false,
+    "data_quality_score": 0.86,
+    "listing_url": "https://pickleballinparadise.com/trips/?_sft_trip_type=clinic"
+  },
+  "core_identity": {
+    "title": "Pickleball clinic week at Sandals La Toc",
+    "organizer": "Pickleball in Paradise",
+    "description": "Daily clinics with IPTPA master coaches John and Leesa Walker at Sandals Regency La Toc, an all-inclusive resort beneath the Pitons, plus mixers, round robins and a beach farewell dinner.",
+    "coaches": [
+      "John Walker",
+      "Leesa Walker"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballinparadise.com/trip/sandals-regency-la-toc-saint-lucia-with-iptpa-master-coaches-john-leesa-walker-3-7-27-3-15-27/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "clinic",
+    "theme": [
+      "couples"
+    ],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Saint Lucia",
+    "city_region": "Castries",
+    "venue_name": "Sandals Regency La Toc",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [
+    {
+      "start_date": "2027-03-07",
+      "end_date": "2027-03-13",
+      "status": "available",
+      "duration_days": 7
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 3699,
+    "price_max": 3699,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "From $3,699 per person, double occupancy. $400 deposit.",
+    "inclusions": [
+      "accommodation",
+      "all inclusive",
+      "daily coaching",
+      "airport transfers",
+      "most gratuities"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_022_ff6d163faa.webp",
+    "images": [
+      "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_022_ff6d163faa.webp",
+      "https://pickleballinparadise.com/wp-content/uploads/2025/12/Sandals-Regency-La-Toc-Pool.jpg",
+      "https://pickleballinparadise.com/wp-content/uploads/2026/02/001.webp",
+      "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_031_eba12261b7.webp"
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "slug": "ppa-pickleball-vacation-club-med-turkoise",
+    "source_url": "https://www.ppatour.com/vacations/",
+    "listing_url": "https://www.ppatour.com/vacations/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.85
+  },
+  "core_identity": {
+    "title": "PPA Tour pickleball vacation at Club Med Turkoise",
+    "organizer": "PPA Tour Pickleball Vacations",
+    "description": "Four nights all-inclusive at the adults-only Club Med Turkoise with PPA pros Hayden Patriquin, Aanik Lohani and Chris Crouch: clinics and organised play every morning, 8+ hours with the pros in all, and open play on ten permanent courts.",
+    "coaches": [
+      "Hayden Patriquin",
+      "Aanik Lohani",
+      "Chris Crouch"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.ppatour.com/vacations/register/?trip=turkoise",
+    "contact_email": "vacations@pickleball.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Turks and Caicos",
+    "city_region": "Providenciales",
+    "venue_name": "Club Med Turkoise",
+    "venue_slug": null,
+    "lat": 21.8,
+    "lng": -72.18
+  },
+  "sessions": [
+    {
+      "start_date": "2026-12-08",
+      "end_date": "2026-12-12",
+      "status": "available",
+      "price_override": 3200
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 3200,
+    "price_max": 3800,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "US$3,200 per person sharing (US$6,400 for two); single rooms (US$3,800) are sold out. Adults only (18+). Flights not included.",
+    "inclusions": [
+      "4 nights accommodation",
+      "all inclusive",
+      "daily clinics",
+      "8+ hours with the pros",
+      "airport transfers"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 8,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://www.ppatour.com/vacations/clubmed/turkoise-courts.jpg",
+    "images": [
+      "https://www.ppatour.com/vacations/clubmed/turkoise-courts.jpg",
+      "https://www.ppatour.com/vacations/clubmed/turkoise-aerial.jpg"
+    ]
+  }
+}

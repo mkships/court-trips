@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "slug": "empowher-marbella-retreat",
+    "source_url": "https://empowherpickleball.com/ret-spain-june-2027",
+    "listing_url": "https://empowherpickleball.com/empowherretreats",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Empowher women's retreat at Club Med Marbella",
+    "organizer": "Empowher Pickleball",
+    "description": "A women-only week at Club Med Marbella on Spain's Costa del Sol, with 9+ hours of daily clinics from Empowher's coaches led by KaSandra Gehrke, open play and workshops on eight courts kept for the group, themed nights and all meals and drinks. For players rated 3.0 to 4.5.",
+    "coaches": [
+      "KaSandra Gehrke"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://empowherpickleball.com/ret-spain-june-2027",
+    "contact_email": "retreats@empowherpickleball.com",
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "female",
+    "level": [
+      "intermediate",
+      "advanced"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Spain",
+    "city_region": "Marbella, Andalusia",
+    "venue_name": "Club Med Marbella",
+    "venue_slug": null,
+    "lat": 36.51,
+    "lng": -4.88
+  },
+  "sessions": [
+    {
+      "start_date": "2027-06-15",
+      "end_date": "2027-06-22",
+      "status": "available",
+      "price_override": 3500
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 3500,
+    "price_max": 3900,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "US$3,500 per person sharing; US$3,900 single, for the 7-night trip; two extra nights before it are an option. US$500 non-refundable deposit.",
+    "inclusions": [
+      "7 nights accommodation",
+      "all inclusive",
+      "daily clinics and open play",
+      "nightly entertainment",
+      "airport transfers"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/6a43e9bac597b88b612cd88f.jpg",
+    "images": [
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/6a43e9bac597b88b612cd88f.jpg",
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/6a4fd764eada8c1f45a0526b.jpeg",
+      "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6FqSBFWrntqZwiEdZUm2/media/68b1f11d142d74180f9b6453.jpeg"
+    ]
+  }
+}

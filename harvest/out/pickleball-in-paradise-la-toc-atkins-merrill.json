@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "slug": "pickleball-in-paradise-la-toc-atkins-merrill",
+    "source_url": "https://pickleballinparadise.com/trip/sandals-regency-la-toc-saint-lucia-with-player-and-co-owners-of-npl-jbb-united-mary-helen-atkins-and-jodie-merrill-11-7-27-11-14-27/",
+    "listing_url": "https://pickleballinparadise.com/trips/?_sft_trip_type=clinic",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball clinic week at Sandals La Toc with Mary Helen Atkins and Jodie Merrill",
+    "organizer": "Pickleball in Paradise",
+    "description": "A week at Sandals Regency La Toc in Saint Lucia with Mary Helen Atkins and Jodie Merrill, co-owners of the Suncoast Pelicans. Three hours of clinics a day from visiting pros, ending in a round robin on the last full day, with a private cocktail party and a farewell dinner on the beach.",
+    "coaches": [
+      "Mary Helen Atkins",
+      "Jodie Merrill"
+    ],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballinparadise.com/trip/sandals-regency-la-toc-saint-lucia-with-player-and-co-owners-of-npl-jbb-united-mary-helen-atkins-and-jodie-merrill-11-7-27-11-14-27/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "clinic",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Saint Lucia",
+    "city_region": "Castries",
+    "venue_name": "Sandals Regency La Toc",
+    "venue_slug": null,
+    "lat": 13.99,
+    "lng": -61.02
+  },
+  "sessions": [
+    {
+      "start_date": "2027-11-07",
+      "end_date": "2027-11-14",
+      "status": "available",
+      "price_override": 3349
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 3349,
+    "price_max": 3349,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "From US$3,349 per person sharing. US$400 deposit; the balance is due 95 days before the trip. Flights not included.",
+    "inclusions": [
+      "accommodation",
+      "all inclusive",
+      "daily clinics",
+      "round robin",
+      "private cocktail party",
+      "beach farewell dinner",
+      "airport transfers",
+      "most gratuities"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_022_ff6d163faa.webp",
+    "images": [
+      "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_022_ff6d163faa.webp",
+      "https://pickleballinparadise.com/wp-content/uploads/2025/12/Sandals-Regency-La-Toc-Pool.jpg",
+      "https://pickleballinparadise.com/wp-content/uploads/2026/02/001.webp",
+      "https://pickleballinparadise.com/wp-content/uploads/2025/12/slu_031_eba12261b7.webp"
+    ]
+  }
+}

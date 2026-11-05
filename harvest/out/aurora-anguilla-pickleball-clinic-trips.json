@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "slug": "aurora-anguilla-pickleball-clinic-trips",
+    "source_url": "https://www.auroraanguilla.com/pickleball-trips/",
+    "listing_url": "https://www.auroraanguilla.com/pickleball-trips/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.55
+  },
+  "core_identity": {
+    "title": "Pickleball clinic trips at Aurora Anguilla",
+    "organizer": "Aurora Anguilla Resort & Golf Club",
+    "description": "Group pickleball trips at Aurora Anguilla on Rendezvous Bay: three hours of clinics, open play and round robins each full day, twilight clinics under the lights on summer trips, and breakfast, a welcome reception and a lobster barbecue.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.auroraanguilla.com/pickleball-trips/",
+    "contact_email": null,
+    "contact_phone": "844-668-5759"
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "clinic",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Anguilla",
+    "city_region": "Rendezvous Bay",
+    "venue_name": "Aurora Anguilla Resort & Golf Club",
+    "venue_slug": null,
+    "lat": 18.17,
+    "lng": -63.13
+  },
+  "sessions": [],
+  "schedule_notes": "Trip dates aren't on this page; ask the resort.",
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": null,
+    "price_unit": null,
+    "price_notes": "Prices not published. 50% deposit at booking; the balance is due 60 days before the trip.",
+    "inclusions": [
+      "daily clinics",
+      "breakfast",
+      "welcome reception",
+      "lobster barbecue"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "on_site_resort"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}
