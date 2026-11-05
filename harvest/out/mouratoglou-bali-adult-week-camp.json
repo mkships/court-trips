@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "slug": "mouratoglou-bali-adult-week-camp",
+    "source_url": "https://www.mouratoglou.com/en/international/bali/camps/",
+    "listing_url": "https://www.mouratoglou.com/en/international/bali/tennis-lessons/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.65
+  },
+  "core_identity": {
+    "title": "Adult tennis week camp at Mouratoglou Tennis Center Bali",
+    "organizer": "Mouratoglou Tennis Center Bali",
+    "description": "A Monday-to-Friday adult camp of group tennis and fitness sessions, either intensive (full days, lunch included) or half-day. The centre has seven tennis courts (three semi-indoor hard, two semi-indoor clay and two outdoor), plus gyms, a physio studio, spa and pool.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.mouratoglou.com/en/international/bali/camps/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "tennis"
+    ],
+    "category": "camp",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Indonesia",
+    "city_region": "Bali",
+    "venue_name": "Mouratoglou Tennis Center Bali",
+    "venue_slug": null,
+    "lat": null,
+    "lng": null
+  },
+  "sessions": [],
+  "schedule_notes": "Weekly, Monday to Friday; ask the centre for dates.",
+  "pricing": {
+    "price_min": null,
+    "price_max": null,
+    "currency": null,
+    "price_unit": null,
+    "price_notes": "Price on request.",
+    "inclusions": [
+      "daily group tennis",
+      "fitness sessions",
+      "lunch (intensive format)"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [
+      "Hard",
+      "Clay"
+    ],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": null
+  },
+  "media": {
+    "thumbnail": "https://www.mouratoglou.com/wp-content/uploads/2026/02/9b905920-42a5-4def-980f-08aae470934e-DSC06113-VSCO-1920x0-c-default.webp",
+    "images": [
+      "https://www.mouratoglou.com/wp-content/uploads/2026/02/9b905920-42a5-4def-980f-08aae470934e-DSC06113-VSCO-1920x0-c-default.webp",
+      "https://www.mouratoglou.com/wp-content/uploads/2026/03/9ea72c86-1d3c-47b1-9e86-0102ee1b1c43-DSC07494-460x368-c-center.webp",
+      "https://www.mouratoglou.com/wp-content/uploads/2026/03/5ea905fd-c5fb-4dab-ae31-9e58917bda98-DSC07790-460x368-c-center.webp"
+    ]
+  }
+}

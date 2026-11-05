@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "slug": "goddess-retreats-padel-retreat-seminyak",
+    "source_url": "https://www.goddessretreats.com/goddess-packages/padel-retreat-bali/",
+    "listing_url": "https://www.goddessretreats.com/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.75
+  },
+  "core_identity": {
+    "title": "Women's padel retreat in Seminyak, Bali",
+    "organizer": "Goddess Retreats",
+    "description": "A seven-day, all-inclusive women's retreat in Seminyak with five private padel coaching sessions, unlimited social games, daily yoga, meals, spa treatments and cultural workshops. Shared or solo rooms in private pool villas.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://www.goddessretreats.com/goddess-packages/padel-retreat-bali/",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "padel"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "female",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Indonesia",
+    "city_region": "Seminyak, Bali",
+    "venue_name": null,
+    "venue_slug": null,
+    "lat": -8.69,
+    "lng": 115.16
+  },
+  "sessions": [],
+  "schedule_notes": "Seven-day retreats start about every eight days, all year; pick a date on the booking calendar.",
+  "pricing": {
+    "price_min": 2099,
+    "price_max": 6999,
+    "currency": "USD",
+    "price_unit": "per_person",
+    "price_notes": "From US$2,099 in a shared room to US$6,999 for a solo villa, with US$900 off for booking now (US$2,999–7,899 otherwise).",
+    "inclusions": [
+      "7 days accommodation",
+      "meals",
+      "5 private padel sessions",
+      "unlimited social play",
+      "daily yoga",
+      "spa treatments",
+      "airport transfers"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": null,
+    "player_to_coach_ratio": null,
+    "capacity": null,
+    "accommodation_type": "villa"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

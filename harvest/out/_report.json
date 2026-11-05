@@ -1,283 +1,50 @@
 {
   "pages": [
     {
-      "url": "https://pickleballgetaways.com/getaways/",
+      "url": "https://www.mouratoglou.epsomcollege.edu.my/adultcamps",
       "read": true,
       "programs": [
-        "pickleball-getaways-mayan-riviera",
-        "pickleball-getaways-mayan-riviera-mahjong",
-        "pickleball-getaways-costa-rica",
-        "pickleball-getaways-vietnam",
-        "pickleball-getaways-antigua",
-        "pickleball-getaways-antigua-luxury",
-        "pickleball-getaways-punta-cana",
-        "pickleball-getaways-spain",
-        "pickleball-getaways-italy",
-        "pickleball-getaways-portugal",
-        "pickleball-getaways-slovenia-croatia",
-        "pickleball-getaways-curacao",
-        "pickleball-getaways-club-med-turkoise"
+        "mouratoglou-malaysia-adult-weekend-camp",
+        "mouratoglou-malaysia-adult-weekday-camp"
       ],
-      "note": "one page covers every region: Mexico, Costa Rica, Vietnam, the Caribbean and Europe"
+      "note": "2026 dates only; 2027 not yet published"
     },
     {
-      "url": "https://pickleballtrips.com/trips/",
+      "url": "https://www.mouratoglou.com/en/international/bali/tennis-lessons/",
       "read": true,
       "programs": [
-        "pickleball-trips-nicaragua",
-        "pickleball-trips-belize",
-        "pickleball-trips-los-barriles",
-        "pickleball-trips-texas-hill-country",
-        "pickleball-trips-thailand",
-        "pickleball-trips-vietnam"
+        "mouratoglou-bali-adult-week-camp",
+        "mouratoglou-bali-adult-weekend-camp"
       ],
-      "note": "about 20 trips; 6 taken (Central America, Texas, Mexico, Thailand, Vietnam); Colombia, Ecuador, New Zealand, Japan and the European trips left for later"
+      "note": "this page is private lessons; the adult camps (4 formats, no dates or prices) are on /camps/; padel and pickleball are lessons only; the centre's address isn't given"
     },
     {
-      "url": "https://betterpickleball.com/camp-locations/",
-      "read": true,
-      "programs": [
-        "better-pickleball-camp-chandler",
-        "better-pickleball-camp-san-diego",
-        "better-pickleball-camp-raleigh"
-      ],
-      "note": "camps in about a dozen cities; 3 taken for spread"
-    },
-    {
-      "url": "https://www.risepickleball.com/camps",
-      "read": true,
-      "programs": [
-        "rise-pickleball-camp-pueblo-el-mirage",
-        "rise-pickleball-camp-prescott"
-      ],
-      "note": "Sedona (13-15 Nov) is full"
-    },
-    {
-      "url": "https://newktennis.com/adult-tennis/",
-      "read": true,
-      "programs": [
-        "newcombe-tennis-ranch-weekend",
-        "newcombe-tennis-ranch-week"
-      ]
-    },
-    {
-      "url": "https://vandermeertennis.com/adult-tennis-clinics/",
-      "read": true,
-      "programs": [
-        "van-der-meer-adult-tennis-clinics-hilton-head"
-      ],
-      "note": "schedule and prices on a separate booking page"
-    },
-    {
-      "url": "https://www.imgacademy.com/adult-tennis-camp",
-      "read": true,
-      "programs": [
-        "img-academy-adult-tennis-camp"
-      ]
-    },
-    {
-      "url": "https://www.hsbresort.com/mouratoglou-tennis-center/",
-      "read": true,
-      "programs": [
-        "mouratoglou-adult-weekend-horseshoe-bay"
-      ]
-    },
-    {
-      "url": "https://camps.rafanadalacademy.com/en/programs/adult-programs/",
-      "read": true,
-      "programs": [
-        "rafa-nadal-tennis-center-costa-mujeres-adult"
-      ]
-    },
-    {
-      "url": "https://www.saddlebrook.com/racquets/",
+      "url": "https://camps.rafanadalacademy.com/en/programs/thailand/",
       "read": true,
       "programs": [],
-      "note": "only twice-weekly drop-in clinics and open play for resort guests"
+      "note": "read in the browser: both Bangkok camps (Beat Discovery, Crystal Sports G.) ran in October 2026, adult places full; no 2027 dates"
     },
     {
-      "url": "https://tysonmcguffin.com/pages/all-camps",
-      "read": true,
-      "programs": [
-        "tyson-mcguffin-festival-rancho-santa-margarita",
-        "tyson-mcguffin-signature-camp-palm-desert",
-        "tyson-mcguffin-signature-camp-dallas",
-        "tyson-mcguffin-doubles-lab-palm-desert",
-        "tyson-mcguffin-los-barriles-festival"
-      ],
-      "note": "11 camps in 6 cities; 5 taken for spread (the rest are the same camps elsewhere); Baltimore is sold out"
-    },
-    {
-      "url": "https://engagepickleball.com/collections/all-training-camps",
-      "read": true,
-      "programs": [
-        "engage-pickleball-stay-and-play-nassau",
-        "engage-pickleball-medfield-intermediate",
-        "engage-pickleball-oxford-advanced"
-      ],
-      "note": "about 24 two-day camps (intermediate and advanced in each city) plus a Bahamas week; 3 taken"
-    },
-    {
-      "url": "https://www.markpricepickleball.com/store/pickleball-camps",
-      "read": true,
-      "programs": [
-        "mark-price-acworth-camp"
-      ],
-      "note": "Lake Country (Milledgeville) camp runs 6-8 Nov, too soon to list"
-    },
-    {
-      "url": "https://www.markpricepickleball.com/pickleball-coaching/pickleball-vacations",
-      "read": true,
-      "programs": [],
-      "note": "St Lucia trip (1-8 Dec 2026) is full; no other dates"
-    },
-    {
-      "url": "https://www.ttrtennis.com/tennis/mouratoglou-high-performance-camps/",
-      "read": true,
-      "programs": [
-        "mouratoglou-weekend-camp-templeton"
-      ],
-      "note": "carried over from the hand-checked seed (22 Oct 2026)"
-    },
-    {
-      "url": "https://www.ttrtennis.com/tennis/instruction/adult-tennis-clinics-and-lessons/",
-      "read": true,
-      "programs": [],
-      "note": "weekly club clinics and lessons, not a camp"
-    },
-    {
-      "url": "https://suncoastpickleball.com/camps-2026/",
-      "read": true,
-      "programs": [
-        "suncoast-pickleball-camp-pickleplex-punta-gorda",
-        "suncoast-pickleball-camp-montreat"
-      ],
-      "note": "2026 camps are over; 2027 has PicklePlex (Feb) and Montreat (May, Sept to be announced)"
-    },
-    {
-      "url": "https://empowherpickleball.com/empowhercamps",
-      "read": true,
-      "programs": [
-        "empowher-womens-camp-orange-park"
-      ],
-      "note": "11 two-day women's camps; 5 sold out; 1 taken for balance (Pinellas Park, Chesterfield, Tucson and Scottsdale are the same camp)"
-    },
-    {
-      "url": "https://www.capecolumbiapickleball.com/collections/indoor-pickleball-camps",
-      "read": true,
-      "programs": [
-        "cape-columbia-holiday-intensive-long-beach"
-      ],
-      "note": "6-8 Nov camp starts too soon; 13-15 Nov power-play weekends and a residents-only camp skipped"
-    },
-    {
-      "url": "https://www.tayloredpickleballacademy.ca/camps",
-      "read": true,
-      "programs": [
-        "taylored-pickleball-baja-campcation",
-        "taylored-pickleball-okanagan-campcation"
-      ],
-      "note": "1-day and 2-day club camps in Vernon, Fredericton, Edmonton and Whistler skipped as local"
-    },
-    {
-      "url": "https://www.tayloredpickleballacademy.ca/clinics",
-      "read": true,
-      "programs": [],
-      "note": "one-day club clinics in Ontario, not travel camps"
-    },
-    {
-      "url": "https://www.tayloredpickleballacademy.ca/vacations",
+      "url": "https://www.thanyapura-phuket.com/",
       "read": false,
       "programs": [],
-      "note": "Wix builds the list in the browser; the same trips are on /trips, which sources.csv now uses"
+      "note": "blocks plain requests and the headless browser timed out; for the Mac refresh to read with its web tool"
     },
     {
-      "url": "https://www.tayloredpickleballacademy.ca/trips",
+      "url": "https://www.goddessretreats.com/",
       "read": true,
       "programs": [
-        "taylored-pickleball-montego-bay",
-        "taylored-pickleball-uvita-costa-rica",
-        "taylored-pickleball-punta-cana",
-        "taylored-pickleball-croatian-cruise",
-        "taylored-pickleball-baja-campcation",
-        "taylored-pickleball-okanagan-campcation"
+        "goddess-retreats-padel-retreat-seminyak"
       ],
-      "note": "Riviera Maya (Nov) sold out; Tilajari (Dec) closed for booking on 1 Nov"
-    },
-    {
-      "url": "https://rancholapuerta.com/pickleball-proweeks-2026/",
-      "read": true,
-      "programs": [
-        "rancho-la-puerta-pickleball-proweeks"
-      ]
-    },
-    {
-      "url": "https://www.wetravel.com/trips/self-guided-trips-january-2027-november-2027-pickleball-cabo-4242877983",
-      "read": true,
-      "programs": [
-        "pickleball-cabo-week-los-barriles"
-      ],
-      "note": "the March 2027 tournament week isn't on this page"
-    },
-    {
-      "url": "https://www.niagaraacademyoftennis.com/",
-      "read": true,
-      "programs": [],
-      "note": "the adult programmes page says none are running at the moment"
-    },
-    {
-      "url": "https://www.matchpointinternational.com/",
-      "read": false,
-      "programs": [],
-      "note": "the page builds in the browser and the headless browser timed out"
-    },
-    {
-      "url": "https://www.ussportscamps.com/search/results?live=1&sportSlug=tennis",
-      "read": false,
-      "programs": [
-        "nike-adult-tennis-camp-stanford"
-      ],
-      "note": "search results build in the browser; the live Stanford camp is carried over from the hand-checked seed"
-    },
-    {
-      "url": "https://www.ussportscamps.com/search/results?live=1&sportSlug=pickleball",
-      "read": false,
-      "programs": [
-        "nike-adult-pickleball-ttc-palms"
-      ],
-      "note": "search results build in the browser; the live Palm Desert camp is carried over from the hand-checked seed"
-    },
-    {
-      "url": "https://www.elitepickleballretreats.com/trip",
-      "read": false,
-      "programs": [],
-      "note": "the page builds its listings in the browser and didn't render here; for the refresh on the Mac to read with its web tool"
-    },
-    {
-      "url": "https://uspickleballcamps.com/locations",
-      "read": false,
-      "programs": [],
-      "note": "the page builds its listings in the browser and didn't render here; for the refresh on the Mac to read with its web tool"
-    },
-    {
-      "url": "https://www.roadscholar.org/collections/pickleball/",
-      "read": false,
-      "programs": [],
-      "note": "the page builds its listings in the browser and didn't render here; for the refresh on the Mac to read with its web tool"
-    },
-    {
-      "url": "https://www.leveluppickleballcamps.com/by-state",
-      "read": false,
-      "programs": [],
-      "note": "the page builds its listings in the browser and didn't render here; for the refresh on the Mac to read with its web tool"
-    },
-    {
-      "url": "https://pickleballtrips.net/upcoming",
-      "read": false,
-      "programs": [],
-      "note": "the page builds its listings in the browser and didn't render here; for the refresh on the Mac to read with its web tool"
+      "note": "the padel retreat is on /goddess-packages/padel-retreat-bali/; the other retreats aren't racket sports; its photos load in the browser only"
     }
   ],
-  "leads": [],
+  "leads": [
+    {
+      "operator": "10-day pickleball retreat in Bali (host: John Quirk)",
+      "url": "https://bookretreats.com/r/10-day-pickleball-retreat-in-paradise-bali-indonesia",
+      "note": "21-30 Jan 2027 at Br Umah Anyar, for 3.0-4.0 players, from US$5,977; only sold through BookRetreats, with no site of the host's own linked"
+    }
+  ],
   "finishedAt": "2026-11-05T12:00:00Z"
 }
