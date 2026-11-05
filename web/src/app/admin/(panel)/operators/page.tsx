@@ -10,7 +10,8 @@ const TABS = Object.entries(ORGANIZATION_TABS) as [OrganizationTab, { label: str
 const INTRO: Record<OrganizationTab, string> = {
   operators: "Who runs the programmes: academies, coaches, resorts running their own weeks, tour operators. Each one with a live listing has a page at /operators.",
   leads: "Operators we know of but haven't listed: only sold on a marketplace, a site the harvest can't read, or dates not out yet. The note says what to check.",
-  marketplaces: "Sites that sell other people's programmes and take the booking or payment. Never featured; a listing names one only when it's the only way to book.",
+  marketplaces:
+    "Sites that list other organisers' programmes. Marketplaces take the booking or payment (BookRetreats, Weebora); directories link out (TennisTraveller). Never listed or featured themselves; a listing names one only when its operator books only through it.",
   archived: "Hidden from everything.",
 };
 

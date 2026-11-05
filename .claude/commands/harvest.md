@@ -68,7 +68,11 @@ A page whose `target` in `run.json` is `venue` is a place to stay (a resort or h
 - **Junior-only programs.** Family programs that include adults are fine.
 - **Single lessons, memberships, open play** and anything that isn't a camp, clinic or getaway.
 - **Programs whose every date has passed** with no sign they run again.
-- **Pages that aren't the operator's:** booking directories and marketplaces (BookRetreats, Weebora, The Padel Circle). Add the operator to the report's `leads` instead, named as the operator calls itself, with the marketplace page as `url`; the import keeps leads in /admin → Operators → Leads. If a program really can only be booked through a marketplace, it can be listed: set `core_identity.sold_through` to the marketplace's name (the site then says who you book with).
+- **Marketplaces and directories themselves** (BookRetreats, Weebora, The Padel Circle, TennisTraveller): never list the site, and never put it in `organizer`. A camp you find on one is listed only when you know who runs it:
+  - The operator goes in `organizer`, and `booking_url` is the operator's own booking page if they have one.
+  - If the operator takes bookings only through the marketplace, set `core_identity.sold_through` to the marketplace's name.
+  - If the page doesn't say who runs it, don't list it: add it to the report's `leads`, named as the operator calls itself, with the marketplace page as `url`. The import keeps leads in /admin → Operators → Leads.
+- **Telling them apart:** a marketplace or directory shows camps from many different organisers (their names, ratings, "hosted by"), invites organisers to list ("List your camp", "Become a host"), and often takes a deposit or promises the lowest price. An operator's site shows only its own camps, coaches and dates. Booking software on an operator's own site (WeTravel, Shopify, a Squarespace shop) doesn't make it a marketplace, and neither does a form for clubs to host the operator's camps.
 - **Archived programs:** before writing a file, check the slug isn't archived (run `npm --prefix web run harvest:archived`). Archived ones were rejected or retired on purpose.
 
 ## Balance (first harvest)

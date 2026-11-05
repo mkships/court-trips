@@ -25,7 +25,7 @@ export type EditableOrganization = {
 
 const KINDS = [
   ["operator", "Operator: runs the programmes"],
-  ["marketplace", "Marketplace: sells other people's programmes"],
+  ["marketplace", "Marketplace or directory: lists other people's programmes"],
 ] as const;
 
 const STATUSES = [

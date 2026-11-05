@@ -94,9 +94,10 @@ export const courts = pgTable(
 
 // Who's behind a listing. An operator runs programmes: it sets the dates, hires the coaches and is
 // responsible on the day (an academy, a coach, a resort running its own weeks, a tour operator such as
-// Active Away). A marketplace sells programmes other people run and takes the booking or payment
-// (BookRetreats, Weebora, The Padel Circle). Booking software operators use on their own pages
-// (WeTravel) is neither: the operator is still the seller.
+// Active Away). A marketplace lists programmes other people run, and usually takes the booking or
+// payment (BookRetreats, Weebora, The Padel Circle); directories that only link out (TennisTraveller)
+// are filed as marketplaces too, since we treat them the same: never listed or featured themselves.
+// Booking software operators use on their own pages (WeTravel) is neither: the operator still sells.
 // status: active (shown when it has public listings), lead (known, not listed yet: `note` says why
 // and `sourceUrl` where we saw it, `seenOnId` the marketplace if it was one), archived (hidden).
 export const ORGANIZATION_KINDS = ["operator", "marketplace"] as const;

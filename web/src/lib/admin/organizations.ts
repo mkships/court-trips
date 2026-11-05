@@ -67,7 +67,7 @@ export async function uniqueOrganizationSlug(base: string, exceptId?: string) {
 export const ORGANIZATION_TABS = {
   operators: { label: "Operators", where: and(eq(organizations.kind, "operator"), eq(organizations.status, "active")) },
   leads: { label: "Leads", where: eq(organizations.status, "lead") },
-  marketplaces: { label: "Marketplaces", where: and(eq(organizations.kind, "marketplace"), ne(organizations.status, "archived")) },
+  marketplaces: { label: "Marketplaces & directories", where: and(eq(organizations.kind, "marketplace"), ne(organizations.status, "archived")) },
   archived: { label: "Archived", where: eq(organizations.status, "archived") },
 } as const;
 export type OrganizationTab = keyof typeof ORGANIZATION_TABS;
