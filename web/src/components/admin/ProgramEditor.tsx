@@ -26,6 +26,7 @@ export type EditableProgram = {
   state: ListingState;
   title: string;
   organizer: string;
+  soldThroughId: string | null;
   description: string | null;
   bookingUrl: string;
   sourceUrl: string | null;
@@ -67,7 +68,15 @@ const LEVEL_ICONS = Object.fromEntries(LEVEL_OPTIONS.map(([v]) => [v, <LevelIcon
 
 let nextRow = 0;
 
-export function ProgramEditor({ program: p, venues }: { program: EditableProgram; venues: { id: string; name: string; country: string }[] }) {
+export function ProgramEditor({
+  program: p,
+  venues,
+  organizations,
+}: {
+  program: EditableProgram;
+  venues: { id: string; name: string; country: string }[];
+  organizations: { id: string; name: string; kind: string }[];
+}) {
   const [result, dispatch] = useActionState<SaveResult, FormData>(saveProgram.bind(null, p.id), null);
   const [pending, startTransition] = useTransition();
   const [rows, setRows] = useState(() => p.sessions.map((s) => ({ key: nextRow++, s })));
@@ -92,7 +101,31 @@ export function ProgramEditor({ program: p, venues }: { program: EditableProgram
       <Card title="Basics">
         <div className="grid gap-6 sm:grid-cols-2">
           <TextField name="title" label="Program name" defaultValue={p.title} error={errors.title} />
-          <TextField name="organizer" label="Operator" defaultValue={p.organizer} error={errors.organizer} />
+          <TextField
+            name="organizer"
+            label="Operator"
+            list="operator-names"
+            hint="Who runs it. A name we know links to that operator; a new one adds an operator."
+            defaultValue={p.organizer}
+            error={errors.organizer}
+          />
+          <datalist id="operator-names">
+            {organizations
+              .filter((o) => o.kind === "operator")
+              .map((o) => (
+                <option key={o.id} value={o.name} />
+              ))}
+          </datalist>
+          <SelectField
+            name="sold_through_id"
+            label="Sold through"
+            optional
+            placeholder="The operator (usual)"
+            hint="Only when it can't be booked with the operator directly."
+            options={organizations.filter((o) => o.kind === "marketplace").map((o) => [o.id, o.name] as const)}
+            defaultValue={p.soldThroughId}
+            error={errors.sold_through_id}
+          />
         </div>
         <Field name="description" label="Description" optional error={errors.description}>
           <textarea id="description" name="description" rows={5} defaultValue={p.description ?? ""} className={INPUT} {...invalid("description", errors.description)} />

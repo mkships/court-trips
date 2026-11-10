@@ -61,6 +61,8 @@ export function validate(raw, file = "") {
 
   const title = str(id.title);
   const organizer = str(id.organizer);
+  // a marketplace (BookRetreats, Weebora…) when the programme can only be booked there; null otherwise
+  const soldThrough = str(id.sold_through) || null;
   if (!title) err("core_identity.title is missing");
   if (!organizer) err("core_identity.organizer is missing");
   const bookingUrl = str(id.booking_url) ?? sourceUrl;
@@ -145,6 +147,7 @@ export function validate(raw, file = "") {
       data_quality_score: score == null ? null : Math.max(0, Math.min(1, score)),
       title,
       organizer,
+      sold_through: soldThrough,
       description,
       coaches: list(id.coaches),
       languages: list(id.languages),

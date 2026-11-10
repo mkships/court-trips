@@ -77,6 +77,13 @@
         "description": "The venue, academy, or brand organizing the retreat.",
         "placeholder": "e.g., Global Tennis Academies"
       },
+      "sold_through": {
+        "data_type": "string",
+        "ui_component": "text_input",
+        "required": false,
+        "description": "The marketplace (BookRetreats, Weebora…) the retreat is booked through, only when it can't be booked with the organizer directly. Null otherwise.",
+        "placeholder": "e.g., Weebora"
+      },
       "description": {
         "data_type": "string",
         "ui_component": "textarea",

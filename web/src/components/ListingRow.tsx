@@ -4,7 +4,7 @@ import { SURFACES } from "@/lib/surfaces";
 import { CategoryIcon } from "@/components/icons";
 import { CATEGORY_NAMES, dateRange, levelLabel, placeLabel, priceFrom, shortPlaceLabel } from "@/lib/format";
 import { LINK } from "@/lib/ui";
-import { SPORT_NAMES, type Listing, type Sport, type Venue } from "@/lib/sports";
+import { SPORTS, SPORT_NAMES, type Listing, type Operator, type Sport, type Venue } from "@/lib/sports";
 import Link from "next/link";
 import { programCount, tileHref } from "@/lib/tiles";
 
@@ -115,6 +115,28 @@ export function VenueCard({ venue, sport, programs }: { venue: Venue; sport: Spo
         </p>
       )}
     </a>
+  );
+}
+
+// An operator on /operators: a photo from their soonest trip, how many programmes, and where.
+export function OperatorCard({ operator, tiles }: { operator: Operator; tiles: Listing[] }) {
+  const sport = (tiles[0]?.sports[0] ?? "tennis") as Sport;
+  const countries = [...new Set(tiles.map((t) => t.country).filter(Boolean))];
+  const sports = SPORTS.filter((s) => tiles.some((t) => t.sports.includes(s)));
+  const n = operator.programSlugs.length;
+  return (
+    <Link href={`/operators/${operator.slug}`} className="group block">
+      <Photo src={tiles.find((t) => t.photos[0])?.photos[0]} sport={sport}>
+        <span className="rounded-full bg-white px-3 py-1 text-[0.8125rem] font-semibold">
+          {n} {n === 1 ? "program" : "programs"}
+        </span>
+      </Photo>
+      <p className="mt-3 truncate text-[0.9375rem] font-bold group-hover:underline">{operator.name}</p>
+      <p className="truncate text-[0.9375rem] text-ink-soft">{sports.map((s) => SPORT_NAMES[s]).join(", ")}</p>
+      <p className="truncate text-[0.9375rem] text-ink-soft" title={countries.join(", ")}>
+        {countries.length > 3 ? `${countries.slice(0, 2).join(", ")} and ${countries.length - 2} more` : countries.join(", ")}
+      </p>
+    </Link>
   );
 }
 

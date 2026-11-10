@@ -58,6 +58,8 @@ export function TextField(props: {
   min?: number;
   max?: number;
   autoComplete?: string;
+  // id of a <datalist> of suggestions
+  list?: string;
   className?: string;
   defaultValue?: string | number | null;
 }) {

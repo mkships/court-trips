@@ -4,10 +4,11 @@ import { del } from "@vercel/blob";
 import { and, asc, eq, inArray, ne, sql } from "drizzle-orm";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { photos, programs, sessions, submissions, venues } from "@/db/schema";
+import { organizations, photos, programs, sessions, submissions, venues } from "@/db/schema";
 import { requireAdmin } from "@/lib/admin/auth";
 import { hasErrors, programChecks, venueChecks } from "@/lib/admin/checks";
-import { programFormSchema, programFormToObject, slugify, venueFormSchema, venueFormToObject } from "@/lib/admin/forms";
+import { type OrganizationForm, organizationFormSchema, organizationFormToObject, programFormSchema, programFormToObject, slugify, venueFormSchema, venueFormToObject } from "@/lib/admin/forms";
+import { resolveOrganization, uniqueOrganizationSlug } from "@/lib/admin/organizations";
 import { adminDb, programState, venueState } from "@/lib/admin/queries";
 import { fieldErrors, type FieldErrors } from "@/lib/submission";
 
@@ -96,6 +97,8 @@ export async function saveProgram(id: string, _prev: SaveResult, form: FormData)
   });
   const blocked = intent === "publish" && hasErrors(checks);
   const lifecycle = blocked ? null : LIFECYCLE[intent];
+  // the operator is found (or added) by name; its record keeps the spelling
+  const operator = await resolveOrganization(v.organizer);
 
   await d.batch([
     d
@@ -103,7 +106,9 @@ export async function saveProgram(id: string, _prev: SaveResult, form: FormData)
       .set({
         slug: v.slug,
         title: v.title,
-        organizer: v.organizer,
+        organizer: operator?.name ?? v.organizer,
+        operatorId: operator?.id ?? null,
+        soldThroughId: v.sold_through_id,
         description: v.description,
         bookingUrl: v.booking_url,
         sourceUrl: v.source_url,
@@ -173,6 +178,7 @@ export async function createDraftFromSubmission(id: string) {
   const r = s.data;
   const programId = crypto.randomUUID();
   const slug = await uniqueSlug(programs, slugify(r.core_identity.title) || slugify(r.core_identity.organizer));
+  const operator = await resolveOrganization(r.core_identity.organizer);
   await d.batch([
     d.insert(programs).values({
       id: programId,
@@ -181,7 +187,8 @@ export async function createDraftFromSubmission(id: string) {
       needsReview: true,
       sourceUrl: r.core_identity.booking_url,
       title: r.core_identity.title,
-      organizer: r.core_identity.organizer,
+      organizer: operator?.name ?? r.core_identity.organizer,
+      operatorId: operator?.id ?? null,
       description: r.core_identity.description,
       coaches: r.core_identity.coaches,
       languages: r.core_identity.languages,
@@ -244,6 +251,11 @@ export async function applyPendingChanges(id: string) {
   const set: Record<string, unknown> = {};
   for (const [column, change] of Object.entries(fields))
     if (column in PROPOSABLE) set[PROPOSABLE[column as keyof typeof PROPOSABLE]] = change.to;
+  if (typeof set.organizer === "string") {
+    const operator = await resolveOrganization(set.organizer);
+    set.organizer = operator?.name ?? set.organizer;
+    set.operatorId = operator?.id ?? null;
+  }
   const today = new Date().toISOString().slice(0, 10);
   await d.batch([
     // a missing flag stays until it's dismissed or the listing archived
@@ -339,4 +351,108 @@ export async function saveVenue(id: string, _prev: SaveResult, form: FormData): 
   if (v.slug !== current.slug) redirect(`/admin/venues/${v.slug}?saved=1`);
   if (blocked) return { ok: false, message: "Saved, but not published: fix the errors at the top first." };
   return { ok: true, message: DONE[intent] };
+}
+
+// ---------- operators and marketplaces ----------
+
+function organizationValues(v: OrganizationForm) {
+  return {
+    slug: v.slug,
+    name: v.name,
+    kind: v.kind,
+    status: v.status,
+    website: v.website,
+    description: v.description,
+    country: v.country,
+    sports: v.sports,
+    aliases: v.aliases,
+    note: v.note,
+    sourceUrl: v.source_url,
+    seenOnId: v.seen_on_id,
+  };
+}
+
+// another organisation already has this name (names are unique, ignoring case)
+async function nameTaken(name: string, exceptId?: string) {
+  const [row] = await adminDb()
+    .select({ slug: organizations.slug })
+    .from(organizations)
+    .where(exceptId ? and(sql`lower(${organizations.name}) = lower(${name})`, ne(organizations.id, exceptId)) : sql`lower(${organizations.name}) = lower(${name})`)
+    .limit(1);
+  return row?.slug ?? null;
+}
+
+export async function saveOrganization(id: string, _prev: SaveResult, form: FormData): Promise<SaveResult> {
+  await requireAdmin();
+  const d = adminDb();
+  const current = await d.query.organizations.findFirst({ where: eq(organizations.id, id) });
+  if (!current) return { ok: false, message: "That operator no longer exists." };
+  const parsed = organizationFormSchema.safeParse(organizationFormToObject(form));
+  if (!parsed.success) return { ok: false, message: "Some fields need another look. Nothing was saved.", errors: fieldErrors(parsed.error) };
+  const v = parsed.data;
+  if (v.seen_on_id === id) return { ok: false, message: "It can't be seen on itself.", errors: { seen_on_id: "Pick a marketplace, or none" } };
+  if (await nameTaken(v.name, id)) return { ok: false, message: "Another operator has that name: merge them instead.", errors: { name: "Already taken" } };
+  if (v.slug !== current.slug && (await uniqueOrganizationSlug(v.slug, id)) !== v.slug)
+    return { ok: false, message: "That address is taken.", errors: { slug: "Another operator uses this address" } };
+
+  await d.batch([
+    d.update(organizations).set({ ...organizationValues(v), updatedAt: new Date() }).where(eq(organizations.id, id)),
+    // listings show the operator's name: keep them in step with a rename
+    ...(v.name !== current.name ? [d.update(programs).set({ organizer: v.name }).where(eq(programs.operatorId, id))] : []),
+  ]);
+  refreshSite();
+  if (v.slug !== current.slug) redirect(`/admin/operators/${v.slug}?saved=1`);
+  return { ok: true, message: "Saved." };
+}
+
+export async function createOrganization(_prev: SaveResult, form: FormData): Promise<SaveResult> {
+  await requireAdmin();
+  const raw = organizationFormToObject(form);
+  raw.slug = String(raw.slug ?? "").trim() || slugify(String(raw.name ?? ""));
+  const parsed = organizationFormSchema.safeParse(raw);
+  if (!parsed.success) return { ok: false, message: "Some fields need another look. Nothing was saved.", errors: fieldErrors(parsed.error) };
+  const v = parsed.data;
+  const existing = await nameTaken(v.name);
+  if (existing) return { ok: false, message: `Already known: see /admin/operators/${existing}.`, errors: { name: "Already in the list" } };
+  const slug = await uniqueOrganizationSlug(v.slug);
+  await adminDb().insert(organizations).values({ ...organizationValues(v), slug });
+  revalidatePath("/admin", "layout");
+  redirect(`/admin/operators/${slug}?saved=1`);
+}
+
+// Two records for the same organisation: the listings, links and spelling of `id` move to the one
+// picked, and `id` goes. The old name becomes an alias, so imports that use it link to the right one.
+export async function mergeOrganization(id: string, form: FormData) {
+  await requireAdmin();
+  const d = adminDb();
+  const targetId = String(form.get("into") ?? "");
+  const [from, into] = await Promise.all([
+    d.query.organizations.findFirst({ where: eq(organizations.id, id) }),
+    /^[0-9a-f-]{36}$/.test(targetId) ? d.query.organizations.findFirst({ where: eq(organizations.id, targetId) }) : null,
+  ]);
+  if (!from) redirect("/admin/operators");
+  if (!into || into.id === from.id) redirect(`/admin/operators/${from.slug}?merge=none`);
+  const aliases = [...new Set([...into.aliases, from.name, ...from.aliases].filter((a) => a.toLowerCase() !== into.name.toLowerCase()))];
+  await d.batch([
+    d.update(programs).set({ operatorId: into.id, organizer: into.name }).where(eq(programs.operatorId, from.id)),
+    d.update(programs).set({ soldThroughId: into.id }).where(eq(programs.soldThroughId, from.id)),
+    d.update(organizations).set({ seenOnId: into.id }).where(eq(organizations.seenOnId, from.id)),
+    d
+      .update(organizations)
+      .set({
+        aliases,
+        website: into.website ?? from.website,
+        description: into.description ?? from.description,
+        country: into.country ?? from.country,
+        sports: [...new Set([...into.sports, ...from.sports])],
+        note: [into.note, from.note].filter(Boolean).join("\n\n") || null,
+        // a lead merged into a listed operator is listed; two leads stay a lead
+        status: into.status === "lead" && from.status === "active" ? "active" : into.status,
+        updatedAt: new Date(),
+      })
+      .where(eq(organizations.id, into.id)),
+    d.delete(organizations).where(eq(organizations.id, from.id)),
+  ]);
+  refreshSite();
+  redirect(`/admin/operators/${into.slug}?merged=1`);
 }

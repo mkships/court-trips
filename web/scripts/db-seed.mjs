@@ -270,6 +270,19 @@ await sql.transaction([
     select v.id, x.position, x.path, x.source_url
     from jsonb_to_recordset(${json(venuePhotos)}::jsonb) as x(slug text, position int, path text, source_url text)
     join venues v on v.slug = x.slug`,
+  // each organiser becomes an operator (organizations) and the programs link to it, as migration 0005 did
+  sql`
+    insert into organizations (slug, name)
+    select distinct on (slug) slug, name from (
+      select trim(both '-' from regexp_replace(translate(lower(trim(organizer)), 'àáâãäåçèéêëìíîïñòóôõöøùúûüýÿ', 'aaaaaaceeeeiiiinoooooouuuuyy'), '[^a-z0-9]+', '-', 'g')) as slug,
+        trim(organizer) as name
+      from programs where operator_id is null
+    ) s where slug <> '' order by slug, name
+    on conflict do nothing`,
+  sql`
+    update programs p set operator_id = o.id from organizations o
+    where p.operator_id is null and (lower(o.name) = lower(trim(p.organizer))
+      or exists (select 1 from unnest(o.aliases) a where lower(a) = lower(trim(p.organizer))))`,
 ]);
 
 for (const w of warnings) console.warn(`db:seed: warning: ${w}`);
