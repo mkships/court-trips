@@ -3,6 +3,7 @@
 import { useActionState, useTransition, type FormEvent } from "react";
 import { saveVenue, type SaveResult } from "@/app/admin/(panel)/actions";
 import { Choices, Field, INPUT, invalid, SelectField, TextField } from "@/components/submit/fields";
+import { PhotoManager, PHOTOS_INTRO } from "@/components/admin/PhotoManager";
 import type { ListingState } from "@/lib/admin/queries";
 import { COUNTRIES } from "@/lib/countries";
 import { SPORT_OPTIONS } from "@/lib/submission-options";
@@ -24,6 +25,7 @@ export type EditableVenue = {
   lng: number | null;
   sports: string[];
   priceNotes: string | null;
+  photos: { id: number; url: string }[];
 };
 
 const KINDS = [
@@ -72,6 +74,13 @@ export function VenueEditor({ venue: v }: { venue: EditableVenue }) {
           <textarea id="description" name="description" rows={4} defaultValue={v.description ?? ""} className={INPUT} {...invalid("description", errors.description)} />
         </Field>
         <TextField name="price_notes" label="Price notes" optional defaultValue={v.priceNotes} error={errors.price_notes} />
+      </section>
+      <section className="grid gap-6 rounded-[20px] bg-white p-5 sm:p-7">
+        <div>
+          <h2 className="text-[1.125rem] font-extrabold">Photos</h2>
+          <p className="mt-0.5 text-[0.9375rem] text-ink-soft">{PHOTOS_INTRO}</p>
+        </div>
+        <PhotoManager owner="venue" id={v.id} photos={v.photos} />
       </section>
       <div className="sticky bottom-0 -mx-4 flex flex-wrap items-center gap-3 border-t border-rule bg-white/95 px-4 py-3 backdrop-blur sm:-mx-8 sm:px-8">
         <button type="submit" name="intent" value="save" disabled={pending} className={`px-5 py-2.5 ${BTN_DARK}`}>

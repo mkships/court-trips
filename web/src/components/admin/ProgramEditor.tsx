@@ -4,6 +4,7 @@ import { useActionState, useState, useTransition, type FormEvent } from "react";
 import { saveProgram, type SaveResult } from "@/app/admin/(panel)/actions";
 import { CategoryIcon, LevelIcon } from "@/components/icons";
 import { Choices, ErrorText, Field, INPUT, invalid, SelectField, TextField } from "@/components/submit/fields";
+import { PhotoManager, PHOTOS_INTRO } from "@/components/admin/PhotoManager";
 import type { ListingState } from "@/lib/admin/queries";
 import { COUNTRIES } from "@/lib/countries";
 import {
@@ -255,25 +256,8 @@ export function ProgramEditor({
         />
       </Card>
 
-      <Card title="Photos" intro="The first is the cover. Tick any to take off the listing when you save.">
-        {p.photos.length === 0 ? (
-          <p className="text-ink-soft">No photos.</p>
-        ) : (
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-            {p.photos.map((ph, i) => (
-              <li key={ph.id}>
-                <label className="block cursor-pointer">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- admin thumbnails, any source */}
-                  <img src={ph.url} alt={`Photo ${i + 1}`} className="aspect-[4/3] w-full rounded-xl bg-rule object-cover" />
-                  <span className="mt-1.5 flex items-center gap-2 text-[0.875rem]">
-                    <input type="checkbox" name="remove_photo" value={ph.id} className="size-4 accent-ink" />
-                    Remove{i === 0 && <span className="text-ink-soft">(cover)</span>}
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        )}
+      <Card title="Photos" intro={PHOTOS_INTRO}>
+        <PhotoManager owner="program" id={p.id} photos={p.photos} />
       </Card>
 
       <div className="sticky bottom-0 -mx-4 flex flex-wrap items-center gap-3 border-t border-rule bg-white/95 px-4 py-3 backdrop-blur sm:-mx-8 sm:px-8">

@@ -116,6 +116,8 @@ export const venueFormSchema = z.object({
   lng: number(-180, 180),
   sports: z.array(z.enum(values(SPORT_OPTIONS))).min(1, "Pick at least one sport"),
   price_notes: text(300),
+  // photo ids to take off the venue
+  remove_photo: z.array(z.coerce.number().int()).default([]),
 });
 
 export type VenueForm = z.infer<typeof venueFormSchema>;
@@ -124,7 +126,7 @@ export function venueFormToObject(form: FormData) {
   const obj: Record<string, unknown> = {};
   for (const key of new Set(form.keys())) {
     if (key.startsWith("$ACTION") || key === "intent") continue;
-    obj[key] = key === "sports" ? form.getAll(key) : form.get(key);
+    obj[key] = key === "sports" || key === "remove_photo" ? form.getAll(key) : form.get(key);
   }
   obj.sports ??= [];
   return obj;
@@ -166,7 +168,7 @@ export function organizationFormToObject(form: FormData) {
   const obj: Record<string, unknown> = {};
   for (const key of new Set(form.keys())) {
     if (key.startsWith("$ACTION") || key === "intent") continue;
-    obj[key] = key === "sports" ? form.getAll(key) : form.get(key);
+    obj[key] = key === "sports" || key === "remove_photo" ? form.getAll(key) : form.get(key);
   }
   obj.sports ??= [];
   return obj;
