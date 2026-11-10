@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "slug": "ppr-kuala-lumpur-performance-clinic",
+    "source_url": "https://pickleballproretreats.com/kuala-lumpur-malaysia",
+    "listing_url": "https://pickleballproretreats.com/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball performance clinic in Kuala Lumpur",
+    "organizer": "Pickleball Pro Retreats",
+    "description": "Three nights in Kuala Lumpur with intensive coaching, video analysis and 16 hours of court time at Tomaz Pickleball Club, an air-conditioned centre with 20 courts, plus match play and mini tournaments. At most 16 players.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballproretreats.com/kuala-lumpur-malaysia",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "clinic",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Malaysia",
+    "city_region": "Kuala Lumpur",
+    "venue_name": "Tomaz Pickleball Club",
+    "venue_slug": null,
+    "lat": 3.14,
+    "lng": 101.69
+  },
+  "sessions": [
+    {
+      "start_date": "2026-11-27",
+      "end_date": "2026-11-30",
+      "status": "available",
+      "price_override": 795
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 795,
+    "price_max": 915,
+    "currency": "USD",
+    "price_unit": "per_person_sharing",
+    "price_notes": "US$795 per person sharing; US$915 single. Flights not included.",
+    "inclusions": [
+      "3 nights 5-star hotel",
+      "daily lunch",
+      "coaching and 16 hours court time",
+      "court hire and equipment",
+      "team dinner"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 16,
+    "player_to_coach_ratio": null,
+    "capacity": 16,
+    "accommodation_type": null
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}

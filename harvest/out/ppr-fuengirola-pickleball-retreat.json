@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "slug": "ppr-fuengirola-pickleball-retreat",
+    "source_url": "https://pickleballproretreats.com/fuengirola-spain",
+    "listing_url": "https://pickleballproretreats.com/",
+    "scraped_at": "2026-11-05",
+    "needs_review": true,
+    "data_quality_score": 0.8
+  },
+  "core_identity": {
+    "title": "Pickleball retreat in Fuengirola, Costa del Sol",
+    "organizer": "Pickleball Pro Retreats",
+    "description": "Four nights in a beachside hotel in Fuengirola with daily coaching and 20 hours of court time at the Daryl Collins Tennis & Pickleball Club in Mijas, four of whose ten courts are kept for the group, plus a mini tournament. At most 16 players.",
+    "coaches": [],
+    "languages": [
+      "English"
+    ],
+    "booking_url": "https://pickleballproretreats.com/fuengirola-spain",
+    "contact_email": null,
+    "contact_phone": null
+  },
+  "categorization": {
+    "racket_sport": [
+      "pickleball"
+    ],
+    "category": "social_getaway",
+    "theme": [],
+    "gender": "mixed",
+    "level": [
+      "all levels"
+    ]
+  },
+  "rating_systems": {},
+  "location": {
+    "country": "Spain",
+    "city_region": "Fuengirola and Mijas, Andalusia",
+    "venue_name": "Daryl Collins Tennis & Pickleball Club",
+    "venue_slug": null,
+    "lat": 36.55,
+    "lng": -4.64
+  },
+  "sessions": [
+    {
+      "start_date": "2026-11-13",
+      "end_date": "2026-11-17",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-01-22",
+      "end_date": "2027-01-26",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-01-29",
+      "end_date": "2027-02-02",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-02-05",
+      "end_date": "2027-02-09",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-02-26",
+      "end_date": "2027-03-02",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-03-12",
+      "end_date": "2027-03-16",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-03-19",
+      "end_date": "2027-03-23",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-04-16",
+      "end_date": "2027-04-20",
+      "status": "available",
+      "price_override": 950
+    },
+    {
+      "start_date": "2027-04-23",
+      "end_date": "2027-04-27",
+      "status": "available",
+      "price_override": 950
+    }
+  ],
+  "schedule_notes": null,
+  "pricing": {
+    "price_min": 950,
+    "price_max": 1110,
+    "currency": "GBP",
+    "price_unit": "per_person_sharing",
+    "price_notes": "£950 per person sharing; £1,110 single. Flights not included.",
+    "inclusions": [
+      "4 nights beachside hotel",
+      "daily coaching",
+      "20 hours court time",
+      "welcome drinks and tapas",
+      "team dinner",
+      "mini tournament"
+    ]
+  },
+  "sport_specific": {
+    "court_surface": [],
+    "coaching_hours_total": 20,
+    "player_to_coach_ratio": null,
+    "capacity": 16,
+    "accommodation_type": "partner_hotel"
+  },
+  "media": {
+    "thumbnail": null,
+    "images": []
+  }
+}
