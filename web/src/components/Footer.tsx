@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { SPORTS, SPORT_NAMES } from "@/lib/sports";
+import { Wordmark } from "./Wordmark";
 
 export function Footer() {
   return (
     <footer className="mt-20 border-t border-rule md:mt-24">
       <div className="mx-auto grid max-w-[1280px] gap-10 px-4 py-12 sm:px-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-[46ch]">
-          <p className="text-[1.25rem] font-black tracking-[-0.03em]">Court Trips</p>
+          <Wordmark className="h-[24px] w-auto" />
           <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
             Tennis, pickleball and padel trips, worldwide. You book directly with the operators who run them.
           </p>
