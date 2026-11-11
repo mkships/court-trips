@@ -21,7 +21,7 @@ export default function NotFound() {
         <p className="mt-3 max-w-[50ch] text-[1.0625rem] text-ink-soft">
           The page has moved, or the trip isn&apos;t listed any more.
         </p>
-        <Link href="/" className={`mt-7 h-14 px-7 ${BTN_PRIMARY}`}>
+        <Link href="/trips" className={`mt-7 h-14 px-7 ${BTN_PRIMARY}`}>
           Back to all trips
         </Link>
       </main>

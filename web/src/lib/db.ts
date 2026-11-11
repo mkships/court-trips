@@ -2,9 +2,9 @@ import "server-only";
 import { and, asc, eq, gte, inArray, sql } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 import { db as maybeDb } from "@/db";
-import { organizations, photos, programs, sessions, venues } from "@/db/schema";
+import { organizations, photos, programs, ratings, sessions, venues } from "@/db/schema";
 import { photoUrl } from "@/lib/photos";
-import { SPORTS, type Listing, type Operator, type ProgramDetail, type Sport, type SportStats, type Venue } from "@/lib/sports";
+import { SPORTS, type Listing, type Operator, type ProgramDetail, type Rating, type Sport, type SportStats, type Venue } from "@/lib/sports";
 
 // Listings, read from Postgres. Import only from server components and route handlers.
 // Results are cached for an hour (tag "listings"): the site reads the database at most once an hour
@@ -89,6 +89,14 @@ async function queryTiles(): Promise<Listing[]> {
   }));
 }
 
+const ratingOf = (r: typeof ratings.$inferSelect): Rating => ({
+  source: r.source,
+  rating: r.rating,
+  reviewCount: r.reviewCount,
+  url: r.url,
+  checkedAt: r.checkedAt,
+});
+
 async function queryVenues(slug?: string): Promise<Venue[]> {
   const rows = await database().query.venues.findMany({
     where: slug ? and(venueIsPublic, eq(venues.slug, slug)) : venueIsPublic,
@@ -96,6 +104,7 @@ async function queryVenues(slug?: string): Promise<Venue[]> {
     with: {
       courts: { orderBy: (c, { asc }) => asc(c.position) },
       photos: { orderBy: (p, { asc }) => asc(p.position) },
+      ratings: { orderBy: (r, { asc }) => asc(r.source) },
       programs: { columns: { slug: true }, where: programIsPublic, orderBy: (p, { asc }) => asc(p.slug) },
     },
   });
@@ -110,6 +119,12 @@ async function queryVenues(slug?: string): Promise<Venue[]> {
     programSlugs: v.programs.map((p) => p.slug),
     photos: v.photos.map((p) => photoUrl(p.path)),
     website: v.website ?? "",
+    description: v.description,
+    stars: v.stars,
+    adultsOnly: v.adultsOnly,
+    amenities: v.amenities,
+    priceNotes: v.priceNotes,
+    ratings: v.ratings.map(ratingOf),
   }));
 }
 
@@ -118,7 +133,7 @@ async function queryProgram(slug: string): Promise<ProgramDetail | null> {
     where: and(programIsPublic, eq(programs.slug, slug)),
     with: {
       venue: { columns: { slug: true, status: true, needsReview: true } },
-      operator: { columns: { slug: true, kind: true, status: true } },
+      operator: { columns: { slug: true, kind: true, status: true }, with: { ratings: { orderBy: (r, { asc }) => asc(r.source) } } },
       soldThrough: { columns: { name: true } },
       sessions: { where: upcoming, orderBy: (s, { asc }) => asc(s.startDate) },
       photos: { orderBy: (ph, { asc }) => asc(ph.position) },
@@ -132,6 +147,7 @@ async function queryProgram(slug: string): Promise<ProgramDetail | null> {
     organizer: p.organizer,
     // a public listing makes its operator's page public too
     operatorSlug: p.operator?.kind === "operator" && p.operator.status === "active" ? p.operator.slug : null,
+    operatorRatings: p.operator?.kind === "operator" && p.operator.status === "active" ? p.operator.ratings.map(ratingOf) : [],
     soldThrough: p.soldThrough?.name ?? null,
     description: p.description ?? "",
     coaches: p.coaches,
@@ -222,6 +238,9 @@ async function queryOperators(slug?: string): Promise<Operator[]> {
         select p.slug from ${programs} p
         where p.operator_id = ${organizations}.id and p.status in ('active', 'sold_out') and not p.needs_review
         order by p.slug)`,
+      ratings: sql<Rating[]>`coalesce((
+        select json_agg(json_build_object('source', r.source, 'rating', r.rating, 'reviewCount', r.review_count, 'url', r.url, 'checkedAt', r.checked_at) order by r.source)
+        from ${ratings} r where r.organization_id = ${organizations}.id), '[]'::json)`,
     })
     .from(organizations)
     .where(and(eq(organizations.kind, "operator"), eq(organizations.status, "active"), slug ? eq(organizations.slug, slug) : undefined));

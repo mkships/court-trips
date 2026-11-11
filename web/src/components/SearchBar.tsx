@@ -3,7 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { SPORT_NAMES, type Listing, type Mode, type Sport, type Venue } from "@/lib/sports";
 import { SURFACES } from "@/lib/surfaces";
-import { matchesTile, type SearchKey, type SearchValues } from "@/lib/filters";
+import { MODE_PATHS, matchesTile, type SearchKey, type SearchValues } from "@/lib/filters";
 import { CategoryIcon, LevelIcon } from "@/components/icons";
 
 // Airbnb-style search: one pill of fields. Opening a field greys the bar, lifts that field
@@ -39,7 +39,6 @@ const FIELDS: Record<Mode, { key: Key; label: string; empty: string }[]> = {
   ],
   places: [
     { key: "where", label: "Where", empty: "Any country" },
-    { key: "guests", label: "Guests", empty: "Add guests" },
     { key: "courts", label: "Courts", empty: "Any surface" },
   ],
 };
@@ -145,7 +144,6 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
     if (key === "level") return LEVELS.find((o) => o.value === v)?.label;
     if (key === "format") return FORMATS.find((o) => o.value === v)?.label;
     if (key === "courts") return SURFACE_OPTIONS.find((o) => o.value === v)?.label;
-    if (key === "guests") return plural(Number(v), "guest");
     return v;
   };
 
@@ -155,7 +153,7 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
   return (
     <form
       ref={form}
-      action="/search"
+      action={MODE_PATHS[mode]}
       method="get"
       onSubmit={() => setOpen(null)}
       className={`relative z-30 mt-3 flex flex-col rounded-3xl shadow-card ring-1 ring-ink/5 transition-colors md:flex-row ${placement === "hero" ? "md:mx-6 md:-mt-9" : ""} md:items-stretch md:rounded-full ${
@@ -163,7 +161,6 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
       }`}
     >
       <input type="hidden" name="sport" value={sport} />
-      <input type="hidden" name="type" value={mode} />
       {fields.map((f) => values[f.key] && f.key !== "where" && <input key={f.key} type="hidden" name={f.key} value={values[f.key]} />)}
 
       {fields.map((f, i) => {
@@ -285,7 +282,6 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
               onChoose={(v) => choose("courts", v)}
             />
           )}
-          {open === "guests" && <GuestsPanel value={Number(values.guests ?? 0)} onChange={(n) => set("guests", n ? String(n) : undefined)} />}
         </div>
       )}
     </form>
@@ -515,38 +511,5 @@ function Radio({ on }: { on: boolean }) {
     <span aria-hidden="true" className={`grid size-5 shrink-0 place-items-center rounded-full border-2 ${on ? "border-ink" : "border-ink-soft/50"}`}>
       {on && <span className="size-2.5 rounded-full bg-ink" />}
     </span>
-  );
-}
-
-function GuestsPanel({ value, onChange }: { value: number; onChange: (n: number) => void }) {
-  const step = (by: number) => onChange(Math.min(16, Math.max(0, value + by)));
-  return (
-    <div className="flex items-center justify-between px-3 py-3">
-      <span>
-        <span className="block font-semibold">Guests</span>
-        <span className="block text-[0.875rem] text-ink-soft">Players and non-players</span>
-      </span>
-      <span className="flex items-center gap-3">
-        <Stepper label="Remove a guest" disabled={value === 0} onClick={() => step(-1)} sign="−" />
-        <span className="w-6 text-center tabular-nums" aria-live="polite">
-          {value}
-        </span>
-        <Stepper label="Add a guest" disabled={value >= 16} onClick={() => step(1)} sign="+" />
-      </span>
-    </div>
-  );
-}
-
-function Stepper({ label, sign, disabled, onClick }: { label: string; sign: string; disabled: boolean; onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      disabled={disabled}
-      onClick={onClick}
-      className="grid size-8 place-items-center rounded-full border border-rule bg-white text-[1.125rem] leading-none transition-colors hover:border-ink hover:bg-mist disabled:cursor-not-allowed disabled:opacity-50"
-    >
-      {sign}
-    </button>
   );
 }

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { CalendarIcon, ExternalIcon, MoonIcon, StoreIcon } from "@/components/icons";
-import { PRICE_UNIT_NAMES, dateRange, hostOf, money, nights } from "@/lib/format";
-import { BTN_PRIMARY, LINK } from "@/lib/ui";
+import { ListedPrice, Money } from "@/components/Currency";
+import { PRICE_UNIT_NAMES, SESSION_STATUS as STATUS, dateRange, hostOf, nights } from "@/lib/format";
+import { BTN_PRIMARY, LINK, PILL } from "@/lib/ui";
 import type { ProgramDetail } from "@/lib/sports";
 
 type Session = ProgramDetail["sessions"][number] | null;
@@ -19,16 +20,11 @@ function cta(session: Session) {
 const goHref = (program: ProgramDetail, session: Session) =>
   `/go/${program.slug}${session ? `?date=${session.start}` : ""}`;
 
+// the selected date's price, in the operator's currency
 function price(program: ProgramDetail, session: Session) {
   const amount = session?.price ?? program.priceMin;
-  return amount != null && program.currency ? money(amount, program.currency) : null;
+  return amount != null && program.currency ? { amount, currency: program.currency } : null;
 }
-
-const STATUS = {
-  available: { label: "Available", dot: "bg-ok" },
-  waitlist: { label: "Waitlist only", dot: "bg-warn" },
-  sold_out: { label: "Sold out", dot: "bg-ink-soft/50" },
-} as const;
 
 // "3 nights" for stays, "1 day" or "3 days" otherwise
 function length(program: ProgramDetail, s: NonNullable<Session>) {
@@ -56,12 +52,15 @@ export function BookingCard({ program, session }: { program: ProgramDetail; sess
     <div className="rounded-3xl p-6 shadow-card ring-1 ring-ink/5">
       {amount ? (
         <p>
-          <span className="text-[1.75rem] font-black tracking-[-0.02em]">{amount}</span>{" "}
+          <span className="text-[1.75rem] font-black tracking-[-0.02em]">
+            <Money {...amount} />
+          </span>{" "}
           <span className="text-ink-soft">{program.priceUnit ? PRICE_UNIT_NAMES[program.priceUnit] : ""}</span>
         </p>
       ) : (
         <p className="text-[1.25rem] font-extrabold">Price on request</p>
       )}
+      {amount && <ListedPrice {...amount} className="mt-1 text-[0.8125rem] text-ink-soft" />}
 
       {others > 0 ? (
         <div className="mt-5">
@@ -75,9 +74,7 @@ export function BookingCard({ program, session }: { program: ProgramDetail; sess
                     href={`?date=${s.start}`}
                     scroll={false}
                     aria-current={on ? "true" : undefined}
-                    className={`block rounded-full border px-3.5 py-1.5 text-[0.875rem] transition-colors ${
-                      on ? "border-ink bg-ink text-white" : "border-rule hover:border-ink hover:bg-mist"
-                    } ${s.status === "sold_out" ? "line-through decoration-1" : ""}`}
+                    className={`px-3.5 py-1.5 text-[0.9375rem] font-medium ${PILL} ${s.status === "sold_out" ? "line-through decoration-1" : ""}`}
                   >
                     {dateRange({ start: s.start, end: s.end, scheduleNotes: null })}
                   </Link>
@@ -86,7 +83,7 @@ export function BookingCard({ program, session }: { program: ProgramDetail; sess
             })}
           </ul>
           {others > SHOWN_DATES && (
-            <a href="#dates" className={`mt-3 inline-block text-[0.875rem] ${LINK}`}>
+            <a href="#dates" className={`mt-3 inline-block text-[0.9375rem] ${LINK}`}>
               All {others} dates
             </a>
           )}
@@ -130,10 +127,10 @@ export function BookingCard({ program, session }: { program: ProgramDetail; sess
 export function MobileBookingBar({ program, session }: { program: ProgramDetail; session: Session }) {
   const amount = price(program, session);
   return (
-    <div className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-4 border-t border-rule bg-white px-4 py-3 lg:hidden">
+    <div data-booking-bar className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-4 border-t border-rule bg-white px-4 py-3 lg:hidden">
       <div className="min-w-0 flex-1">
-        <p className="truncate font-extrabold">{amount ?? "Price on request"}</p>
-        <a href="#dates" className="block truncate text-[0.875rem] text-ink-soft underline decoration-ink-soft/40 underline-offset-2">
+        <p className="truncate font-extrabold">{amount ? <Money {...amount} /> : "Price on request"}</p>
+        <a href="#dates" className="block truncate text-[0.875rem] text-ink-soft underline decoration-ink-soft/40 decoration-[1.5px] underline-offset-4 transition-colors hover:text-ink hover:decoration-ink">
           {session ? dateRange({ start: session.start, end: session.end, scheduleNotes: null }) : "Dates on request"}
         </a>
       </div>
