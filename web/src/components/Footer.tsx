@@ -35,19 +35,26 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
 // The reversed theme: ink, with the wordmark's yellow "court". `on-surface` turns focus rings yellow.
 export function Footer() {
   return (
-    // a trip page's fixed booking bar (phones) would cover the last lines, so leave room for it
-    <footer className="on-surface mt-28 bg-ink text-white md:mt-32 [body:has([data-booking-bar])_&]:pb-20 lg:[body:has([data-booking-bar])_&]:pb-0">
-      <div className="mx-auto max-w-[1280px] px-4 sm:px-8">
-        <div className="-mt-10 flex flex-col gap-4 rounded-3xl bg-ball px-6 py-6 text-ink sm:flex-row sm:items-center sm:justify-between sm:px-9">
+    <footer className="on-surface mt-20 text-white md:mt-24">
+      {/* the band straddles the footer's top edge: the ink behind it starts halfway down, whatever its height */}
+      <div className="relative">
+        <div aria-hidden="true" className="absolute inset-x-0 top-1/2 bottom-0 bg-ink" />
+        <div className="relative mx-auto max-w-[1280px] px-4 sm:px-8">
+          <div className="flex flex-col gap-4 rounded-3xl bg-ball px-6 py-7 text-ink sm:flex-row sm:items-center sm:justify-between sm:px-9">
           <div>
             <p className="text-[1.375rem] leading-tight font-extrabold tracking-[-0.02em]">Run a camp, clinic or getaway?</p>
             <p className="mt-1 text-[0.9375rem]">List it free. Players book with you directly and we never take a cut.</p>
           </div>
           <Link href="/for-operators" className={`shrink-0 px-6 py-3 text-[1rem] ${BTN_DARK}`}>
-            List your program
-          </Link>
+              List your program
+            </Link>
+          </div>
         </div>
+      </div>
 
+      {/* a trip page's fixed booking bar (phones) would cover the last lines, so leave room for it */}
+      <div className="bg-ink [body:has([data-booking-bar])_&]:pb-20 lg:[body:has([data-booking-bar])_&]:pb-0">
+       <div className="mx-auto max-w-[1280px] px-4 sm:px-8">
         <div className="grid gap-10 pt-12 pb-12 md:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
           <div className="max-w-[40ch]">
             <Wordmark reversed className="h-[28px] w-auto" />
@@ -55,7 +62,7 @@ export function Footer() {
               Tennis, pickleball and padel trips, worldwide. Compare dates and prices here, then book directly with the
               operators who run them.
             </p>
-            <CurrencyPicker dark className="mt-5" />
+            <CurrencyPicker dark up className="mt-5" />
           </div>
           {COLUMNS.map((column) => (
             <nav key={column.title} aria-label={column.title}>
@@ -77,6 +84,7 @@ export function Footer() {
           Dates and prices come from each operator and can change. Converted prices are a guide; the operator charges in
           their own currency. Photos belong to the operators named on each listing. © 2026 Court Trips.
         </p>
+       </div>
       </div>
     </footer>
   );

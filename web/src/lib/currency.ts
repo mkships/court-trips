@@ -1,15 +1,19 @@
 // The currencies a visitor can view prices in. Listings keep the operator's own currency; this is
 // only a display conversion, so converted prices are always marked as approximate.
+// code, name, symbol and the country whose flag stands for it, in the order they're offered
 export const CURRENCIES = [
-  ["USD", "$"],
-  ["GBP", "£"],
-  ["EUR", "€"],
-  ["AUD", "A$"],
-  ["CAD", "C$"],
-  ["CHF", "CHF"],
-  ["NZD", "NZ$"],
-  ["SGD", "S$"],
-  ["INR", "₹"],
+  ["USD", "US dollar", "$", "US"],
+  ["EUR", "Euro", "€", "EU"],
+  ["GBP", "British pound", "£", "GB"],
+  ["AUD", "Australian dollar", "A$", "AU"],
+  ["CAD", "Canadian dollar", "C$", "CA"],
+  ["CHF", "Swiss franc", "CHF", "CH"],
+  ["JPY", "Japanese yen", "¥", "JP"],
+  ["NZD", "New Zealand dollar", "NZ$", "NZ"],
+  ["SGD", "Singapore dollar", "S$", "SG"],
+  ["HKD", "Hong Kong dollar", "HK$", "HK"],
+  ["SEK", "Swedish krona", "kr", "SE"],
+  ["INR", "Indian rupee", "₹", "IN"],
 ] as const;
 
 // units of each currency per one euro

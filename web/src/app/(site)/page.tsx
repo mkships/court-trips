@@ -3,7 +3,7 @@ import { CONTAINER } from "@/components/Browse";
 import { OperatorCard, TripCard, VenueCard } from "@/components/Cards";
 import { CAROUSEL_ITEM, Carousel } from "@/components/Carousel";
 import { HomeHero } from "@/components/HomeHero";
-import { CalendarIcon, PinIcon, StoreIcon } from "@/components/icons";
+import { BookDirectIcon, CompareIcon, FindIcon } from "@/components/icons";
 import { getHomeData, getOperators } from "@/lib/db";
 import { SPORTS, SPORT_NAMES, type Sport, type Trip } from "@/lib/sports";
 import { groupTrips, programCount } from "@/lib/tiles";
@@ -45,17 +45,17 @@ function showcase(trips: Trip[]): Row[] {
 
 const POINTS = [
   {
-    icon: PinIcon,
+    icon: FindIcon,
     title: "Find a trip",
     text: "Coached tennis, pickleball and padel camps, clinics and getaways from independent operators, in one place.",
   },
   {
-    icon: CalendarIcon,
+    icon: CompareIcon,
     title: "Compare dates and prices",
     text: "Every upcoming departure with its price and availability, checked against the operator's own page.",
   },
   {
-    icon: StoreIcon,
+    icon: BookDirectIcon,
     title: "Book with the operator",
     text: "We send you straight to the people who run the trip. No booking fee, no commission, no middleman.",
   },
@@ -97,7 +97,7 @@ export default async function Home() {
           {POINTS.map(({ icon: Icon, title, text }, i) => (
             <li key={title} className="border-t-2 border-ink pt-4">
               <div className="flex items-center justify-between">
-                <Icon className="size-6" />
+                <Icon className="size-8" />
                 <span aria-hidden="true" className="text-[0.8125rem] font-extrabold text-ink-soft tabular-nums">
                   0{i + 1}
                 </span>

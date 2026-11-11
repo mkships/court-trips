@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Court } from "@/components/Court";
 import { Money } from "@/components/Currency";
 import { CategoryIcon } from "@/components/icons";
-import { Star, topRating } from "@/components/Ratings";
+import { RATING_SOURCE_NAMES, Star, topRating } from "@/components/Ratings";
 import { SafeImage } from "@/components/SafeImage";
 import { CATEGORY_NAMES, dateRange, levelLabel, placeLabel, shortDay, shortPlaceLabel } from "@/lib/format";
 import { SPORTS, SPORT_NAMES, type Listing, type Operator, type Sport, type Trip, type TripDate, type Venue } from "@/lib/sports";
@@ -134,19 +134,29 @@ export function OperatorCard({ operator, tiles }: { operator: Operator; tiles: L
         <span className={CHIP}>
           {n} {n === 1 ? "trip" : "trips"}
         </span>
-        {rating && (
-          <span className={`inline-flex items-center gap-1 ${CHIP}`}>
-            <Star className="size-3.5 text-warn" />
-            {rating.rating.toFixed(1)}
-            <span className="sr-only">out of 5 on {rating.source}</span>
-          </span>
-        )}
       </Photo>
-      <p className="mt-3 truncate text-[0.9375rem] font-bold" title={countries.join(", ")}>
+      {/* who they are and how they're rated come first; where they run trips is detail */}
+      <p className={`mt-3 truncate text-[0.9375rem] font-bold ${NAME}`} title={operator.name}>
+        {operator.name}
+      </p>
+      <p className="flex items-center gap-1.5 truncate text-[0.9375rem]">
+        {rating ? (
+          <>
+            <Star className="size-4 shrink-0 text-warn" />
+            <span className="font-semibold">{rating.rating.toFixed(1)}</span>
+            <span className="truncate text-ink-soft">
+              on {RATING_SOURCE_NAMES[rating.source]}
+              {rating.reviewCount ? ` · ${rating.reviewCount.toLocaleString("en-US")} reviews` : ""}
+            </span>
+          </>
+        ) : (
+          // no rating entered yet: say what they coach instead of pointing at the gap
+          <span className="truncate text-ink-soft">{sports.map((s) => SPORT_NAMES[s]).join(", ")}</span>
+        )}
+      </p>
+      <p className="truncate text-[0.9375rem] text-ink-soft" title={countries.join(", ")}>
         {countries.length > 3 ? `${countries.slice(0, 2).join(", ")} and ${countries.length - 2} more` : countries.join(", ")}
       </p>
-      <p className={`truncate text-[0.9375rem] text-ink-soft ${NAME}`}>{operator.name}</p>
-      <p className="truncate text-[0.9375rem] text-ink-soft">{sports.map((s) => SPORT_NAMES[s]).join(", ")}</p>
     </Link>
   );
 }

@@ -225,7 +225,7 @@ export const programSlugs = unstable_cache(
   CACHE,
 );
 
-// Operators with at least one public listing, the most listings first. Their pages show those
+// Operators with at least one public listing: rated ones first, then the most listings. Their pages show those
 // listings' tiles (getHomeData), so an operator page never shows anything the rest of the site doesn't.
 async function queryOperators(slug?: string): Promise<Operator[]> {
   const rows = await database()
@@ -246,8 +246,12 @@ async function queryOperators(slug?: string): Promise<Operator[]> {
     .where(and(eq(organizations.kind, "operator"), eq(organizations.status, "active"), slug ? eq(organizations.slug, slug) : undefined));
   return rows
     .filter((o) => o.programSlugs.length > 0)
-    .sort((a, b) => b.programSlugs.length - a.programSlugs.length || a.name.localeCompare(b.name));
+    // rated operators lead (best first), then whoever runs the most trips
+    .sort((a, b) => best(b) - best(a) || b.programSlugs.length - a.programSlugs.length || a.name.localeCompare(b.name));
 }
+
+// an operator's highest public rating, or 0 when it has none
+const best = (o: Operator) => Math.max(0, ...o.ratings.map((r) => r.rating));
 
 export const getOperators = unstable_cache(() => queryOperators(), ["operators"], CACHE);
 

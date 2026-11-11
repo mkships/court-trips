@@ -1,7 +1,7 @@
 import type { Rating } from "@/lib/sports";
 import { BTN_OUTLINE } from "@/lib/ui";
 
-const SOURCE_NAMES: Record<Rating["source"], string> = { google: "Google", trustpilot: "Trustpilot", tripadvisor: "Tripadvisor" };
+export const RATING_SOURCE_NAMES: Record<Rating["source"], string> = { google: "Google", trustpilot: "Trustpilot", tripadvisor: "Tripadvisor" };
 
 const monthYear = (iso: string) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
@@ -32,10 +32,10 @@ export function RatingBadges({ ratings, className = "" }: { ratings: Rating[]; c
               <Star className="size-4 text-warn" />
               <span className="font-extrabold">{r.rating.toFixed(1)}</span>
               <span className="font-normal text-ink-soft">
-                on {SOURCE_NAMES[r.source]}
+                on {RATING_SOURCE_NAMES[r.source]}
                 {r.reviewCount ? ` · ${r.reviewCount.toLocaleString("en-US")} reviews` : ""}
               </span>
-              <span className="sr-only">(opens {SOURCE_NAMES[r.source]})</span>
+              <span className="sr-only">(opens {RATING_SOURCE_NAMES[r.source]})</span>
             </a>
           </li>
         ))}
