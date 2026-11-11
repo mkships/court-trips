@@ -47,7 +47,11 @@ export function matchVenue(name, country, venues) {
  * @returns { linked: string[], created: string[], unmatched: string[] } lines for a report
  */
 export async function linkVenues(sql, { write = false, create = false } = {}) {
-  const all = await sql`select id, slug, name, aliases, country, status from venues`;
+  // a database that hasn't had the aliases migration yet (0006) can still be reported on, by name only
+  const all = await sql`select id, slug, name, aliases, country, status from venues`.catch((error) => {
+    if (error.code !== "42703") throw error;
+    return sql`select id, slug, name, country, status from venues`;
+  });
   const venues = all.filter((v) => v.status !== "archived");
   // a venue someone archived stays gone: its name is neither linked nor made again
   const archived = all.filter((v) => v.status === "archived");
