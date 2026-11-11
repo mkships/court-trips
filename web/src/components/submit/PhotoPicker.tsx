@@ -2,30 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ErrorText, invalid } from "@/components/submit/fields";
+import { shrinkPhoto } from "@/lib/shrink-photo";
 import { MAX_PHOTOS, PHOTO_MAX_BYTES, PHOTO_MAX_PX, PHOTOS_MAX_TOTAL_BYTES } from "@/lib/submission-options";
 
 export type PickedPhoto = { id: string; blob: Blob; preview: string; name: string };
-
-// Shrinks a photo in the browser to at most PHOTO_MAX_PX on its longest side, as a JPEG under
-// PHOTO_MAX_BYTES, so five of them fit in one request. Also applies the camera's rotation.
-async function shrink(file: File): Promise<Blob> {
-  const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
-  const scale = Math.min(1, PHOTO_MAX_PX / Math.max(bitmap.width, bitmap.height));
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(bitmap.width * scale);
-  canvas.height = Math.round(bitmap.height * scale);
-  const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("no canvas");
-  ctx.fillStyle = "#fff"; // transparent PNGs get a white background, not black
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close();
-  for (const quality of [0.85, 0.75, 0.65, 0.55]) {
-    const blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, "image/jpeg", quality));
-    if (blob && blob.size <= PHOTO_MAX_BYTES) return blob;
-  }
-  throw new Error("too large");
-}
 
 export function PhotoPicker({ photos, onChange, error }: { photos: PickedPhoto[]; onChange: (p: PickedPhoto[]) => void; error?: string }) {
   const [busy, setBusy] = useState(false);
@@ -48,7 +28,7 @@ export function PhotoPicker({ photos, onChange, error }: { photos: PickedPhoto[]
     const failed: string[] = [];
     for (const file of picked) {
       try {
-        const blob = await shrink(file);
+        const blob = await shrinkPhoto(file, PHOTO_MAX_PX, PHOTO_MAX_BYTES);
         added.push({ id: crypto.randomUUID(), blob, preview: URL.createObjectURL(blob), name: file.name });
       } catch {
         failed.push(file.name);

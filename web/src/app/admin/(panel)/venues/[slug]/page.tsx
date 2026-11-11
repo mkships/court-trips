@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ChecksPanel, StateBadge } from "@/components/admin/bits";
 import { VenueEditor } from "@/components/admin/VenueEditor";
 import { venue as getVenue } from "@/lib/admin/queries";
+import { photoUrl } from "@/lib/photos";
 
 export default async function EditVenuePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ saved?: string }> }) {
   const [{ slug }, { saved }] = await Promise.all([params, searchParams]);
@@ -34,7 +35,7 @@ export default async function EditVenuePage({ params, searchParams }: { params: 
       </div>
       {saved && <p className="rounded-2xl bg-white px-5 py-3 text-[0.9375rem]">Saved.</p>}
       <ChecksPanel checks={v.checks} />
-      <VenueEditor venue={v} />
+      <VenueEditor venue={{ ...v, photos: v.photos.map((ph) => ({ id: ph.id, url: photoUrl(ph.path) })) }} />
     </div>
   );
 }

@@ -21,12 +21,11 @@
  * Pages are only marked as seen (harvest/state.json) once their results are in.
  */
 import { neon } from "@neondatabase/serverless";
-import { put } from "@vercel/blob";
-import { createHash, randomUUID } from "node:crypto";
-import { mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { mkdir, readdir, rename } from "node:fs/promises";
 import path from "node:path";
-import sharp from "sharp";
-import { CACHE, OUT, readJson, REPORT, RUN, STATE, UA, writeJson } from "./lib.mjs";
+import { fetchPhoto, storePhoto } from "../../src/lib/photo-store.mjs";
+import { CACHE, OUT, readJson, REPORT, RUN, STATE, writeJson } from "./lib.mjs";
 import { today, validate, validateVenue } from "./validate.mjs";
 
 const WEB = path.dirname(path.dirname(path.dirname(new URL(import.meta.url).pathname)));
@@ -44,37 +43,13 @@ const now = new Date().toISOString();
 const PRICE_TOLERANCE = 0.25;
 const MISSED_RUNS_TO_FLAG = 2;
 
-// ---------- photos: same naming and sizes as scripts/seed.py + photo-variants.mjs ----------
-const sizes = JSON.parse(await readFile(path.join(WEB, "src", "lib", "photo-sizes.json"), "utf8"));
-const MAX_PX = 1800;
-const YEAR = 60 * 60 * 24 * 365;
-const toBlob = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
-
+// ---------- photos: stored by src/lib/photo-store.mjs, the same as /admin's "Add photos" ----------
 async function storePhotos(slug, images) {
   const paths = [];
   for (const [n, src] of images.entries()) {
     try {
-      const res = await fetch(src, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(30000) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const input = Buffer.from(await res.arrayBuffer());
-      const meta = await sharp(input).metadata();
-      if ((meta.width ?? 0) < 600) throw new Error(`too small (${meta.width}px)`);
-      const jpg = await sharp(input).rotate().resize({ width: MAX_PX, height: MAX_PX, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 82 }).toBuffer();
-      const name = `${n}-${createHash("sha256").update(jpg).digest("hex").slice(0, 10)}.jpg`;
-      const files = [[name, jpg, "image/jpeg"]];
-      for (const w of sizes.widths) {
-        const variant = await sharp(jpg).resize({ width: w, withoutEnlargement: true }).webp({ quality: sizes.quality }).toBuffer();
-        files.push([name.replace(/\.jpg$/, `-w${w}.${sizes.format}`), variant, `image/${sizes.format}`]);
-      }
-      for (const [file, body, contentType] of files) {
-        if (toBlob) await put(`photos/${slug}/${file}`, body, { access: "public", addRandomSuffix: false, allowOverwrite: true, contentType, cacheControlMaxAge: YEAR });
-        else {
-          // no Blob token (local development): served from public/photos, which isn't in git
-          await mkdir(path.join(WEB, "public", "photos", slug), { recursive: true });
-          await writeFile(path.join(WEB, "public", "photos", slug, file), body);
-        }
-      }
-      paths.push({ path: `/photos/${slug}/${name}`, source: src });
+      const stored = await storePhoto({ slug, n, input: await fetchPhoto(src), localDir: path.join(WEB, "public") });
+      paths.push({ path: stored, source: src });
     } catch (error) {
       summary.photoProblems.push(`${slug}: ${src.slice(0, 80)}… ${error.message}`);
     }

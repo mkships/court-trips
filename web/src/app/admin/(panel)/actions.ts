@@ -3,6 +3,7 @@
 import { del } from "@vercel/blob";
 import { and, asc, eq, inArray, ne, sql } from "drizzle-orm";
 import { revalidatePath, revalidateTag } from "next/cache";
+import path from "node:path";
 import { redirect } from "next/navigation";
 import { organizations, photos, programs, sessions, submissions, venues } from "@/db/schema";
 import { requireAdmin } from "@/lib/admin/auth";
@@ -10,6 +11,7 @@ import { hasErrors, programChecks, venueChecks } from "@/lib/admin/checks";
 import { type OrganizationForm, organizationFormSchema, organizationFormToObject, programFormSchema, programFormToObject, slugify, venueFormSchema, venueFormToObject } from "@/lib/admin/forms";
 import { resolveOrganization, uniqueOrganizationSlug } from "@/lib/admin/organizations";
 import { adminDb, programState, venueState } from "@/lib/admin/queries";
+import { fetchPhoto, storePhoto } from "@/lib/photo-store.mjs";
 import { fieldErrors, type FieldErrors } from "@/lib/submission";
 
 export type SaveResult = { ok: boolean; message: string; errors?: FieldErrors } | null;
@@ -151,9 +153,7 @@ export async function saveProgram(id: string, _prev: SaveResult, form: FormData)
     ...(v.remove_photo.length
       ? [
           d.delete(photos).where(and(eq(photos.programId, id), inArray(photos.id, v.remove_photo))),
-          // close the gaps: negative first, so no two photos share a position midway
-          d.update(photos).set({ position: sql`-${photos.position} - 1` }).where(eq(photos.programId, id)),
-          ...kept.map((p, position) => d.update(photos).set({ position }).where(eq(photos.id, p.id))),
+          ...reorderPhotos("program", id, kept.map((p) => p.id)),
         ]
       : []),
   ]);
@@ -326,7 +326,11 @@ export async function saveVenue(id: string, _prev: SaveResult, form: FormData): 
 
   const blocked = intent === "publish" && hasErrors(venueChecks({ ...v, website: v.website, kind: v.kind }));
   const lifecycle = blocked ? null : LIFECYCLE[intent];
-  await d
+  const kept = v.remove_photo.length
+    ? (await d.select({ id: photos.id }).from(photos).where(eq(photos.venueId, id)).orderBy(asc(photos.position))).filter((p) => !v.remove_photo.includes(p.id))
+    : [];
+  await d.batch([
+    d
     .update(venues)
     .set({
       slug: v.slug,
@@ -345,12 +349,101 @@ export async function saveVenue(id: string, _prev: SaveResult, form: FormData): 
       ...(lifecycle ?? {}),
       updatedAt: new Date(),
     })
-    .where(eq(venues.id, id));
+    .where(eq(venues.id, id)),
+    ...(v.remove_photo.length
+      ? [d.delete(photos).where(and(eq(photos.venueId, id), inArray(photos.id, v.remove_photo))), ...reorderPhotos("venue", id, kept.map((p) => p.id))]
+      : []),
+  ]);
   refreshSite();
 
   if (v.slug !== current.slug) redirect(`/admin/venues/${v.slug}?saved=1`);
   if (blocked) return { ok: false, message: "Saved, but not published: fix the errors at the top first." };
   return { ok: true, message: DONE[intent] };
+}
+
+// ---------- photos ----------
+
+export type PhotoOwner = "program" | "venue";
+export type PhotoResult = { ok: boolean; message: string };
+
+// The gallery shows a handful; more than this is a sign something's being bulk-added by mistake.
+const MAX_LISTING_PHOTOS = 12;
+// What the browser sends after shrinking (src/components/admin/PhotoManager.tsx), with some slack.
+const UPLOAD_MAX_BYTES = 3.5 * 1024 * 1024;
+
+const ownerColumn = (owner: PhotoOwner) => (owner === "program" ? photos.programId : photos.venueId);
+
+// Puts a listing's photos in the order given. Negative first, so no two share a position midway
+// (position is unique per listing). Statements for a batch.
+function reorderPhotos(owner: PhotoOwner, id: string, order: number[]) {
+  const d = adminDb();
+  return [
+    d.update(photos).set({ position: sql`-${photos.position} - 1` }).where(eq(ownerColumn(owner), id)),
+    ...order.map((photoId, position) => d.update(photos).set({ position }).where(and(eq(photos.id, photoId), eq(ownerColumn(owner), id)))),
+  ];
+}
+
+async function listingSlug(owner: PhotoOwner, id: string) {
+  const d = adminDb();
+  const [row] =
+    owner === "program"
+      ? await d.select({ slug: programs.slug }).from(programs).where(eq(programs.id, id)).limit(1)
+      : await d.select({ slug: venues.slug }).from(venues).where(eq(venues.id, id)).limit(1);
+  return row?.slug ?? null;
+}
+
+// Adds one photo to the end of a listing's photos, from an upload ("file") or another site's
+// address ("url"). One per call keeps each request small; the editor sends them in turn.
+// It's stored and sized exactly as the harvest import does (src/lib/photo-store.mjs).
+export async function addPhoto(owner: PhotoOwner, id: string, form: FormData): Promise<PhotoResult> {
+  await requireAdmin();
+  const d = adminDb();
+  const slug = await listingSlug(owner, id);
+  if (!slug) return { ok: false, message: "That listing no longer exists." };
+  const existing = await d.select({ position: photos.position }).from(photos).where(eq(ownerColumn(owner), id));
+  if (existing.length >= MAX_LISTING_PHOTOS) return { ok: false, message: `A listing holds up to ${MAX_LISTING_PHOTOS} photos. Remove one first.` };
+
+  const file = form.get("file");
+  const url = String(form.get("url") ?? "").trim();
+  let input: Buffer;
+  let sourceUrl: string | null = null;
+  try {
+    if (file instanceof File && file.size > 0) {
+      if (file.size > UPLOAD_MAX_BYTES) return { ok: false, message: "That file is too large." };
+      input = Buffer.from(await file.arrayBuffer());
+    } else if (url) {
+      let parsed: URL;
+      try {
+        parsed = new URL(url);
+      } catch {
+        return { ok: false, message: "That isn't a web address." };
+      }
+      if (!/^https?:$/.test(parsed.protocol)) return { ok: false, message: "The address has to start with http:// or https://." };
+      input = await fetchPhoto(parsed.href);
+      sourceUrl = parsed.href;
+    } else return { ok: false, message: "Pick a file or paste a photo's address." };
+
+    const position = existing.reduce((max, p) => Math.max(max, p.position), -1) + 1;
+    const stored = await storePhoto({ slug, n: position, input, localDir: path.join(process.cwd(), "public") });
+    await d.insert(photos).values({ ...(owner === "program" ? { programId: id } : { venueId: id }), position, path: stored, sourceUrl });
+  } catch (error) {
+    return { ok: false, message: `Couldn't use it: ${error instanceof Error ? error.message : "something went wrong"}.` };
+  }
+  refreshSite();
+  return { ok: true, message: "Added." };
+}
+
+// Moves a photo to the front: the first photo is the one cards and link previews show.
+export async function makeCoverPhoto(owner: PhotoOwner, id: string, photoId: number): Promise<PhotoResult> {
+  await requireAdmin();
+  const d = adminDb();
+  const rows = await d.select({ id: photos.id }).from(photos).where(eq(ownerColumn(owner), id)).orderBy(asc(photos.position));
+  if (!rows.some((p) => p.id === photoId)) return { ok: false, message: "That photo is no longer on the listing." };
+  const order = [photoId, ...rows.map((p) => p.id).filter((p) => p !== photoId)];
+  const [first, ...rest] = reorderPhotos(owner, id, order);
+  await d.batch([first, ...rest]);
+  refreshSite();
+  return { ok: true, message: "Cover changed." };
 }
 
 // ---------- operators and marketplaces ----------
