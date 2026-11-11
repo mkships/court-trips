@@ -3,8 +3,8 @@ import { dateRange, money } from "@/lib/format";
 import type { ProgramDetail } from "@/lib/sports";
 
 const STATUS = {
-  available: { label: "Available", dot: "bg-[#2f9e5b]" },
-  waitlist: { label: "Waitlist", dot: "bg-[#e0a100]" },
+  available: { label: "Available", dot: "bg-ok" },
+  waitlist: { label: "Waitlist", dot: "bg-warn" },
   sold_out: { label: "Sold out", dot: "bg-ink-soft/50" },
 } as const;
 

@@ -111,7 +111,7 @@ export function PhotoManager({ owner, id, photos }: { owner: PhotoOwner; id: str
                     type="button"
                     disabled={busy != null}
                     onClick={() => makeCover(ph.id)}
-                    className="font-semibold text-ink-soft underline decoration-ink/30 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink disabled:opacity-50"
+                    className="font-semibold text-ink-soft underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:text-ink hover:decoration-ink disabled:opacity-50"
                   >
                     Make cover
                   </button>
@@ -157,7 +157,7 @@ export function PhotoManager({ owner, id, photos }: { owner: PhotoOwner; id: str
               disabled={busy != null}
               className={INPUT}
             />
-            <button type="button" onClick={addUrl} disabled={busy != null || !url.trim()} className={`shrink-0 px-4 py-2 text-[0.9375rem] ${BTN_OUTLINE} disabled:opacity-50`}>
+            <button type="button" onClick={addUrl} disabled={busy != null || !url.trim()} className={`shrink-0 px-4 py-2 text-[0.9375rem] ${BTN_OUTLINE}`}>
               Add
             </button>
           </div>
@@ -165,7 +165,7 @@ export function PhotoManager({ owner, id, photos }: { owner: PhotoOwner; id: str
         <div role="status" className="text-[0.875rem] sm:col-span-2 empty:hidden">
           {busy && <p className="text-ink-soft">{busy}</p>}
           {notes.map((n, i) => (
-            <p key={i} className={n.ok ? "font-semibold text-[#1d6b3c]" : "text-alert"}>
+            <p key={i} className={n.ok ? "font-semibold text-ok-ink" : "text-alert"}>
               {n.text}
             </p>
           ))}

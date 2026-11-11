@@ -58,11 +58,11 @@ export function OrganizationEditor({
   return (
     <form onSubmit={submit} className="grid gap-6" aria-busy={pending}>
       {result && (
-        <p role="status" className={`rounded-2xl px-5 py-3 text-[0.9375rem] font-semibold ${result.ok ? "bg-[#e3f3e8] text-[#1d6b3c]" : "border-2 border-alert bg-white text-alert"}`}>
+        <p role="status" className={`rounded-2xl px-5 py-3 text-[0.9375rem] font-semibold ${result.ok ? "bg-ok-soft text-ok-ink" : "border-2 border-alert bg-white text-alert"}`}>
           {result.message}
         </p>
       )}
-      <section className="grid gap-6 rounded-[20px] bg-white p-5 sm:p-7">
+      <section className="grid gap-6 rounded-3xl bg-white p-5 sm:p-7">
         <div className="grid gap-6 sm:grid-cols-2">
           <TextField name="name" label="Name" defaultValue={o.name} error={errors.name} />
           <TextField
@@ -86,7 +86,7 @@ export function OrganizationEditor({
           <textarea id="aliases" name="aliases" rows={2} defaultValue={o.aliases.join("\n")} className={INPUT} {...invalid("aliases", errors.aliases)} />
         </Field>
       </section>
-      <section className="grid gap-6 rounded-[20px] bg-white p-5 sm:p-7">
+      <section className="grid gap-6 rounded-3xl bg-white p-5 sm:p-7">
         <h2 className="text-[1.125rem] font-extrabold">For us</h2>
         <Field name="note" label="Note" optional hint="Not shown on the site: what to check, why it isn't listed yet." error={errors.note}>
           <textarea id="note" name="note" rows={3} defaultValue={o.note ?? ""} className={INPUT} {...invalid("note", errors.note)} />

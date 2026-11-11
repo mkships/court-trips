@@ -10,7 +10,7 @@ export default function NotFound() {
     <div className="on-paper">
       <Header />
       <main className="mx-auto max-w-[1280px] px-4 sm:px-8">
-        <div className="relative flex h-[300px] items-center justify-center rounded-[28px] md:h-[380px]" style={{ backgroundColor: SURFACES.tennis.surround }}>
+        <div className="relative flex h-[300px] items-center justify-center rounded-3xl md:h-[380px]" style={{ backgroundColor: SURFACES.tennis.surround }}>
           <Court sport="tennis" className="h-[72%] w-full max-w-[620px]" />
           {/* the ball that landed out */}
           <span aria-hidden="true" className="absolute right-[12%] bottom-[14%] size-4 rounded-full bg-ball shadow-[0_0_0_3px_rgba(0,0,0,0.12)]" />

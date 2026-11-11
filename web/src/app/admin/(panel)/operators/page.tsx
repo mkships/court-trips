@@ -48,7 +48,7 @@ export default async function OperatorsPage({ searchParams }: { searchParams: Pr
             key={t}
             href={href(t)}
             aria-current={t === tab ? "page" : undefined}
-            className="rounded-full border border-rule bg-white px-4 py-1.5 text-[0.9375rem] font-semibold transition-colors hover:border-ink aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-white"
+            className="rounded-full border border-rule bg-white px-4 py-1.5 text-[0.9375rem] font-semibold transition-colors hover:border-ink hover:bg-mist aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-white"
           >
             {label} <span className="font-normal opacity-70">{counts[t]}</span>
           </Link>
@@ -72,7 +72,7 @@ export default async function OperatorsPage({ searchParams }: { searchParams: Pr
               {rows.map((o) => (
                 <tr key={o.id} className="align-top transition-colors hover:bg-mist/70">
                   <td className="px-5 py-3">
-                    <Link href={`/admin/operators/${o.slug}`} className="font-semibold hover:underline">
+                    <Link href={`/admin/operators/${o.slug}`} className="font-semibold underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                       {o.name}
                     </Link>
                     <span className="block text-[0.875rem] text-ink-soft">

@@ -25,7 +25,7 @@ export function Hero({ mode, sport, onSportChange, stats, featured }: Props) {
   // The row is held at the hero's height: a longer heading (pickleball's runs to three lines) shrinks
   // the court drawing rather than stretching the row, which pushed the photo caption under the search bar.
   return (
-    <div className="on-surface grid overflow-hidden rounded-[28px] md:h-[500px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:grid-rows-[minmax(0,1fr)] lg:grid-cols-[minmax(0,3fr)_minmax(0,5fr)]">
+    <div className="on-surface grid overflow-hidden rounded-3xl md:h-[500px] md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:grid-rows-[minmax(0,1fr)] lg:grid-cols-[minmax(0,3fr)_minmax(0,5fr)]">
       <div
         className="flex min-h-0 flex-col px-6 pt-7 pb-6 text-white sm:px-9 sm:pt-9 md:pb-14"
         style={{ backgroundColor: SURFACES[sport].surround, transition: "background-color 700ms" }}

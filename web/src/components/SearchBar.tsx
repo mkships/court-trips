@@ -158,7 +158,7 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
       action="/search"
       method="get"
       onSubmit={() => setOpen(null)}
-      className={`relative z-30 mt-3 flex flex-col rounded-[28px] shadow-[0_10px_30px_-12px_rgba(22,35,58,0.45)] ring-1 ring-ink/5 transition-colors md:flex-row ${placement === "hero" ? "md:mx-6 md:-mt-9" : ""} md:items-stretch md:rounded-full ${
+      className={`relative z-30 mt-3 flex flex-col rounded-3xl shadow-card ring-1 ring-ink/5 transition-colors md:flex-row ${placement === "hero" ? "md:mx-6 md:-mt-9" : ""} md:items-stretch md:rounded-full ${
         active ? "bg-mist" : "bg-white"
       }`}
     >
@@ -176,9 +176,9 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
             style={{ order: i * 2 }}
             data-open={isOpen || undefined}
             className={[
-              "relative flex min-w-0 items-center rounded-[28px] transition-[background-color,box-shadow] md:rounded-full",
+              "relative flex min-w-0 items-center rounded-3xl transition-[background-color,box-shadow] md:rounded-full",
               f.key === "where" ? "md:flex-[1.3]" : last ? "md:flex-[1.75]" : "md:flex-1",
-              isOpen ? "bg-white shadow-[0_8px_24px_-10px_rgba(22,35,58,0.45)]" : active ? "hover:bg-rule/70" : "hover:bg-mist",
+              isOpen ? "bg-white shadow-card" : active ? "hover:bg-rule/70" : "hover:bg-mist",
               // hairline dividers, faded beside the open or hovered field
               i > 0 ? "md:before:absolute md:before:inset-y-4 md:before:left-0 md:before:w-px md:before:bg-rule md:before:transition-opacity" : "",
               "data-[open]:before:opacity-0 hover:before:opacity-0 [[data-open]+&]:before:opacity-0 [:hover+&]:before:opacity-0",
@@ -203,7 +203,7 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
                   aria-autocomplete="list"
                   aria-expanded={isOpen}
                   aria-controls={`${id}-where`}
-                  className="w-full truncate bg-transparent text-[0.9375rem] text-ink placeholder:text-ink-soft focus:outline-none"
+                  className="w-full truncate bg-transparent text-[0.9375rem] text-ink placeholder:text-ink-soft focus-visible:outline-none"
                 />
               </label>
             ) : (
@@ -213,7 +213,7 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
                 aria-expanded={isOpen}
                 aria-controls={`${id}-${f.key}`}
                 onClick={() => setOpen(isOpen ? null : f.key)}
-                className={`block min-w-0 flex-1 rounded-full py-3.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
+                className={`block min-w-0 flex-1 rounded-full py-3.5 text-left ${
                   last ? "pr-3 pl-7" : "pr-10 pl-7"
                 }`}
               >
@@ -239,7 +239,7 @@ export function SearchBar({ mode, sport, tiles, venues, initial = {}, placement 
           aria-label={fields[openIndex].label}
           style={{ order: openIndex * 2 + 1 }}
           className={[
-            "z-40 mx-2 mb-2 rounded-[28px] bg-white p-3 shadow-[0_16px_40px_-12px_rgba(22,35,58,0.35)] ring-1 ring-ink/5 md:absolute md:top-[calc(100%+12px)] md:m-0 md:rounded-[32px] md:p-4",
+            "z-40 mx-2 mb-2 rounded-3xl bg-white p-3 shadow-pop ring-1 ring-ink/5 md:absolute md:top-[calc(100%+12px)] md:m-0 md:rounded-3xl md:p-4",
             open === "month" ? "md:inset-x-0" : openIndex === 0 ? "md:left-0 md:w-[440px]" : "md:right-0 md:w-[420px]",
           ].join(" ")}
         >
@@ -298,7 +298,7 @@ function ClearButton({ label, onClick, className }: { label: string; onClick: ()
       type="button"
       aria-label={`Clear ${label.toLowerCase()}`}
       onClick={onClick}
-      className={`grid size-6 shrink-0 place-items-center rounded-full bg-rule hover:bg-ink/15 ${className}`}
+      className={`grid size-6 shrink-0 place-items-center rounded-full bg-rule transition-colors hover:bg-ink/15 ${className}`}
     >
       <svg viewBox="0 0 12 12" className="size-2.5" aria-hidden="true">
         <path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -312,7 +312,7 @@ function SearchButton({ expanded }: { expanded: boolean }) {
     <button
       type="submit"
       aria-label="Search"
-      className={`mr-2 flex h-12 shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-ball font-extrabold text-ink transition-[width,background-color] duration-200 hover:bg-ball-hover active:bg-ball-press ${
+      className={`mr-2 flex h-12 shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-ball font-extrabold text-ink transition-[width,background-color] hover:bg-ball-hover active:bg-ball-press ${
         expanded ? "w-[7.25rem]" : "w-12"
       }`}
     >
@@ -338,7 +338,7 @@ function Row({ selected, disabled, onClick, children }: RowProps) {
       aria-pressed={selected}
       disabled={disabled}
       onClick={onClick}
-      className="flex w-full items-center gap-4 rounded-2xl px-3 py-2.5 text-left hover:bg-mist focus:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent aria-pressed:bg-mist"
+      className="flex w-full items-center gap-4 rounded-2xl px-3 py-2.5 text-left transition-colors hover:bg-mist disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent aria-pressed:bg-mist aria-pressed:shadow-[inset_0_0_0_1px_var(--color-ink)]"
     >
       {children}
     </button>
@@ -435,7 +435,7 @@ function MonthCard({ selected, disabled, onClick, title, sub }: MonthCardProps) 
       aria-pressed={selected}
       disabled={disabled}
       onClick={onClick}
-      className="flex h-[124px] w-[128px] flex-col items-center justify-center gap-1 rounded-2xl border border-rule text-center hover:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-rule aria-pressed:border-ink aria-pressed:bg-mist aria-pressed:shadow-[inset_0_0_0_1px_var(--color-ink)]"
+      className="flex h-[124px] w-[128px] flex-col items-center justify-center gap-1 rounded-2xl border border-rule text-center transition-colors hover:border-ink hover:bg-mist disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-rule aria-pressed:border-ink aria-pressed:bg-mist aria-pressed:shadow-[inset_0_0_0_1px_var(--color-ink)]"
     >
       <svg viewBox="0 0 24 24" className="mb-1 size-7 text-ink-soft" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
@@ -544,7 +544,7 @@ function Stepper({ label, sign, disabled, onClick }: { label: string; sign: stri
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className="grid size-8 place-items-center rounded-full border border-ink-soft/40 text-[1.125rem] leading-none hover:border-ink disabled:cursor-not-allowed disabled:opacity-30"
+      className="grid size-8 place-items-center rounded-full border border-rule bg-white text-[1.125rem] leading-none transition-colors hover:border-ink hover:bg-mist disabled:cursor-not-allowed disabled:opacity-50"
     >
       {sign}
     </button>

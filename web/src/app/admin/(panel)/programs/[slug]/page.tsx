@@ -17,7 +17,7 @@ export default async function EditProgramPage({ params, searchParams }: { params
   return (
     <div className="grid gap-6">
       <div>
-        <Link href="/admin/programs" className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink">
+        <Link href="/admin/programs" className="text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:text-ink">
           All programs
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-3">
@@ -26,7 +26,7 @@ export default async function EditProgramPage({ params, searchParams }: { params
         </div>
         <p className="mt-1 text-[0.9375rem] text-ink-soft">
           {p.operator ? (
-            <Link href={`/admin/operators/${p.operator.slug}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+            <Link href={`/admin/operators/${p.operator.slug}`} className="font-semibold text-ink underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
               {p.organizer}
             </Link>
           ) : (
@@ -36,7 +36,7 @@ export default async function EditProgramPage({ params, searchParams }: { params
           {p.sourceUrl && (
             <>
               {" · "}
-              <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+              <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                 Source page
               </a>
             </>
@@ -44,7 +44,7 @@ export default async function EditProgramPage({ params, searchParams }: { params
           {p.state === "live" && (
             <>
               {" · "}
-              <a href={`/programs/${p.slug}`} target="_blank" className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+              <a href={`/programs/${p.slug}`} target="_blank" className="font-semibold text-ink underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                 Public page
               </a>
             </>
@@ -52,7 +52,7 @@ export default async function EditProgramPage({ params, searchParams }: { params
           {p.submissions[0] && (
             <>
               {" · "}
-              <Link href={`/admin/submissions/${p.submissions[0].id}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+              <Link href={`/admin/submissions/${p.submissions[0].id}`} className="font-semibold text-ink underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                 Original submission
               </Link>
             </>
@@ -96,7 +96,7 @@ function Proposal({ id, changes }: { id: string; changes: NonNullable<Awaited<Re
   const fields = Object.entries(changes.fields ?? {});
   const hasEdits = fields.length > 0 || Boolean(changes.sessions);
   return (
-    <section className="grid gap-4 rounded-[20px] border-2 border-[#e0a100] bg-white p-5 sm:p-7">
+    <section className="grid gap-4 rounded-3xl border-2 border-warn bg-white p-5 sm:p-7">
       <div>
         <h2 className="text-[1.125rem] font-extrabold">The operator&apos;s site has changed</h2>
         <p className="mt-0.5 text-[0.9375rem] text-ink-soft">Found by the harvest on {day(changes.foundAt)}. Nothing below is on Court Trips until you apply it.</p>

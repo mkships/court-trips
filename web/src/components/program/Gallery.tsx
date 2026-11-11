@@ -16,7 +16,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
   if (photos.length === 0) {
     return (
       <figure
-        className="mt-6 flex h-[260px] flex-col items-center justify-center rounded-[28px] px-6 md:h-[400px]"
+        className="mt-6 flex h-[260px] flex-col items-center justify-center rounded-3xl px-6 md:h-[400px]"
         style={{ backgroundColor: SURFACES[sport].surround }}
       >
         <Court sport={sport} className="h-[70%] w-full max-w-[640px]" />
@@ -55,7 +55,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
 
       {/* tablets and up */}
       <div
-        className={`relative mt-6 hidden h-[460px] gap-2 overflow-hidden rounded-[28px] md:grid ${
+        className={`relative mt-6 hidden h-[460px] gap-2 overflow-hidden rounded-3xl md:grid ${
           side.length === 0 ? "" : side.length === 1 ? "grid-cols-2" : "grid-cols-[3fr_2fr]"
         }`}
       >
@@ -71,7 +71,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
           <button
             type="button"
             onClick={open}
-            className="absolute right-4 bottom-4 rounded-full bg-white px-4 py-2 text-[0.875rem] font-semibold shadow-sm ring-1 ring-ink/10 transition-colors hover:bg-mist hover:ring-ink"
+            className={`absolute right-4 bottom-4 px-4 py-2 text-[0.9375rem] shadow-sm ${BTN_OUTLINE}`}
           >
             Show all {photos.length} photos
           </button>
@@ -89,7 +89,7 @@ export function Gallery({ photos, sport, title }: { photos: string[]; sport: Spo
           <button
             type="button"
             onClick={() => viewer.current?.close()}
-            className={`px-4 py-2 text-[0.875rem] ${BTN_OUTLINE}`}
+            className={`px-4 py-2 text-[0.9375rem] ${BTN_OUTLINE}`}
           >
             Close
           </button>
@@ -112,7 +112,7 @@ function Photo({ src, alt, sport, priority, onClick }: PhotoProps) {
   return (
     // the "Show all photos" button is the keyboard route into the viewer; these are mouse shortcuts
     <button type="button" tabIndex={-1} onClick={onClick} className="relative min-h-0 cursor-zoom-in bg-rule" aria-hidden="true">
-      <SafeImage sport={sport} src={src} alt={alt} fill priority={priority} sizes={alt ? "60vw" : "20vw"} className="object-cover transition-[filter] hover:brightness-90" />
+      <SafeImage sport={sport} src={src} alt={alt} fill priority={priority} sizes={alt ? "60vw" : "20vw"} className="object-cover transition-[filter] hover:brightness-90 motion-reduce:transition-none" />
     </button>
   );
 }

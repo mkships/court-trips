@@ -178,7 +178,7 @@ export default async function SearchPage({ searchParams }: Props) {
 function Empty(props: { sport: Sport; mode: "programs" | "places"; values: SearchValues; active: [SearchKey, string][] }) {
   const { sport, mode, values, active } = props;
   return (
-    <section className="mt-8 grid items-center gap-8 rounded-[28px] bg-mist p-6 sm:p-10 md:grid-cols-[1fr_280px]">
+    <section className="mt-8 grid items-center gap-8 rounded-3xl bg-mist p-6 sm:p-10 md:grid-cols-[1fr_280px]">
       <div>
         <p className="text-[1.25rem] font-extrabold">Nothing matches all of those filters.</p>
         {active.length > 0 ? (

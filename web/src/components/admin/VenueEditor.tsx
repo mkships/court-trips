@@ -49,11 +49,11 @@ export function VenueEditor({ venue: v }: { venue: EditableVenue }) {
   return (
     <form onSubmit={submit} className="grid gap-6" aria-busy={pending}>
       {result && (
-        <p role="status" className={`rounded-2xl px-5 py-3 text-[0.9375rem] font-semibold ${result.ok ? "bg-[#e3f3e8] text-[#1d6b3c]" : "border-2 border-alert bg-white text-alert"}`}>
+        <p role="status" className={`rounded-2xl px-5 py-3 text-[0.9375rem] font-semibold ${result.ok ? "bg-ok-soft text-ok-ink" : "border-2 border-alert bg-white text-alert"}`}>
           {result.message}
         </p>
       )}
-      <section className="grid gap-6 rounded-[20px] bg-white p-5 sm:p-7">
+      <section className="grid gap-6 rounded-3xl bg-white p-5 sm:p-7">
         <div className="grid gap-6 sm:grid-cols-2">
           <TextField name="name" label="Name" defaultValue={v.name} error={errors.name} />
           <SelectField name="kind" label="Kind" options={KINDS} defaultValue={v.kind} error={errors.kind} />
@@ -75,7 +75,7 @@ export function VenueEditor({ venue: v }: { venue: EditableVenue }) {
         </Field>
         <TextField name="price_notes" label="Price notes" optional defaultValue={v.priceNotes} error={errors.price_notes} />
       </section>
-      <section className="grid gap-6 rounded-[20px] bg-white p-5 sm:p-7">
+      <section className="grid gap-6 rounded-3xl bg-white p-5 sm:p-7">
         <div>
           <h2 className="text-[1.125rem] font-extrabold">Photos</h2>
           <p className="mt-0.5 text-[0.9375rem] text-ink-soft">{PHOTOS_INTRO}</p>

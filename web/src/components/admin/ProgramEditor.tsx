@@ -17,7 +17,7 @@ import {
   SPORT_OPTIONS,
   SURFACE_OPTIONS,
 } from "@/lib/submission-options";
-import { BTN_DARK, BTN_OUTLINE, BTN_PRIMARY } from "@/lib/ui";
+import { BTN_DARK, BTN_GHOST, BTN_OUTLINE, BTN_PRIMARY } from "@/lib/ui";
 
 type Session = { startDate: string; endDate: string; status: "available" | "waitlist" | "sold_out"; priceOverride: number | null; bookingUrl: string | null };
 
@@ -94,7 +94,7 @@ export function ProgramEditor({
   return (
     <form onSubmit={submit} className="grid gap-6" aria-busy={pending}>
       {result && (
-        <p role="status" className={`rounded-2xl px-5 py-3 text-[0.9375rem] font-semibold ${result.ok ? "bg-[#e3f3e8] text-[#1d6b3c]" : "border-2 border-alert bg-white text-alert"}`}>
+        <p role="status" className={`rounded-2xl px-5 py-3 text-[0.9375rem] font-semibold ${result.ok ? "bg-ok-soft text-ok-ink" : "border-2 border-alert bg-white text-alert"}`}>
           {result.message}
         </p>
       )}
@@ -202,7 +202,7 @@ export function ProgramEditor({
               <button
                 type="button"
                 onClick={() => setRows(rows.filter((r) => r.key !== key))}
-                className="self-end rounded-full px-3 py-2.5 text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:bg-mist hover:text-ink"
+                className={`self-end px-3 py-2.5 text-[0.9375rem] ${BTN_GHOST}`}
                 aria-label={`Remove date ${i + 1}`}
               >
                 Remove
@@ -291,7 +291,7 @@ export function ProgramEditor({
 
 function Card({ title, intro, children }: { title: string; intro?: string; children: React.ReactNode }) {
   return (
-    <section className="grid gap-6 rounded-[20px] bg-white p-5 sm:p-7">
+    <section className="grid gap-6 rounded-3xl bg-white p-5 sm:p-7">
       <div>
         <h2 className="text-[1.125rem] font-extrabold">{title}</h2>
         {intro && <p className="mt-0.5 text-[0.9375rem] text-ink-soft">{intro}</p>}

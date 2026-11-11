@@ -24,7 +24,7 @@ import {
   THEME_OPTIONS,
 } from "@/lib/submission-options";
 import type { FieldErrors } from "@/lib/submission";
-import { BTN_DARK, BTN_OUTLINE } from "@/lib/ui";
+import { BTN_DARK, BTN_GHOST, BTN_OUTLINE, LINK } from "@/lib/ui";
 
 const CATEGORY_ICONS = Object.fromEntries(CATEGORY_OPTIONS.map(([v]) => [v, <CategoryIcon key={v} category={v} className="size-6" />]));
 const LEVEL_ICONS = Object.fromEntries(LEVEL_OPTIONS.map(([v]) => [v, <LevelIcon key={v} level={[v]} className="size-6" />]));
@@ -69,7 +69,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
 
   if (sent) {
     return (
-      <div className="mt-8 rounded-[28px] bg-mist p-6 sm:p-10" role="status">
+      <div className="mt-8 rounded-3xl bg-mist p-6 sm:p-10" role="status">
         <p className="text-[1.5rem] font-extrabold tracking-[-0.02em]">Thanks, we&apos;ve got it.</p>
         <p className="mt-2 max-w-[55ch] text-ink-soft">
           We&apos;ll check it against your website and publish it, usually within a few days. If anything&apos;s unclear,
@@ -94,7 +94,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
             <ul className="mt-2 list-disc pl-5 text-[0.9375rem]">
               {errorList.map(([field, error]) => (
                 <li key={field}>
-                  <a href={`#${field === "sessions" ? "session_start-0" : field.replace(".", "-")}`} className="underline underline-offset-2">
+                  <a href={`#${field === "sessions" ? "session_start-0" : field.replace(".", "-")}`} className={LINK}>
                     {error}
                   </a>
                 </li>
@@ -155,7 +155,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
                   type="button"
                   onClick={() => setRows(rows.filter((r) => r !== row))}
                   disabled={rows.length === 1}
-                  className="self-end rounded-full px-3 py-2.5 text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:bg-mist hover:text-ink disabled:invisible"
+                  className={`self-end px-3 py-2.5 text-[0.9375rem] disabled:invisible ${BTN_GHOST}`}
                   aria-label={`Remove date ${i + 1}`}
                 >
                   Remove
@@ -198,7 +198,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         </div>
         <SelectField name="accommodation_type" label="Accommodation" optional options={ACCOMMODATION_OPTIONS} error={errors.accommodation_type} />
         <details className="group rounded-2xl border border-rule p-5">
-          <summary className="font-semibold transition-colors hover:text-ink-soft">Player ratings (optional)</summary>
+          <summary className="font-semibold">Player ratings (optional)</summary>
           <p className="mt-1 text-[0.875rem] text-ink-soft">If the program asks for a rating range: DUPR for pickleball, UTR or NTRP for tennis.</p>
           <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {(

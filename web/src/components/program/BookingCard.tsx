@@ -25,8 +25,8 @@ function price(program: ProgramDetail, session: Session) {
 }
 
 const STATUS = {
-  available: { label: "Available", dot: "bg-[#2f9e5b]" },
-  waitlist: { label: "Waitlist only", dot: "bg-[#e0a100]" },
+  available: { label: "Available", dot: "bg-ok" },
+  waitlist: { label: "Waitlist only", dot: "bg-warn" },
   sold_out: { label: "Sold out", dot: "bg-ink-soft/50" },
 } as const;
 
@@ -53,7 +53,7 @@ export function BookingCard({ program, session }: { program: ProgramDetail; sess
   const others = program.sessions.length;
 
   return (
-    <div className="rounded-[24px] p-6 shadow-[0_10px_30px_-12px_rgba(22,35,58,0.35)] ring-1 ring-ink/5">
+    <div className="rounded-3xl p-6 shadow-card ring-1 ring-ink/5">
       {amount ? (
         <p>
           <span className="text-[1.75rem] font-black tracking-[-0.02em]">{amount}</span>{" "}
