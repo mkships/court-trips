@@ -23,6 +23,16 @@ npm run dev
 
 Locally, photos are served from `web/public/photos` (not in git). The site needs a database to show listings.
 
+## How the site is laid out
+
+- `/` is the home page: a hero and search, what Court Trips is, then one row per sport and format ("Tennis camps", "Padel getaways") that has at least three trips, then resorts and operators.
+- `/trips` lists trips, **one card per trip** however many dates it has. Its dates sit under the card as chips; each opens the trip with that date chosen. Filters apply to dates first, so searching for May shows each trip's May dates.
+- `/resorts` lists resorts, hotels, clubs and academies with courts; `/resorts/<slug>` shows a venue's courts, facilities, ratings and the trips that run there.
+- `/operators` and `/operators/<slug>` are the people who run the trips; `/for-operators` explains listing and leads to the form at `/list-your-program`.
+- Old links (`/search`, `/?type=places`, `/?sport=…`) redirect (`web/next.config.ts`).
+- **Currency:** the picker in the header and footer converts displayed prices using the European Central Bank's daily rates (`web/src/lib/currency.ts`, fetched from frankfurter.dev at most once a day). Converted prices are marked "≈" and the booking card also states what the operator charges. The choice is kept in the visitor's browser, so pages stay cached. If the rates can't be fetched the picker hides and prices show as listed.
+- **Controls** share one set of rules for hover, focus, pressed and disabled states, written at the top of `web/src/lib/ui.ts`. Use those constants for any new button, pill, input or link.
+
 ## Photos
 
 `seed.py` downloads each listing's photos into `web/public/photos` (not in git) as content-hashed originals, records which file belongs to which listing in `web/data/photos.json` (in git; `db:seed` reads it), then makes fixed widths with `npm run photos:prepare` (480, 960 and 1600px WebP; see `web/src/lib/photo-sizes.json`). The site's image loader picks the right width directly, so nothing is resized while a visitor waits. If a photo ever fails to load, the card shows the sport's court instead of a broken image.
@@ -86,7 +96,8 @@ Previews and local builds use Cloudflare's always-pass test keys and log the ema
 
 - **Review queue** (`/admin`): pending operator submissions, then programs and venues that are drafts or flagged `needs_review`. Archived ones (rejected drafts, retired listings) stay out of it, and future harvests skip them.
 - **Submissions**: everything the operator sent, with their photos. "Create draft listing" makes a hidden draft program (photos included) and opens it in the editor; "Reject" keeps the record with an optional note and deletes the uploaded photos. The operator isn't emailed either way.
-- **Editor** (`/admin/programs/<slug>`, `/admin/venues/<slug>`): every field, every date (past ones too), photo removal, map coordinates and the homepage carousel position. Automatic checks (`web/src/lib/admin/checks.ts`) run on each listing: errors (no dates and no schedule notes, a price without a currency…) block publishing; warnings (passed dates, a booking link whose date differs from the session's, no photos…) don't. Publish, unpublish and archive take effect on the public site straight away.
+- **Editor** (`/admin/programs/<slug>`, `/admin/venues/<slug>`): every field, every date (past ones too), photo removal, map coordinates and the homepage carousel position. A venue's editor also has its courts, what's on site, and its other names (so listings that spell it differently still link to it).
+- **Ratings**: operators and venues each have a Ratings section for their public score on Google, Trustpilot and Tripadvisor (score, number of reviews, link). The site shows the score as a badge that links to that site; no review text is copied. Changing a row marks it as checked today, and the badge says when it was last checked. Automatic checks (`web/src/lib/admin/checks.ts`) run on each listing: errors (no dates and no schedule notes, a price without a currency…) block publishing; warnings (passed dates, a booking link whose date differs from the session's, no photos…) don't. Publish, unpublish and archive take effect on the public site straight away.
 - **Operators** (`/admin/operators`): who's behind each listing, in the `organizations` table. An **operator** runs programmes (an academy, a coach, a resort running its own weeks, a tour operator such as Active Away); a **marketplace** sells other people's programmes and takes the booking or payment (BookRetreats, Weebora, The Padel Circle). Listings link to their operator by name: saving a program or importing a harvest finds the operator by name or one of its other names, or adds a new one. A listing names a marketplace (**Sold through**) only when that's the only way to book it. **Leads** are operators we know of but haven't listed yet (only on a marketplace, a site the harvest can't read), with a note on what to check; harvest reports add to them, and **Add a lead** adds one by hand. Two records for the same organisation can be merged. Every operator with a live listing gets a public page at `/operators/<slug>`.
 - Sign-in is GitHub OAuth with no auth library (`web/src/app/admin/auth/`): the callback asks GitHub whose account it is and signs in only `ADMIN_GITHUB_LOGIN`, with a 30-day session cookie signed with `ADMIN_SESSION_SECRET`. `web/src/middleware.ts` guards every `/admin` page, and each server action checks again. The post-deploy check confirms `/admin` redirects to the sign-in page.
 
@@ -112,6 +123,7 @@ New listings and updates come from operators' own pages, listed in `harvest/sour
    - **Live or hand-edited listings** get the safe changes straight away: new dates, a date's availability or booking link, prices within 25%. Everything else is saved as `pending_changes`, which `/admin` shows under **Proposed changes** with Apply and Dismiss.
    - **Missing programs:** a program its page stops showing is flagged after 2 runs.
    - **Archived programs** are skipped.
+   - **Venues:** each program is linked to the venue it names, by the venue's name or one of its other names in the same country. A venue name we don't have yet becomes a draft venue in the review queue (kind "club" as a placeholder) for someone to fill in and publish. `node --env-file-if-exists=.env.local scripts/link-venues.mjs` (in `web/`) does the same for programs already in the database: it only reports until you add `--apply`, and `--create` makes the drafts.
    - Pages are only marked as seen once their results are imported, so a failed run is retried next time.
 
 Programs with no published dates are listed with `schedule_notes` instead ("Held each November; 2027 dates to be announced"), which the site shows in place of dates.

@@ -36,9 +36,9 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
 export function Footer() {
   return (
     // a trip page's fixed booking bar (phones) would cover the last lines, so leave room for it
-    <footer className="on-surface mt-20 bg-ink text-white md:mt-28 [body:has([data-booking-bar])_&]:pb-20 lg:[body:has([data-booking-bar])_&]:pb-0">
+    <footer className="on-surface mt-28 bg-ink text-white md:mt-32 [body:has([data-booking-bar])_&]:pb-20 lg:[body:has([data-booking-bar])_&]:pb-0">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-8">
-        <div className="flex -translate-y-1/2 flex-col gap-4 rounded-3xl bg-ball px-6 py-6 text-ink sm:flex-row sm:items-center sm:justify-between sm:px-9">
+        <div className="-mt-10 flex flex-col gap-4 rounded-3xl bg-ball px-6 py-6 text-ink sm:flex-row sm:items-center sm:justify-between sm:px-9">
           <div>
             <p className="text-[1.375rem] leading-tight font-extrabold tracking-[-0.02em]">Run a camp, clinic or getaway?</p>
             <p className="mt-1 text-[0.9375rem]">List it free. Players book with you directly and we never take a cut.</p>
@@ -48,7 +48,7 @@ export function Footer() {
           </Link>
         </div>
 
-        <div className="grid gap-10 pb-12 md:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
+        <div className="grid gap-10 pt-12 pb-12 md:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
           <div className="max-w-[40ch]">
             <Wordmark reversed className="h-[28px] w-auto" />
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/75">

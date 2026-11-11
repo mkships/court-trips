@@ -21,7 +21,7 @@ export function Header() {
       <div className="col-start-2 row-start-1 flex items-center gap-2 justify-self-end lg:col-start-3">
         <CurrencyPicker />
         {/* travellers don't need accounts; this is the way in for operators (also in the footer) */}
-        <Link href="/for-operators" className={`hidden px-4 py-2 text-[0.9375rem] whitespace-nowrap sm:inline-flex ${BTN_OUTLINE}`}>
+        <Link href="/for-operators" className={`px-4 py-2 text-[0.9375rem] whitespace-nowrap max-sm:hidden ${BTN_OUTLINE}`}>
           List your program
         </Link>
       </div>

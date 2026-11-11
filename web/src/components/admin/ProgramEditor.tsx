@@ -280,7 +280,7 @@ export function ProgramEditor({
             Restore to review
           </button>
         ) : (
-          <button type="submit" name="intent" value="archive" disabled={pending} className="rounded-full px-4 py-2.5 font-semibold text-alert transition-colors hover:bg-alert/10">
+          <button type="submit" name="intent" value="archive" disabled={pending} className="rounded-full px-4 py-2.5 font-semibold text-alert transition-colors hover:bg-alert/10 disabled:pointer-events-none disabled:opacity-50">
             Archive
           </button>
         )}

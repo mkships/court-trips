@@ -5,6 +5,7 @@ import type { SaveResult } from "@/app/admin/(panel)/actions";
 import { Choices, Field, INPUT, invalid, SelectField, TextField } from "@/components/submit/fields";
 import { COUNTRIES } from "@/lib/countries";
 import { SPORT_OPTIONS } from "@/lib/submission-options";
+import { RatingsFields, type EditableRating } from "@/components/admin/RatingsFields";
 import { BTN_DARK } from "@/lib/ui";
 
 export type EditableOrganization = {
@@ -21,6 +22,8 @@ export type EditableOrganization = {
   note: string | null;
   sourceUrl: string | null;
   seenOnId: string | null;
+  // only on a saved organisation: a new one gets its ratings once it exists
+  ratings?: EditableRating[];
 };
 
 const KINDS = [
@@ -86,6 +89,7 @@ export function OrganizationEditor({
           <textarea id="aliases" name="aliases" rows={2} defaultValue={o.aliases.join("\n")} className={INPUT} {...invalid("aliases", errors.aliases)} />
         </Field>
       </section>
+      {o.id && <RatingsFields ratings={o.ratings ?? []} error={errors.ratings} />}
       <section className="grid gap-6 rounded-3xl bg-white p-5 sm:p-7">
         <h2 className="text-[1.125rem] font-extrabold">For us</h2>
         <Field name="note" label="Note" optional hint="Not shown on the site: what to check, why it isn't listed yet." error={errors.note}>

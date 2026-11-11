@@ -18,6 +18,8 @@
  * Each program is linked to its operator (organizations, by name or alias; a new name becomes a new
  * operator) and, when core_identity.sold_through names one, the marketplace it's sold through. The
  * report's leads are saved as organizations with status lead, for /admin → Operators → Leads.
+ * Each program is also linked to the venue it names (venue-link.mjs); a venue name we don't have
+ * yet becomes a draft venue to review.
  * Pages are only marked as seen (harvest/state.json) once their results are in.
  */
 import { neon } from "@neondatabase/serverless";
@@ -27,6 +29,7 @@ import path from "node:path";
 import { fetchPhoto, storePhoto } from "../../src/lib/photo-store.mjs";
 import { CACHE, OUT, readJson, REPORT, RUN, STATE, writeJson } from "./lib.mjs";
 import { today, validate, validateVenue } from "./validate.mjs";
+import { linkVenues } from "./venue-link.mjs";
 
 const WEB = path.dirname(path.dirname(path.dirname(new URL(import.meta.url).pathname)));
 const dryRun = process.argv.includes("--dry-run");
@@ -356,6 +359,11 @@ for (const f of venueFiles) {
   if (fill.length) summary.venuesFilled.push(`${v.name}: ${fill.join(", ")}`);
 }
 
+// link programs to the venues they name, now that this run's venues exist
+const venueLinks = await linkVenues(sql, { write: !dryRun, create: true });
+summary.venuesLinked = venueLinks.linked;
+summary.venueDrafts = venueLinks.created;
+
 // programs a page we read no longer shows
 for (const page of (report.pages ?? []).filter((p) => p.read)) {
   const named = new Set(page.programs ?? []);
@@ -415,7 +423,7 @@ if (!dryRun) {
 // ---------- summary ----------
 const SECTIONS = [
   ["new", "New drafts to review"],
-  ["newVenues", "New places to stay to review"],
+  ["newVenues", "New resorts & clubs to review"],
   ["newOrganizations", "New operators (in /admin → Operators)"],
   ["leadsListed", "Leads that now have a listing"],
   ["proposed", "Changes waiting for you (live or edited listings)"],
@@ -423,7 +431,9 @@ const SECTIONS = [
   ["refused", "Refused (fix and re-run /harvest)"],
   ["autoUpdated", "Updated automatically"],
   ["replaced", "Drafts refreshed"],
-  ["venuesFilled", "Places to stay: gaps filled in"],
+  ["venuesFilled", "Resorts & clubs: gaps filled in"],
+  ["venueDrafts", "Venues named by a listing, made as drafts to fill in and review"],
+  ["venuesLinked", "Trips linked to their venue"],
   ["unread", "Pages that couldn't be read"],
   ["photoProblems", "Photos that couldn't be used"],
   ["archivedSkipped", "Skipped (archived)"],
