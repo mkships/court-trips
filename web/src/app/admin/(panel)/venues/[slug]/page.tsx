@@ -12,7 +12,7 @@ export default async function EditVenuePage({ params, searchParams }: { params: 
   return (
     <div className="grid gap-6">
       <div>
-        <Link href="/admin/venues" className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink">
+        <Link href="/admin/venues" className="text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:text-ink">
           All venues
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-3">
@@ -25,7 +25,7 @@ export default async function EditVenuePage({ params, searchParams }: { params: 
             {v.programs.map((p, i) => (
               <span key={p.slug}>
                 {i > 0 && ", "}
-                <Link href={`/admin/programs/${p.slug}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+                <Link href={`/admin/programs/${p.slug}`} className="font-semibold text-ink underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                   {p.title}
                 </Link>
               </span>

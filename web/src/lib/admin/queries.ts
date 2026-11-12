@@ -109,6 +109,7 @@ export async function venue(slug: string) {
     with: {
       courts: { orderBy: (c, { asc }) => asc(c.position) },
       photos: { orderBy: (ph, { asc }) => asc(ph.position) },
+      ratings: { orderBy: (r, { asc }) => asc(r.source) },
       programs: { columns: { slug: true, title: true, status: true, needsReview: true } },
     },
   });

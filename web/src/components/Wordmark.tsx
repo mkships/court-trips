@@ -7,7 +7,7 @@ const TRIPS = "M618.76 296.83Q602.65 296.83 595.13 289.89Q587.61 282.96 587.61 2
 export function Wordmark({ reversed = false, className }: { reversed?: boolean; className?: string }) {
   return (
     <svg viewBox="24 123.21 1026.71 211.7" role="img" aria-label="Court Trips" className={className}>
-      <path d={COURT} fill={reversed ? "var(--color-ball)" : "#2d5d8c"} />
+      <path d={COURT} fill={reversed ? "var(--color-ball)" : "var(--color-court)"} />
       <path d={TRIPS} fill={reversed ? "var(--color-paper)" : "var(--color-ink)"} />
       <circle cx="779.36" cy="148.91" r="25.7" fill="var(--color-ball)" />
     </svg>

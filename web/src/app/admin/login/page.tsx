@@ -19,7 +19,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
 
   return (
     <main className="grid min-h-screen place-items-center px-4">
-      <div className="w-full max-w-[420px] rounded-[24px] bg-white p-8 shadow-[0_10px_30px_-12px_rgba(22,35,58,0.25)]">
+      <div className="w-full max-w-[420px] rounded-3xl bg-white p-8 shadow-card">
         <p className="text-[1.375rem] font-black tracking-[-0.03em]">Court Trips admin</p>
         <p className="mt-1 text-ink-soft">Review submissions and drafts, and edit listings.</p>
         {error && ERRORS[error] && (

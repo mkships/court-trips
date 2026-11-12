@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BTN_GHOST, BTN_OUTLINE, LINK_QUIET } from "@/lib/ui";
 import { requireAdmin } from "@/lib/admin/auth";
 import { queueCounts } from "@/lib/admin/queries";
 
@@ -23,19 +24,19 @@ export default async function PanelLayout({ children }: { children: React.ReactN
           </Link>
           <nav aria-label="Admin" className="flex flex-wrap gap-1">
             {nav.map(([href, label, count]) => (
-              <Link key={href} href={href} className="rounded-full px-3.5 py-1.5 text-[0.9375rem] font-semibold transition-colors hover:bg-mist">
+              <Link key={href} href={href} className={`px-3.5 py-1.5 text-[0.9375rem] text-ink ${BTN_GHOST}`}>
                 {label}
                 {count ? <span className="ml-1.5 rounded-full bg-ball px-2 py-0.5 text-[0.75rem] font-extrabold">{count}</span> : null}
               </Link>
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-3 text-[0.875rem]">
-            <Link href="/" className="font-semibold text-ink-soft hover:text-ink">
+            <Link href="/" className={LINK_QUIET}>
               View site
             </Link>
             <span className="text-ink-soft">{session.login}</span>
             <form action="/admin/logout" method="post">
-              <button type="submit" className="rounded-full border border-rule px-3 py-1 font-semibold transition-colors hover:border-ink hover:bg-mist">
+              <button type="submit" className={`px-3 py-1 ${BTN_OUTLINE}`}>
                 Sign out
               </button>
             </form>

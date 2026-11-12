@@ -3,7 +3,7 @@ import { SPORTS } from "@/lib/sports";
 
 // One set of filter rules for the search bar's counts and the /search page.
 
-export type SearchKey = "where" | "month" | "level" | "format" | "guests" | "courts";
+export type SearchKey = "where" | "month" | "level" | "format" | "courts";
 export type SearchValues = Partial<Record<SearchKey, string>>;
 
 // Does a tile pass every chosen filter except `skip`? The bar uses `skip` so each panel's
@@ -25,7 +25,6 @@ export function matchesTile(t: Listing, v: SearchValues, skip?: SearchKey) {
   return true;
 }
 
-// Guests can't filter yet: venues don't record capacity, so it's carried but not applied.
 export function matchesVenue(venue: Venue, sport: Sport, v: SearchValues) {
   if (v.where && !inPlace(venue.country, v.where)) return false;
   if (v.courts && !venue.courts.some((c) => c.sport === sport && c.surface === v.courts)) return false;
@@ -40,18 +39,19 @@ const one = (p: RawParams, key: string) => {
 
 export function parseSearch(p: RawParams) {
   const sport = SPORTS.find((s) => s === one(p, "sport")) ?? "tennis";
-  const mode = one(p, "type") === "places" ? ("places" as const) : ("programs" as const);
   const values: SearchValues = {};
-  for (const key of ["where", "month", "level", "format", "guests", "courts"] as const) {
+  for (const key of ["where", "month", "level", "format", "courts"] as const) {
     const value = one(p, key);
     if (value) values[key] = value;
   }
-  return { sport, mode, values };
+  return { sport, values };
 }
 
 // The same search with one filter removed, for the "remove filter" chips.
+export const MODE_PATHS = { programs: "/trips", places: "/resorts" } as const;
+
 export function searchHref(sport: Sport, mode: "programs" | "places", values: SearchValues, without?: SearchKey) {
-  const q = new URLSearchParams({ sport, type: mode });
+  const q = new URLSearchParams({ sport });
   for (const [k, v] of Object.entries(values)) if (v && k !== without) q.set(k, v);
-  return `/search?${q}`;
+  return `${MODE_PATHS[mode]}?${q}`;
 }

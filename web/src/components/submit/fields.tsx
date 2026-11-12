@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
+import { CHOICE, INPUT } from "@/lib/ui";
 
 // Small building blocks for the "List your program" form. Each input is named after the field the
 // server validates (src/lib/submission.ts), and shows that field's error under it. Hints sit under
 // the input too, so fields side by side line up whether or not they have one.
 
-export const INPUT =
-  "block w-full rounded-xl border border-rule bg-white px-3.5 py-2.5 text-[1rem] transition-colors placeholder:text-ink-soft/60 hover:border-ink/50 aria-invalid:border-alert";
+export { INPUT };
 
 export const errorId = (name: string) => `${name}-error`;
 
@@ -150,7 +150,7 @@ export function Choices(props: {
           return (
             <label
               key={value}
-              className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-rule px-3.5 py-2.5 transition-colors hover:border-ink/50 hover:bg-mist/60 has-checked:border-ink has-checked:bg-mist has-checked:shadow-[inset_0_0_0_1px_var(--color-ink)]"
+              className={CHOICE}
             >
               <input
                 type={type}
@@ -159,7 +159,7 @@ export function Choices(props: {
                 id={i === 0 ? name : undefined}
                 defaultChecked={checked?.includes(value)}
                 required={type === "radio" && !optional}
-                className="mt-1 size-4 shrink-0 accent-ink"
+                className="mt-1 size-4 shrink-0 accent-ink focus-visible:outline-none"
               />
               {icons?.[value] && <span className="-my-0.5">{icons[value]}</span>}
               <span>
