@@ -119,6 +119,7 @@ export async function organization(slug: string) {
         programs: { columns: { slug: true, title: true, status: true, needsReview: true }, orderBy: (p, { asc }) => asc(p.title) },
         sold: { columns: { slug: true, title: true, status: true, needsReview: true }, orderBy: (p, { asc }) => asc(p.title) },
         seenOn: { columns: { slug: true, name: true } },
+        ratings: { orderBy: (r, { asc }) => asc(r.source) },
       },
     })) ?? null
   );

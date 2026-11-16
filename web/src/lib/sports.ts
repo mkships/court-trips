@@ -16,6 +16,7 @@ export const SPORT_NAMES: Record<Sport, string> = {
   padel: "Padel",
 };
 
+// what a search looks through: trips (programs) or resorts and clubs (places)
 export type Mode = "programs" | "places";
 
 export type Level = "beginner" | "intermediate" | "advanced" | "all levels";
@@ -47,6 +48,23 @@ export type Listing = {
   bookingUrl: string;
 };
 
+// One upcoming set of dates of a trip, as shown on its card's date rail
+export type TripDate = { start: string; end: string | null; status: Listing["status"]; price: number | null };
+
+// A program shown once (src/lib/tiles.ts groupTrips): the tile of its next bookable date, the lowest
+// price across its dates, and every upcoming date that passed the filters.
+export type Trip = Listing & { dates: TripDate[] };
+
+// A public rating on another site (schema.ts ratings); we show the score and link out
+export type Rating = {
+  source: "google" | "trustpilot" | "tripadvisor";
+  rating: number;
+  reviewCount: number | null;
+  url: string;
+  // YYYY-MM-DD
+  checkedAt: string;
+};
+
 export type Venue = {
   slug: string;
   name: string;
@@ -58,6 +76,12 @@ export type Venue = {
   programSlugs: string[];
   photos: string[];
   website: string;
+  description: string | null;
+  stars: number | null;
+  adultsOnly: boolean;
+  amenities: string[];
+  priceNotes: string | null;
+  ratings: Rating[];
 };
 
 // Full record for one program page (src/lib/db.ts getProgram)
@@ -67,6 +91,7 @@ export type ProgramDetail = {
   organizer: string;
   // the operator's page (/operators/slug); null when it has none
   operatorSlug: string | null;
+  operatorRatings: Rating[];
   // the marketplace it's booked through, when it can't be booked with the operator directly
   soldThrough: string | null;
   description: string;
@@ -108,4 +133,5 @@ export type Operator = {
   description: string | null;
   website: string | null;
   programSlugs: string[];
+  ratings: Rating[];
 };

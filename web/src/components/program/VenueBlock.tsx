@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { SafeImage } from "@/components/SafeImage";
 import type { ProgramDetail, Sport, Venue } from "@/lib/sports";
-import { ExternalIcon } from "@/components/icons";
 import { placeLabel } from "@/lib/format";
 import { LINK } from "@/lib/ui";
 
@@ -24,15 +24,18 @@ export function VenueBlock({ program, venue, sport }: { program: ProgramDetail; 
         </div>
       )}
       <div className="min-w-0">
-        <p className="text-[1.125rem] font-extrabold">{venue.name}</p>
+        <Link href={`/resorts/${venue.slug}`} className="text-[1.125rem] font-extrabold underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
+          {venue.name}
+        </Link>
         <p className="text-ink-soft">
           <span className="capitalize">{venue.kind}</span> in {placeLabel(venue)}
         </p>
         {courts.length > 0 && <p className="mt-1 text-ink-soft first-letter:uppercase">{courts.join(", ")}</p>}
-        <a href={venue.website} className={`mt-2 inline-flex items-center gap-1.5 ${LINK}`} target="_blank" rel="noopener noreferrer">
-          Venue website
-          <ExternalIcon className="size-4" />
-        </a>
+        <p className="mt-2">
+          <Link href={`/resorts/${venue.slug}`} className={LINK}>
+            Courts, facilities and other trips here
+          </Link>
+        </p>
       </div>
     </div>
   );

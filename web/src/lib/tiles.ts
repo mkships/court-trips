@@ -1,4 +1,4 @@
-import type { Listing } from "@/lib/sports";
+import type { Listing, Trip } from "@/lib/sports";
 
 // Tiles arrive sorted soonest first (src/lib/db.ts), one per program per date.
 
@@ -15,6 +15,26 @@ export function varietyRow(tiles: Listing[], size: number) {
   }
   const picked = new Set([...firsts, ...rest].slice(0, size));
   return tiles.filter((t) => picked.has(t));
+}
+
+// One entry per program, for cards: the trip on its next bookable date, with every date in `tiles`
+// on its rail and the lowest of their prices. Kept in the order the programs first appear (soonest first).
+// Filter the tiles first, so a search for May shows a trip's May dates only.
+export function groupTrips(tiles: Listing[]): Trip[] {
+  const trips = new Map<string, Trip>();
+  for (const t of tiles) {
+    let trip = trips.get(t.programSlug);
+    if (!trip) {
+      trip = { ...t, dates: [] };
+      trips.set(t.programSlug, trip);
+    } else if (trip.status === "sold_out" && t.status !== "sold_out") {
+      // lead with a date that can still be booked
+      Object.assign(trip, { key: t.key, start: t.start, end: t.end, status: t.status });
+    }
+    if (t.start) trip.dates.push({ start: t.start, end: t.end, status: t.status, price: t.priceFrom });
+    if (t.priceFrom != null && (trip.priceFrom == null || t.priceFrom < trip.priceFrom)) trip.priceFrom = t.priceFrom;
+  }
+  return [...trips.values()];
 }
 
 // The hero carousel shows each featured program once, on its next bookable date.

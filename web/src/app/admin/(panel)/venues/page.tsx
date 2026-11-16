@@ -25,7 +25,7 @@ export default async function VenuesPage() {
               {rows.map((v) => (
                 <tr key={v.id} className="transition-colors hover:bg-mist/70">
                   <td className="px-5 py-3">
-                    <Link href={`/admin/venues/${v.slug}`} className="font-semibold hover:underline">
+                    <Link href={`/admin/venues/${v.slug}`} className="font-semibold underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                       {v.name}
                     </Link>
                     <span className="block text-[0.875rem] text-ink-soft capitalize">

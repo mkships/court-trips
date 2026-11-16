@@ -8,7 +8,7 @@ export default async function NewOperatorPage() {
   return (
     <div className="grid gap-6">
       <div>
-        <Link href="/admin/operators?tab=leads" className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink">
+        <Link href="/admin/operators?tab=leads" className="text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:text-ink">
           All operators
         </Link>
         <h1 className="mt-2 text-[1.75rem] leading-tight font-black tracking-[-0.03em]">Add an operator or lead</h1>

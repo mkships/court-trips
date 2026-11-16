@@ -27,7 +27,7 @@ export default async function EditOperatorPage({
   return (
     <div className="grid gap-6">
       <div>
-        <Link href={`/admin/operators?tab=${o.status === "lead" ? "leads" : o.kind === "marketplace" ? "marketplaces" : o.status === "archived" ? "archived" : "operators"}`} className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink">
+        <Link href={`/admin/operators?tab=${o.status === "lead" ? "leads" : o.kind === "marketplace" ? "marketplaces" : o.status === "archived" ? "archived" : "operators"}`} className="text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:text-ink">
           All operators
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-3">
@@ -38,7 +38,7 @@ export default async function EditOperatorPage({
         {o.kind === "operator" && o.status === "active" && live.length > 0 && (
           <p className="mt-1 text-[0.9375rem] text-ink-soft">
             Public page:{" "}
-            <Link href={`/operators/${o.slug}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+            <Link href={`/operators/${o.slug}`} className="font-semibold text-ink underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
               /operators/{o.slug}
             </Link>
           </p>
@@ -48,7 +48,7 @@ export default async function EditOperatorPage({
       {(saved || merged) && <p className="rounded-2xl bg-white px-5 py-3 text-[0.9375rem]">{merged ? "Merged: its listings and names are here now." : "Saved."}</p>}
       {merge === "none" && <p className="rounded-2xl border-2 border-alert bg-white px-5 py-3 text-[0.9375rem] font-semibold text-alert">Pick another record to merge into.</p>}
 
-      <section className="grid gap-3 rounded-[20px] bg-white p-5 sm:p-7">
+      <section className="grid gap-3 rounded-3xl bg-white p-5 sm:p-7">
         <h2 className="text-[1.125rem] font-extrabold">{o.kind === "marketplace" ? "Listings sold only through it" : "Listings"}</h2>
         {listings.length === 0 ? (
           <p className="text-[0.9375rem] text-ink-soft">None yet.</p>
@@ -56,7 +56,7 @@ export default async function EditOperatorPage({
           <ul className="grid gap-2">
             {listings.map((p) => (
               <li key={p.slug} className="flex flex-wrap items-center gap-3 text-[0.9375rem]">
-                <Link href={`/admin/programs/${p.slug}`} className="font-semibold hover:underline">
+                <Link href={`/admin/programs/${p.slug}`} className="font-semibold underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                   {p.title}
                 </Link>
                 <StateBadge state={programState(p)} />
@@ -72,7 +72,7 @@ export default async function EditOperatorPage({
         marketplaces={options.filter((m) => m.kind === "marketplace")}
       />
 
-      <section className="grid gap-3 rounded-[20px] bg-white p-5 sm:p-7">
+      <section className="grid gap-3 rounded-3xl bg-white p-5 sm:p-7">
         <h2 className="text-[1.125rem] font-extrabold">Same organisation as another record?</h2>
         <p className="max-w-[70ch] text-[0.9375rem] text-ink-soft">
           Merging moves this one&apos;s listings to the record you pick, keeps &ldquo;{o.name}&rdquo; there as another name so future imports link to it, and removes this one.

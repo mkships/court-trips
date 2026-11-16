@@ -19,6 +19,19 @@
   --color-line: #ffffff;
   /* form errors */
   --color-alert: #b3261e;
+  /* the wordmark's hard-court blue */
+  --color-court: #2d5d8c;
+  /* availability dots and admin badges: available / waitlist */
+  --color-ok: #2f9e5b;
+  --color-ok-ink: #1d6b3c;
+  --color-ok-soft: #e3f3e8;
+  --color-warn: #e0a100;
+  --color-warn-ink: #7a5600;
+  --color-warn-soft: #fff3d1;
+
+  /* two elevations: a raised card (search bar, booking card) and a floating panel */
+  --shadow-card: 0 10px 30px -12px rgb(22 35 58 / 0.4);
+  --shadow-pop: 0 16px 40px -12px rgb(22 35 58 / 0.35);
 
   --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
 }

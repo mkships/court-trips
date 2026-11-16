@@ -23,6 +23,16 @@ if (process.env.VERCEL_ENV === "production") {
 }
 
 const nextConfig: NextConfig = {
+  // The listing pages used to be one /search page with a type; keep old links and bookmarks working.
+  async redirects() {
+    const places = [{ type: "query" as const, key: "type", value: "places" }];
+    return [
+      { source: "/search", has: places, destination: "/resorts", permanent: true },
+      { source: "/search", destination: "/trips", permanent: true },
+      { source: "/", has: places, destination: "/resorts", permanent: true },
+      { source: "/", has: [{ type: "query" as const, key: "sport" }], destination: "/trips", permanent: true },
+    ];
+  },
   experimental: {
     // photos are shrunk in the browser to fit (src/lib/submission.ts); Vercel's own cap is 4.5 MB
     serverActions: { bodySizeLimit: "4mb" },

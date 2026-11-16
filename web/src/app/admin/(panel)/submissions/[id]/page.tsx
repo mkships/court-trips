@@ -40,7 +40,7 @@ export default async function SubmissionPage({ params }: { params: Promise<{ id:
     ["Ratings", ratings || "—"],
     [
       "Booking page",
-      <a key="b" href={r.core_identity.booking_url} target="_blank" rel="noopener noreferrer" className="break-all underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+      <a key="b" href={r.core_identity.booking_url} target="_blank" rel="noopener noreferrer" className="break-all underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
         {r.core_identity.booking_url}
       </a>,
     ],
@@ -50,13 +50,13 @@ export default async function SubmissionPage({ params }: { params: Promise<{ id:
   return (
     <div className="grid gap-6">
       <div>
-        <Link href="/admin" className="text-[0.9375rem] font-semibold text-ink-soft hover:text-ink">
+        <Link href="/admin" className="text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:text-ink">
           Review queue
         </Link>
         <h1 className="mt-2 text-[1.75rem] leading-tight font-black tracking-[-0.03em]">{r.core_identity.title}</h1>
         <p className="mt-1 text-[0.9375rem] text-ink-soft">
           Sent {day(s.createdAt)} by {s.submitterName},{" "}
-          <a href={`mailto:${s.submitterEmail}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+          <a href={`mailto:${s.submitterEmail}`} className="font-semibold text-ink underline decoration-ink/35 decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
             {s.submitterEmail}
           </a>
         </p>
@@ -77,7 +77,7 @@ export default async function SubmissionPage({ params }: { params: Promise<{ id:
         </p>
       )}
 
-      <section className="rounded-[20px] bg-white p-5 sm:p-7">
+      <section className="rounded-3xl bg-white p-5 sm:p-7">
         <p className="max-w-[70ch] whitespace-pre-line">{r.core_identity.description}</p>
         <dl className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-[180px_1fr]">
           {rows.map(([label, value]) => (
@@ -90,7 +90,7 @@ export default async function SubmissionPage({ params }: { params: Promise<{ id:
       </section>
 
       {s.photos.length > 0 && (
-        <section className="rounded-[20px] bg-white p-5 sm:p-7">
+        <section className="rounded-3xl bg-white p-5 sm:p-7">
           <h2 className="text-[1.125rem] font-extrabold">Photos</h2>
           <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">
             {s.photos.map((ph, i) => (
@@ -109,7 +109,7 @@ export default async function SubmissionPage({ params }: { params: Promise<{ id:
       )}
 
       {s.status === "pending" && (
-        <section className="grid gap-4 rounded-[20px] bg-white p-5 sm:grid-cols-2 sm:p-7">
+        <section className="grid gap-4 rounded-3xl bg-white p-5 sm:grid-cols-2 sm:p-7">
           <form action={createDraftFromSubmission.bind(null, s.id)} className="grid content-start gap-2">
             <h2 className="text-[1.125rem] font-extrabold">Looks right</h2>
             <p className="text-[0.9375rem] text-ink-soft">Makes a draft listing you can edit. Nothing goes live until you publish it.</p>

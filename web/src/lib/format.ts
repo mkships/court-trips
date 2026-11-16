@@ -43,10 +43,15 @@ export function dateRange({ start, end, scheduleNotes }: Pick<Listing, "start" |
   return `${day(start, sameYear ? { day: "numeric", month: "short" } : { day: "numeric", month: "short", year: "numeric" })} – ${to}`;
 }
 
-export function priceFrom({ priceFrom, currency }: Pick<Listing, "priceFrom" | "currency">) {
-  if (priceFrom == null || !currency) return null;
-  return `From ${money(priceFrom, currency)}`;
-}
+// "12 May": a date chip on a trip card (the full range is in its tooltip)
+export const shortDay = (iso: string) => day(iso, { day: "numeric", month: "short" });
+
+// How a date's availability is named and dotted, wherever dates are listed.
+export const SESSION_STATUS = {
+  available: { label: "Available", dot: "bg-ok" },
+  waitlist: { label: "Waitlist only", dot: "bg-warn" },
+  sold_out: { label: "Sold out", dot: "bg-ink-soft/50" },
+} as const;
 
 export const PRICE_UNIT_NAMES: Record<NonNullable<Listing["priceUnit"]>, string> = {
   per_person: "per person",

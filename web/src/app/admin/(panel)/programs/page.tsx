@@ -30,7 +30,7 @@ export default async function ProgramsPage({ searchParams }: { searchParams: Pro
             key={label}
             href={href(s)}
             aria-current={s === state ? "page" : undefined}
-            className="rounded-full border border-rule bg-white px-4 py-1.5 text-[0.9375rem] font-semibold transition-colors hover:border-ink aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-white"
+            className="rounded-full border border-rule bg-white px-4 py-1.5 text-[0.9375rem] font-semibold transition-colors hover:border-ink hover:bg-mist aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-white"
           >
             {label}
           </Link>
@@ -56,7 +56,7 @@ export default async function ProgramsPage({ searchParams }: { searchParams: Pro
                 return (
                   <tr key={p.id} className="transition-colors hover:bg-mist/70">
                     <td className="px-5 py-3">
-                      <Link href={`/admin/programs/${p.slug}`} className="font-semibold hover:underline">
+                      <Link href={`/admin/programs/${p.slug}`} className="font-semibold underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:decoration-ink">
                         {p.title}
                       </Link>
                       <span className="block text-[0.875rem] text-ink-soft">

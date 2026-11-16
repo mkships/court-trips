@@ -165,7 +165,7 @@ function Ball({ sport, shot, delayed }: { sport: Sport; shot: number; delayed?: 
     >
       {/* new key per shot, so the hop plays again */}
       <g key={shot} className={shot > 0 ? HOP_SHADOW : undefined} style={FROM_CENTRE}>
-        <ellipse cx="0.18" cy="0.22" rx="0.5" ry="0.42" fill="rgba(0,0,0,0.28)" />
+        <ellipse cx="0.18" cy="0.22" rx="0.5" ry="0.42" fill="rgb(0 0 0 / 0.28)" />
       </g>
       <g key={`b${shot}`} className={shot > 0 ? HOP : undefined} style={FROM_CENTRE}>
         <circle r="0.5" fill="var(--color-ball)" />

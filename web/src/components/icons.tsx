@@ -243,6 +243,37 @@ export function StoreIcon(props: IconProps) {
   );
 }
 
+// --- how Court Trips works (home page): the label icons above, with one shape in the ball colour ---
+
+export function FindIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill={fill(props.accent)} />
+      <circle cx="12" cy="9.5" r="2.5" fill="var(--color-paper)" />
+    </Icon>
+  );
+}
+
+export function CompareIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+      <rect x="7" y="12.8" width="4.2" height="4.2" rx="1" fill={fill(props.accent)} />
+      <path d="M14.5 13.5h2.5M14.5 16.5h2.5" />
+    </Icon>
+  );
+}
+
+export function BookDirectIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M3 6.5 4.5 3.5h15L21 6.5v1a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0v-1Z" fill={fill(props.accent)} />
+      <path d="M4 10v10.5h16V10M9.5 20.5v-5h5v5" />
+    </Icon>
+  );
+}
+
 export function ExternalIcon(props: IconProps) {
   return (
     <Icon {...props}>

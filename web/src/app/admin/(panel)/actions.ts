@@ -5,10 +5,10 @@ import { and, asc, eq, inArray, ne, sql } from "drizzle-orm";
 import { revalidatePath, revalidateTag } from "next/cache";
 import path from "node:path";
 import { redirect } from "next/navigation";
-import { organizations, photos, programs, sessions, submissions, venues } from "@/db/schema";
+import { courts, organizations, photos, programs, ratings, sessions, submissions, venues } from "@/db/schema";
 import { requireAdmin } from "@/lib/admin/auth";
 import { hasErrors, programChecks, venueChecks } from "@/lib/admin/checks";
-import { type OrganizationForm, organizationFormSchema, organizationFormToObject, programFormSchema, programFormToObject, slugify, venueFormSchema, venueFormToObject } from "@/lib/admin/forms";
+import { type OrganizationForm, organizationFormSchema, organizationFormToObject, programFormSchema, programFormToObject, type RatingForm, ratingsFromForm, slugify, venueFormSchema, venueFormToObject } from "@/lib/admin/forms";
 import { resolveOrganization, uniqueOrganizationSlug } from "@/lib/admin/organizations";
 import { adminDb, programState, venueState } from "@/lib/admin/queries";
 import { fetchPhoto, storePhoto } from "@/lib/photo-store.mjs";
@@ -309,6 +309,23 @@ export async function rejectSubmission(id: string, form: FormData) {
   redirect("/admin?rejected=1");
 }
 
+// Replaces an operator's or venue's ratings with the rows from the form. A row that hasn't changed
+// keeps the date it was last checked; a new or edited one is checked today.
+async function ratingWrites(owner: { organizationId: string } | { venueId: string }, rows: RatingForm[]) {
+  const d = adminDb();
+  const mine = "venueId" in owner ? eq(ratings.venueId, owner.venueId) : eq(ratings.organizationId, owner.organizationId);
+  const before = await d.select().from(ratings).where(mine);
+  const today = new Date().toISOString().slice(0, 10);
+  const values = rows.map((r) => {
+    const was = before.find((b) => b.source === r.source);
+    const same = was && was.rating === r.rating && was.reviewCount === r.reviewCount && was.url === r.url;
+    return { ...owner, ...r, checkedAt: same ? was.checkedAt : today };
+  });
+  return [d.delete(ratings).where(mine), ...(values.length ? [d.insert(ratings).values(values)] : [])] as const;
+}
+
+const RATINGS_INVALID = (error: string): SaveResult => ({ ok: false, message: "The ratings need another look. Nothing was saved.", errors: { ratings: error } });
+
 export async function saveVenue(id: string, _prev: SaveResult, form: FormData): Promise<SaveResult> {
   await requireAdmin();
   const d = adminDb();
@@ -319,6 +336,8 @@ export async function saveVenue(id: string, _prev: SaveResult, form: FormData): 
   const parsed = venueFormSchema.safeParse(venueFormToObject(form));
   if (!parsed.success) return { ok: false, message: "Some fields need another look. Nothing was saved.", errors: fieldErrors(parsed.error) };
   const v = parsed.data;
+  const rated = ratingsFromForm(form);
+  if (!rated.ok) return RATINGS_INVALID(rated.error);
   if (v.slug !== current.slug) {
     if (venueState(current) === "live") return { ok: false, message: "Unpublish first to change a live venue's address.", errors: { slug: "Live venues keep their address" } };
     if ((await uniqueSlug(venues, v.slug, id)) !== v.slug) return { ok: false, message: "That address is taken.", errors: { slug: "Another venue uses this address" } };
@@ -346,10 +365,15 @@ export async function saveVenue(id: string, _prev: SaveResult, form: FormData): 
       lng: v.lng,
       sports: v.sports,
       priceNotes: v.price_notes,
+      amenities: v.amenities,
+      aliases: v.aliases,
       ...(lifecycle ?? {}),
       updatedAt: new Date(),
     })
     .where(eq(venues.id, id)),
+    d.delete(courts).where(eq(courts.venueId, id)),
+    ...(v.courts.length ? [d.insert(courts).values(v.courts.map((c, position) => ({ venueId: id, position, ...c })))] : []),
+    ...(await ratingWrites({ venueId: id }, rated.rows)),
     ...(v.remove_photo.length
       ? [d.delete(photos).where(and(eq(photos.venueId, id), inArray(photos.id, v.remove_photo))), ...reorderPhotos("venue", id, kept.map((p) => p.id))]
       : []),
@@ -483,6 +507,8 @@ export async function saveOrganization(id: string, _prev: SaveResult, form: Form
   const parsed = organizationFormSchema.safeParse(organizationFormToObject(form));
   if (!parsed.success) return { ok: false, message: "Some fields need another look. Nothing was saved.", errors: fieldErrors(parsed.error) };
   const v = parsed.data;
+  const rated = ratingsFromForm(form);
+  if (!rated.ok) return RATINGS_INVALID(rated.error);
   if (v.seen_on_id === id) return { ok: false, message: "It can't be seen on itself.", errors: { seen_on_id: "Pick a marketplace, or none" } };
   if (await nameTaken(v.name, id)) return { ok: false, message: "Another operator has that name: merge them instead.", errors: { name: "Already taken" } };
   if (v.slug !== current.slug && (await uniqueOrganizationSlug(v.slug, id)) !== v.slug)
@@ -492,6 +518,7 @@ export async function saveOrganization(id: string, _prev: SaveResult, form: Form
     d.update(organizations).set({ ...organizationValues(v), updatedAt: new Date() }).where(eq(organizations.id, id)),
     // listings show the operator's name: keep them in step with a rename
     ...(v.name !== current.name ? [d.update(programs).set({ organizer: v.name }).where(eq(programs.operatorId, id))] : []),
+    ...(await ratingWrites({ organizationId: id }, rated.rows)),
   ]);
   refreshSite();
   if (v.slug !== current.slug) redirect(`/admin/operators/${v.slug}?saved=1`);

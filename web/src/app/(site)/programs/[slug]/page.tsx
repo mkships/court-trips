@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { CONTAINER, H1 } from "@/components/Browse";
 import { BookingCard, MobileBookingBar } from "@/components/program/BookingCard";
 import { CourtFacts } from "@/components/program/CourtFacts";
 import { DateTable } from "@/components/program/DateTable";
@@ -11,7 +10,9 @@ import { VenueBlock } from "@/components/program/VenueBlock";
 import { CategoryIcon, InclusionIcon, LevelIcon, PinIcon } from "@/components/icons";
 import { CATEGORY_NAMES, PRICE_UNIT_NAMES, levelLabel, placeLabel } from "@/lib/format";
 import { getProgram, getVenue, programSlugs } from "@/lib/db";
+import { RatingBadges } from "@/components/Ratings";
 import { SPORT_NAMES, type ProgramDetail, type Sport } from "@/lib/sports";
+import { LINK, LINK_QUIET } from "@/lib/ui";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -55,16 +56,15 @@ export default async function ProgramPage({ params, searchParams }: Props) {
   const venue = program.venueSlug ? await getVenue(program.venueSlug) : null;
 
   return (
-    <div className="on-paper pb-24 lg:pb-0">
-      <Header />
-      <main className="mx-auto max-w-[1280px] px-4 sm:px-8">
-        <Link href={`/?sport=${sport}`} className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink-soft transition-colors hover:text-ink">
+    <>
+      <main className={CONTAINER}>
+        <Link href={`/trips?sport=${sport}`} className={`inline-flex items-center gap-1.5 text-[0.9375rem] ${LINK_QUIET}`}>
           <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true">
             <path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           All {SPORT_NAMES[sport].toLowerCase()} trips
         </Link>
-        <h1 className="mt-3 max-w-[22ch] text-[2.25rem] leading-[1] font-black tracking-[-0.035em] text-balance sm:text-[3rem]">
+        <h1 className={`mt-3 max-w-[22ch] ${H1}`}>
           {program.title}
         </h1>
         <ul className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.9375rem]">
@@ -83,7 +83,7 @@ export default async function ProgramPage({ params, searchParams }: Props) {
           <li className="text-ink-soft">
             Run by{" "}
             {program.operatorSlug ? (
-              <Link href={`/operators/${program.operatorSlug}`} className="font-semibold text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-ink">
+              <Link href={`/operators/${program.operatorSlug}`} className={`text-ink ${LINK}`}>
                 {program.organizer}
               </Link>
             ) : (
@@ -132,6 +132,12 @@ export default async function ProgramPage({ params, searchParams }: Props) {
               <DateTable program={program} selected={session?.start ?? null} />
             </Section>
 
+            {program.operatorRatings.length > 0 && (
+              <Section title={`Ratings for ${program.organizer}`}>
+                <RatingBadges ratings={program.operatorRatings} />
+              </Section>
+            )}
+
             {(venue || program.venueName) && (
               <Section title="Where you'll play">
                 <VenueBlock program={program} venue={venue} sport={sport} />
@@ -146,9 +152,8 @@ export default async function ProgramPage({ params, searchParams }: Props) {
           </aside>
         </div>
       </main>
-      <Footer />
       <MobileBookingBar program={program} session={session} />
-    </div>
+    </>
   );
 }
 

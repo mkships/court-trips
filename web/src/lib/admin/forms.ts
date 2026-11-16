@@ -2,7 +2,7 @@
 // (src/components/admin/ProgramEditor.tsx, VenueEditor.tsx), as on the public form.
 
 import { z } from "zod";
-import { CATEGORIES, ORGANIZATION_KINDS, ORGANIZATION_STATUSES, SESSION_STATUSES, VENUE_KINDS } from "@/db/schema";
+import { CATEGORIES, ORGANIZATION_KINDS, ORGANIZATION_STATUSES, RATING_SOURCES, SESSION_STATUSES, VENUE_KINDS } from "@/db/schema";
 import { COUNTRIES } from "@/lib/countries";
 import { isoDate, list, many, number, optionalChoice, required, text, url, values } from "@/lib/submission";
 import {
@@ -116,6 +116,20 @@ export const venueFormSchema = z.object({
   lng: number(-180, 180),
   sports: z.array(z.enum(values(SPORT_OPTIONS))).min(1, "Pick at least one sport"),
   price_notes: text(300),
+  // what's on site, one per line
+  amenities: list(40),
+  // other names listings use for this venue, one per line
+  aliases: list(20),
+  courts: z
+    .array(
+      z.object({
+        sport: z.enum(values(SPORT_OPTIONS)),
+        count: number(1, 200, true),
+        surface: optionalChoice([...SURFACE_OPTIONS]),
+        indoor: z.preprocess((v) => v === "yes", z.boolean()),
+      }),
+    )
+    .default([]),
   // photo ids to take off the venue
   remove_photo: z.array(z.coerce.number().int()).default([]),
 });
@@ -129,7 +143,37 @@ export function venueFormToObject(form: FormData) {
     obj[key] = key === "sports" || key === "remove_photo" ? form.getAll(key) : form.get(key);
   }
   obj.sports ??= [];
+  // one court row per sport select; the other columns line up with it
+  const col = (name: string) => form.getAll(`court_${name}`).map(String);
+  const [sports, counts, surfaces, indoor] = ["sport", "count", "surface", "indoor"].map(col);
+  obj.courts = sports.map((sport, i) => ({ sport, count: counts[i] ?? "", surface: surfaces[i] ?? "", indoor: indoor[i] ?? "" }));
+  for (const key of Object.keys(obj)) if (key.startsWith("court_")) delete obj[key];
   return obj;
+}
+
+// Ratings on other sites (src/components/admin/RatingsFields.tsx): one row of inputs per site.
+// A row left blank means "no rating there"; a row that's started needs a score and a link.
+const ratingSchema = z.object({
+  source: z.enum(RATING_SOURCES),
+  rating: z.preprocess((v) => (typeof v === "string" && v.trim() ? Number(v) : NaN), z.number().min(0).max(5)),
+  reviewCount: number(0, 100_000_000, true),
+  url: z.preprocess((v) => {
+    const s = typeof v === "string" ? v.trim() : "";
+    return s && !/^https?:\/\//i.test(s) ? `https://${s}` : s;
+  }, z.url({ protocol: /^https?$/ }).max(500)),
+});
+export type RatingForm = z.infer<typeof ratingSchema>;
+
+export function ratingsFromForm(form: FormData): { ok: true; rows: RatingForm[] } | { ok: false; error: string } {
+  const field = (name: string) => String(form.get(name) ?? "").trim();
+  const rows = RATING_SOURCES.map((source) => ({
+    source,
+    rating: field(`rating_${source}`),
+    reviewCount: field(`rating_count_${source}`),
+    url: field(`rating_url_${source}`),
+  })).filter((r) => r.rating || r.reviewCount || r.url);
+  const parsed = z.array(ratingSchema).safeParse(rows);
+  return parsed.success ? { ok: true, rows: parsed.data } : { ok: false, error: "Each rating needs a score from 0 to 5 and a link to the page it's on" };
 }
 
 // "Lake Garda tennis camp!" -> "lake-garda-tennis-camp"

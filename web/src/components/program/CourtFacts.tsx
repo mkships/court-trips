@@ -14,7 +14,7 @@ export function CourtFacts({ program, session, sport }: { program: ProgramDetail
   if (facts.length === 0) return null;
 
   return (
-    <div className="rounded-[22px] p-3 sm:p-4" style={{ backgroundColor: SURFACES[sport].surround }}>
+    <div className="rounded-3xl p-3 sm:p-4" style={{ backgroundColor: SURFACES[sport].surround }}>
       <dl
         className={`grid grid-cols-2 gap-[2px] bg-white p-[2px] ${COLUMNS[facts.length]}`}
         aria-label="Key facts"

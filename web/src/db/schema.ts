@@ -68,6 +68,8 @@ export const venues = pgTable(
     amenities: jsonb().$type<string[]>().notNull().default([]),
     // pricing
     priceNotes: text(),
+    // other names listings use for this venue ("Sani Resort", "Sani Club"), so imports link them here
+    aliases: text().array().notNull().default([]),
   },
   (t) => [
     check("venues_status_check", sql`${t.status} in (${list(VENUE_STATUSES)})`),
@@ -251,16 +253,49 @@ export const photos = pgTable(
   ],
 );
 
+// A public rating of an operator or a venue on another site, entered by hand in admin: the score,
+// how many reviews it's based on and where to read them. We show the number and link out; no review
+// text is copied. `checkedAt` is when someone last looked, shown beside the badge.
+export const RATING_SOURCES = ["google", "trustpilot", "tripadvisor"] as const;
+
+export const ratings = pgTable(
+  "ratings",
+  {
+    id: bigint({ mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
+    organizationId: uuid().references(() => organizations.id, { onDelete: "cascade" }),
+    venueId: uuid().references(() => venues.id, { onDelete: "cascade" }),
+    source: text().$type<(typeof RATING_SOURCES)[number]>().notNull(),
+    // out of 5
+    rating: real().notNull(),
+    reviewCount: integer(),
+    url: text().notNull(),
+    checkedAt: date().notNull().defaultNow(),
+  },
+  (t) => [
+    check("ratings_owner_check", sql`num_nonnulls(${t.organizationId}, ${t.venueId}) = 1`),
+    check("ratings_source_check", sql`${t.source} in (${list(RATING_SOURCES)})`),
+    check("ratings_rating_check", sql`${t.rating} between 0 and 5`),
+    uniqueIndex("ratings_organization_source_idx").on(t.organizationId, t.source),
+    uniqueIndex("ratings_venue_source_idx").on(t.venueId, t.source),
+  ],
+);
+
 export const venuesRelations = relations(venues, ({ many }) => ({
   courts: many(courts),
   photos: many(photos),
   programs: many(programs),
+  ratings: many(ratings),
+}));
+export const ratingsRelations = relations(ratings, ({ one }) => ({
+  organization: one(organizations, { fields: [ratings.organizationId], references: [organizations.id] }),
+  venue: one(venues, { fields: [ratings.venueId], references: [venues.id] }),
 }));
 export const courtsRelations = relations(courts, ({ one }) => ({
   venue: one(venues, { fields: [courts.venueId], references: [venues.id] }),
 }));
 export const organizationsRelations = relations(organizations, ({ one, many }) => ({
   programs: many(programs, { relationName: "operator" }),
+  ratings: many(ratings),
   sold: many(programs, { relationName: "soldThrough" }),
   seenOn: one(organizations, { fields: [organizations.seenOnId], references: [organizations.id], relationName: "seenOn" }),
 }));

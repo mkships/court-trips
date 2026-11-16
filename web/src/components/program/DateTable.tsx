@@ -1,12 +1,7 @@
 import Link from "next/link";
-import { dateRange, money } from "@/lib/format";
+import { Money } from "@/components/Currency";
+import { SESSION_STATUS as STATUS, dateRange } from "@/lib/format";
 import type { ProgramDetail } from "@/lib/sports";
-
-const STATUS = {
-  available: { label: "Available", dot: "bg-[#2f9e5b]" },
-  waitlist: { label: "Waitlist", dot: "bg-[#e0a100]" },
-  sold_out: { label: "Sold out", dot: "bg-ink-soft/50" },
-} as const;
 
 export function DateTable({ program, selected }: { program: ProgramDetail; selected: string | null }) {
   if (program.sessions.length === 0) {
@@ -22,7 +17,7 @@ export function DateTable({ program, selected }: { program: ProgramDetail; selec
               href={`?date=${s.start}#dates`}
               scroll={false}
               aria-current={isSelected ? "true" : undefined}
-              className={`grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-0.5 px-3 py-3.5 transition-colors hover:bg-mist sm:grid-cols-[1fr_8rem_7rem] ${
+              className={`grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-0.5 px-3 py-3.5 transition-colors hover:bg-mist sm:grid-cols-[1fr_8.5rem_7.5rem] ${
                 isSelected ? "bg-mist shadow-[inset_3px_0_0_var(--color-ink)]" : ""
               } ${s.status === "sold_out" ? "text-ink-soft" : ""}`}
             >
@@ -35,7 +30,7 @@ export function DateTable({ program, selected }: { program: ProgramDetail; selec
                 {STATUS[s.status].label}
               </span>
               <span className="text-right font-semibold">
-                {s.price != null && program.currency ? money(s.price, program.currency) : "Price on request"}
+                {s.price != null && program.currency ? <Money amount={s.price} currency={program.currency} /> : "Price on request"}
               </span>
             </Link>
           </li>
