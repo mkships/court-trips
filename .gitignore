@@ -10,6 +10,7 @@ retreats_export.json
 # raw scrapes: operators' copied text and contact details; the hand-checked seed/ is what we publish
 pickleball_retreats.csv
 db_export/
+harvest/data.db
 
 # local tooling
 .idea/
