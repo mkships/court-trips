@@ -10,6 +10,7 @@ import { BTN_PRIMARY, LINK } from "@/lib/ui";
 export const metadata: Metadata = {
   title: "For operators | Court Trips",
   description: "Run a tennis, pickleball or padel camp, clinic or getaway? List it on Court Trips for free. Players book with you directly.",
+  alternates: { canonical: "/for-operators" },
 };
 
 export const revalidate = 3600;

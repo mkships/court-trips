@@ -8,6 +8,7 @@ import { TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
 export const metadata: Metadata = {
   title: "List your program | Court Trips",
   description: "Run a tennis, pickleball or padel camp, clinic or getaway? Add it to Court Trips for free.",
+  alternates: { canonical: "/list-your-program" },
 };
 
 export default function ListYourProgramPage() {

@@ -6,14 +6,21 @@ import { getHomeData, getOperators } from "@/lib/db";
 import { SPORTS, SPORT_NAMES, type Sport } from "@/lib/sports";
 import { LINK, PILL } from "@/lib/ui";
 
-export const metadata: Metadata = {
-  title: "Operators | Court Trips",
-  description: "The academies, coaches, resorts and tour operators behind the tennis, pickleball and padel trips on Court Trips.",
-};
+type Props = { searchParams: Promise<{ sport?: string }> };
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const { sport: raw } = await searchParams;
+  const sport = SPORTS.find((s) => s === raw);
+  return {
+    title: "Operators | Court Trips",
+    description: "The academies, coaches, resorts and tour operators behind the tennis, pickleball and padel trips on Court Trips.",
+    alternates: { canonical: sport ? `/operators?sport=${sport}` : "/operators" },
+  };
+}
 
 export const revalidate = 3600;
 
-export default async function OperatorsPage({ searchParams }: { searchParams: Promise<{ sport?: string }> }) {
+export default async function OperatorsPage({ searchParams }: Props) {
   const { sport: raw } = await searchParams;
   const sport = SPORTS.find((s) => s === raw);
   const [operators, { listings }] = await Promise.all([getOperators(), getHomeData()]);
