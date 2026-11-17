@@ -254,9 +254,9 @@ export const photos = pgTable(
 );
 
 // A public rating of an operator or a venue on another site, entered by hand in admin: the score,
-// how many reviews it's based on and where to read them. We show the number and link out; no review
+// how many reviews it's based on and, when given, where to read them. We show the number and link out; no review
 // text is copied. `checkedAt` is when someone last looked, shown beside the badge.
-export const RATING_SOURCES = ["google", "trustpilot", "tripadvisor"] as const;
+export const RATING_SOURCES = ["google", "tripadvisor"] as const;
 
 export const ratings = pgTable(
   "ratings",
@@ -268,7 +268,8 @@ export const ratings = pgTable(
     // out of 5
     rating: real().notNull(),
     reviewCount: integer(),
-    url: text().notNull(),
+    // where the reviews can be read; optional
+    url: text(),
     checkedAt: date().notNull().defaultNow(),
   },
   (t) => [

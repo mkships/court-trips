@@ -57,10 +57,10 @@ export type Trip = Listing & { dates: TripDate[] };
 
 // A public rating on another site (schema.ts ratings); we show the score and link out
 export type Rating = {
-  source: "google" | "trustpilot" | "tripadvisor";
+  source: "google" | "tripadvisor";
   rating: number;
   reviewCount: number | null;
-  url: string;
+  url: string | null;
   // YYYY-MM-DD
   checkedAt: string;
 };
