@@ -351,6 +351,41 @@ for (const f of venueFiles) {
     summary.newVenues.push(`${v.name} (${v.slug})`);
     continue;
   }
+  // A placeholder made from a listing's venue name (venue-link.mjs) has nothing but a name and a
+  // place, and "club" as a stand-in kind. Until someone gives it a website or a description, the
+  // first reading of the venue's own site fills it in whole: kind, courts and photos included.
+  // If the venue calls itself something else, the name listings use is kept as another name.
+  const [{ courts: courtCount, photos: photoCount }] = await sql`select
+    (select count(*)::int from courts where venue_id = ${existing.id}) as courts,
+    (select count(*)::int from photos where venue_id = ${existing.id}) as photos`;
+  if (existing.status === "draft" && existing.website == null && existing.description == null && courtCount === 0 && photoCount === 0) {
+    if (!dryRun) {
+      const aliases = v.name.toLowerCase() === existing.name.toLowerCase() ? existing.aliases : [...new Set([...existing.aliases, existing.name])];
+      // a reading without coordinates keeps the ones the listing gave the placeholder
+      const value = (c) => venueParam(c, v[c] ?? (c === "lat" || c === "lng" ? existing[c] : v[c]));
+      await sql.transaction([
+        sql.query(
+          `update venues set source_url = $2, scraped_at = $3, last_seen_at = $3, updated_at = $3, aliases = $4,
+             ${VENUE_COLUMNS.map((c, i) => `${c} = $${i + 5}${c === "amenities" ? "::jsonb" : ""}`).join(", ")}
+           where id = $1`,
+          [existing.id, v.source_url, now, aliases, ...VENUE_COLUMNS.map(value)],
+        ),
+        ...(v.courts.length
+          ? [
+              sql.query(
+                `insert into courts (venue_id, position, sport, count, surface, indoor)
+                 select $1, x.position, x.sport, x.count, x.surface, x.indoor
+                 from jsonb_to_recordset($2::jsonb) as x(position int, sport text, count int, surface text, indoor boolean)`,
+                [existing.id, JSON.stringify(v.courts.map((c, position) => ({ ...c, position })))],
+              ),
+            ]
+          : []),
+      ]);
+      await insertPhotos(existing.id, await storePhotos(existing.slug, v.images), "venue_id");
+    }
+    summary.venuesFilled.push(`${v.name}: placeholder filled in (${v.courts.length} court rows, ${v.images.length} photos)`);
+    continue;
+  }
   const fill = VENUE_COLUMNS.filter((c) => (existing[c] == null || same(existing[c], [])) && v[c] != null && !same(v[c], []));
   if (!dryRun) {
     const sets = ["last_seen_at = $2", ...fill.map((c, i) => `${c} = $${i + 3}${c === "amenities" ? "::jsonb" : ""}`)];
