@@ -3,11 +3,10 @@ import { ErrorText, INPUT } from "@/components/submit/fields";
 // Public ratings on other sites, one row per site. Leave a row blank to show nothing for that site.
 // The inputs are read by ratingsFromForm (src/lib/admin/forms.ts).
 
-export type EditableRating = { source: string; rating: number; reviewCount: number | null; url: string; checkedAt: string };
+export type EditableRating = { source: string; rating: number; reviewCount: number | null; url: string | null; checkedAt: string };
 
 const SOURCES = [
   ["google", "Google"],
-  ["trustpilot", "Trustpilot"],
   ["tripadvisor", "Tripadvisor"],
 ] as const;
 
@@ -17,7 +16,7 @@ export function RatingsFields({ ratings, error }: { ratings: EditableRating[]; e
       <div>
         <h2 className="text-[1.125rem] font-extrabold">Ratings</h2>
         <p className="mt-0.5 max-w-[70ch] text-[0.9375rem] text-ink-soft">
-          Their public score on each site, copied from that site, with a link to where the reviews can be read. The site shows the
+          Their public score on each site, copied from that site, with a link to where the reviews can be read if you have one. The site shows the
           score and links out; it doesn&apos;t copy review text. Changing a row marks it as checked today.
         </p>
       </div>
@@ -40,7 +39,7 @@ export function RatingsFields({ ratings, error }: { ratings: EditableRating[]; e
                 <input name={`rating_count_${source}`} type="number" min={0} step="1" inputMode="numeric" defaultValue={r?.reviewCount ?? ""} className={`mt-1 text-ink ${INPUT}`} />
               </label>
               <label className="col-span-2 block text-[0.875rem] text-ink-soft sm:col-span-1">
-                Link to their {label} page
+                Link to their {label} page <span className="text-ink-soft/70">(optional)</span>
                 <input name={`rating_url_${source}`} type="text" inputMode="url" autoCapitalize="none" spellCheck={false} defaultValue={r?.url ?? ""} className={`mt-1 text-ink ${INPUT}`} />
               </label>
             </fieldset>

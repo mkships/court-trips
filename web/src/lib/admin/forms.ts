@@ -152,15 +152,16 @@ export function venueFormToObject(form: FormData) {
 }
 
 // Ratings on other sites (src/components/admin/RatingsFields.tsx): one row of inputs per site.
-// A row left blank means "no rating there"; a row that's started needs a score and a link.
+// A row left blank means "no rating there"; a row that's started needs a score. The link is optional.
 const ratingSchema = z.object({
   source: z.enum(RATING_SOURCES),
   rating: z.preprocess((v) => (typeof v === "string" && v.trim() ? Number(v) : NaN), z.number().min(0).max(5)),
   reviewCount: number(0, 100_000_000, true),
   url: z.preprocess((v) => {
     const s = typeof v === "string" ? v.trim() : "";
-    return s && !/^https?:\/\//i.test(s) ? `https://${s}` : s;
-  }, z.url({ protocol: /^https?$/ }).max(500)),
+    if (!s) return null;
+    return /^https?:\/\//i.test(s) ? s : `https://${s}`;
+  }, z.url({ protocol: /^https?$/ }).max(500).nullable()),
 });
 export type RatingForm = z.infer<typeof ratingSchema>;
 
@@ -173,7 +174,7 @@ export function ratingsFromForm(form: FormData): { ok: true; rows: RatingForm[] 
     url: field(`rating_url_${source}`),
   })).filter((r) => r.rating || r.reviewCount || r.url);
   const parsed = z.array(ratingSchema).safeParse(rows);
-  return parsed.success ? { ok: true, rows: parsed.data } : { ok: false, error: "Each rating needs a score from 0 to 5 and a link to the page it's on" };
+  return parsed.success ? { ok: true, rows: parsed.data } : { ok: false, error: "Each rating needs a score from 0 to 5, and a link that works if you give one" };
 }
 
 // "Lake Garda tennis camp!" -> "lake-garda-tennis-camp"
