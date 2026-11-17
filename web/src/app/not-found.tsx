@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BTN_PRIMARY } from "@/lib/ui";
+import { BTN_PRIMARY, PAGE } from "@/lib/ui";
 import { Court } from "@/components/Court";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -9,7 +9,7 @@ export default function NotFound() {
   return (
     <div className="on-paper">
       <Header />
-      <main className="mx-auto max-w-[1280px] px-4 sm:px-8">
+      <main className={PAGE}>
         <div className="relative flex h-[300px] items-center justify-center rounded-3xl md:h-[380px]" style={{ backgroundColor: SURFACES.tennis.surround }}>
           <Court sport="tennis" className="h-[72%] w-full max-w-[620px]" />
           {/* the ball that landed out */}

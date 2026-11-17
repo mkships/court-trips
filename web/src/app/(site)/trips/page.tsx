@@ -9,10 +9,15 @@ import { groupTrips } from "@/lib/tiles";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
-export const metadata: Metadata = {
-  title: "Trips | Court Trips",
-  description: "Tennis, pickleball and padel camps, clinics and getaways. Filter by country, month, level and format.",
-};
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  // filtered views point search engines at the sport's whole list; tennis is the default, so it has no parameter
+  const { sport } = parseSearch(await searchParams);
+  return {
+    title: "Trips | Court Trips",
+    description: "Tennis, pickleball and padel camps, clinics and getaways. Filter by country, month, level and format.",
+    alternates: { canonical: sport === "tennis" ? "/trips" : `/trips?sport=${sport}` },
+  };
+}
 
 const LEVEL_PHRASES: Record<string, string> = {
   beginner: "for beginners",

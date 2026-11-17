@@ -3,7 +3,7 @@ import { Court } from "@/components/Court";
 import { searchHref, type SearchKey, type SearchValues } from "@/lib/filters";
 import { SPORTS, SPORT_NAMES, type Mode, type Sport } from "@/lib/sports";
 import { SURFACES } from "@/lib/surfaces";
-import { BTN_OUTLINE, LINK, PILL } from "@/lib/ui";
+import { BTN_OUTLINE, LINK, PAGE, PILL } from "@/lib/ui";
 
 // Shared pieces of the two listing pages (/trips and /resorts): sport pills, the removable
 // filter chips, and what to show when nothing matches.
@@ -115,4 +115,4 @@ export function Empty({ sport, mode, values, active }: Common & { active: [Searc
 
 export const H1 = "text-[2.25rem] leading-[1] font-black tracking-[-0.035em] text-balance sm:text-[3rem]";
 export const H1_RESULTS = "mt-6 max-w-[30ch] text-[1.875rem] leading-[1.1] font-extrabold tracking-[-0.025em] text-balance sm:text-[2.25rem]";
-export const CONTAINER = "mx-auto max-w-[1280px] px-4 sm:px-8";
+export const CONTAINER = PAGE;

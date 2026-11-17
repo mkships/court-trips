@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTAINER } from "@/components/Browse";
 import { OperatorCard, TripCard, VenueCard } from "@/components/Cards";
@@ -8,6 +9,8 @@ import { getHomeData, getOperators } from "@/lib/db";
 import { SPORTS, SPORT_NAMES, type Sport, type Trip } from "@/lib/sports";
 import { groupTrips, programCount } from "@/lib/tiles";
 import { LINK } from "@/lib/ui";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export const revalidate = 3600;
 

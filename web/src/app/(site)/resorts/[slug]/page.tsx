@@ -22,11 +22,18 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const venue = await getVenue((await params).slug);
+  const { slug } = await params;
+  const venue = await getVenue(slug);
   if (!venue) return {};
   const title = `${venue.name}, ${placeLabel(venue)} | Court Trips`;
   const description = venue.description ?? `${venue.name}: courts, facilities and the coached trips that run there.`;
-  return { title, description, openGraph: { title, description, ...(venue.photos[0] && { images: [venue.photos[0]] }) } };
+  return {
+    title,
+    description,
+    alternates: { canonical: `/resorts/${slug}` },
+    // as on trip pages: without a photo, name the site-wide image or the preview has none
+    openGraph: { title, description, images: [venue.photos[0] ?? "/opengraph-image"] },
+  };
 }
 
 // "6 clay courts", "2 indoor hard courts", "Courts"

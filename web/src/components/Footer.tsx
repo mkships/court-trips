@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CurrencyPicker } from "@/components/Currency";
 import { SPORTS, SPORT_NAMES } from "@/lib/sports";
-import { BTN_DARK } from "@/lib/ui";
+import { BTN_DARK, PAGE } from "@/lib/ui";
 import { Wordmark } from "./Wordmark";
 
 const FOOT_LINK = "text-white/75 underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:text-white hover:decoration-white/60";
@@ -39,7 +39,7 @@ export function Footer() {
       {/* the band straddles the footer's top edge: the ink behind it starts halfway down, whatever its height */}
       <div className="relative">
         <div aria-hidden="true" className="absolute inset-x-0 top-1/2 bottom-0 bg-ink" />
-        <div className="relative mx-auto max-w-[1280px] px-4 sm:px-8">
+        <div className={`relative ${PAGE}`}>
           <div className="flex flex-col gap-4 rounded-3xl bg-ball px-6 py-7 text-ink sm:flex-row sm:items-center sm:justify-between sm:px-9">
           <div>
             <p className="text-[1.375rem] leading-tight font-extrabold tracking-[-0.02em]">Run a camp, clinic or getaway?</p>
@@ -54,7 +54,7 @@ export function Footer() {
 
       {/* a trip page's fixed booking bar (phones) would cover the last lines, so leave room for it */}
       <div className="bg-ink [body:has([data-booking-bar])_&]:pb-20 lg:[body:has([data-booking-bar])_&]:pb-0">
-       <div className="mx-auto max-w-[1280px] px-4 sm:px-8">
+       <div className={PAGE}>
         <div className="grid gap-10 pt-12 pb-12 md:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
           <div className="max-w-[40ch]">
             <Wordmark reversed className="h-[28px] w-auto" />

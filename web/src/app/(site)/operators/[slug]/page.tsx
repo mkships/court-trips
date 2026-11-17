@@ -19,10 +19,15 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const operator = await getOperator((await params).slug);
+  const { slug } = await params;
+  const operator = await getOperator(slug);
   if (!operator) return {};
   const title = `${operator.name}: trips and camps | Court Trips`;
-  return { title, description: operator.description ?? `Tennis, pickleball and padel trips run by ${operator.name}.` };
+  return {
+    title,
+    description: operator.description ?? `Tennis, pickleball and padel trips run by ${operator.name}.`,
+    alternates: { canonical: `/operators/${slug}` },
+  };
 }
 
 const host = (url: string) => {

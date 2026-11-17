@@ -27,14 +27,18 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const program = await getProgram((await params).slug);
+  const { slug } = await params;
+  const program = await getProgram(slug);
   if (!program) return {};
   const title = `${program.title}, ${placeLabel(program)} | Court Trips`;
   return {
     title,
     description: program.description,
-    // programs without photos fall back to the site-wide court image
-    openGraph: { title, description: program.description, ...(program.photos[0] && { images: [program.photos[0]] }) },
+    // one address per trip, whichever date a tile linked to
+    alternates: { canonical: `/programs/${slug}` },
+    // A page's own openGraph replaces the site-wide one, image included, so programs without photos
+    // name the site-wide court image themselves.
+    openGraph: { title, description: program.description, images: [program.photos[0] ?? "/opengraph-image"] },
   };
 }
 

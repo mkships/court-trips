@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { CurrencyPicker } from "@/components/Currency";
 import { NavLinks } from "@/components/NavLinks";
-import { BTN_OUTLINE } from "@/lib/ui";
+import { BTN_OUTLINE, PAGE } from "@/lib/ui";
 import { Wordmark } from "./Wordmark";
 
 // Wordmark, the four sections, then the currency and the way in for operators.
 // On phones the sections drop to a second row that scrolls sideways if it has to.
 export function Header() {
   return (
-    <header className="mx-auto grid max-w-[1280px] grid-cols-[1fr_auto] items-center gap-x-6 gap-y-2 px-4 pt-5 pb-3 sm:px-8 lg:grid-cols-[1fr_auto_1fr] lg:pb-5">
+    <header className={`${PAGE} grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-2 pt-5 pb-3 lg:grid-cols-[1fr_auto_1fr] lg:pb-5`}>
       <Link href="/" className="col-start-1 row-start-1 justify-self-start">
         <Wordmark className="h-[26px] w-auto" />
       </Link>
