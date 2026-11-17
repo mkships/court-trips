@@ -368,3 +368,34 @@ export const clicks = pgTable(
   },
   (t) => [index("clicks_at_idx").on(t.at), index("clicks_program_at_idx").on(t.program, t.at)],
 );
+
+// The "new trips and dates" email list (src/app/(site)/newsletter). Double opt-in: a sign-up is
+// `pending` until the visitor clicks the link in the confirmation email, and only `confirmed`
+// addresses are ever mailed. `token` is in that link and in every unsubscribe link, so it's random
+// and never shown anywhere else. `sports` is what they told us they play (empty: all of them);
+// `source` is the page they signed up on. No IPs or user agents.
+export const SUBSCRIBER_STATUSES = ["pending", "confirmed", "unsubscribed"] as const;
+
+export const subscribers = pgTable(
+  "subscribers",
+  {
+    id: uuid().primaryKey().defaultRandom(),
+    // stored lowercased (src/lib/newsletter.ts)
+    email: text().notNull(),
+    status: text().$type<(typeof SUBSCRIBER_STATUSES)[number]>().notNull().default("pending"),
+    token: text().notNull(),
+    sports: text().array().notNull().default(sql`'{}'::text[]`),
+    source: text(),
+    createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
+    // when the last confirmation email went, so a form can't be used to flood someone's inbox
+    confirmSentAt: timestamp({ withTimezone: true }),
+    confirmedAt: timestamp({ withTimezone: true }),
+    unsubscribedAt: timestamp({ withTimezone: true }),
+  },
+  (t) => [
+    uniqueIndex("subscribers_email_idx").on(t.email),
+    uniqueIndex("subscribers_token_idx").on(t.token),
+    index("subscribers_status_idx").on(t.status),
+    check("subscribers_status_check", sql`${t.status} in (${list(SUBSCRIBER_STATUSES)})`),
+  ],
+);

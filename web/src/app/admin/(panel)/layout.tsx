@@ -13,6 +13,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     ["/admin/programs", "Programs", null],
     ["/admin/venues", "Venues", null],
     ["/admin/operators", "Operators", null],
+    ["/admin/subscribers", "Subscribers", null],
   ] as const;
 
   return (

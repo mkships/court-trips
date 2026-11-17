@@ -90,6 +90,16 @@ Setup (Vercel → Settings → Environment Variables, Production; a production b
 
 Previews and local builds use Cloudflare's always-pass test keys and log the email instead of sending it. `BLOB_READ_WRITE_TOKEN` comes with the Blob store already connected to the project; locally without it, photos are skipped with a warning.
 
+## Email list
+
+Players sign up for "new trips and dates, once a month" in the footer, on the home page and at `/newsletter` (the page to link from social profiles).
+
+- Double opt-in. A sign-up is saved as `pending` in the `subscribers` table and gets a confirmation email through Resend. `/newsletter/confirm` then asks for one click (a button, so mail scanners that open links can't confirm for people) and which sports they play. Only `confirmed` addresses may be mailed.
+- Each subscriber has a random token that is the key to their confirm and unsubscribe links (`/newsletter/unsubscribe?token=…`). Every email sent to the list must include that unsubscribe link.
+- The form uses the same Turnstile keys as "List your program", invisible unless Cloudflare wants a click, and a honeypot field. The same address gets at most one confirmation email every 10 minutes, and the form never says whether an address is already on the list.
+- Admin → Subscribers shows the counts, sports and sign-up pages. "Download confirmed (CSV)" exports each address with its unsubscribe link, ready to import into whatever sends the newsletter.
+- **`RESEND_FROM` must be set to a sender on a verified domain** before the list goes public. Without it, confirmation emails only reach the Resend account's own address, so nobody else could confirm.
+
 ## Admin
 
 `/admin` is where listings get reviewed and edited. Only one GitHub account can sign in.

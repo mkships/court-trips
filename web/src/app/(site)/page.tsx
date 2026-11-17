@@ -4,10 +4,12 @@ import { CONTAINER } from "@/components/Browse";
 import { OperatorCard, TripCard, VenueCard } from "@/components/Cards";
 import { CAROUSEL_ITEM, Carousel } from "@/components/Carousel";
 import { HomeHero } from "@/components/HomeHero";
+import { NewsletterForm } from "@/components/NewsletterForm";
 import { BookDirectIcon, CompareIcon, FindIcon } from "@/components/icons";
 import { getHomeData, getOperators } from "@/lib/db";
 import { SPORTS, SPORT_NAMES, type Sport, type Trip } from "@/lib/sports";
 import { groupTrips, programCount } from "@/lib/tiles";
+import { NEWSLETTER_TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
 import { LINK } from "@/lib/ui";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
@@ -129,6 +131,22 @@ export default async function Home() {
           ))}
         </Carousel>
       ))}
+
+      <section
+        aria-labelledby="newsletter-heading"
+        className="mt-16 grid gap-6 rounded-3xl bg-mist px-6 py-8 sm:px-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-12"
+      >
+        <div>
+          <h2 id="newsletter-heading" className="text-[1.625rem] leading-tight font-black tracking-[-0.03em] text-balance sm:text-[2rem]">
+            New trips and dates, once a month
+          </h2>
+          <p className="mt-2 max-w-[48ch] text-[1rem] leading-relaxed text-ink-soft">
+            The camps, clinics and getaways we&apos;ve just added, and next season&apos;s weeks as soon as operators open
+            them. Only for the sports you play.
+          </p>
+        </div>
+        <NewsletterForm siteKey={turnstileSiteKey()} action={NEWSLETTER_TURNSTILE_ACTION} />
+      </section>
 
       {venues.length > 0 && (
         <Carousel

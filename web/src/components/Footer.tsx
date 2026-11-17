@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { CurrencyPicker } from "@/components/Currency";
+import { NewsletterForm } from "@/components/NewsletterForm";
 import { SPORTS, SPORT_NAMES } from "@/lib/sports";
+import { NEWSLETTER_TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
 import { BTN_DARK, PAGE } from "@/lib/ui";
 import { Wordmark } from "./Wordmark";
 
@@ -13,6 +15,7 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
       ...SPORTS.map((sport): [string, string] => [`/trips?sport=${sport}`, `${SPORT_NAMES[sport]} trips`]),
       ["/resorts", "Resorts & clubs"],
       ["/operators", "Operators"],
+      ["/newsletter", "New trips by email"],
     ],
   },
   {
@@ -62,7 +65,9 @@ export function Footer() {
               Tennis, pickleball and padel trips, worldwide. Compare dates and prices here, then book directly with the
               operators who run them.
             </p>
-            <CurrencyPicker dark up className="mt-5" />
+            <p className="mt-6 text-[0.8125rem] font-extrabold text-ball">New trips, once a month</p>
+            <NewsletterForm siteKey={turnstileSiteKey()} action={NEWSLETTER_TURNSTILE_ACTION} dark className="mt-3" />
+            <CurrencyPicker dark up className="mt-6" />
           </div>
           {COLUMNS.map((column) => (
             <nav key={column.title} aria-label={column.title}>
