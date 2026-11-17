@@ -10,6 +10,9 @@
 // - Corners: rounded-full for buttons and pills, rounded-xl for fields, rounded-2xl for tiles
 //   and panels, rounded-3xl for large surfaces (hero, search bar, booking card).
 
+// The page column every public page lines up on: full width up to 1600px, then centred.
+export const PAGE = "mx-auto max-w-[1600px] px-4 sm:px-8 2xl:px-12";
+
 const DISABLED = "disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50";
 const BORDER_HOVER = "border border-rule bg-white transition-colors hover:border-ink hover:bg-mist";
 

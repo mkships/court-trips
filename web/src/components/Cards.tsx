@@ -14,8 +14,8 @@ import { CHIP, LINK_QUIET, PILL } from "@/lib/ui";
 // (photo, then one line each for where, what and detail) so any mix of them lines up in a row.
 
 // ~230px tiles from tablet up: 3, 4 then 5 columns
-export const TILE_GRID = "grid grid-cols-1 gap-x-5 gap-y-9 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5";
-const SIZES = "(min-width: 1280px) 20vw, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw";
+export const TILE_GRID = "grid grid-cols-1 gap-x-5 gap-y-9 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6";
+const SIZES = "(min-width: 1536px) 17vw, (min-width: 1280px) 20vw, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw";
 // the card's name: its underline fades in when the card is pointed at
 const NAME = "underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors group-hover:decoration-current";
 // how many dates fit on a card's rail before "+N"
