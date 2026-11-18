@@ -35,8 +35,15 @@ export type TurnstileHandle = { reset: () => void };
 
 // Cloudflare's bot check. It adds a hidden `cf-turnstile-response` input to the form it sits in,
 // which the server action verifies. Tokens work once, so the form resets it after each attempt.
-export function Turnstile(props: { siteKey: string; action: string; onToken: (ok: boolean) => void; ref?: Ref<TurnstileHandle> }) {
-  const { siteKey, action, onToken, ref } = props;
+// `compact` only shows itself when Cloudflare wants the visitor to do something; most people never see it.
+export function Turnstile(props: {
+  siteKey: string;
+  action: string;
+  onToken: (ok: boolean) => void;
+  ref?: Ref<TurnstileHandle>;
+  compact?: boolean;
+}) {
+  const { siteKey, action, onToken, ref, compact } = props;
   const box = useRef<HTMLDivElement>(null);
   const widget = useRef<string | null>(null);
   const onTokenRef = useRef(onToken);
@@ -60,6 +67,7 @@ export function Turnstile(props: { siteKey: string; action: string; onToken: (ok
           sitekey: siteKey,
           action,
           size: "flexible",
+          ...(compact && { appearance: "interaction-only" }),
           callback: () => onTokenRef.current(true),
           "expired-callback": () => onTokenRef.current(false),
           "error-callback": () => onTokenRef.current(false),
@@ -71,7 +79,7 @@ export function Turnstile(props: { siteKey: string; action: string; onToken: (ok
       if (widget.current) window.turnstile?.remove(widget.current);
       widget.current = null;
     };
-  }, [siteKey, action]);
+  }, [siteKey, action, compact]);
 
-  return <div ref={box} className="min-h-[65px] max-w-[400px]" />;
+  return <div ref={box} className={compact ? "max-w-[400px] empty:hidden" : "min-h-[65px] max-w-[400px]"} />;
 }
