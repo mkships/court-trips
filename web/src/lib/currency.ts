@@ -23,8 +23,9 @@ export type Rates = Record<string, number>;
 // a day. Returns null when the service can't be reached; prices then stay in the listing's currency.
 export async function getRates(): Promise<Rates | null> {
   try {
-    const symbols = CURRENCIES.map(([code]) => code).filter((c) => c !== "EUR").join(",");
-    const res = await fetch(`https://api.frankfurter.dev/v1/latest?base=EUR&symbols=${symbols}`, {
+    // every rate, not just the display currencies: a listing can be priced in any of them
+    // (CURRENCY_OPTIONS in submission-options.ts) and still has to convert
+    const res = await fetch("https://api.frankfurter.dev/v1/latest?base=EUR", {
       next: { revalidate: 86_400 },
       signal: AbortSignal.timeout(4000),
     });

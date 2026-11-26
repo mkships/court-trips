@@ -7,7 +7,6 @@ import { COUNTRIES } from "@/lib/countries";
 import { isoDate, list, many, number, optionalChoice, required, text, url, values } from "@/lib/submission";
 import {
   ACCOMMODATION_OPTIONS,
-  CURRENCY_OPTIONS,
   LEVEL_OPTIONS,
   PRICE_UNIT_OPTIONS,
   RATIO_OPTIONS,
@@ -55,7 +54,8 @@ export const programFormSchema = z
 
     price_min: number(0, 1_000_000),
     price_max: number(0, 1_000_000),
-    currency: optionalChoice([...CURRENCY_OPTIONS]),
+    // the editor offers CURRENCY_OPTIONS, plus whatever the listing already has: the importer takes any ISO code
+    currency: z.preprocess((v) => (v === "" || v == null ? null : v), z.string().regex(/^[A-Z]{3}$/, "A three-letter currency code").nullable()),
     price_unit: optionalChoice(values(PRICE_UNIT_OPTIONS)),
     price_notes: text(300),
     // one per line or comma-separated, as written on the operator's page

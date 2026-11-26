@@ -94,7 +94,7 @@ export async function saveProgram(id: string, _prev: SaveResult, form: FormData)
     priceMin: v.price_min,
     priceMax: v.price_max,
     currency: v.currency,
-    sessions: v.sessions.map((s) => ({ startDate: s.start, endDate: s.end, bookingUrl: s.booking_url })),
+    sessions: v.sessions.map((s) => ({ startDate: s.start, endDate: s.end, bookingUrl: s.booking_url, priceOverride: s.price })),
     photoCount,
   });
   const blocked = intent === "publish" && hasErrors(checks);

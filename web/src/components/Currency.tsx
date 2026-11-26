@@ -42,11 +42,18 @@ function useShown(amount: number, listed: string) {
   return converted == null ? { text: money(amount, listed), converted: false } : { text: `≈ ${money(converted, currency!)}`, converted: true };
 }
 
+// The operator's own price with its currency code: "$540 (USD)", since $ alone could be several
+// currencies, but just "MYR 2,700" where the amount already carries the code.
+function listed(amount: number, currency: string) {
+  const text = money(amount, currency);
+  return text.includes(currency) ? text : `${text} (${currency})`;
+}
+
 // A price. Converted prices get "≈" and say what the operator actually charges on hover.
 export function Money({ amount, currency, prefix }: { amount: number; currency: string; prefix?: string }) {
   const { text, converted } = useShown(amount, currency);
   return (
-    <span title={converted ? `${money(amount, currency)} (${currency}), converted at today's rate` : undefined}>
+    <span title={converted ? `${listed(amount, currency)}, converted at today's rate` : undefined}>
       {prefix && `${prefix} `}
       {text}
     </span>
@@ -59,7 +66,7 @@ export function ListedPrice({ amount, currency, className }: { amount: number; c
   if (!converted) return null;
   return (
     <p className={className}>
-      The operator charges {money(amount, currency)} ({currency}). The converted price is a guide.
+      The operator charges {listed(amount, currency)}. The converted price is a guide.
     </p>
   );
 }
