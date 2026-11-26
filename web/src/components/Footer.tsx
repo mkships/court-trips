@@ -4,7 +4,7 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { SPORTS, SPORT_NAMES } from "@/lib/sports";
 import { NEWSLETTER_TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
 import { BTN_DARK, PAGE } from "@/lib/ui";
-import { Wordmark } from "./Wordmark";
+import { Logo } from "./Logo";
 
 const FOOT_LINK = "text-white/75 underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:text-white hover:decoration-white/60";
 
@@ -35,7 +35,7 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
   },
 ];
 
-// The reversed theme: ink, with the wordmark's yellow "court". `on-surface` turns focus rings yellow.
+// The reversed theme: ink, with the white emblem and the wordmark's yellow "court". `on-surface` turns focus rings yellow.
 export function Footer() {
   return (
     <footer className="on-surface mt-20 text-white md:mt-24">
@@ -60,8 +60,9 @@ export function Footer() {
        <div className={PAGE}>
         <div className="grid gap-10 pt-12 pb-12 md:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
           <div className="max-w-[40ch]">
-            <Wordmark reversed className="h-[28px] w-auto" />
-            <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/75">
+            {/* pulled left and up by the lockup's own clear space, so the artwork lines up with the text */}
+            <Logo layout="stacked" reversed className="-mt-3.5 -ml-4 w-[144px]" />
+            <p className="mt-1 text-[0.9375rem] leading-relaxed text-white/75">
               Tennis, pickleball and padel trips, worldwide. Compare dates and prices here, then book directly with the
               operators who run them.
             </p>

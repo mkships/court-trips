@@ -4,6 +4,7 @@ import { CONTAINER } from "@/components/Browse";
 import { OperatorCard, TripCard, VenueCard } from "@/components/Cards";
 import { CAROUSEL_ITEM, Carousel } from "@/components/Carousel";
 import { HomeHero } from "@/components/HomeHero";
+import { Illustration } from "@/components/Illustration";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { BookDirectIcon, CompareIcon, FindIcon } from "@/components/icons";
 import { continentOf } from "@/lib/country-info";
@@ -86,39 +87,40 @@ export default async function Home() {
     <main className={CONTAINER}>
       <HomeHero stats={stats} listings={listings} />
 
-      <section aria-labelledby="about-heading" className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-        <div>
-          <h2 id="about-heading" className="max-w-[16ch] text-[2rem] leading-[1.05] font-black tracking-[-0.03em] text-balance sm:text-[2.5rem]">
-            Every coached racket trip, in one place
-          </h2>
-          <p className="mt-4 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft">
-            Court Trips is an independent directory of tennis, pickleball and padel holidays. We list them, you book
-            them with the operator.
-          </p>
-          <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
-            {[
-              [atLeast(trips.length), "trips"],
-              [atLeast(countries.size), "countries"],
-              [continents, continents === 1 ? "continent" : "continents"],
-            ].map(([value, label]) => (
-              <div key={label} className="flex flex-col-reverse">
-                <dt className="text-[0.9375rem] text-ink-soft">{label}</dt>
-                <dd className="text-[2rem] leading-none font-black tracking-[-0.03em] tabular-nums">{value}</dd>
-              </div>
-            ))}
-          </dl>
+      {/* what Court Trips is, on the brand's warm paper with its illustration */}
+      <section aria-labelledby="about-heading" className="mt-16 rounded-3xl bg-warm px-6 py-8 sm:px-10 sm:py-10">
+        <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:gap-12">
+          <div>
+            <h2 id="about-heading" className="max-w-[16ch] text-[2rem] leading-[1.05] font-black tracking-[-0.03em] text-balance sm:text-[2.5rem]">
+              Every coached racket trip, in one place
+            </h2>
+            <p className="mt-4 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft">
+              Court Trips is an independent directory of tennis, pickleball and padel holidays. We list them, you book
+              them with the operator.
+            </p>
+            <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
+              {[
+                [atLeast(trips.length), "trips"],
+                [atLeast(countries.size), "countries"],
+                [continents, continents === 1 ? "continent" : "continents"],
+              ].map(([value, label]) => (
+                <div key={label} className="flex flex-col-reverse">
+                  <dt className="text-[0.9375rem] text-ink-soft">{label}</dt>
+                  <dd className="text-[2rem] leading-none font-black tracking-[-0.03em] tabular-nums">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <Illustration className="mx-auto h-auto w-[220px] md:w-[320px]" />
         </div>
-        <ol className="grid gap-6 sm:grid-cols-3 lg:gap-8">
-          {POINTS.map(({ icon: Icon, title, text }, i) => (
-            <li key={title} className="border-t-2 border-ink pt-4">
-              <div className="flex items-center justify-between">
-                <Icon className="size-8" />
-                <span aria-hidden="true" className="text-[0.8125rem] font-extrabold text-ink-soft tabular-nums">
-                  0{i + 1}
-                </span>
+        <ol className="mt-8 grid gap-x-10 gap-y-5 border-t border-ink/10 pt-7 md:grid-cols-3">
+          {POINTS.map(({ icon: Icon, title, text }) => (
+            <li key={title} className="flex gap-3.5">
+              <Icon className="mt-0.5 size-7 shrink-0" />
+              <div>
+                <h3 className="text-[1.0625rem] font-extrabold tracking-[-0.01em]">{title}</h3>
+                <p className="mt-1 text-[0.9375rem] leading-relaxed text-ink-soft">{text}</p>
               </div>
-              <h3 className="mt-3 text-[1.125rem] font-extrabold tracking-[-0.01em]">{title}</h3>
-              <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-soft">{text}</p>
             </li>
           ))}
         </ol>

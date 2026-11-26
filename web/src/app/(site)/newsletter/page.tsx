@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { H1 } from "@/components/Browse";
+import { Illustration } from "@/components/Illustration";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { NEWSLETTER_TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
 
@@ -18,13 +19,19 @@ const POINTS = [
 
 export default function NewsletterPage() {
   return (
-    <main className="mx-auto max-w-[880px] px-4 sm:px-8">
-      <h1 className={`mt-6 max-w-[18ch] ${H1}`}>New racket trips, once a month</h1>
-      <p className="mt-4 max-w-[56ch] text-[1.0625rem] leading-relaxed text-ink-soft">
-        One email, about once a month, with the trips and dates that are new on Court Trips. No offers from anyone
-        else.
-      </p>
-      <NewsletterForm siteKey={turnstileSiteKey()} action={NEWSLETTER_TURNSTILE_ACTION} className="mt-6 max-w-[520px]" />
+    <main className="mx-auto max-w-[1040px] px-4 sm:px-8">
+      {/* the sign-up comes first on a phone; the illustration follows it */}
+      <div className="mt-4 grid items-center gap-8 rounded-3xl bg-warm px-6 py-8 sm:px-10 sm:py-10 md:grid-cols-[minmax(0,1fr)_auto] md:gap-12">
+        <div>
+          <h1 className={`max-w-[18ch] ${H1}`}>New racket trips, once a month</h1>
+          <p className="mt-4 max-w-[52ch] text-[1.0625rem] leading-relaxed text-ink-soft">
+            One email, about once a month, with the trips and dates that are new on Court Trips. No offers from anyone
+            else.
+          </p>
+          <NewsletterForm siteKey={turnstileSiteKey()} action={NEWSLETTER_TURNSTILE_ACTION} className="mt-6 max-w-[520px]" />
+        </div>
+        <Illustration eager className="mx-auto h-auto w-[240px] md:w-[300px] lg:w-[360px]" />
+      </div>
       <ul className="mt-12 grid gap-6 sm:grid-cols-3">
         {POINTS.map(([title, text]) => (
           <li key={title} className="border-t-2 border-ink pt-4">

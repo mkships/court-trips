@@ -1,0 +1,713 @@
+{
+  "name": "Court Trips / First Light",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 6575,
+      "sha256": "142b70a730fc68532bc356a656219999252b42b98df5651fc27e44676af173ab"
+    },
+    {
+      "file": "app-icons/app-green-1024.png",
+      "bytes": 53990,
+      "sha256": "230479561fd6e1b99d587e05b2945098b0bbafc0809962187d8e1d8ba6d47bde",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "app-icons/app-green-180.png",
+      "bytes": 5992,
+      "sha256": "bcd335c2100c417bd6a721a218536ce567da73755e538d069c428c80da3592ab",
+      "width": 180,
+      "height": 180
+    },
+    {
+      "file": "app-icons/app-green-192.png",
+      "bytes": 6348,
+      "sha256": "87f9454bac904ca5b698f7f87b274d4f0f3afe806d28cbdaae30269074c610f3",
+      "width": 192,
+      "height": 192
+    },
+    {
+      "file": "app-icons/app-green-512.png",
+      "bytes": 21489,
+      "sha256": "1e28141646707f585d657aacbe0f5f1f051e1870223ed84dce9b2cf048c68ab3",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "app-icons/app-green.svg",
+      "bytes": 1171,
+      "sha256": "1d23cbf9724d895eeb0fa477863a22ca1f1a7fbb08f902ed55c099911dad79e3"
+    },
+    {
+      "file": "app-icons/app-ink-1024.png",
+      "bytes": 54725,
+      "sha256": "5b77af3f1f7154a52487824548d23e4a7e0cb9135ed4850f27b5e1e2dea5e2c3",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "app-icons/app-ink-180.png",
+      "bytes": 6076,
+      "sha256": "5924bfc654c0cd52d04254cfb37a29957386a8db2f9b8a350fb2b3524831de75",
+      "width": 180,
+      "height": 180
+    },
+    {
+      "file": "app-icons/app-ink-192.png",
+      "bytes": 6418,
+      "sha256": "bda9f9920f293b55015cc65393e8ebda59cdb6f98787578dd0f2cbf0402335b1",
+      "width": 192,
+      "height": 192
+    },
+    {
+      "file": "app-icons/app-ink-512.png",
+      "bytes": 21702,
+      "sha256": "a09fdbb0a9cc9364933709da302eb8424cf9f2bcc619235fe66db5562d479384",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "app-icons/app-ink.svg",
+      "bytes": 1167,
+      "sha256": "346e71550071ccff15dfdd3982187bb4bf2dbde7075e52d52e5a3e2d368c28f1"
+    },
+    {
+      "file": "app-icons/app-maskable.svg",
+      "bytes": 1222,
+      "sha256": "68e4a92740285dfe110344b7aa77e1b3d4446011281e486fb8a15676e03989e2"
+    },
+    {
+      "file": "app-icons/app-paper-1024.png",
+      "bytes": 57077,
+      "sha256": "84837b8518629453440a52d477984bcc9791fadb9d70a274ba040c3231ba84b4",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "app-icons/app-paper-180.png",
+      "bytes": 6286,
+      "sha256": "c20731cbfbf3158f29734a59a85fcbfaa309296ba69598470413255ffc1f77f6",
+      "width": 180,
+      "height": 180
+    },
+    {
+      "file": "app-icons/app-paper-192.png",
+      "bytes": 6654,
+      "sha256": "bef09be773cd3160e3080243d48f8e3411067be79fd85ebbee4c5d4adaa000ce",
+      "width": 192,
+      "height": 192
+    },
+    {
+      "file": "app-icons/app-paper-512.png",
+      "bytes": 22277,
+      "sha256": "99ba30fb9d0dbf62791b00295a27032e131d3742eea2f5c1a4f994915f26a461",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "app-icons/app-paper.svg",
+      "bytes": 1171,
+      "sha256": "a14d58038c07d8219d3dacabab4b50460ccdbe4f7d8fc555467ff6ff12c1aaf5"
+    },
+    {
+      "file": "app-icons/app-white-1024.png",
+      "bytes": 46145,
+      "sha256": "2f844e6c52b0a06529a81f7bd92bee62d4f9fc74284af706aba27c3a0dbee097",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "app-icons/app-white-180.png",
+      "bytes": 6098,
+      "sha256": "bdfeacfad946a503d29a61021e48ded78f49c9cda9ff5feb3de6a566f08cd26d",
+      "width": 180,
+      "height": 180
+    },
+    {
+      "file": "app-icons/app-white-192.png",
+      "bytes": 6473,
+      "sha256": "7cb77560d3c260f117fc131200b0dbce28e96063c4983f8eee48313119d405e8",
+      "width": 192,
+      "height": 192
+    },
+    {
+      "file": "app-icons/app-white-512.png",
+      "bytes": 19672,
+      "sha256": "adf51ce3a8db68cc07575dbc5f48bacf95dfb8338f90298fac0c758830c2c1d5",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "app-icons/app-white.svg",
+      "bytes": 1171,
+      "sha256": "22b220e2a37bbb98429a6dc81ce2dd573fa84d18509af401cb6cc1b6fa10583c"
+    },
+    {
+      "file": "app-icons/apple-touch-icon.png",
+      "bytes": 6286,
+      "sha256": "c20731cbfbf3158f29734a59a85fcbfaa309296ba69598470413255ffc1f77f6",
+      "width": 180,
+      "height": 180
+    },
+    {
+      "file": "app-icons/icon-192.png",
+      "bytes": 6654,
+      "sha256": "bef09be773cd3160e3080243d48f8e3411067be79fd85ebbee4c5d4adaa000ce",
+      "width": 192,
+      "height": 192
+    },
+    {
+      "file": "app-icons/icon-512.png",
+      "bytes": 22277,
+      "sha256": "99ba30fb9d0dbf62791b00295a27032e131d3742eea2f5c1a4f994915f26a461",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "app-icons/icon-maskable-192.png",
+      "bytes": 6067,
+      "sha256": "19b61512b4d5ea0d46ec6d9055d760b31d8159e2863d22c6a522bf7bab100bfc",
+      "width": 192,
+      "height": 192
+    },
+    {
+      "file": "app-icons/icon-maskable-512.png",
+      "bytes": 20563,
+      "sha256": "53c74d791af5c72326ea937f01a95d700c98df7772569800d66c438c24623e6e",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "file": "app-icons/site.webmanifest",
+      "bytes": 700,
+      "sha256": "0f3636dc6f86b79274a4410cc88065e756669ec2cf5162193b154d435bd5ee13"
+    },
+    {
+      "file": "favicons/favicon-dark-128.png",
+      "bytes": 3621,
+      "sha256": "05cfe9ca767ca738ac069c11fd7c52ea7516e4a56577c9b1c51ca38e13b6be36",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "file": "favicons/favicon-dark-16.png",
+      "bytes": 560,
+      "sha256": "27fd51b45ccc9c7c2e60380a96529ed6d9a43671fde4ab618bb2b651ea27e2b3",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "file": "favicons/favicon-dark-24.png",
+      "bytes": 855,
+      "sha256": "11ec6708be105563a2953af1a29370cca80dc7f016f0edde828d1e3b27ad6ce0",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "file": "favicons/favicon-dark-32.png",
+      "bytes": 1078,
+      "sha256": "0663a2bb68f02c3df82e2680f4198f36664e74d54c8344f250bee4f4d733e001",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "file": "favicons/favicon-dark-48.png",
+      "bytes": 1542,
+      "sha256": "31bf11250909a6e8cdc0d0a4e6250bb51db659ffd3e901785411b5b5cd80d4d4",
+      "width": 48,
+      "height": 48
+    },
+    {
+      "file": "favicons/favicon-dark-64.png",
+      "bytes": 1976,
+      "sha256": "c5d94a42c59a9340c66c46081651c2af0bcf8ca2cf56acd93180874ce7f3f86d",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "file": "favicons/favicon-dark.ico",
+      "bytes": 3234,
+      "sha256": "44397f60a84c186463209640ad69baf320c30ea9103ff27a80293f41591c86eb"
+    },
+    {
+      "file": "favicons/favicon-dark.svg",
+      "bytes": 783,
+      "sha256": "4f75c7f8b30715604c5bb12876e3bfe6f9c2e594c1c5c9a6437a32563ea5f2f7"
+    },
+    {
+      "file": "favicons/favicon-light-128.png",
+      "bytes": 3607,
+      "sha256": "9e381cb8be9ed764370b254dfa641213757772dd89b50897ad4143a726c77376",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "file": "favicons/favicon-light-16.png",
+      "bytes": 559,
+      "sha256": "af43d70979eef37d1226f55f94b954ef15168701629f08c1a1bdab875289d633",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "file": "favicons/favicon-light-24.png",
+      "bytes": 855,
+      "sha256": "a5d47a787f9171ecbb5aa832fef7022e7e36d6bf571cc7b27457d4aed52885c4",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "file": "favicons/favicon-light-32.png",
+      "bytes": 1093,
+      "sha256": "29f13d238543c96d5cccf57a42402ff6fc78f1cbb2553d7bbdee4e06cf34b8fd",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "file": "favicons/favicon-light-48.png",
+      "bytes": 1549,
+      "sha256": "9b1d3401cc86f876fd1d0459830d13d54872812d732f98fcae0143fba522ed3e",
+      "width": 48,
+      "height": 48
+    },
+    {
+      "file": "favicons/favicon-light-64.png",
+      "bytes": 1980,
+      "sha256": "8e1434fef6ce5ce1890623ebfe56b7ab32a2ca50b7aec7f61e6eff396e290159",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "file": "favicons/favicon-light.svg",
+      "bytes": 785,
+      "sha256": "0d7641bb81ff60c35fbb35c0ca52ec2028bec4f2c8d19d3681d7ecc5bc662e17"
+    },
+    {
+      "file": "favicons/favicon.ico",
+      "bytes": 3255,
+      "sha256": "42841b3aec6cbc161362be83297dab4936cdd6290d1d177619e89faf51b9089a"
+    },
+    {
+      "file": "favicons/favicon.svg",
+      "bytes": 935,
+      "sha256": "1a7cc9d50662beb702295a7fb88fd3c2746ae494a6dc4f41937bd564efaf1cdc"
+    },
+    {
+      "file": "favicons/safari-pinned-tab.svg",
+      "bytes": 771,
+      "sha256": "c18124fcfb6097af83f35b9ad840485e264504df2281dd662f8078e7f48a340b"
+    },
+    {
+      "file": "illustrations/court-trips-editorial-640.jpg",
+      "bytes": 57761,
+      "sha256": "5cc46ca18eab9be2388723982bf2015b9cdc952e517d1dad13b409b5a9790bfe",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "illustrations/court-trips-editorial-640.png",
+      "bytes": 459522,
+      "sha256": "c6cccfa128ede301599d2b895da7e4c7182098ed762c71ae3c4a3992709e17a2",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "illustrations/court-trips-editorial-640.webp",
+      "bytes": 43466,
+      "sha256": "de8abdbbb29334e4125f0b2a456efd7c9017cef72e61d85547caec9c8c87bbbe",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "illustrations/court-trips-editorial-original.png",
+      "bytes": 1461585,
+      "sha256": "e164e8fa5edd7c15abb4feb6c87860b972f6326c592046e7ee3972f0decd4ad7",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "illustrations/court-trips-editorial-transparent-640.png",
+      "bytes": 314156,
+      "sha256": "6497ba47186aaa881afb153a5b69064b010c712d5e7a83e4f9926c84d1e1f8df",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "illustrations/court-trips-editorial-transparent-640.webp",
+      "bytes": 236788,
+      "sha256": "5410b65cc521aa8c1f33c7ee4e8206ac89ad765956ed9b30e754e50af73d9e52",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "illustrations/court-trips-editorial-transparent.png",
+      "bytes": 1142321,
+      "sha256": "d2f36213236804ecd95447c8fca3b1f3373180a968e4e8f19374851006bacfd1",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "illustrations/court-trips-editorial-transparent.webp",
+      "bytes": 743966,
+      "sha256": "127ca685cb02b7594d8801fc65b12854a017b2e48681469dbaa5f53f24753347",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "illustrations/court-trips-editorial-warm-paper-640.png",
+      "bytes": 306005,
+      "sha256": "9d36874c0528fce56c15729a53062fc8b4cb55a4359b9658544a09445f2b3f4f",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "file": "illustrations/court-trips-editorial-warm-paper.png",
+      "bytes": 917963,
+      "sha256": "464026a2fb252b1906d14ad08908f47de4ef15ddadb1d6f63118f2adeb4f175e",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "illustrations/court-trips-editorial-warm-paper.webp",
+      "bytes": 585378,
+      "sha256": "1da19146b8c88f91b05c3d85e37dd4ee96c9f4e778bc8a65bcb379b89d8077ef",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "illustrations/court-trips-editorial.webp",
+      "bytes": 99032,
+      "sha256": "e240059dd1b23be7ef2ed53003fb1f3470c900ddca6aa290f86eddbf68a05918",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "logos/emblem/black.png",
+      "bytes": 34305,
+      "sha256": "8266f11e9206852c3b6c22aacc10ab64804b78cd8a7a7e26ee7048f4647f7745",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/emblem/black.svg",
+      "bytes": 1128,
+      "sha256": "492c17b35148e5d588851978fd7f9f99e34f18ba7add1e9fc244c660f56bd00a"
+    },
+    {
+      "file": "logos/emblem/ink.png",
+      "bytes": 42697,
+      "sha256": "bff206ad58f1b4921b0ae426c8b9ee5370564f24f146e3f8556bdaa2b347a4ab",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/emblem/ink.svg",
+      "bytes": 1124,
+      "sha256": "9530a67181fa600118f952dafa5e2b085b9ae4601c5bc39ebe559e0f1068030d"
+    },
+    {
+      "file": "logos/emblem/primary.png",
+      "bytes": 44155,
+      "sha256": "c774aabf64820149fbfc587d84091113dc9cd2a177f53d628c5930d083224c98",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/emblem/primary.svg",
+      "bytes": 1132,
+      "sha256": "e3dfff62dc3eaa57131e56cf3a0256933d5d3633db5e2da93574bb32775e97ee"
+    },
+    {
+      "file": "logos/emblem/reversed.png",
+      "bytes": 32824,
+      "sha256": "c0af9c2eddf0d2a93988298d0c9b1097f725d1fe75ef82a6006f929b13cdc145",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/emblem/reversed.svg",
+      "bytes": 1134,
+      "sha256": "2e6f81f0493f79df17d78ba29c050c2ce3cc1863ac0205abc0d8933f42cd0765"
+    },
+    {
+      "file": "logos/emblem/white.png",
+      "bytes": 29500,
+      "sha256": "422808e50fe4ece69284608c282cc06f752884b33ea48f684f82ac5169231375",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/emblem/white.svg",
+      "bytes": 1128,
+      "sha256": "7771bae5000ec1dd3bd452ca3f29213eed85ee3759399dfc9f55ce0e53c3c18a"
+    },
+    {
+      "file": "logos/horizontal/black.png",
+      "bytes": 24503,
+      "sha256": "f494327fd2fd88b289d0106cfa5a026fc11c33278938d7fa389c77abd078a7bc",
+      "width": 1600,
+      "height": 383
+    },
+    {
+      "file": "logos/horizontal/black.svg",
+      "bytes": 5685,
+      "sha256": "8df0a2ea22f6bba8e0df019f78beec5c5a85635a12fe5305b058f58d35d8ed27"
+    },
+    {
+      "file": "logos/horizontal/ink.png",
+      "bytes": 30897,
+      "sha256": "6729ee7f2e68271333fbd78d691889ea94c7ac023bacda3265f1128af467d7cc",
+      "width": 1600,
+      "height": 383
+    },
+    {
+      "file": "logos/horizontal/ink.svg",
+      "bytes": 5681,
+      "sha256": "de1e57b4f358d282f2e38aa75ad1be8ad02574199f2a6ac63b88f4d6e8614ae2"
+    },
+    {
+      "file": "logos/horizontal/primary.png",
+      "bytes": 33633,
+      "sha256": "fae15a22e25964133df9544285ab07ca91c25ac328d59e5287514a811e651a96",
+      "width": 1600,
+      "height": 383
+    },
+    {
+      "file": "logos/horizontal/primary.svg",
+      "bytes": 5689,
+      "sha256": "7d8de8187568cab6d38a4e00cdfe0ab1e809125a3bcf2f59af7f246931c71dbe"
+    },
+    {
+      "file": "logos/horizontal/reversed.png",
+      "bytes": 28161,
+      "sha256": "4f6b8bd70fd050ad663fd19e175eada1d7d140ce9db7ec3b3c32e9bff4e8b16a",
+      "width": 1600,
+      "height": 383
+    },
+    {
+      "file": "logos/horizontal/reversed.svg",
+      "bytes": 5691,
+      "sha256": "2b72b5d9c6eee6cb46334a5b47af4f4afb84b46cf7544086718d18931187bf06"
+    },
+    {
+      "file": "logos/horizontal/white.png",
+      "bytes": 23675,
+      "sha256": "67436f23bf8826c5dc26ffe9fdfbbf5a47a569e3b66f14b41365a32002be334d",
+      "width": 1600,
+      "height": 383
+    },
+    {
+      "file": "logos/horizontal/white.svg",
+      "bytes": 5685,
+      "sha256": "f79c6bc7bb89da80011e5b2cd0bf4400f22ecabf3fcfd58808ea2f845fc7e2ba"
+    },
+    {
+      "file": "logos/stacked/black.png",
+      "bytes": 34140,
+      "sha256": "e687dfeb72a9a23e5660bdd1920b23f60985ab4aeba8909e27a52d841746389c",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/stacked/black.svg",
+      "bytes": 5671,
+      "sha256": "f25d968d646879918e2f0b8398e4efc53e50c84e4454e1c56751ad9c63c2149f"
+    },
+    {
+      "file": "logos/stacked/ink.png",
+      "bytes": 43362,
+      "sha256": "0180a8e785864fcf35f1083fcf8e0591874a57b023450afa3a23d5fe28be99b2",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/stacked/ink.svg",
+      "bytes": 5667,
+      "sha256": "6c33c974a42d8dd65a14ca6fe1505fe0b931a1f3ce7f97cf0a76cf79736c3420"
+    },
+    {
+      "file": "logos/stacked/primary.png",
+      "bytes": 45984,
+      "sha256": "45a46e6102a879ba030c5a3d6b470d88aea4291e6229a8d300effb5257fb6316",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/stacked/primary.svg",
+      "bytes": 5675,
+      "sha256": "764303ebc1793f7cf635989d7a470a6920873007afabd17ccff24b94ee0b05dc"
+    },
+    {
+      "file": "logos/stacked/reversed.png",
+      "bytes": 36412,
+      "sha256": "69627ad34265942b75be2bd037aa9a6653327cc12b3b7149279286c63b2f4e76",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/stacked/reversed.svg",
+      "bytes": 5677,
+      "sha256": "8e58203c0f211b08e73ec40bf10e9ea97fda34fa92535d3ef6e7224cf3211ecc"
+    },
+    {
+      "file": "logos/stacked/white.png",
+      "bytes": 31639,
+      "sha256": "7cde72bee12d4f92bee412a133603f01ca15e09d39f4139a943a651314022bf0",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "logos/stacked/white.svg",
+      "bytes": 5671,
+      "sha256": "e46839521f672f33a3efd54e099295c23cf7fd2e47d2edb67ec5d63e9e4b3674"
+    },
+    {
+      "file": "logos/wordmark/black.png",
+      "bytes": 23365,
+      "sha256": "8b50fefe996e08ec5798c295e9dc81c72a3a80c399c960a2152a780b61a912b9",
+      "width": 1600,
+      "height": 387
+    },
+    {
+      "file": "logos/wordmark/black.svg",
+      "bytes": 4540,
+      "sha256": "eb801392a161fd3c85c8bf653c24781cf05828911707ddc6a10b61b580b291f7"
+    },
+    {
+      "file": "logos/wordmark/ink.png",
+      "bytes": 29405,
+      "sha256": "98d65b5c237c32c23c13d20e05560244eba5b69e458bb35b47d556bdac2fca72",
+      "width": 1600,
+      "height": 387
+    },
+    {
+      "file": "logos/wordmark/ink.svg",
+      "bytes": 4536,
+      "sha256": "dbea3dd98b75c995efe97ee535ba256402a505b82b673a355fcf2eab07ff1213"
+    },
+    {
+      "file": "logos/wordmark/primary.png",
+      "bytes": 31834,
+      "sha256": "caaacddbc5868cc4f2f920cc37446d4088bb4845e8fa07751f522083a371577d",
+      "width": 1600,
+      "height": 387
+    },
+    {
+      "file": "logos/wordmark/primary.svg",
+      "bytes": 4544,
+      "sha256": "c42735571b521d8e60ad93d39a0a18736ca2f02a46d6eb045e42986bb7b8ce32"
+    },
+    {
+      "file": "logos/wordmark/reversed.png",
+      "bytes": 28386,
+      "sha256": "88b258c474c04d80017a14d416b37e5089be333009ffa033527142c7c5f2585b",
+      "width": 1600,
+      "height": 387
+    },
+    {
+      "file": "logos/wordmark/reversed.svg",
+      "bytes": 4546,
+      "sha256": "a02411e2575ff49ce9ceb8fc48f9dc012f62f079978a49741908a47e465afa5e"
+    },
+    {
+      "file": "logos/wordmark/white.png",
+      "bytes": 22655,
+      "sha256": "0303730ea4d73a2a7603622b8bf34b74b07d13556b59549819fe5d51c5c2fd6e",
+      "width": 1600,
+      "height": 387
+    },
+    {
+      "file": "logos/wordmark/white.svg",
+      "bytes": 4540,
+      "sha256": "529a1fc225fab5e7a3dc32acdb292859a8aa128c48047ecd78d8202c0cd8db43"
+    },
+    {
+      "file": "palette.json",
+      "bytes": 122,
+      "sha256": "c9280212b4449b566c36647509c6736b3c1857f69c43acce68f44520d5b68b3e"
+    },
+    {
+      "file": "previews/asset-overview.png",
+      "bytes": 208507,
+      "sha256": "bd8fe6cc273724cc24bdec83ae5a7bf1a2b196fe88a2e871b195a8fe07213b96",
+      "width": 1600,
+      "height": 1600
+    },
+    {
+      "file": "previews/asset-overview.svg",
+      "bytes": 80262,
+      "sha256": "ced60b808f486a70bffb732b6e9058ae3f12d311f2e3e408ff941b3db6d8bfb8"
+    },
+    {
+      "file": "previews/illustration-uses.png",
+      "bytes": 345469,
+      "sha256": "15690487e07111e394a1cd2bcb976d3f6aebde663c1d280eedb51a553c7785ef",
+      "width": 1440,
+      "height": 1270
+    },
+    {
+      "file": "previews/illustration-uses.svg",
+      "bytes": 1534905,
+      "sha256": "7536c83270ab20e5ae74c76b8174ab9a9cc7aa9a9890b028484f916ddf069a7f"
+    },
+    {
+      "file": "social/open-graph.png",
+      "bytes": 316973,
+      "sha256": "26534620b0cc8f14acc8fba9d0651bff572cfc136d2bddf1d76c69feb676a1fd",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "file": "social/open-graph.svg",
+      "bytes": 1529884,
+      "sha256": "e468cd1d796929ae95cc032c5ca4814b5cfb8bab2679396ea22e52992758b0bf"
+    },
+    {
+      "file": "social/square.png",
+      "bytes": 522586,
+      "sha256": "71a86fe2b7115c5876f45199d8d904115e0021bea7c3a17bf5a18428fc6e166f",
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "file": "social/square.svg",
+      "bytes": 1528132,
+      "sha256": "8eb5545707051a97ae412239b4822fd2be142ad9f728bc4e601101693a611643"
+    },
+    {
+      "file": "source/background-extraction.json",
+      "bytes": 562,
+      "sha256": "82812aee2211dbd3445db9eee6d58fdfff7b18c709753ea0523dfd54e2f958f2"
+    },
+    {
+      "file": "source/emblem.svg",
+      "bytes": 1118,
+      "sha256": "3a7b71d935a2f667084746a37286ac9b1075342513e1026f636718a45fe7f2d6"
+    },
+    {
+      "file": "source/favicon-dark.svg",
+      "bytes": 781,
+      "sha256": "99cf020865d37837843ea46f915974246702228747e10979c051259cbc0762db"
+    },
+    {
+      "file": "source/favicon.svg",
+      "bytes": 781,
+      "sha256": "cc6331a22734ccba80414bbcb9d3a5e7fa1f7bb8422374ac1f68864ebb128962"
+    },
+    {
+      "file": "source/generation-notes.json",
+      "bytes": 1547,
+      "sha256": "0278527eb1a46bf7d2e614fe4eb11a90d2105ffb9b439c3c6166f0c6cf56c733"
+    },
+    {
+      "file": "source/wordmark-reversed.svg",
+      "bytes": 4494,
+      "sha256": "cc0d62c101506ac65a90c932eb2625d15a9913027d4b9ad9f0a8a9c14517451a"
+    },
+    {
+      "file": "source/wordmark.svg",
+      "bytes": 4494,
+      "sha256": "adad28919c82653146549581302aae7ca451cedba8ab7f427cd6441a035629ef"
+    }
+  ]
+}

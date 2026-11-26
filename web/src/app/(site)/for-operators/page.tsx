@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTAINER, H1 } from "@/components/Browse";
-import { Court } from "@/components/Court";
+import { Emblem } from "@/components/Logo";
 import { getHomeData } from "@/lib/db";
 import { SURFACES } from "@/lib/surfaces";
 import { groupTrips } from "@/lib/tiles";
@@ -59,8 +59,8 @@ export default async function ForOperatorsPage() {
             </a>
           </div>
         </div>
-        <div className="hidden items-center p-10 md:flex">
-          <Court sport="tennis" drawIn className="block aspect-[28/15] w-full" />
+        <div className="hidden items-center justify-center p-10 md:flex">
+          <Emblem reversed className="w-[220px]" />
         </div>
       </div>
 

@@ -1,0 +1,7 @@
+{
+  "method": "Built-in image_gen, background-extraction edit, transparent_background=true",
+  "prompt": "Use case: background-extraction. Remove only the pale peach/cream paper background and make it genuinely transparent, including negative spaces within the approved Court Trips illustration. Preserve the existing composition, shapes and details. Do not redraw, simplify or restyle.",
+  "source": "illustrations/court-trips-editorial-original.png",
+  "alpha_master": "illustrations/court-trips-editorial-transparent.png",
+  "flatten_background": "#faf8f1"
+}

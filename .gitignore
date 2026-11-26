@@ -17,3 +17,6 @@ harvest/data.db
 # Claude Code: personal settings stay local; the project's commands (/harvest) are shared
 .claude/*
 !.claude/commands/
+
+# the brand kit as one download; the folder beside it is what is tracked
+brand/first-light.zip

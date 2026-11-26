@@ -39,7 +39,10 @@ export async function sendConfirmEmail(email: string, token: string) {
     "",
     "If you didn't sign up, ignore this email and you won't hear from us again.",
   ].join("\n");
-  const html = `<p>Thanks for signing up to Court Trips.</p>
+  // the logo is a PNG on the site (email clients don't draw SVG); the alt text covers blocked images
+  const logo = new URL("/brand/logo-email.png", siteUrl()).toString();
+  const html = `<p><img src="${logo}" width="200" height="48" alt="Court Trips" style="display:block;border:0"></p>
+<p>Thanks for signing up to Court Trips.</p>
 <p>Confirm your email address and we'll send you new tennis, pickleball and padel trips and dates, about once a month.</p>
 <p><a href="${link}" style="display:inline-block;padding:12px 22px;border-radius:999px;background:#16233a;color:#ffffff;font-weight:600;text-decoration:none">Confirm my email</a></p>
 <p style="color:#55627a">If you didn't sign up, ignore this email and you won't hear from us again.</p>`;
