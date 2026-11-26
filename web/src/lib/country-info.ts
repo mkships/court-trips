@@ -93,3 +93,20 @@ export function continentOf(name: string | null | undefined): Continent | null {
 }
 
 export const FLAG_CODES = Object.values(CODES);
+
+// The name people type into a search box, where it differs from the one we store.
+const SEARCH_NAMES: Record<string, string> = { Türkiye: "Turkey" };
+export const countryLabel = (name: string) => SEARCH_NAMES[name] ?? name;
+
+// A country's part of an address: "/padel/spain", "/pickleball/turks-and-caicos", "/tennis/turkey".
+export const countrySlug = (name: string) =>
+  countryLabel(name)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+// "in the United States", "in Greece", "in Turkey"
+const THE = /^(United |Dominican Republic|Czech Republic|Netherlands|Turks and Caicos|Bahamas|Philippines|Maldives)/;
+export const inCountry = (name: string) => `in ${THE.test(countryLabel(name)) ? "the " : ""}${countryLabel(name)}`;

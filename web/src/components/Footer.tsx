@@ -1,42 +1,58 @@
 import Link from "next/link";
 import { CurrencyPicker } from "@/components/Currency";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { inCountry } from "@/lib/country-info";
+import { getHomeData } from "@/lib/db";
+import { landingHref, landingPages, tilesFor, type Landing } from "@/lib/landing";
 import { SPORTS, SPORT_NAMES } from "@/lib/sports";
+import { programCount } from "@/lib/tiles";
 import { NEWSLETTER_TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
 import { BTN_DARK, PAGE } from "@/lib/ui";
 import { Logo } from "./Logo";
 
 const FOOT_LINK = "text-white/75 underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors hover:text-white hover:decoration-white/60";
 
-const COLUMNS: { title: string; links: [string, string][] }[] = [
-  {
-    title: "Explore",
+type Column = { title: string; links: [string, string][] };
+
+const EXPLORE: Column = {
+  title: "Explore",
+  links: [
+    ...SPORTS.map((sport): [string, string] => [`/${sport}`, `${SPORT_NAMES[sport]} trips`]),
+    ["/resorts", "Resorts & clubs"],
+    ["/operators", "Operators"],
+    ["/newsletter", "New trips by email"],
+  ],
+};
+const FOR_OPERATORS: Column = {
+  title: "For operators",
+  links: [
+    ["/for-operators", "How listing works"],
+    ["/list-your-program", "List your program"],
+  ],
+};
+// how many sport-and-country pages the footer names; the rest are a click away on /destinations
+const TOP_DESTINATIONS = 5;
+
+// The sport-and-country pages with the most trips ("Padel in Spain"), so every page links to them.
+async function destinations(): Promise<Column> {
+  const { listings } = await getHomeData();
+  const places = landingPages(listings)
+    .filter((p): p is Extract<Landing, { kind: "place" }> => p.kind === "place")
+    .map((page) => ({ page, trips: programCount(tilesFor(page, listings)) }))
+    .sort((a, b) => b.trips - a.trips)
+    .slice(0, TOP_DESTINATIONS);
+  return {
+    title: "Destinations",
     links: [
-      ...SPORTS.map((sport): [string, string] => [`/trips?sport=${sport}`, `${SPORT_NAMES[sport]} trips`]),
-      ["/resorts", "Resorts & clubs"],
-      ["/operators", "Operators"],
-      ["/newsletter", "New trips by email"],
+      ...places.map(({ page }): [string, string] => [landingHref(page), `${SPORT_NAMES[page.sport]} ${inCountry(page.country)}`]),
+      ["/destinations", "All destinations"],
     ],
-  },
-  {
-    title: "Formats",
-    links: [
-      ["/trips?format=camp", "Camps"],
-      ["/trips?format=clinic", "Clinics"],
-      ["/trips?format=social_getaway", "Getaways"],
-    ],
-  },
-  {
-    title: "For operators",
-    links: [
-      ["/for-operators", "How listing works"],
-      ["/list-your-program", "List your program"],
-    ],
-  },
-];
+  };
+}
 
 // The reversed theme: ink, with the white emblem and the wordmark's yellow "court". `on-surface` turns focus rings yellow.
-export function Footer() {
+export async function Footer() {
+  const columns = [EXPLORE, await destinations(), FOR_OPERATORS];
   return (
     <footer className="on-surface mt-20 text-white md:mt-24">
       {/* the band straddles the footer's top edge: the ink behind it starts halfway down, whatever its height */}
@@ -70,7 +86,7 @@ export function Footer() {
             <NewsletterForm siteKey={turnstileSiteKey()} action={NEWSLETTER_TURNSTILE_ACTION} dark className="mt-3" />
             <CurrencyPicker dark up className="mt-6" />
           </div>
-          {COLUMNS.map((column) => (
+          {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
               <p className="text-[0.8125rem] font-extrabold text-ball">{column.title}</p>
               <ul className="mt-3 space-y-2.5 text-[0.9375rem]">

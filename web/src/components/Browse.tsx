@@ -15,9 +15,7 @@ export const FORMAT_NOUNS: Record<string, [string, string]> = {
 };
 export const SURFACE_NAMES: Record<string, string> = { Hard: "hard", Clay: "clay", Grass: "grass", "Artificial Turf": "artificial turf" };
 
-// "in the United States", "in Greece"
-const THE = /^(United |Dominican Republic|Czech Republic|Netherlands|Turks and Caicos|Bahamas|Philippines|Maldives)/;
-export const inCountry = (c: string) => `in ${THE.test(c) ? "the " : ""}${c}`;
+export { inCountry } from "@/lib/country-info";
 
 export const monthLabel = (ym: string) => {
   const [y, m] = ym.split("-").map(Number);

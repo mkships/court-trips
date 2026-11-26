@@ -8,11 +8,16 @@ import { DateTable } from "@/components/program/DateTable";
 import { Gallery } from "@/components/program/Gallery";
 import { VenueBlock } from "@/components/program/VenueBlock";
 import { CategoryIcon, InclusionIcon, LevelIcon, PinIcon } from "@/components/icons";
+import { JsonLd } from "@/components/JsonLd";
+import { Crumbs } from "@/components/Landing";
+import { countryLabel } from "@/lib/country-info";
 import { CATEGORY_NAMES, PRICE_UNIT_NAMES, levelLabel, placeLabel } from "@/lib/format";
-import { getProgram, getVenue, programSlugs } from "@/lib/db";
+import { getHomeData, getProgram, getVenue, programSlugs } from "@/lib/db";
+import { breadcrumbs, tripEvents, type Crumb } from "@/lib/jsonld";
+import { landingAt, landingHref } from "@/lib/landing";
 import { RatingBadges } from "@/components/Ratings";
 import { SPORT_NAMES, type ProgramDetail, type Sport } from "@/lib/sports";
-import { LINK, LINK_QUIET } from "@/lib/ui";
+import { LINK } from "@/lib/ui";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -57,17 +62,22 @@ export default async function ProgramPage({ params, searchParams }: Props) {
   if (!program) notFound();
   const session = pickSession(program, (await searchParams).date);
   const sport = program.sports[0] as Sport;
-  const venue = program.venueSlug ? await getVenue(program.venueSlug) : null;
+  const [venue, { listings }] = await Promise.all([program.venueSlug ? getVenue(program.venueSlug) : null, getHomeData()]);
+
+  // the way back up: the sport, then the sport in this country when that has a page of its own
+  const place = program.country ? landingAt(landingHref({ kind: "place", sport, country: program.country }), listings) : null;
+  const trail: Crumb[] = [
+    { name: "Home", href: "/" },
+    { name: SPORT_NAMES[sport], href: `/${sport}` },
+    ...(place && program.country ? [{ name: countryLabel(program.country), href: landingHref(place) }] : []),
+  ];
 
   return (
     <>
       <main className={CONTAINER}>
-        <Link href={`/trips?sport=${sport}`} className={`inline-flex items-center gap-1.5 text-[0.9375rem] ${LINK_QUIET}`}>
-          <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true">
-            <path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          All {SPORT_NAMES[sport].toLowerCase()} trips
-        </Link>
+        <JsonLd data={breadcrumbs([...trail, { name: program.title, href: `/programs/${program.slug}` }])} />
+        {program.sessions.length > 0 && <JsonLd data={tripEvents(program)} />}
+        <Crumbs crumbs={trail} trail />
         <h1 className={`mt-3 max-w-[22ch] ${H1}`}>
           {program.title}
         </h1>
