@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const alt = "Court Trips: tennis, pickleball and padel trips";
@@ -16,9 +18,25 @@ async function schibsted(weight: number) {
   }
 }
 
-// Default link preview: the brand on a tennis court, drawn to scale like the hero.
+// The brand artwork, read from public/brand when the image is built.
+async function art(file: string, type: string) {
+  const bytes = await readFile(join(process.cwd(), "public/brand", file));
+  return `data:${type};base64,${bytes.toString("base64")}`;
+}
+
+// Default link preview, for every page without a photo of its own: the logo, the home page's
+// headline and the illustration, on the brand's warm paper. Trip and resort pages share their photos.
 export default async function OpengraphImage() {
-  const font = await schibsted(800);
+  const [bold, medium, logo, illustration] = await Promise.all([
+    schibsted(800),
+    schibsted(500),
+    art("logo.svg", "image/svg+xml"),
+    art("illustration-640.png", "image/png"),
+  ]);
+  const fonts = [
+    ...(bold ? [{ name: "Schibsted Grotesk", data: bold, weight: 800 as const }] : []),
+    ...(medium ? [{ name: "Schibsted Grotesk", data: medium, weight: 500 as const }] : []),
+  ];
   return new ImageResponse(
     (
       <div
@@ -26,34 +44,32 @@ export default async function OpengraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#3a6e52",
-          padding: 64,
-          color: "#fff",
-          fontFamily: font ? "Schibsted Grotesk" : undefined,
+          alignItems: "center",
+          background: "#faf8f1",
+          padding: "56px 56px 56px 64px",
+          color: "#16233a",
+          fontFamily: fonts.length ? "Schibsted Grotesk" : undefined,
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 620 }}>
-          <div style={{ fontSize: 40, fontWeight: 800, letterSpacing: -1 }}>Court Trips</div>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 600, height: "100%" }}>
+          {/* the lockup's box starts with the emblem's clear space: pull it back so the emblem lines up with the text */}
+          <img src={logo} width={322} height={77} alt="" style={{ marginLeft: -8 }} />
           {/* explicit lines: next/og has no text-wrap: balance */}
-          <div style={{ display: "flex", flexDirection: "column", fontSize: 60, fontWeight: 800, lineHeight: 1.02, letterSpacing: -2 }}>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 60, fontWeight: 800, lineHeight: 1.04, letterSpacing: -2 }}>
             <span>Play tennis,</span>
             <span>pickleball and padel</span>
             <span>somewhere new</span>
           </div>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 26, fontWeight: 500, lineHeight: 1.35 }}>
+            <span>Coached camps, clinics and getaways</span>
+            <span style={{ color: "#2d5d8c" }}>courttrips.com</span>
+          </div>
         </div>
-        <div style={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "flex-end" }}>
-          <svg width="440" height="209" viewBox="-12.2 -5.8 24.4 11.6">
-            <rect x="-11.885" y="-5.485" width="23.77" height="10.97" fill="#2d5d8c" stroke="#fff" strokeWidth="0.12" />
-            <path
-              d="M0 -5.9V5.9M-6.4 -4.115V4.115M6.4 -4.115V4.115M-6.4 0H6.4M-11.885 -4.115H11.885M-11.885 4.115H11.885"
-              stroke="#fff"
-              strokeWidth="0.12"
-              fill="none"
-            />
-          </svg>
+        <div style={{ display: "flex", flex: 1, justifyContent: "flex-end" }}>
+          <img src={illustration} width={468} height={468} alt="" />
         </div>
       </div>
     ),
-    { ...size, fonts: font ? [{ name: "Schibsted Grotesk", data: font, weight: 800 }] : [] },
+    { ...size, fonts },
   );
 }

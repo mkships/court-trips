@@ -21,6 +21,10 @@
   --color-alert: #b3261e;
   /* the wordmark's hard-court blue */
   --color-court: #2d5d8c;
+  /* the green around a court: the emblem's horizon */
+  --color-garden: #3a6e52;
+  /* the brand's warm paper: only for panels that hold the illustration */
+  --color-warm: #faf8f1;
   /* availability dots and admin badges: available / waitlist */
   --color-ok: #2f9e5b;
   --color-ok-ink: #1d6b3c;

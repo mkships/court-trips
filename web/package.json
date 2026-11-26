@@ -10,6 +10,7 @@
     "photos:upload": "node scripts/photo-variants.mjs && node --env-file-if-exists=.env.local scripts/upload-photos.mjs",
     "photos:prepare": "node scripts/photo-variants.mjs",
     "smoke": "node scripts/smoke.mjs",
+    "brand:illustration": "node scripts/brand-illustration.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate.mjs",
     "db:seed": "node --env-file-if-exists=.env.local scripts/db-seed.mjs",

@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { signInSetupMissing } from "@/lib/admin/auth";
 import { readSession, SESSION_COOKIE } from "@/lib/admin/session";
+import { Logo } from "@/components/Logo";
 import { BTN_DARK, BTN_OUTLINE } from "@/lib/ui";
 
 const ERRORS: Record<string, string> = {
@@ -20,7 +21,8 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <main className="grid min-h-screen place-items-center px-4">
       <div className="w-full max-w-[420px] rounded-3xl bg-white p-8 shadow-card">
-        <p className="text-[1.375rem] font-black tracking-[-0.03em]">Court Trips admin</p>
+        <Logo layout="stacked" className="-mt-3 -ml-4 w-[140px]" />
+        <p className="mt-2 text-[1.375rem] font-black tracking-[-0.03em]">Court Trips admin</p>
         <p className="mt-1 text-ink-soft">Review submissions and drafts, and edit listings.</p>
         {error && ERRORS[error] && (
           <p role="alert" className="mt-5 rounded-xl border border-alert/40 bg-alert/5 px-4 py-3 text-[0.9375rem] text-alert">
