@@ -43,11 +43,11 @@ function heading(n: number, sport: Sport, v: SearchValues) {
     .join(" ");
 }
 
-// The trips are the headline number; departures and countries say how much is behind them.
-// "68 departures across 9 countries, soonest first."
-function summary(departures: number, countries: number) {
+// The trips are the headline number; dates and countries say how much is behind them.
+// "68 dates across 9 countries, soonest first."
+function summary(dates: number, countries: number) {
   const parts = [];
-  if (departures > 0) parts.push(`${departures} ${departures === 1 ? "departure" : "departures"}`);
+  if (dates > 0) parts.push(`${dates} ${dates === 1 ? "date" : "dates"}`);
   if (countries > 1) parts.push(`${parts.length ? "across" : "Across"} ${countries} countries`);
   return parts.length ? `${parts.join(" ")}, soonest first.` : "Soonest first.";
 }
@@ -61,7 +61,7 @@ export default async function TripsPage({ searchParams }: Props) {
   // filter the dates, then show each trip once with the dates that passed
   const tiles = forSport.filter((t) => matchesTile(t, values));
   const trips = groupTrips(tiles);
-  const departures = tiles.filter((t) => t.start).length;
+  const dates = tiles.filter((t) => t.start).length;
   const countries = new Set(tiles.map((t) => t.country).filter(Boolean)).size;
   const active = (Object.entries(values) as [SearchKey, string][]).filter(([k]) => k !== "courts");
 
@@ -70,7 +70,7 @@ export default async function TripsPage({ searchParams }: Props) {
       <SearchBar key={JSON.stringify([sport, values])} mode="programs" sport={sport} tiles={forSport} venues={[]} initial={values} placement="page" />
       <SportPills sport={sport} mode="programs" values={values} />
       <h1 className={H1_RESULTS}>{heading(trips.length, sport, values)}</h1>
-      {trips.length > 0 && <p className="mt-2 text-ink-soft">{summary(departures, countries)}</p>}
+      {trips.length > 0 && <p className="mt-2 text-ink-soft">{summary(dates, countries)}</p>}
       <FilterChips sport={sport} mode="programs" values={values} active={active} />
       {trips.length === 0 ? (
         <Empty sport={sport} mode="programs" values={values} active={active} />

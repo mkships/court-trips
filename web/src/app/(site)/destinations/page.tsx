@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTAINER, H1 } from "@/components/Browse";
+import { CountryFlag } from "@/components/CountryFlag";
 import { JsonLd } from "@/components/JsonLd";
 import { Crumbs } from "@/components/Landing";
-import { continentOf, countryCode, countryLabel, type Continent } from "@/lib/country-info";
+import { continentOf, countryLabel, type Continent } from "@/lib/country-info";
 import { getHomeData } from "@/lib/db";
 import { searchHref } from "@/lib/filters";
 import { breadcrumbs } from "@/lib/jsonld";
@@ -65,17 +66,11 @@ export default async function DestinationsPage() {
             {continent}
           </h2>
           <ul className="mt-4 grid gap-x-6 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
-            {list.map((c) => {
-              const code = countryCode(c.country);
-              return (
+            {list.map((c) => (
                 <li key={c.country}>
                   <Link href={c.href} className="group -mx-3 flex items-center gap-4 rounded-2xl px-3 py-2.5 transition-colors hover:bg-mist">
                     <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-mist transition-colors group-hover:bg-white" aria-hidden="true">
-                      {code && (
-                        // a small SVG served from /flags: next/image would add nothing
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={`/flags/${code.toLowerCase()}.svg`} alt="" width={36} height={24} loading="lazy" className="h-6 w-9 rounded-[5px] ring-1 ring-ink/10" />
-                      )}
+                      <CountryFlag country={c.country} />
                     </span>
                     <span className="min-w-0">
                       <span className="block font-semibold">{countryLabel(c.country)}</span>
@@ -85,8 +80,7 @@ export default async function DestinationsPage() {
                     </span>
                   </Link>
                 </li>
-              );
-            })}
+            ))}
           </ul>
         </section>
       ))}

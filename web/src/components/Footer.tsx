@@ -3,9 +3,8 @@ import { CurrencyPicker } from "@/components/Currency";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { inCountry } from "@/lib/country-info";
 import { getHomeData } from "@/lib/db";
-import { landingHref, landingPages, tilesFor, type Landing } from "@/lib/landing";
+import { busiest, landingHref } from "@/lib/landing";
 import { SPORTS, SPORT_NAMES } from "@/lib/sports";
-import { programCount } from "@/lib/tiles";
 import { NEWSLETTER_TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
 import { BTN_DARK, PAGE } from "@/lib/ui";
 import { Logo } from "./Logo";
@@ -36,11 +35,7 @@ const TOP_DESTINATIONS = 5;
 // The sport-and-country pages with the most trips ("Padel in Spain"), so every page links to them.
 async function destinations(): Promise<Column> {
   const { listings } = await getHomeData();
-  const places = landingPages(listings)
-    .filter((p): p is Extract<Landing, { kind: "place" }> => p.kind === "place")
-    .map((page) => ({ page, trips: programCount(tilesFor(page, listings)) }))
-    .sort((a, b) => b.trips - a.trips)
-    .slice(0, TOP_DESTINATIONS);
+  const places = busiest("place", listings).slice(0, TOP_DESTINATIONS);
   return {
     title: "Destinations",
     links: [
