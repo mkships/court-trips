@@ -10,7 +10,7 @@ import { COUNTRIES } from "@/lib/countries";
 import {
   ACCOMMODATION_OPTIONS,
   CATEGORY_OPTIONS,
-  CURRENCY_OPTIONS,
+  CURRENCY_CHOICES,
   LEVEL_OPTIONS,
   PRICE_UNIT_OPTIONS,
   RATIO_OPTIONS,
@@ -81,6 +81,8 @@ export function ProgramEditor({
   const [result, dispatch] = useActionState<SaveResult, FormData>(saveProgram.bind(null, p.id), null);
   const [pending, startTransition] = useTransition();
   const [rows, setRows] = useState(() => p.sessions.map((s) => ({ key: nextRow++, s })));
+  // a harvested listing can be in a currency that isn't offered; keep it in the list so a save doesn't lose it
+  const currencies = !p.currency || CURRENCY_CHOICES.some(([code]) => code === p.currency) ? CURRENCY_CHOICES : [...CURRENCY_CHOICES, p.currency];
   const errors = result?.errors ?? {};
   const sessionError = (part: string, i: number) => errors[`session_${part}.${i}`];
 
@@ -172,7 +174,7 @@ export function ProgramEditor({
         </div>
       </Card>
 
-      <Card title="Dates" intro="Every date, past ones included; past dates don't show on the site.">
+      <Card title="Dates" intro="Every date, past ones included; past dates don't show on the site. A date's own price is the one the site shows for it; leave it empty to use the From price below.">
         <div className="grid gap-3">
           {rows.map(({ key, s }, i) => (
             <div key={key} className="grid grid-cols-2 items-start gap-3 rounded-2xl border border-rule p-3 sm:grid-cols-[1fr_1fr_1fr_1fr_auto]">
@@ -222,11 +224,11 @@ export function ProgramEditor({
         <TextField name="schedule_notes" label="Schedule notes" optional defaultValue={p.scheduleNotes} error={errors.schedule_notes} />
       </Card>
 
-      <Card title="Price">
+      <Card title="Price" intro="From is the price of every date that has no price of its own. Up to is for reference and isn't shown on the site.">
         <div className="grid gap-6 sm:grid-cols-4">
           <TextField name="price_min" label="From" optional type="number" step="any" defaultValue={p.priceMin} error={errors.price_min} />
           <TextField name="price_max" label="Up to" optional type="number" step="any" defaultValue={p.priceMax} error={errors.price_max} />
-          <SelectField name="currency" label="Currency" optional options={CURRENCY_OPTIONS} defaultValue={p.currency} error={errors.currency} />
+          <SelectField name="currency" label="Currency" optional options={currencies} defaultValue={p.currency} error={errors.currency} />
           <SelectField name="price_unit" label="Per" optional options={PRICE_UNIT_OPTIONS} defaultValue={p.priceUnit} error={errors.price_unit} />
         </div>
         <TextField name="price_notes" label="Price notes" optional defaultValue={p.priceNotes} error={errors.price_notes} />

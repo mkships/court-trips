@@ -38,8 +38,9 @@ function SummaryRow({ icon, label, children }: { icon: React.ReactNode; label: s
   return (
     <div className="flex items-center gap-3 py-2.5">
       <span className="text-ink-soft">{icon}</span>
-      <dt className="text-[0.9375rem] text-ink-soft">{label}</dt>
-      <dd className="ml-auto text-right text-[0.9375rem] font-semibold">{children}</dd>
+      {/* a long value (an operator's full name) wraps; the label never does */}
+      <dt className="shrink-0 text-[0.9375rem] text-ink-soft">{label}</dt>
+      <dd className="ml-auto min-w-0 pl-3 text-right text-[0.9375rem] font-semibold text-balance">{children}</dd>
     </div>
   );
 }

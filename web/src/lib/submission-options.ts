@@ -31,7 +31,23 @@ export const GENDER_OPTIONS = [
   ["male", "Men only"],
 ] as const;
 export const LANGUAGE_OPTIONS = ["English", "Spanish", "French", "Italian", "German", "Portuguese"] as const;
-export const CURRENCY_OPTIONS = ["USD", "EUR", "GBP", "CAD", "AUD"] as const;
+// The currencies a listing can be priced in: every one with a daily exchange rate (src/lib/currency.ts),
+// so a visitor can always see the price in their own. The five most common first, then by code.
+export const CURRENCY_OPTIONS = [
+  "USD", "EUR", "GBP", "CAD", "AUD",
+  "BRL", "CHF", "CNY", "CZK", "DKK", "HKD", "HUF", "IDR", "ILS", "INR", "ISK", "JPY", "KRW", "MXN", "MYR",
+  "NOK", "NZD", "PHP", "PLN", "RON", "SEK", "SGD", "THB", "TRY", "ZAR",
+] as const;
+const CURRENCY_NAMES: Record<(typeof CURRENCY_OPTIONS)[number], string> = {
+  USD: "US dollar", EUR: "Euro", GBP: "British pound", CAD: "Canadian dollar", AUD: "Australian dollar",
+  BRL: "Brazilian real", CHF: "Swiss franc", CNY: "Chinese yuan", CZK: "Czech koruna", DKK: "Danish krone",
+  HKD: "Hong Kong dollar", HUF: "Hungarian forint", IDR: "Indonesian rupiah", ILS: "Israeli shekel", INR: "Indian rupee",
+  ISK: "Icelandic króna", JPY: "Japanese yen", KRW: "South Korean won", MXN: "Mexican peso", MYR: "Malaysian ringgit",
+  NOK: "Norwegian krone", NZD: "New Zealand dollar", PHP: "Philippine peso", PLN: "Polish złoty", RON: "Romanian leu",
+  SEK: "Swedish krona", SGD: "Singapore dollar", THB: "Thai baht", TRY: "Turkish lira", ZAR: "South African rand",
+};
+// for a select: the code is what's saved, the name is there so nobody has to know that RM is MYR
+export const CURRENCY_CHOICES = CURRENCY_OPTIONS.map((code) => [code, `${code} (${CURRENCY_NAMES[code]})`] as const);
 export const PRICE_UNIT_OPTIONS = [
   ["per_person", "Per person"],
   ["per_person_sharing", "Per person, sharing a room"],

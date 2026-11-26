@@ -11,7 +11,7 @@ import { COUNTRIES } from "@/lib/countries";
 import {
   ACCOMMODATION_OPTIONS,
   CATEGORY_OPTIONS,
-  CURRENCY_OPTIONS,
+  CURRENCY_CHOICES,
   GENDER_OPTIONS,
   INCLUSION_OPTIONS,
   LANGUAGE_OPTIONS,
@@ -181,7 +181,7 @@ export function ListingForm({ siteKey, turnstileAction }: { siteKey: string; tur
         <div className="grid gap-6 sm:grid-cols-3">
           <TextField name="price_min" label="From" optional type="number" min={0} step="any" error={errors.price_min} />
           <TextField name="price_max" label="Up to" optional type="number" min={0} step="any" error={errors.price_max} />
-          <SelectField name="currency" label="Currency" optional options={CURRENCY_OPTIONS} error={errors.currency} />
+          <SelectField name="currency" label="Currency" optional options={CURRENCY_CHOICES} error={errors.currency} />
         </div>
         <SelectField name="price_unit" label="The price is" optional options={PRICE_UNIT_OPTIONS} error={errors.price_unit} />
         <TextField name="price_notes" label="Price notes" optional placeholder="e.g. Single room supplement €200; early-bird 10% off" maxLength={300} error={errors.price_notes} />

@@ -1,6 +1,8 @@
 // Automatic checks on a listing before it goes live: the ones that came up checking listings by hand.
 // Errors block publishing; warnings are worth a look but can be right (a program with one photo).
 
+import { CURRENCY_OPTIONS } from "@/lib/submission-options";
+
 export type Check = { level: "error" | "warning"; message: string; field?: string };
 
 type ProgramForChecks = {
@@ -16,7 +18,7 @@ type ProgramForChecks = {
   priceMin: number | null;
   priceMax: number | null;
   currency: string | null;
-  sessions: { startDate: string; endDate: string; bookingUrl: string | null }[];
+  sessions: { startDate: string; endDate: string; bookingUrl: string | null; priceOverride: number | null }[];
   photoCount: number;
 };
 
@@ -53,6 +55,8 @@ export function programChecks(p: ProgramForChecks): Check[] {
   else if (!isHttps(p.bookingUrl)) warning("The booking link isn't https", "booking_url");
   if ((p.priceMin != null || p.priceMax != null) && !p.currency) error("A price without a currency", "currency");
   if (p.priceMin != null && p.priceMax != null && p.priceMax < p.priceMin) error("The highest price is below the lowest", "price_max");
+  if (p.currency && !(CURRENCY_OPTIONS as readonly string[]).includes(p.currency))
+    warning(`No exchange rate for ${p.currency}: visitors see this price in ${p.currency} only`, "currency");
 
   const now = today();
   const upcoming = p.sessions.filter((s) => s.startDate >= now);
@@ -60,6 +64,10 @@ export function programChecks(p: ProgramForChecks): Check[] {
   if (p.sessions.length === 0 && !p.scheduleNotes) error("No dates and no schedule notes", "sessions");
   else if (upcoming.length === 0 && !p.scheduleNotes) warning("No upcoming dates: it will show as “dates on request”", "sessions");
   if (past > 0) warning(`${past} ${past === 1 ? "date has" : "dates have"} passed and won't show`, "sessions");
+  // a date's own price wins over From, so a From that disagrees with all of them is an edit that changed nothing
+  const own = upcoming.flatMap((s) => (s.priceOverride == null ? [] : [s.priceOverride]));
+  if (p.priceMin != null && upcoming.length > 0 && own.length === upcoming.length && Math.min(...own) !== p.priceMin)
+    warning(`Every upcoming date has its own price (from ${Math.min(...own)}), so the From price of ${p.priceMin} isn't shown. Clear the dates' prices to use it`, "price_min");
 
   // Active Away's listing pages show every date a day before the one in its booking link
   for (const s of p.sessions) {
