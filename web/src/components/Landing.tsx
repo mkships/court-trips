@@ -95,38 +95,56 @@ function liveLine(page: Landing, facts: Facts) {
   return `The trips listed here are based in ${some(facts.places, 4, ["other place", "other places"])}, and run by ${operators}.`;
 }
 
-function FactRow({ facts }: { facts: Facts }) {
-  const { cheapest, firstMonth, lastMonth } = facts;
-  return (
-    <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-5">
-      <Fact icon={FindIcon} label={facts.trips === 1 ? "trip" : "trips"}>
-        {facts.trips}
-      </Fact>
-      <Fact icon={BookDirectIcon} label={facts.operators.length === 1 ? "operator" : "operators"}>
-        {facts.operators.length}
-      </Fact>
-      {cheapest && (
-        <Fact icon={TicketIcon} label={`lowest price${cheapest.unit ? `, ${PRICE_UNIT_NAMES[cheapest.unit]}` : ""}`}>
-          <Money amount={cheapest.amount} currency={cheapest.currency} />
-        </Fact>
-      )}
-      {firstMonth && lastMonth && (
-        <Fact icon={CompareIcon} label="trip dates">{firstMonth === lastMonth ? shortMonth(firstMonth) : `${shortMonth(firstMonth)} to ${shortMonth(lastMonth)}`}</Fact>
-      )}
-    </dl>
-  );
-}
-
 type IconType = (props: { className?: string }) => React.ReactNode;
+type BarFact = { icon: IconType; label: string; value: React.ReactNode; wide?: boolean };
 
-// A number with its label under it and its icon alongside (the same icons as the home page's steps).
-function Fact({ icon: Icon, label, children }: { icon: IconType; label: string; children: React.ReactNode }) {
+// What's listed right now, as one bar that takes only the width its facts need: each fact has its
+// icon beside its number, the same padding all round, and a hairline before the next. The values run
+// from "3" to a range of months, and the lines and even padding are what make that look deliberate.
+// It stays white so the icons keep their ink and yellow.
+// A tablet has no room for one row, so the bar is two by two, still only as wide as its facts. On a
+// phone it is full width: the two counts share a row, and the price and the dates (the long ones)
+// take a row each.
+function FactBar({ facts }: { facts: Facts }) {
+  const { cheapest, firstMonth, lastMonth } = facts;
+  const items: BarFact[] = [
+    { icon: FindIcon, label: facts.trips === 1 ? "trip" : "trips", value: facts.trips },
+    { icon: BookDirectIcon, label: facts.operators.length === 1 ? "operator" : "operators", value: facts.operators.length },
+  ];
+  if (cheapest)
+    items.push({
+      icon: TicketIcon,
+      label: `lowest price${cheapest.unit ? `, ${PRICE_UNIT_NAMES[cheapest.unit]}` : ""}`,
+      value: <Money amount={cheapest.amount} currency={cheapest.currency} />,
+      wide: true,
+    });
+  if (firstMonth && lastMonth)
+    items.push({
+      icon: CompareIcon,
+      label: "trip dates",
+      value: firstMonth === lastMonth ? shortMonth(firstMonth) : `${shortMonth(firstMonth)} to ${shortMonth(lastMonth)}`,
+      wide: true,
+    });
   return (
-    <div className="grid grid-cols-[auto_1fr] items-center gap-x-3">
-      <Icon className="col-start-1 row-span-2 row-start-1 size-8" />
-      <dt className="col-start-2 row-start-2 text-[0.9375rem] text-ink-soft">{label}</dt>
-      <dd className="col-start-2 row-start-1 text-[1.625rem] leading-none font-black tracking-[-0.03em] tabular-nums">{children}</dd>
-    </div>
+    // the hairlines are the gaps: one pixel of the rule colour showing between white cells
+    <dl
+      aria-label="What's listed"
+      className="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-rule ring-1 ring-rule sm:w-fit sm:grid-cols-[auto_auto] lg:flex"
+    >
+      {items.map(({ icon: Icon, label, value, wide }, i) => (
+        <div
+          key={label}
+          className={`grid grid-cols-[auto_1fr] items-center gap-x-3 bg-white px-4 py-3.5 sm:px-5 ${wide ? "max-sm:col-span-2" : ""} ${
+            // an odd fact out fills its row, so the bar never shows an empty cell
+            items.length % 2 === 1 && i === items.length - 1 ? "sm:max-lg:col-span-2" : ""
+          }`}
+        >
+          <Icon className="col-start-1 row-span-2 row-start-1 size-7" />
+          <dt className="col-start-2 row-start-2 text-[0.875rem] text-ink-soft">{label}</dt>
+          <dd className="col-start-2 row-start-1 text-[1.125rem] leading-tight font-extrabold tracking-[-0.02em] whitespace-nowrap tabular-nums">{value}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 
@@ -271,7 +289,7 @@ export async function LandingPage({ page }: { page: Landing }) {
         {intro && `${intro} `}
         {liveLine(page, facts)}
       </p>
-      <FactRow facts={facts} />
+      <FactBar facts={facts} />
 
       {page.kind === "sport" && <SportHub page={page} listings={listings} tiles={tiles} exists={exists} />}
       {page.kind === "format" && <FormatPage page={page} listings={listings} trips={trips} exists={exists} />}
