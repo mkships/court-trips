@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { countryCode } from "@/lib/country-info";
 import { SPORT_NAMES, type Listing, type Mode, type Sport, type Venue } from "@/lib/sports";
 import { SURFACES } from "@/lib/surfaces";
 import { MODE_PATHS, matchesTile, type SearchKey, type SearchValues } from "@/lib/filters";
@@ -341,8 +342,18 @@ function Row({ selected, disabled, onClick, children }: RowProps) {
   );
 }
 
-// Tiny court in the sport's colours: the row icon for each country.
-function CourtTile({ sport }: { sport: Sport }) {
+// The row icon for each country: its flag, the fastest way to find yours in a list. A place we
+// have no flag for (old data) gets a tiny court in the sport's colours instead.
+function CountryTile({ country, sport }: { country: string; sport: Sport }) {
+  const code = countryCode(country);
+  if (code)
+    return (
+      <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-mist" aria-hidden="true">
+        {/* a 1 to 5 KB SVG served from /flags; next/image would add nothing */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`/flags/${code.toLowerCase()}.svg`} alt="" width={36} height={24} loading="lazy" className="h-6 w-9 rounded-[5px] ring-1 ring-ink/10" />
+      </span>
+    );
   return (
     <span className="grid size-12 shrink-0 place-items-center rounded-xl" style={{ backgroundColor: SURFACES[sport].surround }} aria-hidden="true">
       <span className="relative block h-5 w-8 border-[1.5px] border-white" style={{ backgroundColor: SURFACES[sport].court }}>
@@ -382,7 +393,7 @@ function WherePanel(props: {
       </Row>
       {countries.map((c) => (
         <Row key={c.country} selected={selected === c.country} onClick={() => onChoose(c.country)}>
-          <CourtTile sport={sport} />
+          <CountryTile country={c.country} sport={sport} />
           <span className="min-w-0">
             <span className="block font-semibold">{c.country}</span>
             <span className="block truncate text-[0.875rem] text-ink-soft">

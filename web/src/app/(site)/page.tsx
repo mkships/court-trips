@@ -6,6 +6,7 @@ import { CAROUSEL_ITEM, Carousel } from "@/components/Carousel";
 import { HomeHero } from "@/components/HomeHero";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { BookDirectIcon, CompareIcon, FindIcon } from "@/components/icons";
+import { continentOf } from "@/lib/country-info";
 import { getHomeData, getOperators } from "@/lib/db";
 import { SPORTS, SPORT_NAMES, type Sport, type Trip } from "@/lib/sports";
 import { groupTrips, programCount } from "@/lib/tiles";
@@ -48,6 +49,14 @@ function showcase(trips: Trip[]): Row[] {
   });
 }
 
+// The headline numbers are rounded down to a figure that stays true as listings come and go:
+// 105 reads "100+", 28 reads "25+". Under ten is shown as it is.
+function atLeast(n: number) {
+  if (n < 10) return String(n);
+  const step = n < 50 ? 5 : n < 100 ? 10 : n < 250 ? 25 : n < 1000 ? 50 : 100;
+  return `${(n - (n % step)).toLocaleString("en")}+`;
+}
+
 const POINTS = [
   {
     icon: FindIcon,
@@ -70,7 +79,8 @@ export default async function Home() {
   const [{ stats, listings, venues }, operators] = await Promise.all([getHomeData(), getOperators()]);
   const trips = groupTrips(listings);
   const rows = showcase(trips);
-  const countries = new Set(listings.map((l) => l.country).filter(Boolean)).size;
+  const countries = new Set(listings.map((l) => l.country).filter(Boolean));
+  const continents = new Set([...countries].map(continentOf).filter(Boolean)).size;
 
   return (
     <main className={CONTAINER}>
@@ -87,9 +97,9 @@ export default async function Home() {
           </p>
           <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
             {[
-              [trips.length, "trips"],
-              [countries, "countries"],
-              [operators.length, "operators"],
+              [atLeast(trips.length), "trips"],
+              [atLeast(countries.size), "countries"],
+              [continents, continents === 1 ? "continent" : "continents"],
             ].map(([value, label]) => (
               <div key={label} className="flex flex-col-reverse">
                 <dt className="text-[0.9375rem] text-ink-soft">{label}</dt>
