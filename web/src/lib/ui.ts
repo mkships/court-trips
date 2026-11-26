@@ -10,8 +10,10 @@
 // - Corners: rounded-full for buttons and pills, rounded-xl for fields, rounded-2xl for tiles
 //   and panels, rounded-3xl for large surfaces (hero, search bar, booking card).
 
-// The page column every public page lines up on: full width up to 1600px, then centred.
-export const PAGE = "mx-auto max-w-[1600px] px-4 sm:px-8 2xl:px-12";
+// The page column every public page lines up on. From laptop widths up the side margins are 5% of
+// the browser (72px at most), so the content fills about 90% of a laptop screen and never runs
+// edge to edge; past 1648px the column stops growing (1504px of content) and is centred.
+export const PAGE = "mx-auto max-w-[1648px] px-4 sm:px-8 lg:px-[min(5vw,4.5rem)]";
 
 const DISABLED = "disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50";
 const BORDER_HOVER = "border border-rule bg-white transition-colors hover:border-ink hover:bg-mist";
