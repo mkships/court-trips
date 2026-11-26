@@ -10,9 +10,10 @@ const NAV = [
   ["/operators", "Operators"],
 ] as const;
 
-// a trip's own page sits under Trips
+// a trip's own page sits under Trips, and so do the sport and destination pages that list trips
+const UNDER_TRIPS = /^\/(programs|tennis|pickleball|padel|destinations)(\/|$)/;
 const isCurrent = (path: string, href: string) =>
-  href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`) || (href === "/trips" && path.startsWith("/programs/"));
+  href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`) || (href === "/trips" && UNDER_TRIPS.test(path));
 
 export function NavLinks() {
   const path = usePathname();

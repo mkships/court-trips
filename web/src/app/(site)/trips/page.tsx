@@ -4,18 +4,23 @@ import { TILE_GRID, TripCard } from "@/components/Cards";
 import { SearchBar } from "@/components/SearchBar";
 import { getHomeData } from "@/lib/db";
 import { matchesTile, parseSearch, type SearchKey, type SearchValues } from "@/lib/filters";
+import { landingForSearch } from "@/lib/landing";
 import { SPORT_NAMES, type Sport } from "@/lib/sports";
 import { groupTrips } from "@/lib/tiles";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  // filtered views point search engines at the sport's whole list; tennis is the default, so it has no parameter
-  const { sport } = parseSearch(await searchParams);
+  // This is the search. Search engines are pointed at the landing page that shows the same trips
+  // (padel in Spain, pickleball camps) when there is one, else at the sport's own page.
+  const { sport, values } = parseSearch(await searchParams);
+  const { listings } = await getHomeData();
+  resolveWhere(values, listings.filter((l) => l.sports.includes(sport)).map((l) => l.country));
+  const name = SPORT_NAMES[sport];
   return {
-    title: "Trips | Court Trips",
-    description: "Tennis, pickleball and padel camps, clinics and getaways. Filter by country, month, level and format.",
-    alternates: { canonical: sport === "tennis" ? "/trips" : `/trips?sport=${sport}` },
+    title: `Search ${name.toLowerCase()} trips by country, month and level | Court Trips`,
+    description: `${name} camps, clinics and getaways for adults. Filter by country, month, level and format, then book with the operator.`,
+    alternates: { canonical: landingForSearch(sport, values, listings) },
   };
 }
 

@@ -5,10 +5,13 @@ import { OperatorCard, TripCard, VenueCard } from "@/components/Cards";
 import { CAROUSEL_ITEM, Carousel } from "@/components/Carousel";
 import { HomeHero } from "@/components/HomeHero";
 import { Illustration } from "@/components/Illustration";
+import { JsonLd } from "@/components/JsonLd";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { BookDirectIcon, CompareIcon, FindIcon } from "@/components/icons";
 import { continentOf } from "@/lib/country-info";
 import { getHomeData, getOperators } from "@/lib/db";
+import { organization, website } from "@/lib/jsonld";
+import { MIN_TRIPS, formatSlug } from "@/lib/landing";
 import { SPORTS, SPORT_NAMES, type Sport, type Trip } from "@/lib/sports";
 import { groupTrips, programCount } from "@/lib/tiles";
 import { NEWSLETTER_TURNSTILE_ACTION, turnstileSiteKey } from "@/lib/turnstile";
@@ -23,8 +26,9 @@ const FORMATS = [
   ["clinic", "clinics"],
   ["social_getaway", "getaways"],
 ] as const;
-// a showcase row needs enough trips to be worth scrolling, and stops before it becomes a list
-const ROW_MIN = 3;
+// a showcase row needs enough trips to be worth scrolling (the same number that earns a format its
+// own page, which the row links to), and stops before it becomes a list
+const ROW_MIN = MIN_TRIPS;
 const ROW_MAX = 12;
 
 // Featured trips lead their row (in the order set in admin), then soonest first.
@@ -41,12 +45,12 @@ function showcase(trips: Trip[]): Row[] {
     const rows = FORMATS.map(([format, noun]) => ({
       key: `${sport}-${format}`,
       title: `${SPORT_NAMES[sport]} ${noun}`,
-      href: `/trips?sport=${sport}&format=${format}`,
+      href: `/${sport}/${formatSlug(format)}`,
       sport,
       trips: featuredFirst(mine.filter((t) => t.category === format)),
     })).filter((row) => row.trips.length >= ROW_MIN);
     if (rows.length > 0 || mine.length === 0) return rows;
-    return [{ key: sport, title: `${SPORT_NAMES[sport]} trips`, href: `/trips?sport=${sport}`, sport, trips: featuredFirst(mine) }];
+    return [{ key: sport, title: `${SPORT_NAMES[sport]} trips`, href: `/${sport}`, sport, trips: featuredFirst(mine) }];
   });
 }
 
@@ -85,6 +89,7 @@ export default async function Home() {
 
   return (
     <main className={CONTAINER}>
+      <JsonLd data={[organization(), website()]} />
       <HomeHero stats={stats} listings={listings} />
 
       {/* what Court Trips is, on the brand's warm paper with its illustration */}

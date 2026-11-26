@@ -13,8 +13,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   // filtered views point search engines at the sport's whole list; tennis is the default, so it has no parameter
   const { sport } = parseSearch(await searchParams);
   return {
-    title: "Resorts & clubs | Court Trips",
-    description: "Resorts, hotels, clubs and academies with tennis, pickleball and padel courts, and the coached trips that run at each.",
+    title: `${SPORT_NAMES[sport]} resorts and clubs | Court Trips`,
+    description: `Resorts, hotels, clubs and academies with ${SPORT_NAMES[sport].toLowerCase()} courts, and the coached trips that run at each.`,
     alternates: { canonical: sport === "tennis" ? "/resorts" : `/resorts?sport=${sport}` },
   };
 }

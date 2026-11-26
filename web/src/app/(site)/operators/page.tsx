@@ -12,7 +12,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const { sport: raw } = await searchParams;
   const sport = SPORTS.find((s) => s === raw);
   return {
-    title: "Operators | Court Trips",
+    title: `${sport ? `${SPORT_NAMES[sport]} trip` : "Tennis, pickleball and padel trip"} operators | Court Trips`,
     description: "The academies, coaches, resorts and tour operators behind the tennis, pickleball and padel trips on Court Trips.",
     alternates: { canonical: sport ? `/operators?sport=${sport}` : "/operators" },
   };
