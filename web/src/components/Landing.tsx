@@ -5,6 +5,8 @@ import { OperatorCard, TILE_GRID, TripCard, VenueCard } from "@/components/Cards
 import { CAROUSEL_ITEM, Carousel } from "@/components/Carousel";
 import { Money } from "@/components/Currency";
 import { JsonLd } from "@/components/JsonLd";
+import { LinkIcon } from "@/components/LinkIcon";
+import { BookDirectIcon, CompareIcon, FindIcon, PeopleIcon, TicketIcon } from "@/components/icons";
 import { INTROS } from "@/content/landing";
 import { countryLabel, inCountry } from "@/lib/country-info";
 import { getRates } from "@/lib/currency";
@@ -14,6 +16,7 @@ import { PRICE_UNIT_NAMES } from "@/lib/format";
 import { breadcrumbs, itemList, type Crumb } from "@/lib/jsonld";
 import {
   FORMATS,
+  FORMAT_LABELS,
   factsFor,
   landingAt,
   landingHeading,
@@ -25,6 +28,7 @@ import {
   tilesFor,
   type Facts,
   type Landing,
+  type MenuLink,
 } from "@/lib/landing";
 import { SPORT_NAMES, type Listing, type Sport, type Trip } from "@/lib/sports";
 import { groupTrips, programCount } from "@/lib/tiles";
@@ -37,7 +41,6 @@ import { LINK, LINK_QUIET, PILL } from "@/lib/ui";
 
 // a row of cards stops before it becomes a list; the page it links to has the rest
 const ROW_MAX = 12;
-const FORMAT_LABELS = { camp: "Camps", clinic: "Clinics", social_getaway: "Getaways" } as const;
 
 const shortMonth = (ym: string) => {
   const [y, m] = ym.split("-").map(Number);
@@ -92,34 +95,60 @@ function liveLine(page: Landing, facts: Facts) {
   return `The trips listed here are based in ${some(facts.places, 4, ["other place", "other places"])}, and run by ${operators}.`;
 }
 
-function FactRow({ facts }: { facts: Facts }) {
+type IconType = (props: { className?: string }) => React.ReactNode;
+type BarFact = { icon: IconType; label: string; value: React.ReactNode; wide?: boolean };
+
+// What's listed right now, as one bar that takes only the width its facts need: each fact has its
+// icon beside its number, the same padding all round, and a hairline before the next. The values run
+// from "3" to a range of months, and the lines and even padding are what make that look deliberate.
+// It stays white so the icons keep their ink and yellow.
+// A tablet has no room for one row, so the bar is two by two, still only as wide as its facts. On a
+// phone it is full width: the two counts share a row, and the price and the dates (the long ones)
+// take a row each.
+function FactBar({ facts }: { facts: Facts }) {
   const { cheapest, firstMonth, lastMonth } = facts;
+  const items: BarFact[] = [
+    { icon: FindIcon, label: facts.trips === 1 ? "trip" : "trips", value: facts.trips },
+    { icon: BookDirectIcon, label: facts.operators.length === 1 ? "operator" : "operators", value: facts.operators.length },
+  ];
+  if (cheapest)
+    items.push({
+      icon: TicketIcon,
+      label: `lowest price${cheapest.unit ? `, ${PRICE_UNIT_NAMES[cheapest.unit]}` : ""}`,
+      value: <Money amount={cheapest.amount} currency={cheapest.currency} />,
+      wide: true,
+    });
+  if (firstMonth && lastMonth)
+    items.push({
+      icon: CompareIcon,
+      label: "trip dates",
+      value: firstMonth === lastMonth ? shortMonth(firstMonth) : `${shortMonth(firstMonth)} to ${shortMonth(lastMonth)}`,
+      wide: true,
+    });
   return (
-    <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-5">
-      <Fact label={facts.trips === 1 ? "trip" : "trips"}>{facts.trips}</Fact>
-      <Fact label={facts.operators.length === 1 ? "operator" : "operators"}>{facts.operators.length}</Fact>
-      {cheapest && (
-        <Fact label={`lowest price${cheapest.unit ? `, ${PRICE_UNIT_NAMES[cheapest.unit]}` : ""}`}>
-          <Money amount={cheapest.amount} currency={cheapest.currency} />
-        </Fact>
-      )}
-      {firstMonth && lastMonth && (
-        <Fact label="departures">{firstMonth === lastMonth ? shortMonth(firstMonth) : `${shortMonth(firstMonth)} to ${shortMonth(lastMonth)}`}</Fact>
-      )}
+    // the hairlines are the gaps: one pixel of the rule colour showing between white cells
+    <dl
+      aria-label="What's listed"
+      className="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-rule ring-1 ring-rule sm:w-fit sm:grid-cols-[auto_auto] lg:flex"
+    >
+      {items.map(({ icon: Icon, label, value, wide }, i) => (
+        <div
+          key={label}
+          className={`grid grid-cols-[auto_1fr] items-center gap-x-3 bg-white px-4 py-3.5 sm:px-5 ${wide ? "max-sm:col-span-2" : ""} ${
+            // an odd fact out fills its row, so the bar never shows an empty cell
+            items.length % 2 === 1 && i === items.length - 1 ? "sm:max-lg:col-span-2" : ""
+          }`}
+        >
+          <Icon className="col-start-1 row-span-2 row-start-1 size-7" />
+          <dt className="col-start-2 row-start-2 text-[0.875rem] text-ink-soft">{label}</dt>
+          <dd className="col-start-2 row-start-1 text-[1.125rem] leading-tight font-extrabold tracking-[-0.02em] whitespace-nowrap tabular-nums">{value}</dd>
+        </div>
+      ))}
     </dl>
   );
 }
 
-function Fact({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col-reverse">
-      <dt className="text-[0.9375rem] text-ink-soft">{label}</dt>
-      <dd className="text-[1.625rem] leading-none font-black tracking-[-0.03em] tabular-nums">{children}</dd>
-    </div>
-  );
-}
-
-type PillLink = { href: string; label: string; count?: number };
+type PillLink = MenuLink;
 
 function Pills({ title, links }: { title: string; links: PillLink[] }) {
   if (links.length === 0) return null;
@@ -130,6 +159,7 @@ function Pills({ title, links }: { title: string; links: PillLink[] }) {
         {links.map((l) => (
           <li key={l.href}>
             <Link href={l.href} className={`px-4 py-1.5 text-[0.9375rem] ${PILL}`}>
+              <LinkIcon {...l} />
               {l.label}
               {l.count != null && <span className="font-normal text-ink-soft tabular-nums">{l.count}</span>}
             </Link>
@@ -173,22 +203,22 @@ function GoodToKnow({ page, facts }: { page: Landing; facts: Facts }) {
       </h2>
       <dl className="mt-5 divide-y divide-rule border-y border-rule">
         {cheapest && (
-          <Question q={`How much does a ${noun} cost?`}>
+          <Question icon={TicketIcon} q={`How much does a ${noun} cost?`}>
             The {trips === 1 ? "trip" : `${trips} trips`} listed here start from <Money amount={cheapest.amount} currency={cheapest.currency} />
             {cheapest.unit ? ` ${PRICE_UNIT_NAMES[cheapest.unit]}` : ""}. What a price covers varies: some include the hotel and meals, others are
             coaching only, so check what&apos;s included on each trip.
           </Question>
         )}
         {firstMonth && lastMonth && (
-          <Question q="When do they run?">
+          <Question icon={CompareIcon} q="When do they run?">
             {firstMonth === lastMonth
               ? `The dates listed are in ${shortMonth(firstMonth)}.`
               : `The dates listed run from ${shortMonth(firstMonth)} to ${shortMonth(lastMonth)}.`}
-            {busiest.length === 2 && ` Most departures are in ${monthName(busiest[0])} and ${monthName(busiest[1])}.`} New dates are added as
+            {busiest.length === 2 && ` Most trips start in ${monthName(busiest[0])} and ${monthName(busiest[1])}.`} New dates are added as
             operators publish them.
           </Question>
         )}
-        <Question q="How good do I need to be?">
+        <Question icon={PeopleIcon} q="How good do I need to be?">
           {beginners === trips
             ? `Every trip listed here takes beginners or all levels.`
             : beginners === 0
@@ -196,7 +226,7 @@ function GoodToKnow({ page, facts }: { page: Landing; facts: Facts }) {
               : `${beginners} of the ${trips} trips take beginners or all levels; the rest are for intermediate or advanced players.`}{" "}
           Each trip shows its level, and its page has the rating range where the operator gives one.
         </Question>
-        <Question q="How do I book?">
+        <Question icon={BookDirectIcon} q="How do I book?">
           With the operator. Every trip links to the operator&apos;s own booking page, where you book and pay. Court Trips charges nothing and
           takes no commission.
         </Question>
@@ -205,11 +235,12 @@ function GoodToKnow({ page, facts }: { page: Landing; facts: Facts }) {
   );
 }
 
-function Question({ q, children }: { q: string; children: React.ReactNode }) {
+function Question({ icon: Icon, q, children }: { icon: IconType; q: string; children: React.ReactNode }) {
   return (
-    <div className="py-4">
+    <div className="grid grid-cols-[auto_1fr] gap-x-3.5 py-4">
+      <Icon className="row-span-2 mt-0.5 size-6" />
       <dt className="text-[1.0625rem] font-extrabold tracking-[-0.01em]">{q}</dt>
-      <dd className="mt-1.5 leading-relaxed text-ink-soft">{children}</dd>
+      <dd className="col-start-2 mt-1.5 leading-relaxed text-ink-soft">{children}</dd>
     </div>
   );
 }
@@ -256,9 +287,9 @@ export async function LandingPage({ page }: { page: Landing }) {
       <h1 className={`mt-4 max-w-[24ch] ${H1}`}>{heading}</h1>
       <p className="mt-5 max-w-[68ch] text-[1.0625rem] leading-relaxed">
         {intro && `${intro} `}
-        <span className={intro ? "text-ink-soft" : undefined}>{liveLine(page, facts)}</span>
+        {liveLine(page, facts)}
       </p>
-      <FactRow facts={facts} />
+      <FactBar facts={facts} />
 
       {page.kind === "sport" && <SportHub page={page} listings={listings} tiles={tiles} exists={exists} />}
       {page.kind === "format" && <FormatPage page={page} listings={listings} trips={trips} exists={exists} />}
@@ -323,7 +354,7 @@ function countryLinks(sport: Sport, listings: Listing[], exists: Exists, skip?: 
     .sort((a, b) => b.count - a.count || a.country.localeCompare(b.country))
     .map(({ country, count }) => {
       const page: Landing = { kind: "place", sport, country };
-      return { href: exists(page) ? landingHref(page) : searchHref(sport, "programs", { where: country }), label: countryLabel(country), count };
+      return { href: exists(page) ? landingHref(page) : searchHref(sport, "programs", { where: country }), label: countryLabel(country), count, country };
     });
 }
 
@@ -373,10 +404,13 @@ function FormatPage({ page, listings, trips, exists }: { page: Extract<Landing, 
   const others = FORMATS.filter((f) => f.category !== page.format)
     .map((f): Landing => ({ kind: "format", sport, format: f.category }))
     .filter(exists)
-    .map((p) => ({ href: landingHref(p), label: `${name} ${FORMAT_LABELS[(p as Extract<Landing, { kind: "format" }>).format].toLowerCase()}` }));
+    .map((p) => {
+      const { format } = p as Extract<Landing, { kind: "format" }>;
+      return { href: landingHref(p), label: `${name} ${FORMAT_LABELS[format].toLowerCase()}`, format };
+    });
   return (
     <>
-      <Pills title={`More ${name.toLowerCase()} trips`} links={[...others, { href: `/${sport}`, label: `All ${name.toLowerCase()}` }]} />
+      <Pills title={`More ${name.toLowerCase()} trips`} links={[...others, { href: `/${sport}`, label: `All ${name.toLowerCase()}`, sport }]} />
       <SectionTitle
         action={
           <Link href={searchHref(sport, "programs", { format: page.format })} className={`text-[0.9375rem] ${LINK}`}>
@@ -399,7 +433,7 @@ function PlacePage({ page, listings, trips, pages }: { page: Extract<Landing, { 
   const exists: Exists = (other) => pages.some((p) => landingHref(p) === landingHref(other));
   const here = pages
     .filter((p): p is Extract<Landing, { kind: "place" }> => p.kind === "place" && p.country === country && p.sport !== sport)
-    .map((p) => ({ href: landingHref(p), label: `${SPORT_NAMES[p.sport]} ${inCountry(country)}` }));
+    .map((p) => ({ href: landingHref(p), label: `${SPORT_NAMES[p.sport]} ${inCountry(country)}`, sport: p.sport }));
   const hub: Landing = { kind: "destination", country };
   return (
     <>
@@ -416,7 +450,7 @@ function PlacePage({ page, listings, trips, pages }: { page: Extract<Landing, { 
       <Pills title={`${name} in other countries`} links={countryLinks(sport, listings, exists, country)} />
       <Pills
         title={`Also ${inCountry(country)}`}
-        links={[...here, ...(exists(hub) ? [{ href: landingHref(hub), label: `Everything ${inCountry(country)}` }] : [])]}
+        links={[...here, ...(exists(hub) ? [{ href: landingHref(hub), label: `Everything ${inCountry(country)}`, country }] : [])]}
       />
     </>
   );
@@ -427,7 +461,7 @@ function DestinationPage({ page, tiles, pages, exists }: { page: Extract<Landing
   const { country } = page;
   const others = pages
     .filter((p): p is Extract<Landing, { kind: "destination" }> => p.kind === "destination" && p.country !== country)
-    .map((p) => ({ href: landingHref(p), label: countryLabel(p.country) }));
+    .map((p) => ({ href: landingHref(p), label: countryLabel(p.country), country: p.country }));
   return (
     <>
       {sportsIn(tiles).map((sport) => {

@@ -71,7 +71,7 @@ const POINTS = [
   {
     icon: CompareIcon,
     title: "Compare dates and prices",
-    text: "Every upcoming departure with its price and availability, checked against the operator's own page.",
+    text: "Every upcoming date with its price and availability, checked against the operator's own page.",
   },
   {
     icon: BookDirectIcon,

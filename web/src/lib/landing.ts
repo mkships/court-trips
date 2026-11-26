@@ -1,4 +1,4 @@
-import { countrySlug, inCountry } from "@/lib/country-info";
+import { countryLabel, countrySlug, inCountry } from "@/lib/country-info";
 import { convert, type Rates } from "@/lib/currency";
 import { SPORTS, SPORT_NAMES, type Listing, type Sport } from "@/lib/sports";
 import { programCount } from "@/lib/tiles";
@@ -18,6 +18,7 @@ export const FORMATS = [
 ] as const;
 export type Format = Listing["category"];
 export const formatSlug = (format: Format) => FORMATS.find((f) => f.category === format)!.slug;
+export const FORMAT_LABELS: Record<Format, string> = { camp: "Camps", clinic: "Clinics", social_getaway: "Getaways" };
 
 export type Landing =
   | { kind: "sport"; sport: Sport }
@@ -130,7 +131,7 @@ export type Facts = {
   places: string[];
   // the lowest-priced trip, in its own currency (the visitor's currency is applied when shown)
   cheapest: { amount: number; currency: string; unit: Listing["priceUnit"] } | null;
-  // "YYYY-MM" of the first and last departure, and the months with the most
+  // "YYYY-MM" of the first and last start date, and the months with the most
   firstMonth: string | null;
   lastMonth: string | null;
   busiest: string[];
@@ -162,7 +163,7 @@ export function factsFor(tiles: Listing[], rates: Rates | null): Facts {
     cheapest: low ? { amount: low.priceFrom!, currency: low.currency!, unit: low.priceUnit } : null,
     firstMonth: months[0] ?? null,
     lastMonth: months[months.length - 1] ?? null,
-    // the two calendar months with the most departures, when the dates are spread over enough of the
+    // the two calendar months with the most start dates, when the dates are spread over enough of the
     // year for that to say something
     busiest: perMonth.size >= 4 ? [...perMonth].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 2).map(([m]) => m) : [],
     beginners: trips.filter((t) => t.level.includes("beginner") || t.level.includes("all levels")).length,
@@ -174,4 +175,49 @@ export function some(items: string[], max: number, rest: [string, string] = ["ot
   if (items.length <= max) return listed(items);
   const more = items.length - (max - 1);
   return `${items.slice(0, max - 1).join(", ")} and ${more} ${more === 1 ? rest[0] : rest[1]}`;
+}
+
+// The pages of one kind with the most trips, busiest first: what the footer and the header menu name.
+export function busiest<K extends Landing["kind"]>(kind: K, listings: Listing[], pages = landingPages(listings)) {
+  return pages
+    .filter((page): page is Extract<Landing, { kind: K }> => page.kind === kind)
+    .map((page) => ({ page, trips: programCount(tilesFor(page, listings)) }))
+    .sort((a, b) => b.trips - a.trips);
+}
+
+// The header's Trips menu: a column per sport (its formats, then its busiest countries) and a column
+// of country hubs. Only pages that exist are in it, so it follows the listings like the pages do.
+// `sport`, `format` or `country` says what a link leads to, so it can be drawn with that thing's icon.
+export type MenuLink = { href: string; label: string; count?: number; sport?: Sport; format?: Format; country?: string };
+export type TripsMenu = {
+  sports: { sport: Sport; name: string; href: string; trips: number; formats: MenuLink[]; countries: MenuLink[] }[];
+  destinations: MenuLink[];
+};
+const MENU_COUNTRIES = 5;
+const MENU_DESTINATIONS = 6;
+
+export function tripsMenu(listings: Listing[]): TripsMenu {
+  const pages = landingPages(listings);
+  const places = busiest("place", listings, pages);
+  return {
+    sports: busiest("sport", listings, pages)
+      // in the site's own order of sports, not by size
+      .sort((a, b) => SPORTS.indexOf(a.page.sport) - SPORTS.indexOf(b.page.sport))
+      .map(({ page: { sport }, trips }) => ({
+        sport,
+        name: SPORT_NAMES[sport],
+        href: `/${sport}`,
+        trips,
+        formats: pages
+          .filter((p): p is Extract<Landing, { kind: "format" }> => p.kind === "format" && p.sport === sport)
+          .map((p) => ({ href: landingHref(p), label: FORMAT_LABELS[p.format], format: p.format })),
+        countries: places
+          .filter(({ page }) => page.sport === sport)
+          .slice(0, MENU_COUNTRIES)
+          .map(({ page, trips: count }) => ({ href: landingHref(page), label: countryLabel(page.country), count, country: page.country })),
+      })),
+    destinations: busiest("destination", listings, pages)
+      .slice(0, MENU_DESTINATIONS)
+      .map(({ page, trips: count }) => ({ href: landingHref(page), label: countryLabel(page.country), count, country: page.country })),
+  };
 }

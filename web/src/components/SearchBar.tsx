@@ -3,8 +3,9 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { countryCode } from "@/lib/country-info";
 import { SPORT_NAMES, type Listing, type Mode, type Sport, type Venue } from "@/lib/sports";
-import { SURFACES } from "@/lib/surfaces";
 import { MODE_PATHS, matchesTile, type SearchKey, type SearchValues } from "@/lib/filters";
+import { CountryFlag } from "@/components/CountryFlag";
+import { CourtTile } from "@/components/CourtTile";
 import { CategoryIcon, LevelIcon } from "@/components/icons";
 
 // Airbnb-style search: one pill of fields. Opening a field greys the bar, lifts that field
@@ -345,20 +346,10 @@ function Row({ selected, disabled, onClick, children }: RowProps) {
 // The row icon for each country: its flag, the fastest way to find yours in a list. A place we
 // have no flag for (old data) gets a tiny court in the sport's colours instead.
 function CountryTile({ country, sport }: { country: string; sport: Sport }) {
-  const code = countryCode(country);
-  if (code)
-    return (
-      <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-mist" aria-hidden="true">
-        {/* a 1 to 5 KB SVG served from /flags; next/image would add nothing */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`/flags/${code.toLowerCase()}.svg`} alt="" width={36} height={24} loading="lazy" className="h-6 w-9 rounded-[5px] ring-1 ring-ink/10" />
-      </span>
-    );
+  if (!countryCode(country)) return <CourtTile sport={sport} />;
   return (
-    <span className="grid size-12 shrink-0 place-items-center rounded-xl" style={{ backgroundColor: SURFACES[sport].surround }} aria-hidden="true">
-      <span className="relative block h-5 w-8 border-[1.5px] border-white" style={{ backgroundColor: SURFACES[sport].court }}>
-        <span className="absolute inset-y-[-3px] left-1/2 w-[1.5px] -translate-x-1/2 bg-white" />
-      </span>
+    <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-mist" aria-hidden="true">
+      <CountryFlag country={country} />
     </span>
   );
 }
